@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-blue: #0047B3;
+  --color-deep-royal: #003A91;
+  --color-dark-navy: #0A1F44;
+  --color-accent-blue: #1E63D8;
+  --color-metallic-silver: #C7D1DB;
+  --color-cool-gray: #AEBBC4;
+  --color-off-white: #F7F9FC;
+  --color-charcoal: #101418;
+  
+  --font-heading: 'Archivo', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+}
+

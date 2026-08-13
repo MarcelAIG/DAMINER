@@ -1,0 +1,6 @@
+{
+  "name": "DAMINER Homepage",
+  "description": "Premium homepage for DAMINER, a Ukrainian manufacturer of professional demining equipment.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

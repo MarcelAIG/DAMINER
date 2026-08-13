@@ -1,0 +1,47 @@
+import React from 'react';
+import { ArrowRight } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+
+export function About() {
+  const { t } = useLanguage();
+  
+  return (
+    <section id="about" className="py-24 md:py-32 bg-white">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
+        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
+          
+          <div className="w-full lg:w-5/12">
+            <h2 className="font-heading font-bold text-4xl md:text-5xl text-dark-navy leading-tight mb-8">
+              {t.about.heading}
+            </h2>
+            <p className="font-body text-xl text-charcoal/80 mb-12 leading-relaxed">
+              {t.about.desc}
+            </p>
+            <a 
+              href="#about-full"
+              className="inline-flex items-center gap-4 text-charcoal hover:text-primary-blue font-heading font-bold text-sm tracking-widest uppercase transition-colors"
+            >
+              {t.about.cta} <ArrowRight size={18} />
+            </a>
+          </div>
+          
+          <div className="w-full lg:w-7/12">
+            <div className="aspect-[4/3] bg-off-white relative">
+              <img 
+                src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&w=2000&auto=format&fit=crop" 
+                alt="Оператор в полі" 
+                className="w-full h-full object-cover grayscale"
+              />
+              <div className="absolute -bottom-6 -left-6 md:-bottom-10 md:-left-10 w-48 h-48 md:w-64 md:h-64 bg-primary-blue hidden sm:flex items-center justify-center p-8 text-center">
+                <span className="font-heading font-bold text-white text-2xl md:text-3xl leading-tight">
+                  {t.about.badge}
+                </span>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+  );
+}
