@@ -110,7 +110,7 @@ export function Featured() {
                     e.stopPropagation();
                     addItem({ id: product.id, model: product.model });
                   }}
-                  className="inline-flex items-center justify-center border border-metallic-silver/60 group-hover:border-primary-blue text-dark-navy group-hover:text-primary-blue font-heading font-bold text-[10px] md:text-[11px] tracking-widest uppercase px-5 py-3 transition-colors duration-300"
+                  className="inline-flex items-center justify-center bg-primary-blue text-white border border-primary-blue hover:bg-white hover:text-primary-blue font-heading font-bold text-[10px] md:text-[11px] tracking-widest uppercase px-6 py-3 transition-colors duration-300"
                 >
                   {t.request.add}
                 </button>
