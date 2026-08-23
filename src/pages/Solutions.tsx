@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'motion/react';
 import { useLanguage } from '../context/LanguageContext';
-import { ShieldCheck, Target, Cog, ArrowRight } from 'lucide-react';
+import { Package, Briefcase, Layers, Cog, ArrowRight } from 'lucide-react';
 
 export function Solutions() {
   const { t } = useLanguage();
@@ -12,8 +12,9 @@ export function Solutions() {
   }, []);
 
   const icons = [
-    <ShieldCheck className="w-12 h-12 text-primary-blue mb-6" />,
-    <Target className="w-12 h-12 text-primary-blue mb-6" />,
+    <Package className="w-12 h-12 text-primary-blue mb-6" />,
+    <Briefcase className="w-12 h-12 text-primary-blue mb-6" />,
+    <Layers className="w-12 h-12 text-primary-blue mb-6" />,
     <Cog className="w-12 h-12 text-primary-blue mb-6" />
   ];
 
@@ -22,8 +23,8 @@ export function Solutions() {
       
       {/* Hero Section */}
       <section className="relative bg-dark-navy text-white py-24 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 opacity-20 pointer-events-none" style={{
-          backgroundImage: 'radial-gradient(circle at 50% 150%, #1e63d8 0%, transparent 60%)'
+        <div className="absolute inset-0 opacity-70 pointer-events-none" style={{
+          backgroundImage: 'radial-gradient(circle at 50% 100%, #1e63d8 0%, transparent 80%)'
         }}></div>
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 relative z-10">
           <motion.div 
@@ -45,7 +46,7 @@ export function Solutions() {
       {/* Solutions Grid */}
       <section className="py-24 md:py-32">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 lg:gap-10">
             {t.solutionsPage.items.map((item, index) => (
               <motion.div 
                 key={index}
@@ -53,20 +54,20 @@ export function Solutions() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white p-10 md:p-12 border border-metallic-silver/20 hover:border-primary-blue/30 hover:shadow-[0_20px_50px_-20px_rgba(30,99,216,0.15)] transition-none group flex flex-col h-full"
+                className="bg-white p-10 md:p-12 border border-metallic-silver/20 hover:border-primary-blue/30 hover:shadow-[0_20px_50px_-20px_rgba(30,99,216,0.15)] transition-colors duration-300 group flex flex-col h-full"
               >
                 {icons[index]}
-                <h3 className="font-heading font-bold text-2xl md:text-3xl text-dark-navy mb-6 group-hover:text-primary-blue transition-none">
+                <h3 className="font-heading font-bold text-2xl md:text-3xl text-dark-navy mb-6 group-hover:text-primary-blue transition-colors duration-300">
                   {item.title}
                 </h3>
                 <p className="font-body text-charcoal/70 leading-relaxed mb-8 flex-grow">
                   {item.desc}
                 </p>
                 <div className="pt-8 border-t border-metallic-silver/20 flex items-center justify-between">
-                  <span className="font-heading font-bold text-sm tracking-widest text-primary-blue uppercase group-hover:text-dark-navy transition-none">
+                  <span className="font-heading font-bold text-sm tracking-widest text-primary-blue uppercase group-hover:text-dark-navy transition-colors duration-300">
                     DAMINER PRO
                   </span>
-                  <ArrowRight size={20} className="text-primary-blue opacity-0 group-hover:opacity-100 transition-none" />
+                  <ArrowRight size={20} className="text-primary-blue opacity-0 group-hover:opacity-100 transition-colors duration-300" />
                 </div>
               </motion.div>
             ))}
@@ -82,7 +83,7 @@ export function Solutions() {
           </h2>
           <a 
             href="/#contact"
-            className="inline-flex items-center justify-center w-full sm:w-auto bg-primary-blue text-white hover:bg-white hover:text-primary-blue border border-primary-blue font-heading font-bold text-sm tracking-widest uppercase px-12 py-5 transition-none"
+            className="inline-flex items-center justify-center w-full sm:w-auto bg-primary-blue text-white hover:bg-white hover:text-primary-blue border border-primary-blue font-heading font-bold text-sm tracking-widest uppercase px-12 py-5 transition-colors duration-300"
           >
             {t.solutionsPage.cta}
           </a>

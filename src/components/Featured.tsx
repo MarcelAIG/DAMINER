@@ -14,21 +14,21 @@ export function Featured() {
       model: t.featured.model1,
       description: t.featured.desc1,
       price: "",
-      imageBase64: null
+      imageBase64: "/mine1.svg?v=4"
     },
     {
       id: "2",
       model: t.featured.model2,
       description: t.featured.desc2,
       price: "",
-      imageBase64: null
+      imageBase64: "/mine2.svg?v=4"
     },
     {
       id: "3",
       model: t.featured.model3,
       description: t.featured.desc3,
       price: "",
-      imageBase64: null
+      imageBase64: "/mine3.svg?v=4"
     }
   ];
 
@@ -44,14 +44,17 @@ export function Featured() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-20">
           {itemsToRender.map((product) => (
-            <Link to="/catalog" key={product.id} className="flex flex-col group cursor-pointer">
-              <div className="aspect-[3/4] bg-white border border-metallic-silver/20 mb-10 flex items-center justify-center relative overflow-hidden">
+            <Link to={`/product/${product.id}`} key={product.id} className="flex flex-col group cursor-pointer">
+              <div className="aspect-[3/4] lg:aspect-square xl:aspect-[5/4] bg-white border border-metallic-silver/20 mb-10 lg:mb-5 flex items-center justify-center relative overflow-hidden">
                 {product.imageBase64 ? (
-                  <img 
-                    src={product.imageBase64} 
-                    alt={product.model} 
-                    className="w-full h-full object-cover grayscale hover:grayscale-0 mix-blend-multiply transition-all duration-700 group-hover:scale-105"
-                  />
+                  <>
+                    <img 
+                      src={product.imageBase64} 
+                      alt={product.model} 
+                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 relative z-0"
+                    />
+                    <div className="absolute inset-0 bg-[#1e63d8]/40 mix-blend-color group-hover:opacity-0 transition-opacity duration-700 pointer-events-none z-10" />
+                  </>
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="absolute inset-0 opacity-5" style={{
@@ -68,24 +71,24 @@ export function Featured() {
               </div>
               
               <div className="flex-1 flex flex-col">
-                <h4 className="font-heading text-sm text-cool-gray tracking-widest uppercase font-semibold mb-2">
+                <h4 className="font-heading text-sm text-cool-gray tracking-widest uppercase font-semibold mb-2 lg:mb-1">
                   {t.featured.probe}
                 </h4>
-                <h3 className="font-heading text-4xl font-bold text-dark-navy mb-6">
+                <h3 className="font-heading text-4xl lg:text-3xl font-bold text-dark-navy mb-6 lg:mb-3">
                   {product.model}
                 </h3>
                 
-                <p className="font-body text-charcoal/70 mb-10 flex-1 leading-relaxed">
+                <p className="font-body text-charcoal/70 mb-10 lg:mb-5 flex-1 leading-relaxed text-base">
                   {product.description}
                 </p>
                 
-                <div className="pt-8 border-t border-metallic-silver/40">
+                <div className="pt-8 lg:pt-5 border-t border-metallic-silver/40 mt-auto">
                   <button 
                     onClick={(e) => {
                       e.preventDefault();
                       addItem({ id: product.id, model: product.model });
                     }}
-                    className="w-full py-4 bg-primary-blue text-white font-heading font-bold text-sm tracking-widest uppercase hover:bg-dark-navy hover:text-white transition-colors"
+                    className="w-full py-4 bg-primary-blue text-white font-heading font-bold text-sm tracking-widest uppercase border border-primary-blue hover:bg-white hover:text-primary-blue transition-colors duration-300"
                   >
                     {t.request.add}
                   </button>

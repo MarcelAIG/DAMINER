@@ -20,7 +20,7 @@ export function About() {
             </p>
             <Link 
               to="/about"
-              className="inline-flex items-center justify-center bg-primary-blue text-white hover:bg-white hover:text-primary-blue border border-primary-blue font-heading font-bold text-sm tracking-widest uppercase px-8 py-4 transition-none"
+              className="inline-flex items-center justify-center bg-primary-blue text-white hover:bg-white hover:text-primary-blue border border-primary-blue font-heading font-bold text-sm tracking-widest uppercase px-8 py-4 transition-colors duration-300"
             >
               {t.about.cta}
             </Link>

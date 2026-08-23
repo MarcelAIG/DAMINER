@@ -19,14 +19,14 @@ export function FinalCTA() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <button 
               onClick={() => setIsDrawerOpen(true)}
-              className="w-full sm:w-auto bg-primary-blue text-white hover:bg-white hover:text-primary-blue font-heading font-bold text-sm tracking-widest uppercase px-10 py-5 transition-none border border-primary-blue"
+              className="w-full sm:w-auto bg-primary-blue text-white hover:bg-white hover:text-primary-blue font-heading font-bold text-sm tracking-widest uppercase px-10 py-5 transition-colors duration-300 border border-primary-blue"
             >
               {t.cta.btn1}
             </button>
             
             <button 
               onClick={() => setIsConsultationModalOpen(true)}
-              className="w-full sm:w-auto bg-transparent border-2 border-white/40 text-white hover:bg-white hover:text-dark-navy font-heading font-bold text-sm tracking-widest uppercase px-10 py-5 transition-none inline-block text-center cursor-pointer"
+              className="w-full sm:w-auto bg-transparent border-2 border-white/40 text-white hover:bg-white hover:text-dark-navy font-heading font-bold text-sm tracking-widest uppercase px-10 py-5 transition-colors duration-300 inline-block text-center cursor-pointer"
             >
               {t.cta.btn2}
             </button>

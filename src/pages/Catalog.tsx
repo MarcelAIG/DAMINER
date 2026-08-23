@@ -17,8 +17,8 @@ export function Catalog() {
       
       {/* Hero Section */}
       <section className="relative bg-dark-navy text-white py-24 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 opacity-20 pointer-events-none" style={{
-          backgroundImage: 'radial-gradient(circle at 50% 150%, #1e63d8 0%, transparent 60%)'
+        <div className="absolute inset-0 opacity-70 pointer-events-none" style={{
+          backgroundImage: 'radial-gradient(circle at 50% 100%, #1e63d8 0%, transparent 80%)'
         }}></div>
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 relative z-10">
           <motion.div 

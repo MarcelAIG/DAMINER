@@ -1,7 +1,24 @@
 import React, { useEffect } from 'react';
 import { motion } from 'motion/react';
 import { useLanguage } from '../context/LanguageContext';
-import { User, Phone, Mail, Clock, MapPin, Send } from 'lucide-react';
+import { User, Phone, Mail, Clock, MapPin, Send, Facebook, Instagram } from 'lucide-react';
+
+const TikTokIcon = ({ size = 24, className = "" }: { size?: number, className?: string }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+  </svg>
+);
 
 export function Contact() {
   const { t } = useLanguage();
@@ -20,8 +37,8 @@ export function Contact() {
       
       {/* Hero Section */}
       <section className="relative bg-dark-navy text-white py-24 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 opacity-40 pointer-events-none" style={{
-          backgroundImage: 'radial-gradient(circle at 50% 100%, #1e63d8 0%, transparent 70%)'
+        <div className="absolute inset-0 opacity-70 pointer-events-none" style={{
+          backgroundImage: 'radial-gradient(circle at 50% 100%, #1e63d8 0%, transparent 80%)'
         }}></div>
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{
           backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'#ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")'
@@ -82,7 +99,7 @@ export function Contact() {
                     <h3 className="font-heading font-bold text-sm tracking-widest text-cool-gray uppercase mb-2">
                       {t.contactPage.phoneLabel}
                     </h3>
-                    <a href={`tel:${displayPhone.replace(/[\s-]/g, '')}`} className="font-body text-2xl font-medium text-dark-navy hover:text-primary-blue transition-colors">
+                    <a href={`tel:${displayPhone.replace(/[\s-]/g, '')}`} className="font-body text-2xl font-medium text-dark-navy hover:text-primary-blue transition-colors duration-300">
                       {displayPhone}
                     </a>
                   </div>
@@ -96,7 +113,7 @@ export function Contact() {
                     <h3 className="font-heading font-bold text-sm tracking-widest text-cool-gray uppercase mb-2">
                       {t.contactPage.emailLabel}
                     </h3>
-                    <a href={`mailto:${displayEmail}`} className="font-body text-2xl font-medium text-dark-navy hover:text-primary-blue transition-colors">
+                    <a href={`mailto:${displayEmail}`} className="font-body text-2xl font-medium text-dark-navy hover:text-primary-blue transition-colors duration-300">
                       {displayEmail}
                     </a>
                   </div>
@@ -113,6 +130,25 @@ export function Contact() {
                     <p className="font-body text-2xl font-medium text-dark-navy">
                       {t.contactPage.schedule}
                     </p>
+                  </div>
+                </div>
+
+                <div className="flex gap-6 items-start mt-2 pt-10 border-t border-metallic-silver/20">
+                  <div className="w-full">
+                    <h3 className="font-heading font-bold text-sm tracking-widest text-cool-gray uppercase mb-6">
+                      {t.footer.socialHeading}
+                    </h3>
+                    <div className="flex gap-5">
+                      <a href="#" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-sm bg-white flex items-center justify-center text-dark-navy hover:bg-primary-blue hover:text-white transition-all duration-300 border border-metallic-silver/20 hover:border-transparent shadow-sm hover:shadow-[0_10px_20px_-10px_rgba(30,99,216,0.6)] group/social">
+                        <Facebook size={20} className="group-hover/social:scale-110 transition-transform duration-300" />
+                      </a>
+                      <a href="#" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-sm bg-white flex items-center justify-center text-dark-navy hover:bg-primary-blue hover:text-white transition-all duration-300 border border-metallic-silver/20 hover:border-transparent shadow-sm hover:shadow-[0_10px_20px_-10px_rgba(30,99,216,0.6)] group/social">
+                        <Instagram size={20} className="group-hover/social:scale-110 transition-transform duration-300" />
+                      </a>
+                      <a href="#" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-sm bg-white flex items-center justify-center text-dark-navy hover:bg-primary-blue hover:text-white transition-all duration-300 border border-metallic-silver/20 hover:border-transparent shadow-sm hover:shadow-[0_10px_20px_-10px_rgba(30,99,216,0.6)] group/social">
+                        <TikTokIcon size={20} className="group-hover/social:scale-110 transition-transform duration-300" />
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -165,7 +201,7 @@ export function Contact() {
                 
                 <button 
                   type="submit"
-                  className="mt-4 w-full inline-flex items-center justify-center gap-3 bg-primary-blue text-white hover:bg-white hover:text-primary-blue border border-primary-blue font-heading font-bold text-base tracking-widest uppercase px-10 py-5 transition-none"
+                  className="mt-4 w-full inline-flex items-center justify-center gap-3 bg-primary-blue text-white hover:bg-white hover:text-primary-blue border border-primary-blue font-heading font-bold text-base tracking-widest uppercase px-10 py-5 transition-colors duration-300"
                 >
                   {t.contactPage.formSubmit}
                 </button>

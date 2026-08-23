@@ -44,11 +44,11 @@ export function Categories() {
                 )}
               </div>
               <div className="border-t border-metallic-silver/40 pt-6 flex justify-between items-start">
-                <h3 className="font-heading font-semibold text-2xl text-charcoal group-hover:text-primary-blue transition-none">
+                <h3 className="font-heading font-semibold text-2xl text-charcoal group-hover:text-primary-blue transition-colors duration-300">
                   {item.title}
                 </h3>
-                <span className="flex items-center justify-center w-10 h-10 rounded-full border border-metallic-silver/50 group-hover:bg-primary-blue group-hover:border-primary-blue group-hover:text-white transition-none">
-                  <ArrowRight size={18} className="transition-none" />
+                <span className="flex items-center justify-center w-10 h-10 rounded-full border border-metallic-silver/50 group-hover:bg-primary-blue group-hover:border-primary-blue group-hover:text-white transition-colors duration-300">
+                  <ArrowRight size={18} className="transition-colors duration-300" />
                 </span>
               </div>
             </div>

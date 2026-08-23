@@ -15,6 +15,7 @@ import { Solutions } from './pages/Solutions';
 import { About } from './pages/About';
 import { Contact } from './pages/Contact';
 import { Catalog } from './pages/Catalog';
+import { Product } from './pages/Product';
 
 export default function App() {
   return (
@@ -27,6 +28,7 @@ export default function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/catalog" element={<Catalog />} />
+                <Route path="/product/:id" element={<Product />} />
                 <Route path="/solutions" element={<Solutions />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />

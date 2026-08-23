@@ -58,7 +58,7 @@ export function HomeCategories() {
                   
                   <Link 
                     to="/catalog"
-                    className="inline-flex items-center justify-center bg-primary-blue text-white hover:bg-white hover:text-primary-blue border border-primary-blue font-heading font-bold text-sm tracking-widest uppercase px-8 py-4 transition-none w-fit"
+                    className="inline-flex items-center justify-center bg-primary-blue text-white hover:bg-white hover:text-primary-blue border border-primary-blue font-heading font-bold text-sm tracking-widest uppercase px-8 py-4 transition-colors duration-300 w-fit"
                   >
                     {t.categories.viewLink}
                   </Link>

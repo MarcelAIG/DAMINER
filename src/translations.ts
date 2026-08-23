@@ -1,10 +1,11 @@
 export const translations = {
   ua: {
-    nav: { catalog: "Каталог", solutions: "Рішення", about: "Про компанію", contact: "Контакти" },
+    nav: { catalog: "Каталог", solutions: "Рішення", about: "Про компанію", contact: "Контакти", search: "Пошук товарів" },
     hero: {
       subtitle: "Професійне обладнання для розмінування та пошукових робіт",
       description: "Виробництво професійного обладнання для розмінування та пошукових робіт.",
-      cta: "Переглянути каталог"
+      cta: "Переглянути каталог",
+      ctaConsultation: "Отримати консультацію"
     },
     categories: {
       heading: "Обладнання DAMINER",
@@ -28,7 +29,11 @@ export const translations = {
       desc2: "Посилена конструкція зі змінними наконечниками для роботи у складних умовах.",
       desc3: "Професійний телескопічний щуп збільшеної довжини для дистанційного зондування.",
       price: "Ціна за запитом",
-      details: "Детальніше"
+      details: "Детальніше",
+      warrantyTitle: "Гарантія",
+      warrantyDesc1: "Стандартна гарантія — від 1 року.",
+      warrantyDesc2: "Для окремих комплектів та наборів гарантія може становити до 3 років.",
+      otherProducts: "Інші товари"
     },
     mfg: {
       heading: "Виготовлення за технічним завданням",
@@ -56,23 +61,38 @@ export const translations = {
       desc: "Професійне обладнання для розмінування, пошукових робіт та спеціалізованого використання.",
       rights: "Всі права захищені.",
       navHeading: "Навігація",
-      contactHeading: "Зв'язок"
+      infoHeading: "Інформація",
+      contactHeading: "Зв'язок",
+      socialHeading: "Ми в соцмережах",
+      solutions: "Рішення для організацій",
+      payment: "Оплата та доставка",
+      warranty: "Гарантія та повернення",
+      certificates: "Сертифікати",
+      request: "Запит на товари",
+      address: "Ніжин, Чернігівська обл., Україна",
+      privacy: "Політика конфіденційності",
+      terms: "Умови використання",
+      cookies: "Файли cookie"
     },
     solutionsPage: {
       heading: "Комплексні рішення",
       subheading: "Спеціалізовані комплекти та індивідуальні розробки для виконання завдань будь-якої складності.",
       items: [
         {
-          title: "Гуманітарне розмінування",
-          desc: "Забезпечення саперних груп інструментами для виявлення та безпечного знешкодження вибухонебезпечних предметів на деокупованих територіях."
+          title: "Оптові поставки",
+          desc: "Забезпечення великих партій обладнання для потреб організацій та підрозділів."
         },
         {
-          title: "Військова інженерія",
-          desc: "Тактичні набори для оперативних підрозділів, адаптовані до екстремальних умов на полі бою."
+          title: "Готові комплекти",
+          desc: "Стандартизовані набори інструментів, готові до використання в польових умовах."
         },
         {
-          title: "Індивідуальні розробки",
-          desc: "Проектування та виробництво нестандартного обладнання за специфікаціями та кресленнями замовника."
+          title: "Індивідуальне комплектування",
+          desc: "Підбір та формування наборів відповідно до специфічних завдань замовника."
+        },
+        {
+          title: "Виготовлення за технічним завданням",
+          desc: "Розробка та виробництво нестандартного обладнання за кресленнями або ТЗ."
         }
       ],
       cta: "Обговорити проєкт"
@@ -118,7 +138,7 @@ export const translations = {
       personLabel: "Відповідальна особа",
       person: "Безжон Юрій Миколайович",
       phoneLabel: "Телефон",
-      phone: "+38 068 131 07 14",
+      phone: "+38 (050) 381-17-23",
       emailLabel: "Email",
       email: "Daminer23@ukr.net",
       scheduleLabel: "Графік роботи",
@@ -141,11 +161,12 @@ export const translations = {
     }
   },
   en: {
-    nav: { catalog: "Catalog", solutions: "Solutions", about: "About Us", contact: "Contact" },
+    nav: { catalog: "Catalog", solutions: "Solutions", about: "About Us", contact: "Contact", search: "Search Products" },
     hero: {
       subtitle: "Professional equipment for demining and search operations",
       description: "Manufacturing of professional equipment for demining and search operations.",
-      cta: "View Catalog"
+      cta: "View Catalog",
+      ctaConsultation: "Get Consultation"
     },
     categories: {
       heading: "DAMINER Equipment",
@@ -169,7 +190,11 @@ export const translations = {
       desc2: "Reinforced design with interchangeable tips for demanding conditions.",
       desc3: "Professional extended telescopic probe for remote probing.",
       price: "Price on request",
-      details: "Details"
+      details: "Details",
+      warrantyTitle: "Warranty",
+      warrantyDesc1: "Standard warranty starts from 1 year.",
+      warrantyDesc2: "For selected kits and equipment sets, warranty may extend up to 3 years.",
+      otherProducts: "Other Products"
     },
     mfg: {
       heading: "Custom Manufacturing",
@@ -197,23 +222,38 @@ export const translations = {
       desc: "Professional equipment for demining, search operations, and specialized use.",
       rights: "All rights reserved.",
       navHeading: "Navigation",
-      contactHeading: "Contact"
+      infoHeading: "Information",
+      contactHeading: "Contact",
+      socialHeading: "Follow Us",
+      solutions: "Solutions for Organizations",
+      payment: "Payment & Delivery",
+      warranty: "Warranty & Returns",
+      certificates: "Certificates",
+      request: "Product Request",
+      address: "Nizhyn, Chernihiv region, Ukraine",
+      privacy: "Privacy Policy",
+      terms: "Terms",
+      cookies: "Cookie Policy"
     },
     solutionsPage: {
       heading: "Comprehensive Solutions",
       subheading: "Specialized kits and custom developments for executing tasks of any complexity.",
       items: [
         {
-          title: "Humanitarian Demining",
-          desc: "Equipping sapper groups with tools for the detection and safe disposal of explosive ordnance in de-occupied territories."
+          title: "Wholesale Supply",
+          desc: "Providing large batches of equipment for the needs of organizations and units."
         },
         {
-          title: "Military Engineering",
-          desc: "Tactical kits for operational units, adapted to extreme battlefield conditions."
+          title: "Ready-Made Kits",
+          desc: "Standardized tool sets, ready for immediate deployment in the field."
         },
         {
-          title: "Custom Developments",
-          desc: "Design and production of non-standard equipment according to customer specifications and drawings."
+          title: "Custom Configuration",
+          desc: "Selection and assembly of kits tailored to the specific tasks of the customer."
+        },
+        {
+          title: "Manufacturing According to Technical Specifications",
+          desc: "Development and production of custom equipment based on drawings or technical specs."
         }
       ],
       cta: "Discuss a Project"
@@ -259,7 +299,7 @@ export const translations = {
       personLabel: "Contact Person",
       person: "Yuriy Bezhon",
       phoneLabel: "Phone",
-      phone: "+38 068 131 07 14",
+      phone: "+38 (050) 381-17-23",
       emailLabel: "Email",
       email: "Daminer23@ukr.net",
       scheduleLabel: "Working Hours",
