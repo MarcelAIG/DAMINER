@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 
 export function Hero() {
@@ -38,12 +39,12 @@ export function Hero() {
             {t.hero.description}
           </p>
           
-          <a 
-            href="#catalog"
-            className="inline-flex items-center justify-center bg-primary-blue hover:bg-accent-blue text-white font-heading font-bold text-sm tracking-widest uppercase px-10 py-5 transition-all duration-300 hover:-translate-y-1.5 hover:scale-105 hover:shadow-[0_15px_40px_-10px_rgba(30,99,216,0.8)] active:scale-95 border border-transparent hover:border-white/20"
+          <Link 
+            to="/catalog"
+            className="inline-flex items-center justify-center bg-primary-blue hover:bg-white hover:text-primary-blue text-white font-heading font-bold text-sm tracking-widest uppercase px-10 py-5 transition-none border border-primary-blue"
           >
             {t.hero.cta}
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>

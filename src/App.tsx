@@ -2,34 +2,41 @@
  * @license
  * SPDX-License-Identifier: Apache-2.0
  */
+
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { LanguageProvider } from './context/LanguageContext';
+import { RequestProvider } from './context/RequestContext';
 import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { Categories } from './components/Categories';
-import { Featured } from './components/Featured';
-import { CustomMfg } from './components/CustomMfg';
-import { Quality } from './components/Quality';
-import { About } from './components/About';
-import { FinalCTA } from './components/FinalCTA';
 import { Footer } from './components/Footer';
+import { RequestDrawer } from './components/RequestDrawer';
+import { Home } from './pages/Home';
+import { Solutions } from './pages/Solutions';
+import { About } from './pages/About';
+import { Contact } from './pages/Contact';
+import { Catalog } from './pages/Catalog';
 
 export default function App() {
   return (
     <LanguageProvider>
-      <div className="min-h-screen bg-off-white">
-        <Navbar />
-        <main>
-          <Hero />
-          <Categories />
-          <Featured />
-          <CustomMfg />
-          <Quality />
-          <About />
-          <FinalCTA />
-        </main>
-        <Footer />
-      </div>
+      <RequestProvider>
+        <Router>
+          <div className="min-h-screen bg-off-white flex flex-col relative">
+            <Navbar />
+            <div className="flex-grow">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/catalog" element={<Catalog />} />
+                <Route path="/solutions" element={<Solutions />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
+              </Routes>
+            </div>
+            <Footer />
+            <RequestDrawer />
+          </div>
+        </Router>
+      </RequestProvider>
     </LanguageProvider>
   );
 }

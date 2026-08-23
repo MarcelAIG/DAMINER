@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -17,12 +18,12 @@ export function About() {
             <p className="font-body text-xl text-charcoal/80 mb-12 leading-relaxed">
               {t.about.desc}
             </p>
-            <a 
-              href="#about-full"
-              className="inline-flex items-center gap-4 text-charcoal hover:text-primary-blue font-heading font-bold text-sm tracking-widest uppercase transition-colors"
+            <Link 
+              to="/about"
+              className="inline-flex items-center justify-center bg-primary-blue text-white hover:bg-white hover:text-primary-blue border border-primary-blue font-heading font-bold text-sm tracking-widest uppercase px-8 py-4 transition-none"
             >
-              {t.about.cta} <ArrowRight size={18} />
-            </a>
+              {t.about.cta}
+            </Link>
           </div>
           
           <div className="w-full lg:w-7/12">
