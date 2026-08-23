@@ -41,9 +41,11 @@ export const translations = {
       services: ["Індивідуальне виготовлення", "Розробка власних виробів", "Серійне виробництво", "Індивідуальне комплектування"]
     },
     quality: {
+      heading: "Сертифікати та документація",
       testing: "Випробування",
       isoDesc: "Система управління якістю сертифікована за міжнародним стандартом.",
-      krDesc: "Кодифіковано Міністерством оборони України. Офіційний постачальник.",
+      krTitle: "Документація за запитом",
+      krDesc: "Документація, пов’язана з Міністерством оборони, надається за запитом.",
       testDesc: "Всі вироби проходять жорсткі перевірки та мають відповідні протоколи випробувань."
     },
     about: {
@@ -72,7 +74,7 @@ export const translations = {
       address: "Ніжин, Чернігівська обл., Україна",
       privacy: "Політика конфіденційності",
       terms: "Умови використання",
-      cookies: "Файли cookie"
+      returns: "Повернення та обмін"
     },
     solutionsPage: {
       heading: "Комплексні рішення",
@@ -202,9 +204,11 @@ export const translations = {
       services: ["Custom Production", "In-house Development", "Serial Manufacturing", "Custom Kitting"]
     },
     quality: {
+      heading: "Certificates & Documentation",
       testing: "Testing",
       isoDesc: "Quality management system certified to international standards.",
-      krDesc: "Codified by the Ministry of Defense of Ukraine. Official supplier.",
+      krTitle: "Documentation on Request",
+      krDesc: "Documentation related to the Ministry of Defence is available upon request.",
       testDesc: "All products undergo rigorous testing and are accompanied by test protocols."
     },
     about: {
@@ -232,8 +236,8 @@ export const translations = {
       request: "Product Request",
       address: "Nizhyn, Chernihiv region, Ukraine",
       privacy: "Privacy Policy",
-      terms: "Terms",
-      cookies: "Cookie Policy"
+      terms: "Terms & Conditions",
+      returns: "Returns & Exchanges"
     },
     solutionsPage: {
       heading: "Comprehensive Solutions",

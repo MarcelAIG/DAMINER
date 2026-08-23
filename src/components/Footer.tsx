@@ -52,9 +52,9 @@ export function Footer() {
           {/* Column 3: Information */}
           <div className="flex flex-col gap-3">
             <h4 className="font-heading font-bold text-[15px] uppercase tracking-widest text-dark-navy mb-3">{t.footer.infoHeading}</h4>
-            <Link to="#" className="font-body text-[15px] text-charcoal/80 hover:text-primary-blue transition-colors duration-300 w-fit">{t.footer.payment}</Link>
-            <Link to="#" className="font-body text-[15px] text-charcoal/80 hover:text-primary-blue transition-colors duration-300 w-fit">{t.footer.warranty}</Link>
-            <Link to="#" className="font-body text-[15px] text-charcoal/80 hover:text-primary-blue transition-colors duration-300 w-fit">{t.footer.certificates}</Link>
+            <Link to="/payment" className="font-body text-[15px] text-charcoal/80 hover:text-primary-blue transition-colors duration-300 w-fit">{t.footer.payment}</Link>
+            <Link to="/warranty" className="font-body text-[15px] text-charcoal/80 hover:text-primary-blue transition-colors duration-300 w-fit">{t.footer.warranty}</Link>
+            <Link to="/certificates" className="font-body text-[15px] text-charcoal/80 hover:text-primary-blue transition-colors duration-300 w-fit">{t.footer.certificates}</Link>
             <Link to="/catalog" className="font-body text-[15px] text-charcoal/80 hover:text-primary-blue transition-colors duration-300 w-fit">{t.footer.request}</Link>
           </div>
 
@@ -92,9 +92,9 @@ export function Footer() {
             &copy; {new Date().getFullYear()} DAMINER. {t.footer.rights}
           </div>
           <div className="flex flex-wrap justify-center gap-6 text-[15px] font-body">
-            <Link to="#" className="text-charcoal/80 hover:text-primary-blue transition-colors duration-300">{t.footer.privacy}</Link>
-            <Link to="#" className="text-charcoal/80 hover:text-primary-blue transition-colors duration-300">{t.footer.terms}</Link>
-            <Link to="#" className="text-charcoal/80 hover:text-primary-blue transition-colors duration-300">{t.footer.cookies}</Link>
+            <Link to="/privacy" className="text-charcoal/80 hover:text-primary-blue transition-colors duration-300">{t.footer.privacy}</Link>
+            <Link to="/terms" className="text-charcoal/80 hover:text-primary-blue transition-colors duration-300">{t.footer.terms}</Link>
+            <Link to="/returns" className="text-charcoal/80 hover:text-primary-blue transition-colors duration-300">{t.footer.returns}</Link>
           </div>
         </div>
 

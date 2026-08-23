@@ -82,7 +82,10 @@ export function Featured() {
                   {product.description}
                 </p>
                 
-                <div className="pt-8 lg:pt-5 border-t border-metallic-silver/40 mt-auto">
+                <div className="pt-8 lg:pt-5 border-t border-metallic-silver/40 mt-auto flex flex-col gap-4">
+                  <div className="font-heading font-bold text-[13px] tracking-widest uppercase text-dark-navy/80">
+                    {t.featured.price}
+                  </div>
                   <button 
                     onClick={(e) => {
                       e.preventDefault();

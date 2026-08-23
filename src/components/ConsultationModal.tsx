@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, CheckCircle2, Phone } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { EMAIL_CONFIG } from '../config';
 
 interface ConsultationModalProps {
   isOpen: boolean;
@@ -15,9 +16,34 @@ export function ConsultationModal({ isOpen, onClose }: ConsultationModalProps) {
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Submitted Consultation:', formData);
+    
+    // TODO: Final Email Connection
+    // When the real manager email and backend endpoint are provided, 
+    // uncomment and configure the fetch request below to enable real email delivery.
+    
+    /*
+    if (EMAIL_CONFIG.FORM_SUBMIT_URL && EMAIL_CONFIG.MANAGER_EMAIL) {
+      try {
+        await fetch(EMAIL_CONFIG.FORM_SUBMIT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            ...formData,
+            to: EMAIL_CONFIG.MANAGER_EMAIL,
+            subject: 'New Consultation Request'
+          }),
+        });
+      } catch (error) {
+        console.error('Email delivery failed:', error);
+      }
+    }
+    */
+
+    console.log('Prepared for email delivery to:', EMAIL_CONFIG.MANAGER_EMAIL || '[Not Configured]');
+    console.log('Payload:', formData);
+    
     setIsSubmitted(true);
     setTimeout(() => {
       setIsSubmitted(false);

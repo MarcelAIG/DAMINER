@@ -3,6 +3,53 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { useRequest } from '../context/RequestContext';
 import { ShoppingBag, Phone } from 'lucide-react';
+
+const ProbeSvg = (props: any) => (
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M30 20 L70 20" strokeWidth="4"/>
+    <path d="M50 20 L50 70" />
+    <path d="M42 70 L58 70 M46 76 L54 76 M50 82 L50 76" />
+  </svg>
+);
+
+const MirrorSvg = (props: any) => (
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M25 85 L60 50" />
+    <path d="M60 50 L70 40" strokeWidth="4" />
+    <ellipse cx="75" cy="35" rx="14" ry="5" transform="rotate(-45 75 35)" />
+    <path d="M35 75 L45 85" strokeWidth="4" />
+  </svg>
+);
+
+const KitSvg = (props: any) => (
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <rect x="20" y="35" width="60" height="45" rx="3" />
+    <path d="M38 35 L38 25 L62 25 L62 35" />
+    <path d="M28 35 L28 80 M72 35 L72 80 M50 35 L50 80" strokeWidth="1.5" opacity="0.4"/>
+    <path d="M20 57 L80 57" strokeWidth="1.5" opacity="0.4" />
+    <circle cx="50" cy="57" r="3" fill="currentColor" opacity="0.4" />
+  </svg>
+);
+
+const NetGunSvg = (props: any) => (
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <rect x="20" y="45" width="40" height="18" rx="2" />
+    <path d="M32 63 L24 82 L36 82 L40 63" strokeLinejoin="miter" />
+    <rect x="60" y="48" width="16" height="12" />
+    <path d="M76 48 L88 42 L88 66 L76 60 Z" strokeLinejoin="miter" />
+    <path d="M88 46 L95 42 M88 54 L95 54 M88 62 L95 66" strokeWidth="1.5" opacity="0.5"/>
+  </svg>
+);
+
+const ToolSvg = (props: any) => (
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M50 25 L50 80" strokeWidth="4" />
+    <circle cx="50" cy="18" r="5" />
+    <path d="M50 75 C30 75 22 60 22 52" />
+    <path d="M50 75 C70 75 78 60 78 52" />
+    <path d="M42 42 L58 42" strokeWidth="1.5" opacity="0.5" />
+  </svg>
+);
 import { SiteSearch } from './SiteSearch';
 
 export function Navbar() {
@@ -11,15 +58,51 @@ export function Navbar() {
   
   return (
     <header className="h-[90px] bg-white border-b border-metallic-silver/30 flex items-center justify-between px-8 md:px-12 fixed top-0 left-0 w-full z-50">
-      <div className="flex-1 flex justify-end items-center gap-12 pr-12 hidden lg:flex">
-        <div className="mr-8">
-          <a href={`tel:${t.contactPage.phone.replace(/[\s-()]/g, '')}`} className="font-heading font-bold text-sm tracking-widest text-primary-blue flex items-center gap-3 border border-primary-blue hover:bg-primary-blue hover:text-white px-6 py-3 transition-colors duration-300">
-            <Phone size={16} />
-            {t.contactPage.phone}
+      <div className="flex-1 flex justify-end items-center gap-12 pr-12 hidden lg:flex h-[90px]">
+        <div className="flex items-center border-r border-metallic-silver/30 pr-8 mr-8">
+          <a href={`tel:${t.contactPage.phone.replace(/[\s-()]/g, '')}`} className="flex items-center gap-2.5 group">
+            <Phone size={15} strokeWidth={1.5} className="text-primary-blue/80 group-hover:text-primary-blue transition-colors duration-300" />
+            <span className="font-heading font-semibold text-[14px] lg:text-[15px] text-dark-navy group-hover:text-primary-blue transition-colors duration-300">
+              {t.contactPage.phone}
+            </span>
           </a>
         </div>
-        <Link to="/catalog" className="text-charcoal font-heading font-semibold text-sm tracking-widest uppercase hover:text-primary-blue transition-colors duration-300">{t.nav.catalog}</Link>
-        <Link to="/solutions" className="text-charcoal font-heading font-semibold text-sm tracking-widest uppercase hover:text-primary-blue transition-colors duration-300">{t.nav.solutions}</Link>
+        
+        {/* Catalog Dropdown */}
+        <div className="relative group h-[90px] flex items-center">
+          <Link to="/catalog" className="text-charcoal font-heading font-semibold text-sm tracking-widest uppercase group-hover:text-primary-blue transition-colors duration-300 flex items-center gap-1.5">
+            {t.nav.catalog}
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-50 group-hover:opacity-100 transition-opacity"><path d="m6 9 6 6 6-6"/></svg>
+          </Link>
+          
+          <div className="absolute top-[90px] left-0 bg-white border border-metallic-silver/10 shadow-[0_15px_40px_-10px_rgba(30,99,216,0.1)] w-[880px] opacity-0 translate-y-3 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 p-10 z-50 rounded-b-md">
+            <div className="absolute -top-[1px] left-0 w-full h-[2px] bg-primary-blue"></div>
+            
+            <div className="grid grid-cols-3 gap-x-10 gap-y-8">
+              {t.categories.items.map((cat, idx) => {
+                const Illustrations = [ProbeSvg, MirrorSvg, KitSvg, NetGunSvg, ToolSvg];
+                const Visual = Illustrations[idx];
+                
+                return (
+                  <Link 
+                    key={idx}
+                    to={`/catalog`}
+                    className="flex items-center gap-6 p-4 -m-4 rounded-sm border border-transparent hover:bg-slate-50 transition-all duration-300 group/item h-[90px]"
+                  >
+                    <div className="w-16 h-16 flex-shrink-0 bg-white border border-metallic-silver/20 rounded flex items-center justify-center p-3 text-dark-navy/70 group-hover/item:border-primary-blue/30 group-hover/item:text-primary-blue group-hover/item:shadow-sm transition-all duration-300">
+                      <Visual className="w-full h-full" />
+                    </div>
+                    <div className="font-heading font-bold text-[13px] tracking-[0.15em] uppercase text-dark-navy group-hover/item:text-primary-blue transition-colors duration-300 leading-snug">
+                      {cat}
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        <Link to="/solutions" className="text-charcoal font-heading font-semibold text-sm tracking-widest uppercase hover:text-primary-blue transition-colors duration-300 h-[90px] flex items-center">{t.nav.solutions}</Link>
       </div>
       
       <div className="flex-shrink-0 text-center">

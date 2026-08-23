@@ -16,6 +16,12 @@ import { About } from './pages/About';
 import { Contact } from './pages/Contact';
 import { Catalog } from './pages/Catalog';
 import { Product } from './pages/Product';
+import { Privacy } from './pages/Privacy';
+import { Terms } from './pages/Terms';
+import { Returns } from './pages/Returns';
+import { Certificates } from './pages/Certificates';
+import { Payment } from './pages/Payment';
+import { Warranty } from './pages/Warranty';
 
 export default function App() {
   return (
@@ -32,6 +38,12 @@ export default function App() {
                 <Route path="/solutions" element={<Solutions />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/certificates" element={<Certificates />} />
+                <Route path="/payment" element={<Payment />} />
+                <Route path="/warranty" element={<Warranty />} />
+                <Route path="/privacy" element={<Privacy />} />
+                <Route path="/terms" element={<Terms />} />
+                <Route path="/returns" element={<Returns />} />
               </Routes>
             </div>
             <Footer />

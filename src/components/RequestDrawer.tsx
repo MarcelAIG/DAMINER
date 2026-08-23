@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { X, Trash2, CheckCircle2, Phone } from 'lucide-react';
 import { useRequest } from '../context/RequestContext';
 import { useLanguage } from '../context/LanguageContext';
+import { EMAIL_CONFIG } from '../config';
 
 export function RequestDrawer() {
   const { isDrawerOpen, setIsDrawerOpen, items, updateQuantity, removeItem, clearRequest } = useRequest();
@@ -12,10 +13,35 @@ export function RequestDrawer() {
 
   if (!isDrawerOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate sending email/request to manager
-    console.log('Submitted Request:', { items, ...formData });
+    
+    // TODO: Final Email Connection
+    // When the real manager email and backend endpoint are provided, 
+    // uncomment and configure the fetch request below to enable real email delivery.
+    
+    /*
+    if (EMAIL_CONFIG.FORM_SUBMIT_URL && EMAIL_CONFIG.MANAGER_EMAIL) {
+      try {
+        await fetch(EMAIL_CONFIG.FORM_SUBMIT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            items,
+            ...formData,
+            to: EMAIL_CONFIG.MANAGER_EMAIL,
+            subject: 'New Product Request'
+          }),
+        });
+      } catch (error) {
+        console.error('Email delivery failed:', error);
+      }
+    }
+    */
+
+    console.log('Prepared for email delivery to:', EMAIL_CONFIG.MANAGER_EMAIL || '[Not Configured]');
+    console.log('Payload:', { items, ...formData });
+    
     setIsSubmitted(true);
     setTimeout(() => {
       clearRequest();

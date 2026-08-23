@@ -1,18 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { ArrowLeft, ShieldCheck } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { useRequest } from '../context/RequestContext';
 
 export function Product() {
   const { id } = useParams();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { addItem } = useRequest();
+  const [showSpecs, setShowSpecs] = useState(false);
 
   // Scroll to top on mount
   useEffect(() => {
     window.scrollTo(0, 0);
+    setShowSpecs(false);
   }, [id]);
 
   const items = [
@@ -57,24 +59,88 @@ export function Product() {
             transition={{ duration: 0.8 }}
             className="aspect-[4/5] lg:aspect-square lg:max-h-[65vh] bg-white border border-metallic-silver/20 flex items-center justify-center relative overflow-hidden"
           >
-            {product.imageBase64 ? (
-              <img 
-                src={product.imageBase64} 
-                alt={product.model} 
-                className="w-full h-full object-cover"
-              />
-            ) : (
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="absolute inset-0 opacity-5" style={{
-                  backgroundImage: 'radial-gradient(#1e63d8 1px, transparent 1px)',
-                  backgroundSize: '24px 24px'
-                }}></div>
-                <div className="absolute inset-0 bg-gradient-to-tr from-metallic-silver/10 to-transparent"></div>
-                <span className="font-heading font-bold text-cool-gray/50 uppercase tracking-widest text-lg relative z-10">
-                  Image Placeholder
-                </span>
-              </div>
-            )}
+            <AnimatePresence mode="wait">
+              {!showSpecs ? (
+                <motion.div 
+                  key="image"
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.35, ease: "easeInOut" }}
+                  className="absolute inset-0 cursor-pointer group"
+                  onClick={() => setShowSpecs(true)}
+                >
+                  {product.imageBase64 ? (
+                    <img 
+                      src={product.imageBase64} 
+                      alt={product.model} 
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="absolute inset-0 opacity-5" style={{
+                        backgroundImage: 'radial-gradient(#1e63d8 1px, transparent 1px)',
+                        backgroundSize: '24px 24px'
+                      }}></div>
+                      <div className="absolute inset-0 bg-gradient-to-tr from-metallic-silver/10 to-transparent"></div>
+                      <span className="font-heading font-bold text-cool-gray/50 uppercase tracking-widest text-lg relative z-10">
+                        Image Placeholder
+                      </span>
+                    </div>
+                  )}
+                  {/* Subtle visual hint */}
+                  <div className="absolute inset-0 bg-dark-navy/0 group-hover:bg-dark-navy/5 transition-colors duration-500 flex items-end justify-center pb-8">
+                    <span className="opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 font-heading font-bold text-[11px] uppercase tracking-widest text-dark-navy bg-white/95 backdrop-blur-sm py-3 px-6 shadow-sm border border-metallic-silver/20 flex items-center gap-3">
+                      {language === 'ua' ? 'Переглянути характеристики' : 'View Specifications'}
+                      <ArrowLeft className="w-3.5 h-3.5 rotate-180" />
+                    </span>
+                  </div>
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="specs"
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.35, ease: "easeInOut" }}
+                  className="absolute inset-0 bg-white flex flex-col p-8 md:p-12 overflow-y-auto"
+                >
+                  <div className="flex items-center justify-between mb-8 pb-6 border-b border-metallic-silver/30">
+                    <h3 className="font-heading font-bold text-2xl text-dark-navy">
+                      {language === 'ua' ? 'Технічні характеристики' : 'Technical Specifications'}
+                    </h3>
+                    <button 
+                      onClick={() => setShowSpecs(false)}
+                      className="text-cool-gray hover:text-primary-blue transition-colors duration-300 p-2"
+                    >
+                      <ArrowLeft className="w-5 h-5" />
+                    </button>
+                  </div>
+                  
+                  {/* Specifications Placeholder */}
+                  <div className="flex-grow flex flex-col justify-center items-center text-center">
+                    <div className="w-full border border-dashed border-metallic-silver/40 p-10 flex flex-col items-center justify-center bg-off-white/50 rounded-sm">
+                      <span className="font-heading font-bold text-cool-gray/50 uppercase tracking-widest text-sm mb-4">
+                        {language === 'ua' ? '[ Характеристики ]' : '[ Specifications ]'}
+                      </span>
+                      <p className="font-body text-charcoal/60">
+                        {language === 'ua' ? 'Клієнт надасть характеристики пізніше.' : 'Client will provide specifications later.'}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-8 pt-6 border-t border-metallic-silver/30">
+                    <button 
+                      onClick={() => setShowSpecs(false)}
+                      className="font-heading font-bold text-[11px] tracking-widest uppercase text-primary-blue hover:text-dark-navy transition-colors duration-300 inline-flex items-center gap-3"
+                    >
+                      <ArrowLeft className="w-3.5 h-3.5" />
+                      {language === 'ua' ? 'До товару' : 'Back to Product'}
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
           
           <motion.div 
@@ -107,7 +173,10 @@ export function Product() {
               </div>
             </div>
             
-            <div className="pt-8 lg:pt-6 border-t border-metallic-silver/40">
+            <div className="pt-8 lg:pt-6 border-t border-metallic-silver/40 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+              <div className="font-heading font-bold text-base tracking-widest uppercase text-dark-navy">
+                {t.featured.price}
+              </div>
               <button 
                 onClick={(e) => {
                   e.preventDefault();
@@ -122,8 +191,8 @@ export function Product() {
         </div>
         
         {/* Other Products Section */}
-        <div className="mt-16 lg:mt-12 pt-12 lg:pt-8 border-t border-metallic-silver/30">
-          <h2 className="font-heading text-2xl lg:text-xl font-bold text-dark-navy mb-8 lg:mb-6 text-center lg:text-left">
+        <div className="mt-20 lg:mt-24 pt-12 lg:pt-16 border-t border-metallic-silver/30">
+          <h2 className="font-heading text-2xl lg:text-3xl font-bold text-dark-navy mb-8 lg:mb-10 text-center lg:text-left">
             {t.featured.otherProducts || "Other Products"}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 lg:gap-6">
