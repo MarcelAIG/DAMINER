@@ -5,9 +5,9 @@ export function Quality() {
   const { t } = useLanguage();
   
   return (
-    <section className="py-24 md:py-32 bg-dark-navy text-white">
+    <section className="py-16 md:py-24 bg-dark-navy text-white">
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
-        <h2 className="font-heading font-bold text-4xl md:text-5xl mb-16 tracking-tight text-white">
+        <h2 className="font-heading font-black text-4xl md:text-5xl lg:text-6xl mb-10 md:mb-12 tracking-tight text-white">
           {t.quality.heading}
         </h2>
         

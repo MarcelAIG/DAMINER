@@ -25,14 +25,14 @@ export function Stats() {
   ];
 
   return (
-    <section className="py-20 md:py-28 bg-off-white">
-      <div className="max-w-[1200px] mx-auto px-6 md:px-12">
+    <section className="pt-4 pb-16 md:pt-8 md:pb-24 bg-white">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
         <motion.div 
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6 }}
-          className="mb-12 md:mb-16 text-center"
+          className="mb-10 md:mb-12 text-center"
         >
           <h2 className="font-heading font-black text-4xl md:text-5xl text-dark-navy tracking-tight uppercase">
             {language === 'ua' ? 'DAMINER у цифрах' : 'DAMINER in Numbers'}

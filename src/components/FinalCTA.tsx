@@ -10,9 +10,9 @@ export function FinalCTA() {
   
   return (
     <>
-      <section className="py-32 bg-dark-navy text-white text-center">
+      <section className="py-16 md:py-24 bg-dark-navy text-white text-center">
         <div className="max-w-[1000px] mx-auto px-6 md:px-12">
-          <h2 className="font-heading font-bold text-4xl md:text-6xl mb-16 leading-tight">
+          <h2 className="font-heading font-black text-4xl md:text-5xl lg:text-6xl mb-10 md:mb-12 leading-tight">
             {t.cta.heading}
           </h2>
           

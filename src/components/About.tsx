@@ -7,15 +7,15 @@ export function About() {
   const { t } = useLanguage();
   
   return (
-    <section id="about" className="py-24 md:py-32 bg-white">
+    <section id="about" className="py-16 md:py-24 bg-white">
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
         <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
           
           <div className="w-full lg:w-5/12">
-            <h2 className="font-heading font-bold text-4xl md:text-5xl text-dark-navy leading-tight mb-8">
+            <h2 className="font-heading font-black text-4xl md:text-5xl lg:text-6xl text-dark-navy leading-tight mb-6">
               {t.about.heading}
             </h2>
-            <p className="font-body text-xl text-charcoal/80 mb-12 leading-relaxed">
+            <p className="font-body text-lg md:text-xl text-charcoal/80 mb-10 leading-relaxed">
               {t.about.desc}
             </p>
             <Link 
