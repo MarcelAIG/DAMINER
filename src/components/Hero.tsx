@@ -25,21 +25,21 @@ export function Hero() {
           <div className="absolute inset-0 bg-mesh pointer-events-none z-[5]"></div>
         </div>
 
-        <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 h-full flex flex-col justify-end pb-28 md:pb-40">
+        <div className="relative z-10 w-full max-w-[1320px] mx-auto px-6 lg:px-10 xl:px-0 h-full flex flex-col justify-end pb-28 md:pb-40">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-2xl relative -left-2 md:-left-6 lg:-left-12"
+            className="max-w-3xl relative"
           >
-            <h1 className="font-heading font-black text-5xl md:text-6xl lg:text-7xl text-white leading-none tracking-tight mb-1.5 drop-shadow-lg">
+            <h1 className="font-heading font-black text-6xl md:text-7xl lg:text-[80px] text-white leading-none tracking-tight mb-2 drop-shadow-lg">
               DAMINER
-              <span className="block text-lg md:text-2xl mt-0.5 text-metallic-silver font-semibold tracking-normal md:whitespace-nowrap drop-shadow-md">
+              <span className="block text-xl md:text-3xl lg:text-[32px] mt-2 text-metallic-silver font-semibold tracking-normal md:whitespace-nowrap drop-shadow-md">
                 {t.hero.subtitle}
               </span>
             </h1>
             
-            <p className="font-body text-base md:text-lg text-off-white/90 max-w-xl mb-5 leading-relaxed">
+            <p className="font-body text-lg md:text-xl lg:text-[22px] text-off-white/90 max-w-2xl mb-8 leading-relaxed">
               {t.hero.description}
             </p>
             

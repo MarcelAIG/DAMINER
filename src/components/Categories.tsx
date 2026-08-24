@@ -26,12 +26,12 @@ export function Categories() {
 
   return (
     <section className="py-16 md:py-24 bg-white">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
-        <h2 className="font-heading font-black text-4xl md:text-5xl lg:text-6xl text-dark-navy mb-12 md:mb-16 tracking-tight uppercase [-webkit-text-stroke:1px_currentColor]">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-10 xl:px-0">
+        <h2 className="font-heading font-black text-5xl md:text-6xl xl:text-[58px] text-dark-navy mb-14 md:mb-20 tracking-tight uppercase [-webkit-text-stroke:1px_currentColor]">
           {t.nav.catalog}
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-16 lg:gap-y-20 gap-x-8 lg:gap-x-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-16 lg:gap-y-20 gap-x-10 lg:gap-x-12">
           {itemsToRender.map((item) => (
             <Link to={`/catalog/${item.slug}`} key={item.id} className="group flex flex-col w-full outline-none">
               <div className="relative aspect-[4/3] mb-6 bg-off-white flex items-center justify-center border-2 border-metallic-silver/60 group-hover:border-primary-blue/40 transition-colors duration-500 p-2 lg:p-3">
@@ -49,13 +49,13 @@ export function Categories() {
                     backgroundSize: '24px 24px'
                   }}></div>
 
-                  <div className="w-full h-full p-8 md:p-10 transform transition-transform duration-700 group-hover:scale-105 relative z-10">
+                  <div className="w-full h-full p-4 md:p-6 transform transition-transform duration-700 group-hover:scale-[1.03] relative z-10 flex items-center justify-center">
                     {item.CadIcon}
                   </div>
                 </div>
               </div>
               <div className="border-t border-metallic-silver/40 pt-6 pb-2 flex flex-col gap-6 group-hover:border-primary-blue/40 transition-colors duration-500">
-                <h3 className="font-heading font-bold text-2xl text-dark-navy group-hover:text-primary-blue transition-colors duration-500 tracking-tight">
+                <h3 className="font-heading font-bold text-2xl md:text-3xl text-dark-navy group-hover:text-primary-blue transition-colors duration-500 tracking-tight">
                   {item.title}
                 </h3>
                 <div className="flex">

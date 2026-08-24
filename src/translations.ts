@@ -95,7 +95,7 @@ export const translations = {
           desc: "Прилади та набори для експертів-криміналістів, правоохоронних органів, служб безпеки та вибухотехніків."
         }
       ],
-      cta: "РІШЕННЯ ДЛЯ ОРГАНІЗАЦІЙ →"
+      cta: "РІШЕННЯ ДЛЯ ОРГАНІЗАЦІЙ"
     },
     cta: {
       heading: "Потрібне спеціальне рішення або комплектація?",
@@ -301,7 +301,7 @@ export const translations = {
           desc: "Equipment and kits for forensic specialists, law enforcement, security services and EOD professionals."
         }
       ],
-      cta: "SOLUTIONS FOR ORGANIZATIONS →"
+      cta: "SOLUTIONS FOR ORGANIZATIONS"
     },
     cta: {
       heading: "Need a custom solution or specialized kit?",

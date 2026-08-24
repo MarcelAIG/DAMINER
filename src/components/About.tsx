@@ -9,14 +9,14 @@ export function About() {
   
   return (
     <section id="about" className="py-16 md:py-24 bg-white">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-10 xl:px-0">
         
         <div className="mb-4">
           <span className="font-heading font-bold text-sm tracking-widest uppercase text-dark-navy/60">
             {t.about.eyebrow}
           </span>
         </div>
-        <h2 className="font-heading font-black text-4xl md:text-5xl lg:text-6xl text-dark-navy mb-12 md:mb-16 tracking-tight uppercase [-webkit-text-stroke:1px_currentColor]">
+        <h2 className="font-heading font-black text-5xl md:text-6xl xl:text-[58px] text-dark-navy mb-14 md:mb-20 tracking-tight uppercase [-webkit-text-stroke:1px_currentColor]">
           {t.about.heading}
         </h2>
         
@@ -24,7 +24,7 @@ export function About() {
           
           <div className="w-full lg:w-1/2 flex flex-col justify-start">
             
-            <p className="font-body text-lg text-charcoal/80 leading-relaxed mb-10 max-w-xl">
+            <p className="font-body text-lg xl:text-[20px] text-charcoal/80 leading-relaxed mb-12 max-w-xl">
               {t.about.intro}
             </p>
             
@@ -53,20 +53,22 @@ export function About() {
           </div>
           
           <div className="w-full lg:w-1/2">
-            <div className="relative aspect-[4/3] bg-off-white flex items-center justify-center border-2 border-metallic-silver/60 p-2 lg:p-3 w-full group overflow-hidden">
-              <div className="w-full h-full border border-metallic-silver/40 relative flex items-center justify-center overflow-hidden bg-white/40">
+            <div className="relative aspect-[4/3] bg-off-white flex items-center justify-center border-2 border-metallic-silver/60 group-hover:border-primary-blue/40 transition-colors duration-500 p-2 lg:p-3 w-full group overflow-hidden">
+              <div className="w-full h-full border border-metallic-silver/40 group-hover:border-primary-blue/30 transition-colors duration-500 relative flex items-center justify-center overflow-hidden bg-white/40">
                 
+                {/* CAD Registration Marks */}
                 <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-dark-navy/20 group-hover:border-primary-blue/40 transition-colors duration-500 z-20"></div>
                 <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-dark-navy/20 group-hover:border-primary-blue/40 transition-colors duration-500 z-20"></div>
                 <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-dark-navy/20 group-hover:border-primary-blue/40 transition-colors duration-500 z-20"></div>
                 <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-dark-navy/20 group-hover:border-primary-blue/40 transition-colors duration-500 z-20"></div>
                 
+                {/* Subtle Blueprint Dot Grid */}
                 <div className="absolute inset-0 opacity-[0.03] pointer-events-none z-10" style={{
                   backgroundImage: 'radial-gradient(circle at 1px 1px, #1a2530 1px, transparent 0)',
                   backgroundSize: '24px 24px'
                 }}></div>
                 
-                <div className="w-full h-full p-10 md:p-14 transform transition-transform duration-700 group-hover:scale-105 relative z-0">
+                <div className="w-full h-full p-4 md:p-6 transform transition-transform duration-700 group-hover:scale-[1.03] relative z-0 flex items-center justify-center">
                   <CadProduction />
                 </div>
               </div>
@@ -77,19 +79,19 @@ export function About() {
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 pt-16 border-t border-metallic-silver/30">
           <div>
-            <h3 className="font-heading font-bold text-2xl text-dark-navy tracking-tight mb-6 uppercase">
+            <h3 className="font-heading font-bold text-2xl lg:text-[28px] text-dark-navy tracking-tight mb-6 uppercase">
               {t.about.missionTitle}
             </h3>
-            <p className="font-body text-base text-charcoal/80 leading-relaxed max-w-lg">
+            <p className="font-body text-base lg:text-lg text-charcoal/80 leading-relaxed max-w-xl">
               {t.about.missionText}
             </p>
           </div>
           
           <div>
-            <h3 className="font-heading font-bold text-2xl text-dark-navy tracking-tight mb-6 uppercase">
+            <h3 className="font-heading font-bold text-2xl lg:text-[28px] text-dark-navy tracking-tight mb-6 uppercase">
               {t.about.productionTitle}
             </h3>
-            <p className="font-body text-base text-charcoal/80 leading-relaxed max-w-lg">
+            <p className="font-body text-base lg:text-lg text-charcoal/80 leading-relaxed max-w-xl">
               {t.about.productionText}
             </p>
           </div>

@@ -8,22 +8,22 @@ export function CustomMfg() {
   const [isConsultationModalOpen, setIsConsultationModalOpen] = useState(false);
   
   const icons = [
-    <PenTool size={22} strokeWidth={1.5} />,
-    <Settings2 size={22} strokeWidth={1.5} />,
-    <Layers size={22} strokeWidth={1.5} />,
-    <Package size={22} strokeWidth={1.5} />
+    <PenTool size={32} strokeWidth={1.5} />,
+    <Settings2 size={32} strokeWidth={1.5} />,
+    <Layers size={32} strokeWidth={1.5} />,
+    <Package size={32} strokeWidth={1.5} />
   ];
 
   return (
     <>
       <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
+        <div className="max-w-[1320px] mx-auto px-6 lg:px-10 xl:px-0">
           
-          <div className="mb-12 md:mb-16">
-            <h2 className="font-heading font-black text-4xl md:text-5xl lg:text-6xl text-dark-navy mb-8 tracking-tight uppercase [-webkit-text-stroke:1px_currentColor]">
+          <div className="mb-14 md:mb-20">
+            <h2 className="font-heading font-black text-5xl md:text-6xl xl:text-[58px] text-dark-navy mb-8 tracking-tight uppercase [-webkit-text-stroke:1px_currentColor]">
               {t.mfg.heading}
             </h2>
-            <p className="font-body text-lg text-charcoal/80 leading-relaxed max-w-3xl">
+            <p className="font-body text-lg xl:text-[20px] text-charcoal/80 leading-relaxed max-w-3xl">
               {t.mfg.intro}
             </p>
           </div>
@@ -33,15 +33,15 @@ export function CustomMfg() {
             {t.mfg.items.map((item, index) => (
               <div 
                 key={index}
-                className="flex flex-col py-10 px-8 bg-white hover:bg-off-white transition-colors duration-400 group cursor-default"
+                className="flex flex-col py-14 px-10 xl:px-12 bg-white hover:bg-off-white transition-colors duration-400 group cursor-default"
               >
-                <div className="text-primary-blue mb-8">
+                <div className="text-primary-blue mb-10 transform transition-transform duration-500 group-hover:scale-110 origin-left">
                   {icons[index]}
                 </div>
-                <h3 className="font-heading font-bold text-lg text-dark-navy mb-4 tracking-tight">
+                <h3 className="font-heading font-bold text-2xl text-dark-navy mb-5 tracking-tight">
                   {item.title}
                 </h3>
-                <p className="font-body text-charcoal/70 text-[15px] leading-relaxed">
+                <p className="font-body text-charcoal/70 text-[16px] leading-relaxed">
                   {item.desc}
                 </p>
               </div>

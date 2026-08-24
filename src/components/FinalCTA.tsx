@@ -10,10 +10,10 @@ export function FinalCTA() {
   
   return (
     <>
-      <section className="relative py-16 md:py-24 bg-dark-navy text-white text-center overflow-hidden">
+      <section className="relative py-20 md:py-28 bg-dark-navy text-white text-center overflow-hidden">
         <div className="absolute inset-0 bg-mesh pointer-events-none z-[5]"></div>
-        <div className="max-w-[1000px] mx-auto px-6 md:px-12 relative z-10">
-          <h2 className="font-heading font-black text-4xl md:text-5xl lg:text-6xl mb-10 md:mb-12 leading-tight">
+        <div className="max-w-[1320px] mx-auto px-6 lg:px-10 xl:px-0 relative z-10">
+          <h2 className="font-heading font-black text-5xl md:text-6xl lg:text-[72px] mb-12 md:mb-16 leading-tight uppercase [-webkit-text-stroke:1px_currentColor]">
             {t.cta.heading}
           </h2>
           
