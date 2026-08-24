@@ -11,12 +11,12 @@ export function Stats() {
       label: language === 'ua' ? "Рік заснування" : "Founded"
     },
     {
-      value: "5",
-      label: language === 'ua' ? "Категорій продукції" : "Product Categories"
-    },
-    {
       value: language === 'ua' ? "1+ рік" : "1+ Year",
       label: language === 'ua' ? "Стандартна гарантія" : "Standard Warranty"
+    },
+    {
+      value: "5",
+      label: language === 'ua' ? "Категорій продукції" : "Product Categories"
     },
     {
       value: "ISO 9001",
@@ -34,7 +34,7 @@ export function Stats() {
           transition={{ duration: 0.6 }}
           className="mb-10 md:mb-12 text-center"
         >
-          <h2 className="font-heading font-black text-4xl md:text-5xl text-dark-navy tracking-tight uppercase">
+          <h2 className="font-heading font-black text-4xl md:text-5xl text-dark-navy tracking-tight uppercase [-webkit-text-stroke:1px_currentColor]">
             {language === 'ua' ? 'DAMINER у цифрах' : 'DAMINER in Numbers'}
           </h2>
         </motion.div>
@@ -53,10 +53,10 @@ export function Stats() {
                 ${idx === 2 ? 'lg:border-l lg:border-metallic-silver/30' : ''}
               `}
             >
-              <div className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-dark-navy mb-6 tracking-tight whitespace-nowrap">
+              <div className="font-heading font-black text-4xl md:text-5xl lg:text-6xl text-dark-navy mb-6 tracking-tight whitespace-nowrap">
                 {stat.value}
               </div>
-              <h3 className="font-heading font-bold text-xs text-charcoal/70 uppercase tracking-[0.15em] leading-relaxed max-w-[200px]">
+              <h3 className="font-heading font-bold text-[13px] text-charcoal/90 uppercase tracking-[0.15em] leading-relaxed max-w-[200px]">
                 {stat.label}
               </h3>
             </motion.div>

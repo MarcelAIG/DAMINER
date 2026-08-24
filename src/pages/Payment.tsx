@@ -17,6 +17,7 @@ export function Payment() {
         <div className="absolute inset-0 opacity-70 pointer-events-none" style={{
           backgroundImage: 'radial-gradient(circle at 50% 100%, #1e63d8 0%, transparent 80%)'
         }}></div>
+        <div className="absolute inset-0 bg-mesh pointer-events-none z-[5]"></div>
         <div className="max-w-[1000px] mx-auto px-6 md:px-12 relative z-10 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <h1 className="font-heading font-bold text-3xl md:text-5xl tracking-tight">

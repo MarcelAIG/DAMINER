@@ -21,7 +21,8 @@ export function Hero() {
             playsInline
             className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-dark-navy/20 bg-gradient-to-r from-dark-navy/50 to-transparent"></div>
+          <div className="absolute inset-0 bg-dark-navy/40 bg-gradient-to-r from-dark-navy/80 via-dark-navy/40 to-transparent"></div>
+          <div className="absolute inset-0 bg-mesh pointer-events-none z-[5]"></div>
         </div>
 
         <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 h-full flex flex-col justify-end pb-28 md:pb-40">

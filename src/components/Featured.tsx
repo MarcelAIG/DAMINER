@@ -46,7 +46,7 @@ export function Featured() {
             transition={{ duration: 0.6 }}
             className="font-heading font-black text-4xl md:text-5xl lg:text-6xl text-dark-navy tracking-tight mb-6"
           >
-            {t.featured.heading}
+            {language === 'ua' ? 'Щупи' : 'Probes'}
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 15 }}
@@ -55,9 +55,7 @@ export function Featured() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="font-body text-lg md:text-xl text-charcoal/70 max-w-2xl leading-relaxed"
           >
-            {language === 'ua' 
-              ? 'Наші передові рішення, перевірені в найскладніших умовах розмінування.' 
-              : 'Our advanced solutions, proven in the most demanding demining environments.'}
+            {t.categories.descriptions[0]}
           </motion.p>
         </div>
 

@@ -37,8 +37,14 @@ export const translations = {
     },
     mfg: {
       heading: "Виготовлення за технічним завданням",
-      desc: "DAMINER розробляє та виготовляє пристрої, набори та спеціалізовані комплектації відповідно до технічних вимог замовника.",
-      services: ["Індивідуальне виготовлення", "Розробка власних виробів", "Серійне виробництво", "Індивідуальне комплектування"]
+      intro: "DAMINER розробляє та виготовляє пристрої, набори та спеціалізовані комплектації відповідно до технічних вимог замовника.",
+      items: [
+        { title: "Індивідуальне виготовлення", desc: "Проектування рішень під унікальні завдання замовника." },
+        { title: "Розробка власних виробів", desc: "Від ідеї та прототипу до готового виробу." },
+        { title: "Серійне виробництво", desc: "Масштабування виробництва з контролем якості." },
+        { title: "Індивідуальне комплектування", desc: "Формування спеціалізованих комплектів відповідно до вимог замовника." }
+      ],
+      cta: "ОТРИМАТИ КОНСУЛЬТАЦІЮ"
     },
     quality: {
       heading: "Сертифікати та документація",
@@ -49,10 +55,47 @@ export const translations = {
       testDesc: "Всі вироби проходять жорсткі перевірки та мають відповідні протоколи випробувань."
     },
     about: {
+      eyebrow: "ПРО КОМПАНІЮ",
       heading: "Українська розробка та власне виробництво",
-      desc: "ТОВ «ДАМІНЕР» спеціалізується на розробці та виробництві обладнання для розмінування, виявлення мін та ВНП, знешкодження вибухонебезпечних предметів і спеціалізованих професійних комплектів.",
-      cta: "ПРО DAMINER",
-      badge: "Перевірено в реальних умовах"
+      intro: "ТОВ «ДАМІНЕР» — українська компанія з розробки і виробництва професійного обладнання для розмінування, виявлення мін та ВНП, знешкодження вибухонебезпечних предметів, а також спеціалізованих приладів і наборів.",
+      proofs: [
+        "Власне виробництво",
+        "Розробка власних виробів",
+        "Робота за технічним завданням"
+      ],
+      cta: "ПРО КОМПАНІЮ",
+      missionTitle: "Наша місія",
+      missionText: "Створювати надійні, високотехнологічні та доступні інструменти для розмінування, що рятують життя, очищують українську землю від вибухонебезпечних залишків війни та забезпечують максимальну безпеку саперів і мирного населення.",
+      productionTitle: "Власне виробництво",
+      productionText: "Компанія розробляє і виробляє пристрої та обладнання для розмінування, виявлення мін та ВНП, а також набори для експертів-криміналістів і вибухотехніків. Головна відмінність — виготовлення наборів та пристосувань під технічне завдання клієнта."
+    },
+    whatWeDo: {
+      eyebrow: "НАПРЯМКИ ДІЯЛЬНОСТІ",
+      title: "Що ми робимо",
+      intro: "DAMINER розробляє та виробляє професійні рішення для розмінування, виявлення мін та ВНП, знешкодження вибухонебезпечних предметів і спеціалізованих професійних задач.",
+      items: [
+        {
+          num: "01",
+          title: "РОЗМІНУВАННЯ",
+          desc: "Професійне обладнання та інструменти для виконання робіт з розмінування."
+        },
+        {
+          num: "02",
+          title: "ВИЯВЛЕННЯ МІН ТА ВНП",
+          desc: "Пристрої та обладнання для пошуку й виявлення мін та вибухонебезпечних предметів."
+        },
+        {
+          num: "03",
+          title: "ЗНЕШКОДЖЕННЯ ВИБУХОНЕБЕЗПЕЧНИХ ПРЕДМЕТІВ",
+          desc: "Спеціалізовані пристрої та обладнання для професійних вибухотехнічних робіт."
+        },
+        {
+          num: "04",
+          title: "КРИМІНАЛІСТИЧНІ ПРИЛАДИ ТА НАБОРИ",
+          desc: "Прилади та набори для експертів-криміналістів, правоохоронних органів, служб безпеки та вибухотехніків."
+        }
+      ],
+      cta: "РІШЕННЯ ДЛЯ ОРГАНІЗАЦІЙ →"
     },
     cta: {
       heading: "Потрібне спеціальне рішення або комплектація?",
@@ -199,9 +242,15 @@ export const translations = {
       otherProducts: "Other Products"
     },
     mfg: {
-      heading: "Custom Manufacturing",
-      desc: "DAMINER develops and manufactures devices, kits, and specialized equipment according to customer specifications.",
-      services: ["Custom Production", "In-house Development", "Serial Manufacturing", "Custom Kitting"]
+      heading: "Manufacturing to Technical Requirements",
+      intro: "DAMINER develops and manufactures devices, kits and specialized configurations according to customer technical requirements.",
+      items: [
+        { title: "Custom Manufacturing", desc: "Designing solutions for unique customer tasks." },
+        { title: "Proprietary Product Development", desc: "From idea and prototype to finished product." },
+        { title: "Serial Production", desc: "Scaling production with strict quality control." },
+        { title: "Custom Configuration", desc: "Assembling specialized kits according to customer requirements." }
+      ],
+      cta: "GET CONSULTATION"
     },
     quality: {
       heading: "Certificates & Documentation",
@@ -212,10 +261,47 @@ export const translations = {
       testDesc: "All products undergo rigorous testing and are accompanied by test protocols."
     },
     about: {
+      eyebrow: "ABOUT US",
       heading: "Ukrainian Development & In-House Production",
-      desc: "DAMINER LLC specializes in the development and production of equipment for demining, mine and UXO detection, explosive ordnance disposal, and specialized professional kits.",
+      intro: "DAMINER is a Ukrainian company focused on the development and manufacturing of professional equipment for demining, mine and UXO detection, explosive hazard disposal, and specialized devices and kits.",
+      proofs: [
+        "In-house production",
+        "Proprietary product development",
+        "Work to technical specifications"
+      ],
       cta: "ABOUT DAMINER",
-      badge: "Field-tested in real conditions"
+      missionTitle: "Our Mission",
+      missionText: "To create reliable, high-tech and accessible demining tools that save lives, help clear Ukrainian land of explosive remnants of war, and provide maximum safety for sappers and civilians.",
+      productionTitle: "In-House Production",
+      productionText: "The company develops and manufactures devices and equipment for demining, mine and UXO detection, as well as kits for forensic specialists and EOD professionals. The main difference is custom manufacturing based on the client’s technical requirements."
+    },
+    whatWeDo: {
+      eyebrow: "CORE ACTIVITIES",
+      title: "What We Do",
+      intro: "DAMINER develops and manufactures professional solutions for demining, mine and UXO detection, explosive hazard disposal and specialized professional tasks.",
+      items: [
+        {
+          num: "01",
+          title: "DEMINING",
+          desc: "Professional equipment and tools for demining operations."
+        },
+        {
+          num: "02",
+          title: "MINE & UXO DETECTION",
+          desc: "Devices and equipment for the search and detection of mines and unexploded ordnance."
+        },
+        {
+          num: "03",
+          title: "EXPLOSIVE HAZARD DISPOSAL",
+          desc: "Specialized devices and equipment for professional EOD operations."
+        },
+        {
+          num: "04",
+          title: "FORENSIC EQUIPMENT & KITS",
+          desc: "Equipment and kits for forensic specialists, law enforcement, security services and EOD professionals."
+        }
+      ],
+      cta: "SOLUTIONS FOR ORGANIZATIONS →"
     },
     cta: {
       heading: "Need a custom solution or specialized kit?",
