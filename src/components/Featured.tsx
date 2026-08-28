@@ -14,21 +14,21 @@ export function Featured() {
       model: t.featured.model1,
       description: t.featured.desc1,
       price: "",
-      imageBase64: "/mine1.svg?v=4"
+      imageBase64: "/ЩР-1/ChatGPT Image Aug 28, 2026, 09_53_09 PM.png"
     },
     {
       id: "2",
       model: t.featured.model2,
       description: t.featured.desc2,
       price: "",
-      imageBase64: "/mine2.svg?v=4"
+      imageBase64: "/ЩР-3:2 /ChatGPT Image Aug 28, 2026, 10_41_22 PM.png"
     },
     {
       id: "3",
       model: t.featured.model3,
       description: t.featured.desc3,
       price: "",
-      imageBase64: "/mine3.svg?v=4"
+      imageBase64: "/ЩР-8/ChatGPT Image Aug 28, 2026, 11_15_16 PM.png"
     }
   ];
 
@@ -66,12 +66,12 @@ export function Featured() {
               key={product.id} 
               className="flex flex-col group w-full p-8 lg:p-12 transition-colors duration-500"
             >
-              <div className="aspect-square bg-off-white/50 mb-10 flex items-center justify-center relative overflow-hidden">
+              <div className="aspect-square bg-white border border-metallic-silver/20 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] group-hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] group-hover:border-primary-blue/30 mb-10 flex items-center justify-center relative overflow-hidden p-4 lg:p-6 transition-all duration-500">
                 {product.imageBase64 ? (
                   <img 
                     src={product.imageBase64} 
                     alt={product.model} 
-                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                    className="w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-105"
                   />
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center">
