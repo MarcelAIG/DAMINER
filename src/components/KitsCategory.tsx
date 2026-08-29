@@ -4,31 +4,38 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { useRequest } from '../context/RequestContext';
 
-export function Featured() {
+export function KitsCategory() {
   const { t, language } = useLanguage();
   const { addItem } = useRequest();
   
   const itemsToRender = [
     {
-      id: "1",
-      model: t.featured.model1,
-      description: t.featured.desc1,
+      id: "k1",
+      model: language === 'ua' ? "ЕОД-1" : "EOD-1",
+      description: "",
       price: "",
-      imageBase64: "/ЩР-1/ChatGPT Image Aug 28, 2026, 09_53_09 PM.png"
+      imageBase64: "/ЕОД-1/ChatGPT Image Aug 29, 2026, 02_49_42 PM.png"
     },
     {
-      id: "2",
-      model: t.featured.model2,
-      description: t.featured.desc2,
+      id: "k2",
+      model: language === 'ua' ? "ЕОД-1МН" : "EOD-1MN",
+      description: "",
       price: "",
-      imageBase64: "/ЩР-3:2 /ChatGPT Image Aug 28, 2026, 10_41_22 PM.png"
+      imageBase64: ""
     },
     {
-      id: "3",
-      model: t.featured.model3,
-      description: t.featured.desc3,
+      id: "k3",
+      model: language === 'ua' ? "КР-04" : "KR-04",
+      description: "",
       price: "",
-      imageBase64: "/ЩР-8/ChatGPT Image Aug 28, 2026, 11_15_16 PM.png"
+      imageBase64: ""
+    },
+    {
+      id: "k4",
+      model: language === 'ua' ? "КР-06" : "KR-06",
+      description: "",
+      price: "",
+      imageBase64: ""
     }
   ];
 
@@ -65,7 +72,7 @@ export function Featured() {
               </div>
               
               <h4 className="font-heading text-[11px] text-cool-gray tracking-[0.2em] uppercase font-bold mb-3 transition-colors duration-300">
-                {t.featured.probe}
+                {t.featured.kit}
               </h4>
               
               <h3 className="font-heading font-bold text-3xl lg:text-4xl text-dark-navy mb-6 tracking-tight transition-colors duration-300">

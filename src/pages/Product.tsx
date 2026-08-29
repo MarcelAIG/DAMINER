@@ -124,6 +124,47 @@ export function Product() {
         "/ЗД-4/ChatGPT Image Aug 29, 2026, 02_18_14 PM.png",
         "/ЗД-4/ChatGPT Image Aug 29, 2026, 02_19_28 PM.png"
       ]
+    },
+    {
+      id: "k1",
+      type: "kit",
+      model: language === 'ua' ? "ЕОД-1" : "EOD-1",
+      description: "",
+      price: "",
+      imageBase64: "/ЕОД-1/ChatGPT Image Aug 29, 2026, 02_49_42 PM.png",
+      gallery: [
+        "/ЕОД-1/ChatGPT Image Aug 29, 2026, 02_49_42 PM.png",
+        "/ЕОД-1/ChatGPT Image Aug 29, 2026, 02_59_43 PM.png",
+        "/ЕОД-1/ChatGPT Image Aug 29, 2026, 03_00_42 PM.png",
+        "/ЕОД-1/ChatGPT Image Aug 29, 2026, 03_03_04 PM.png"
+      ]
+    },
+    {
+      id: "k2",
+      type: "kit",
+      model: language === 'ua' ? "ЕОД-1МН" : "EOD-1MN",
+      description: "",
+      price: "",
+      imageBase64: "",
+      gallery: []
+    },
+    {
+      id: "k3",
+      type: "kit",
+      model: language === 'ua' ? "КР-04" : "KR-04",
+      description: "",
+      price: "",
+      imageBase64: "",
+      gallery: []
+    },
+    {
+      id: "k4",
+      type: "kit",
+      model: language === 'ua' ? "КР-06" : "KR-06",
+      description: "",
+      price: "",
+      imageBase64: "",
+      gallery: []
     }
   ];
 
@@ -251,7 +292,7 @@ export function Product() {
             className="flex flex-col justify-center"
           >
             <h4 className="font-heading text-sm text-cool-gray tracking-widest uppercase font-semibold mb-4 lg:mb-2">
-              {product.type === 'mirror' ? t.featured.mirror : t.featured.probe}
+              {product.type === 'mirror' ? t.featured.mirror : product.type === 'kit' ? t.featured.kit : t.featured.probe}
             </h4>
             <h1 className="font-heading text-5xl md:text-6xl font-bold text-dark-navy mb-8 lg:mb-5">
               {product.model}
@@ -313,7 +354,7 @@ export function Product() {
                   )}
                 </div>
                 <h4 className="font-heading text-[11px] text-cool-gray tracking-widest uppercase font-semibold mb-1 lg:mb-0.5">
-                  {p.type === 'mirror' ? t.featured.mirror : t.featured.probe}
+                  {p.type === 'mirror' ? t.featured.mirror : p.type === 'kit' ? t.featured.kit : t.featured.probe}
                 </h4>
                 <h3 className="font-heading text-lg lg:text-base font-bold text-dark-navy group-hover:text-primary-blue transition-colors duration-300">
                   {p.model}

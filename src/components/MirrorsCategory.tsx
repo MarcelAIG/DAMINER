@@ -51,28 +51,6 @@ export function MirrorsCategory() {
   return (
     <section className="pt-16 md:pt-24 pb-12 md:pb-16 bg-white">
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
-        
-        <div className="max-w-4xl mb-10 md:mb-12 text-left">
-          <motion.h2 
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="font-heading font-black text-4xl md:text-5xl lg:text-6xl text-dark-navy tracking-tight mb-6"
-          >
-            {language === 'ua' ? 'Дзеркала' : 'Mirrors'}
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-body text-lg md:text-xl text-charcoal/70 max-w-2xl leading-relaxed"
-          >
-            {t.categories.descriptions[1]}
-          </motion.p>
-        </div>
-
         <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-metallic-silver/30 border-y border-metallic-silver/30">
           {itemsToRender.map((product) => (
             <Link 

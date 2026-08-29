@@ -14,10 +14,10 @@ export function Home() {
       <Hero />
       <Categories />
       <About />
+      <Quality />
       <CustomMfg />
       <Stats />
       <WhatWeDo />
-      <Quality />
       <FinalCTA />
     </main>
   );

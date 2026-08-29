@@ -15,13 +15,20 @@ export function Categories() {
   ];
 
   const categorySlugs = ["probes", "mirrors", "kits", "nets", "tools"];
+  
+  const catalogImages = [
+    "/ЩР-1/ChatGPT Image Aug 28, 2026, 09_53_09 PM.png",
+    "/ЗД-1/ChatGPT Image Aug 29, 2026, 12_04_13 AM (1).png",
+    null
+  ];
 
-  const itemsToRender = t.categories.items.map((title, index) => ({
+  const itemsToRender = t.categories.items.slice(0, 3).map((title, index) => ({
     id: String(index),
     title,
     description: t.categories.descriptions?.[index] || "",
     slug: categorySlugs[index],
     CadIcon: cadIcons[index],
+    imageUrl: catalogImages[index]
   }));
 
   return (
@@ -34,7 +41,7 @@ export function Categories() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-16 lg:gap-y-20 gap-x-10 lg:gap-x-12">
           {itemsToRender.map((item) => (
             <Link to={`/catalog/${item.slug}`} key={item.id} className="group flex flex-col w-full outline-none">
-              <div className="relative aspect-[4/3] mb-6 bg-off-white flex items-center justify-center border-2 border-metallic-silver/60 group-hover:border-primary-blue/40 transition-colors duration-500 p-2 lg:p-3">
+              <div className="relative aspect-square mb-6 bg-off-white flex items-center justify-center border-2 border-metallic-silver/60 group-hover:border-primary-blue/40 transition-colors duration-500 p-2 lg:p-3">
                 <div className="w-full h-full border border-metallic-silver/40 group-hover:border-primary-blue/30 transition-colors duration-500 relative flex items-center justify-center overflow-hidden bg-white/40">
                   
                   {/* CAD Registration Marks */}
@@ -49,8 +56,21 @@ export function Categories() {
                     backgroundSize: '24px 24px'
                   }}></div>
 
-                  <div className="w-full h-full p-4 md:p-6 transform transition-transform duration-700 group-hover:scale-[1.03] relative z-10 flex items-center justify-center">
-                    {item.CadIcon}
+                  <div className="absolute inset-4 md:inset-6 transform transition-transform duration-700 group-hover:scale-[1.03] z-10 flex items-center justify-center">
+                    {item.imageUrl ? (
+                      <div className="relative w-full h-full flex items-center justify-center">
+                        <img 
+                          src={item.imageUrl} 
+                          alt={item.title} 
+                          className="absolute w-full h-full object-contain opacity-90 transition-all duration-700" 
+                          style={{ filter: 'grayscale(100%) sepia(15%) hue-rotate(190deg) contrast(120%)' }}
+                        />
+                      </div>
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        {item.CadIcon}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 import { useLanguage } from '../context/LanguageContext';
 import { Featured } from '../components/Featured';
 import { MirrorsCategory } from '../components/MirrorsCategory';
-import { CatalogLanding } from '../components/CatalogLanding';
+import { KitsCategory } from '../components/KitsCategory';
 
 export function Catalog() {
   const { categoryId } = useParams<{ categoryId: string }>();
@@ -46,14 +46,15 @@ export function Catalog() {
         </div>
       </section>
 
-      {/* Catalog Content */}
       <div className="pb-24">
         {!categoryId ? (
-          <CatalogLanding />
+          <Navigate to="/" replace />
         ) : categoryId === 'probes' ? (
           <Featured />
         ) : categoryId === 'mirrors' ? (
           <MirrorsCategory />
+        ) : categoryId === 'kits' ? (
+          <KitsCategory />
         ) : (
           <div className="py-32 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 text-center">
              <div className="w-16 h-16 rounded-full bg-dark-navy/5 flex items-center justify-center mx-auto mb-6">
