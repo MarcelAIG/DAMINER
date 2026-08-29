@@ -145,8 +145,13 @@ export function Product() {
       model: language === 'ua' ? "ЕОД-1МН" : "EOD-1MN",
       description: "",
       price: "",
-      imageBase64: "",
-      gallery: []
+      imageBase64: "/ЕОД-1МН/ChatGPT Image Aug 29, 2026, 03_25_05 PM.png",
+      gallery: [
+        "/ЕОД-1МН/ChatGPT Image Aug 29, 2026, 03_25_05 PM.png",
+        "/ЕОД-1МН/ChatGPT Image Aug 29, 2026, 03_23_51 PM.png",
+        "/ЕОД-1МН/ChatGPT Image Aug 29, 2026, 03_26_18 PM.png",
+        "/ЕОД-1МН/ChatGPT Image Aug 29, 2026, 03_27_43 PM.png"
+      ]
     },
     {
       id: "k3",
@@ -154,8 +159,14 @@ export function Product() {
       model: language === 'ua' ? "КР-04" : "KR-04",
       description: "",
       price: "",
-      imageBase64: "",
-      gallery: []
+      imageBase64: "/КР-04/ChatGPT Image Aug 29, 2026, 03_58_47 PM.png",
+      gallery: [
+        "/КР-04/ChatGPT Image Aug 29, 2026, 03_58_47 PM.png",
+        "/КР-04/ChatGPT Image Aug 29, 2026, 03_57_49 PM.png",
+        "/КР-04/ChatGPT Image Aug 29, 2026, 04_00_29 PM.png",
+        "/КР-04/ChatGPT Image Aug 29, 2026, 04_06_20 PM.png",
+        "/КР-04/ChatGPT Image Aug 29, 2026, 04_13_49 PM.png"
+      ]
     },
     {
       id: "k4",

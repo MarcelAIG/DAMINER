@@ -21,14 +21,14 @@ export function KitsCategory() {
       model: language === 'ua' ? "ЕОД-1МН" : "EOD-1MN",
       description: "",
       price: "",
-      imageBase64: ""
+      imageBase64: "/ЕОД-1МН/ChatGPT Image Aug 29, 2026, 03_25_05 PM.png"
     },
     {
       id: "k3",
       model: language === 'ua' ? "КР-04" : "KR-04",
       description: "",
       price: "",
-      imageBase64: ""
+      imageBase64: "/КР-04/ChatGPT Image Aug 29, 2026, 03_58_47 PM.png"
     },
     {
       id: "k4",
