@@ -3,6 +3,8 @@ import { useParams, Navigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { useLanguage } from '../context/LanguageContext';
 import { Featured } from '../components/Featured';
+import { MirrorsCategory } from '../components/MirrorsCategory';
+import { CatalogLanding } from '../components/CatalogLanding';
 
 export function Catalog() {
   const { categoryId } = useParams<{ categoryId: string }>();
@@ -13,13 +15,10 @@ export function Catalog() {
     window.scrollTo(0, 0);
   }, [categoryId]);
 
-  if (!categoryId) {
-    return <Navigate to="/catalog/probes" replace />;
-  }
-
   const slugs = ["probes", "mirrors", "kits", "nets", "tools"];
-  const categoryIndex = slugs.indexOf(categoryId);
-  const categoryTitle = categoryIndex !== -1 ? t.categories.items[categoryIndex] : t.nav.catalog;
+  const categoryIndex = categoryId ? slugs.indexOf(categoryId) : -1;
+  const categoryTitle = categoryIndex !== -1 ? t.categories.items[categoryIndex] : (t as any).catalogLanding?.heading || t.nav.catalog;
+  const categoryDescription = categoryIndex !== -1 ? t.categories.descriptions[categoryIndex] : (t as any).catalogLanding?.subheading;
   
   return (
     <main className="pt-[90px] bg-off-white min-h-screen">
@@ -41,7 +40,7 @@ export function Catalog() {
               {categoryTitle}
             </h1>
             <p className="font-body text-lg md:text-xl text-off-white/80 max-w-2xl leading-relaxed">
-              {categoryIndex !== -1 ? t.categories.descriptions[categoryIndex] : t.categories.heading}
+              {categoryDescription}
             </p>
           </motion.div>
         </div>
@@ -49,8 +48,12 @@ export function Catalog() {
 
       {/* Catalog Content */}
       <div className="pb-24">
-        {categoryId === 'probes' ? (
+        {!categoryId ? (
+          <CatalogLanding />
+        ) : categoryId === 'probes' ? (
           <Featured />
+        ) : categoryId === 'mirrors' ? (
+          <MirrorsCategory />
         ) : (
           <div className="py-32 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 text-center">
              <div className="w-16 h-16 rounded-full bg-dark-navy/5 flex items-center justify-center mx-auto mb-6">

@@ -22,6 +22,7 @@ export function Product() {
   const items = [
     {
       id: "1",
+      type: "probe",
       model: t.featured.model1,
       description: t.featured.desc1,
       price: "",
@@ -33,6 +34,7 @@ export function Product() {
     },
     {
       id: "2",
+      type: "probe",
       model: t.featured.model2,
       description: t.featured.desc2,
       price: "",
@@ -44,6 +46,7 @@ export function Product() {
     },
     {
       id: "3",
+      type: "probe",
       model: t.featured.model3,
       description: t.featured.desc3,
       price: "",
@@ -52,6 +55,56 @@ export function Product() {
         "/ЩР-8/ChatGPT Image Aug 28, 2026, 11_15_16 PM.png",
         "/ЩР-8/ChatGPT Image Aug 28, 2026, 11_15_05 PM.png"
       ]
+    },
+    {
+      id: "m1",
+      type: "mirror",
+      model: language === 'ua' ? "ЗД-1" : "ZD-1",
+      description: "",
+      price: "",
+      imageBase64: "/ЗД-1/ChatGPT Image Aug 29, 2026, 12_04_13 AM (1).png",
+      gallery: [
+        "/ЗД-1/ChatGPT Image Aug 29, 2026, 12_04_13 AM (1).png",
+        "/ЗД-1/ChatGPT Image Aug 29, 2026, 12_04_13 AM (2).png",
+        "/ЗД-1/ChatGPT Image Aug 29, 2026, 12_04_14 AM (3).png",
+        "/ЗД-1/ChatGPT Image Aug 29, 2026, 12_04_14 AM (4).png"
+      ]
+    },
+    {
+      id: "m2",
+      type: "mirror",
+      model: language === 'ua' ? "ЗД-2Д" : "ZD-2D",
+      description: "",
+      price: "",
+      imageBase64: "",
+      gallery: []
+    },
+    {
+      id: "m3",
+      type: "mirror",
+      model: language === 'ua' ? "ЗД-2У" : "ZD-2U",
+      description: "",
+      price: "",
+      imageBase64: "",
+      gallery: []
+    },
+    {
+      id: "m4",
+      type: "mirror",
+      model: language === 'ua' ? "ЗД-3" : "ZD-3",
+      description: "",
+      price: "",
+      imageBase64: "",
+      gallery: []
+    },
+    {
+      id: "m5",
+      type: "mirror",
+      model: language === 'ua' ? "ЗД-4" : "ZD-4",
+      description: "",
+      price: "",
+      imageBase64: "",
+      gallery: []
     }
   ];
 
@@ -137,9 +190,13 @@ export function Product() {
             )}
             
             {/* Gallery Thumbnails */}
-            {!showSpecs && product.gallery && (
-              <div className="grid grid-cols-2 gap-4">
-                {product.gallery.slice(0, 2).map((img, idx) => (
+            {!showSpecs && product.gallery && product.gallery.length > 1 && (
+              <div className={`grid gap-3 lg:gap-4 ${
+                product.gallery.length === 2 ? 'grid-cols-2' : 
+                product.gallery.length === 3 ? 'grid-cols-3' : 
+                'grid-cols-4'
+              }`}>
+                {product.gallery.slice(0, 4).map((img, idx) => (
                   <button 
                     key={idx}
                     type="button"
@@ -174,7 +231,7 @@ export function Product() {
             className="flex flex-col justify-center"
           >
             <h4 className="font-heading text-sm text-cool-gray tracking-widest uppercase font-semibold mb-4 lg:mb-2">
-              {t.featured.probe}
+              {product.type === 'mirror' ? t.featured.mirror : t.featured.probe}
             </h4>
             <h1 className="font-heading text-5xl md:text-6xl font-bold text-dark-navy mb-8 lg:mb-5">
               {product.model}
@@ -236,7 +293,7 @@ export function Product() {
                   )}
                 </div>
                 <h4 className="font-heading text-[11px] text-cool-gray tracking-widest uppercase font-semibold mb-1 lg:mb-0.5">
-                  {t.featured.probe}
+                  {p.type === 'mirror' ? t.featured.mirror : t.featured.probe}
                 </h4>
                 <h3 className="font-heading text-lg lg:text-base font-bold text-dark-navy group-hover:text-primary-blue transition-colors duration-300">
                   {p.model}

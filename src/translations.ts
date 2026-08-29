@@ -19,9 +19,14 @@ export const translations = {
       ],
       viewLink: "Переглянути категорію"
     },
+    catalogLanding: {
+      heading: "Каталог продукції",
+      subheading: "Професійне обладнання та спеціалізовані рішення DAMINER."
+    },
     featured: {
       heading: "Пріоритетні товари",
       probe: "Щуп пошуковий",
+      mirror: "Оглядове дзеркало",
       model1: "ЩР-1",
       model2: "ЩР-3/2",
       model3: "ЩР-8",
@@ -225,9 +230,14 @@ export const translations = {
       ],
       viewLink: "View Category"
     },
+    catalogLanding: {
+      heading: "Product Catalog",
+      subheading: "Professional equipment and specialized DAMINER solutions."
+    },
     featured: {
       heading: "Featured Products",
       probe: "Search Probe",
+      mirror: "Inspection Mirror",
       model1: "ShchR-1",
       model2: "ShchR-3/2",
       model3: "ShchR-8",
