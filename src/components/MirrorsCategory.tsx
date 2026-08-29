@@ -21,28 +21,28 @@ export function MirrorsCategory() {
       model: language === 'ua' ? "ЗД-2Д" : "ZD-2D",
       description: "",
       price: "",
-      imageBase64: ""
+      imageBase64: "/ЗД-2Д\"/ChatGPT Image Aug 29, 2026, 01_20_44 PM.png"
     },
     {
       id: "m3",
       model: language === 'ua' ? "ЗД-2У" : "ZD-2U",
       description: "",
       price: "",
-      imageBase64: ""
+      imageBase64: "/ЗД-2У/ChatGPT Image Aug 29, 2026, 01_29_49 PM.png"
     },
     {
       id: "m4",
       model: language === 'ua' ? "ЗД-3" : "ZD-3",
       description: "",
       price: "",
-      imageBase64: ""
+      imageBase64: "/ЗД-3/ChatGPT Image Aug 29, 2026, 01_57_21 PM.png"
     },
     {
       id: "m5",
       model: language === 'ua' ? "ЗД-4" : "ZD-4",
       description: "",
       price: "",
-      imageBase64: ""
+      imageBase64: "/ЗД-4/ChatGPT Image Aug 29, 2026, 02_13_09 PM.png"
     }
   ];
 

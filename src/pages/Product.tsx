@@ -76,8 +76,11 @@ export function Product() {
       model: language === 'ua' ? "ЗД-2Д" : "ZD-2D",
       description: "",
       price: "",
-      imageBase64: "",
-      gallery: []
+      imageBase64: "/ЗД-2Д\"/ChatGPT Image Aug 29, 2026, 01_20_44 PM.png",
+      gallery: [
+        "/ЗД-2Д\"/ChatGPT Image Aug 29, 2026, 01_20_44 PM.png",
+        "/ЗД-2Д\"/ChatGPT Image Aug 29, 2026, 01_20_48 PM.png"
+      ]
     },
     {
       id: "m3",
@@ -85,8 +88,10 @@ export function Product() {
       model: language === 'ua' ? "ЗД-2У" : "ZD-2U",
       description: "",
       price: "",
-      imageBase64: "",
-      gallery: []
+      imageBase64: "/ЗД-2У/ChatGPT Image Aug 29, 2026, 01_29_49 PM.png",
+      gallery: [
+        "/ЗД-2У/ChatGPT Image Aug 29, 2026, 01_29_49 PM.png"
+      ]
     },
     {
       id: "m4",
@@ -94,8 +99,15 @@ export function Product() {
       model: language === 'ua' ? "ЗД-3" : "ZD-3",
       description: "",
       price: "",
-      imageBase64: "",
-      gallery: []
+      imageBase64: "/ЗД-3/ChatGPT Image Aug 29, 2026, 01_57_21 PM.png",
+      gallery: [
+        "/ЗД-3/ChatGPT Image Aug 29, 2026, 01_57_21 PM.png",
+        "/ЗД-3/ChatGPT Image Aug 29, 2026, 01_44_55 PM.png",
+        "/ЗД-3/ChatGPT Image Aug 29, 2026, 01_58_10 PM.png",
+        "/ЗД-3/ChatGPT Image Aug 29, 2026, 01_59_22 PM.png",
+        "/ЗД-3/ChatGPT Image Aug 29, 2026, 02_00_31 PM.png",
+        "/ЗД-3/ChatGPT Image Aug 29, 2026, 02_01_52 PM.png"
+      ]
     },
     {
       id: "m5",
@@ -103,8 +115,15 @@ export function Product() {
       model: language === 'ua' ? "ЗД-4" : "ZD-4",
       description: "",
       price: "",
-      imageBase64: "",
-      gallery: []
+      imageBase64: "/ЗД-4/ChatGPT Image Aug 29, 2026, 02_13_09 PM.png",
+      gallery: [
+        "/ЗД-4/ChatGPT Image Aug 29, 2026, 02_13_09 PM.png",
+        "/ЗД-4/ChatGPT Image Aug 29, 2026, 02_14_51 PM.png",
+        "/ЗД-4/ChatGPT Image Aug 29, 2026, 02_16_22 PM.png",
+        "/ЗД-4/ChatGPT Image Aug 29, 2026, 02_17_17 PM.png",
+        "/ЗД-4/ChatGPT Image Aug 29, 2026, 02_18_14 PM.png",
+        "/ЗД-4/ChatGPT Image Aug 29, 2026, 02_19_28 PM.png"
+      ]
     }
   ];
 
@@ -193,10 +212,11 @@ export function Product() {
             {!showSpecs && product.gallery && product.gallery.length > 1 && (
               <div className={`grid gap-3 lg:gap-4 ${
                 product.gallery.length === 2 ? 'grid-cols-2' : 
-                product.gallery.length === 3 ? 'grid-cols-3' : 
-                'grid-cols-4'
+                product.gallery.length === 4 ? 'grid-cols-4' : 
+                product.gallery.length === 5 ? 'grid-cols-5' : 
+                'grid-cols-3'
               }`}>
-                {product.gallery.slice(0, 4).map((img, idx) => (
+                {product.gallery.map((img, idx) => (
                   <button 
                     key={idx}
                     type="button"
