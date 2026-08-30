@@ -34,7 +34,7 @@ export function Categories() {
   return (
     <section className="py-16 md:py-24 bg-white">
       <div className="max-w-[1320px] mx-auto px-6 lg:px-10 xl:px-0">
-        <h2 className="font-heading font-black text-5xl md:text-6xl xl:text-[58px] text-dark-navy mb-14 md:mb-20 tracking-tight uppercase [-webkit-text-stroke:1px_currentColor]">
+        <h2 className="font-heading font-black text-5xl md:text-6xl xl:text-[58px] text-primary-blue mb-14 md:mb-20 tracking-tight uppercase [-webkit-text-stroke:1px_currentColor]">
           {t.nav.catalog}
         </h2>
         
@@ -63,7 +63,6 @@ export function Categories() {
                           src={item.imageUrl} 
                           alt={item.title} 
                           className="absolute w-full h-full object-contain opacity-90 transition-all duration-700" 
-                          style={{ filter: 'grayscale(100%) sepia(15%) hue-rotate(190deg) contrast(120%)' }}
                         />
                       </div>
                     ) : (

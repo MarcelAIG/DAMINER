@@ -348,9 +348,9 @@ export function Product() {
           <h2 className="font-heading text-2xl lg:text-3xl font-bold text-dark-navy mb-8 lg:mb-10 text-center lg:text-left">
             {t.featured.otherProducts || "Other Products"}
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 lg:gap-6">
+          <div className="flex overflow-x-auto gap-6 lg:gap-6 pb-6 -mx-6 px-6 lg:mx-0 lg:px-0 snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {otherProducts.map((p) => (
-              <Link to={`/product/${p.id}`} key={p.id} className="flex flex-col group cursor-pointer bg-white p-4 lg:p-5 border border-metallic-silver/20 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:border-primary-blue/30 rounded-xl transition-all duration-300">
+              <Link to={`/product/${p.id}`} key={p.id} className="min-w-[65vw] sm:min-w-[calc(33.333333%-1rem)] md:min-w-[calc(25%-1.125rem)] lg:min-w-[calc(20%-1.2rem)] xl:min-w-[calc(16.666667%-1.25rem)] snap-start shrink-0 flex flex-col group cursor-pointer bg-white p-4 lg:p-4 border border-metallic-silver/20 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:border-primary-blue/30 rounded-xl transition-all duration-300">
                 <div className="aspect-[3/4] lg:aspect-[3/2] xl:aspect-[16/9] bg-white mb-4 lg:mb-4 flex items-center justify-center relative overflow-hidden p-4 lg:p-6">
                   {p.imageBase64 ? (
                     <>
