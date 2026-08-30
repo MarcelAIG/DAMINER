@@ -19,7 +19,7 @@ export function Categories() {
   const catalogImages = [
     "/ЩР-1/ChatGPT Image Aug 28, 2026, 09_53_09 PM.png",
     "/ЗД-1/ChatGPT Image Aug 29, 2026, 12_04_13 AM (1).png",
-    null
+    "/ЕОД-1/ChatGPT Image Aug 29, 2026, 02_49_42 PM.png"
   ];
 
   const itemsToRender = t.categories.items.slice(0, 3).map((title, index) => ({
