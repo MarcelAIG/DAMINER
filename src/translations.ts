@@ -2,22 +2,30 @@ export const translations = {
   ua: {
     nav: { catalog: "Каталог", solutions: "Рішення", about: "Про компанію", contact: "Контакти", search: "Пошук товарів" },
     hero: {
-      subtitle: "Професійне обладнання для розмінування та пошукових робіт",
-      description: "Виробництво професійного обладнання для розмінування та пошукових робіт.",
+      title: "Професійне обладнання для розмінування",
+      description: "DAMINER розробляє та виробляє обладнання для розмінування, виявлення й знешкодження вибухонебезпечних предметів, а також спеціалізовані рішення для правоохоронних і безпекових служб.",
       cta: "Переглянути каталог",
       ctaConsultation: "Отримати консультацію"
     },
     categories: {
-      heading: "Обладнання DAMINER",
+      heading: "Каталог обладнання",
       items: ["Щупи", "Дзеркала", "Набори", "Сіткомети протидронові", "Саперні пристосування"],
       descriptions: [
-        "Професійні інструменти для точного та безпечного зондування ґрунту під час пошуку вибухонебезпечних предметів.",
-        "Спеціалізовані оглядові дзеркала для візуального контролю важкодоступних місць та транспортних засобів.",
-        "Комплексні рішення для саперів та вибухотехніків, що включають все необхідне для виконання завдань.",
-        "Ефективні засоби для примусової посадки та нейтралізації ворожих безпілотних літальних апаратів.",
-        "Надійні допоміжні інструменти та аксесуари для забезпечення безпеки під час розмінування."
+        "Пошукові щупи різної довжини та конфігурації.",
+        "Оглядові дзеркала для важкодоступних місць та транспорту.",
+        "Комплексне обладнання для різних задач розмінування.",
+        "Сіткомети для ефективної протидії ворожим дронам.",
+        "Спеціалізовані інструменти та пристосування для саперів."
       ],
-      viewLink: "Переглянути категорію"
+      viewLink: "ПЕРЕГЛЯНУТИ ВЕСЬ КАТАЛОГ →",
+      learnMore: "ДІЗНАТИСЬ БІЛЬШЕ →"
+    },
+    trust: {
+      items: [
+        { title: "Власне виробництво", desc: "Контроль якості на кожному етапі" },
+        { title: "Сертифікована продукція", desc: "Відповідність стандарту ISO 9001" },
+        { title: "Підтримка та сервіс", desc: "Навчання, гарантія, супровід" }
+      ]
     },
     catalogLanding: {
       heading: "Каталог продукції",
@@ -32,7 +40,7 @@ export const translations = {
       model2: "ЩР-3/2",
       model3: "ЩР-8",
       desc1: "Базова модель для пошуку мін та вибухонебезпечних предметів у м'яких ґрунтах.",
-      desc2: "",
+      desc2: "Двосекційний щуп із середньою довжиною для універсальних завдань.",
       desc3: "Професійний телескопічний щуп збільшеної довжини для дистанційного зондування.",
       price: "Ціна за запитом",
       details: "Детальніше",
@@ -209,27 +217,64 @@ export const translations = {
       message: "Повідомлення",
       submit: "Надіслати",
       success: "Запит успішно надіслано!"
+    },
+    faq: {
+      heading: "Часті запитання",
+      items: [
+        {
+          q: "Чи виготовляєте ви обладнання за індивідуальними кресленнями?",
+          a: "Так, наш ключовий напрямок — це розробка та виготовлення наборів і пристосувань під індивідуальне технічне завдання клієнта."
+        },
+        {
+          q: "Який термін виконання індивідуальних замовлень?",
+          a: "Термін залежить від складності завдання. В середньому розробка прототипу займає від 1 до 3 тижнів, після чого починається серійне або дрібносерійне виробництво."
+        },
+        {
+          q: "Чи надаєте ви гарантію на своє обладнання?",
+          a: "Так, на всю продукцію діє стандартна гарантія від 1 року. Для специфічних виробів гарантійні умови обговорюються окремо."
+        },
+        {
+          q: "З яких матеріалів виготовляються щупи та дзеркала?",
+          a: "Ми використовуємо високоміцні зносостійкі матеріали: анодований алюміній, карбон, нержавіючу сталь та спеціалізовані полімери, що забезпечують легкість та довговічність."
+        },
+        {
+          q: "Як замовити продукцію?",
+          a: "Для замовлення ви можете заповнити форму на сайті, або зв'язатися з нами за телефоном чи електронною поштою, вказаними в розділі контактів."
+        },
+        {
+          q: "Які умови оплати та доставки?",
+          a: "Ми працюємо за безготівковим розрахунком. Доставка здійснюється провідними логістичними компаніями України або можливий самовивіз."
+        }
+      ]
     }
   },
   en: {
     nav: { catalog: "Catalog", solutions: "Solutions", about: "About Us", contact: "Contact", search: "Search Products" },
     hero: {
-      subtitle: "Professional equipment for demining and search operations",
-      description: "Manufacturing of professional equipment for demining and search operations.",
+      title: "Professional equipment for demining",
+      description: "DAMINER develops and manufactures equipment for demining, detection and disposal of explosive ordnance, as well as specialized solutions for law enforcement and security services.",
       cta: "View Catalog",
       ctaConsultation: "Get Consultation"
     },
     categories: {
-      heading: "DAMINER Equipment",
-      items: ["Probes", "Mirrors", "Kits", "Anti-drone Net Guns", "Sapper Tools"],
+      heading: "Equipment Catalog",
+      items: ["Probes", "Inspection Mirrors", "Kits", "Anti-drone Nets", "Sapper Tools"],
       descriptions: [
-        "Professional tools for precise and safe soil probing during the search for explosive ordnance.",
-        "Specialized inspection mirrors for visual control of hard-to-reach areas and vehicles.",
-        "Comprehensive solutions for sappers and bomb technicians, including everything needed to complete tasks.",
-        "Effective means for forcing down and neutralizing hostile unmanned aerial vehicles.",
-        "Reliable auxiliary tools and accessories to ensure safety during demining operations."
+        "Search probes in different lengths and configurations.",
+        "Inspection mirrors for hard-to-reach areas and vehicles.",
+        "Complete equipment solutions for various demining tasks.",
+        "Net throwers for effective counter-drone operations.",
+        "Specialized tools and equipment for sappers."
       ],
-      viewLink: "View Category"
+      viewLink: "VIEW FULL CATALOG →",
+      learnMore: "LEARN MORE →"
+    },
+    trust: {
+      items: [
+        { title: "In-house manufacturing", desc: "Quality control at every stage" },
+        { title: "Certified products", desc: "Compliance with ISO 9001 standards" },
+        { title: "Support & service", desc: "Training, warranty and support" }
+      ]
     },
     catalogLanding: {
       heading: "Product Catalog",
@@ -244,7 +289,7 @@ export const translations = {
       model2: "ShchR-3/2",
       model3: "ShchR-8",
       desc1: "Basic model for locating mines and UXO in soft soils.",
-      desc2: "",
+      desc2: "Two-section probe with medium length for universal tasks.",
       desc3: "Professional extended telescopic probe for remote probing.",
       price: "Price on request",
       details: "Details",
@@ -421,6 +466,35 @@ export const translations = {
       message: "Message",
       submit: "Submit",
       success: "Request sent successfully!"
+    },
+    faq: {
+      heading: "Frequently Asked Questions",
+      items: [
+        {
+          q: "Do you manufacture equipment according to custom drawings?",
+          a: "Yes, our key focus is the development and manufacturing of kits and tools tailored to the client's individual technical specifications."
+        },
+        {
+          q: "What is the lead time for custom orders?",
+          a: "The timeline depends on the complexity of the task. On average, developing a prototype takes 1 to 3 weeks, followed by serial or small-scale production."
+        },
+        {
+          q: "Do you provide a warranty for your equipment?",
+          a: "Yes, all our products come with a standard warranty of 1 year. For specific custom items, warranty terms are discussed separately."
+        },
+        {
+          q: "What materials are used for probes and mirrors?",
+          a: "We use high-strength, wear-resistant materials: anodized aluminum, carbon fiber, stainless steel, and specialized polymers to ensure lightness and durability."
+        },
+        {
+          q: "How can I order products?",
+          a: "To place an order, you can fill out the form on our website or contact us by phone or email listed in the contacts section."
+        },
+        {
+          q: "What are the payment and delivery terms?",
+          a: "We operate via bank transfer. Delivery is carried out by leading logistics companies in Ukraine, or local pickup is available."
+        }
+      ]
     }
   }
 };

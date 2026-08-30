@@ -1,20 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import { CadProbe, CadMirror, CadKit, CadNet, CadTool } from './CadDrawings';
 
 export function Categories() {
-  const { t, language } = useLanguage();
-  const cadIcons = [
-    <CadProbe key="probe" />,
-    <CadMirror key="mirror" />,
-    <CadKit key="kit" />,
-    <CadNet key="net" />,
-    <CadTool key="tool" />
-  ];
+  const { t } = useLanguage();
 
-  const categorySlugs = ["probes", "mirrors", "kits", "nets", "tools"];
+  const categorySlugs = ["probes", "mirrors", "kits"];
   
   const catalogImages = [
     "/ЩР-1/ChatGPT Image Aug 28, 2026, 09_53_09 PM.png",
@@ -22,69 +13,54 @@ export function Categories() {
     "/ЕОД-1/ChatGPT Image Aug 29, 2026, 02_49_42 PM.png"
   ];
 
-  const itemsToRender = t.categories.items.slice(0, 3).map((title, index) => ({
-    id: String(index),
-    title,
-    description: t.categories.descriptions?.[index] || "",
-    slug: categorySlugs[index],
-    CadIcon: cadIcons[index],
+  const itemsToRender = categorySlugs.map((slug, index) => ({
+    id: slug,
+    title: t.categories.items[index],
+    description: t.categories.descriptions[index],
+    slug,
     imageUrl: catalogImages[index]
   }));
 
   return (
-    <section className="py-16 md:py-24 bg-white">
-      <div className="max-w-[1320px] mx-auto px-6 lg:px-10 xl:px-0">
-        <h2 className="font-heading font-black text-5xl md:text-6xl xl:text-[58px] text-primary-blue mb-14 md:mb-20 tracking-tight uppercase [-webkit-text-stroke:1px_currentColor]">
-          {t.nav.catalog}
-        </h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-16 lg:gap-y-20 gap-x-10 lg:gap-x-12">
-          {itemsToRender.map((item) => (
-            <Link to={`/catalog/${item.slug}`} key={item.id} className="group flex flex-col w-full outline-none">
-              <div className="relative aspect-square mb-6 bg-off-white flex items-center justify-center border-2 border-metallic-silver/60 group-hover:border-primary-blue/40 transition-colors duration-500 p-2 lg:p-3">
-                <div className="w-full h-full border border-metallic-silver/40 group-hover:border-primary-blue/30 transition-colors duration-500 relative flex items-center justify-center overflow-hidden bg-white/40">
-                  
-                  {/* CAD Registration Marks */}
-                  <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-dark-navy/20 group-hover:border-primary-blue/40 transition-colors duration-500"></div>
-                  <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-dark-navy/20 group-hover:border-primary-blue/40 transition-colors duration-500"></div>
-                  <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-dark-navy/20 group-hover:border-primary-blue/40 transition-colors duration-500"></div>
-                  <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-dark-navy/20 group-hover:border-primary-blue/40 transition-colors duration-500"></div>
-                  
-                  {/* Subtle Blueprint Dot Grid */}
-                  <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{
-                    backgroundImage: 'radial-gradient(circle at 1px 1px, #1a2530 1px, transparent 0)',
-                    backgroundSize: '24px 24px'
-                  }}></div>
+    <section className="bg-white">
 
-                  <div className="absolute inset-4 md:inset-6 transform transition-transform duration-700 group-hover:scale-[1.03] z-10 flex items-center justify-center">
-                    {item.imageUrl ? (
-                      <div className="relative w-full h-full flex items-center justify-center">
-                        <img 
-                          src={item.imageUrl} 
-                          alt={item.title} 
-                          className="absolute w-full h-full object-contain opacity-90 transition-all duration-700" 
-                        />
-                      </div>
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        {item.CadIcon}
-                      </div>
-                    )}
+      {/* Catalog Area */}
+      <div className="py-16 md:py-24">
+        <div className="max-w-[1360px] mx-auto px-6 lg:px-10 xl:px-0">
+          
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16 gap-6">
+            <h2 className="font-heading font-black text-4xl md:text-5xl lg:text-[52px] text-dark-navy tracking-tight">
+              {t.categories.heading}
+            </h2>
+            <Link to="#" className="inline-flex items-center gap-2 font-heading font-black text-sm md:text-base tracking-widest uppercase text-primary-blue hover:text-dark-navy transition-colors duration-300">
+              {t.categories.viewLink}
+            </Link>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {itemsToRender.map((item) => (
+              <Link to={`/catalog/${item.slug}`} key={item.id} className="group flex flex-col bg-white border border-[#E3E8EF] rounded-xl overflow-hidden hover:border-primary-blue/30 transition-all duration-300">
+                <div className="aspect-[4/3] bg-white flex items-center justify-center p-8 relative overflow-hidden border-b border-[#E3E8EF]/50">
+                  <img 
+                    src={item.imageUrl} 
+                    alt={item.title} 
+                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" 
+                  />
+                </div>
+                <div className="p-6 md:p-8 flex flex-col flex-grow">
+                  <h3 className="font-heading font-black text-3xl lg:text-4xl text-dark-navy mb-3 group-hover:text-primary-blue transition-colors duration-300 tracking-tight">
+                    {item.title}
+                  </h3>
+                  <p className="font-body text-charcoal/70 text-[15px] mb-8 leading-relaxed flex-grow">
+                    {item.description}
+                  </p>
+                  <div className="inline-flex items-center font-heading font-black text-xs tracking-widest uppercase text-primary-blue mt-auto group-hover:gap-3 transition-all duration-300 gap-2">
+                    {t.categories.learnMore}
                   </div>
                 </div>
-              </div>
-              <div className="border-t border-metallic-silver/40 pt-6 pb-2 flex flex-col gap-6 group-hover:border-primary-blue/40 transition-colors duration-500">
-                <h3 className="font-heading font-bold text-2xl md:text-3xl text-dark-navy group-hover:text-primary-blue transition-colors duration-500 tracking-tight">
-                  {item.title}
-                </h3>
-                <div className="flex">
-                  <span className="inline-flex items-center justify-center bg-primary-blue border-2 border-primary-blue text-white group-hover:bg-white group-hover:text-primary-blue font-heading font-bold text-[11px] tracking-widest uppercase px-6 py-3 transition-colors duration-300 shadow-sm">
-                    {language === 'ua' ? 'Переглянути' : 'View Category'}
-                  </span>
-                </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </section>

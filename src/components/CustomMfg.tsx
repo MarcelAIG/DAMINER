@@ -33,8 +33,9 @@ export function CustomMfg() {
             {t.mfg.items.map((item, index) => (
               <div 
                 key={index}
-                className="flex flex-col py-14 px-10 xl:px-12 bg-white hover:bg-off-white transition-colors duration-400 group cursor-default"
+                className="relative flex flex-col py-14 px-10 xl:px-12 bg-white hover:bg-off-white transition-colors duration-400 group cursor-default"
               >
+                <div className="absolute top-0 left-0 w-full h-[5px] bg-primary-blue opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="text-primary-blue mb-10 transform transition-transform duration-500 group-hover:scale-110 origin-left">
                   {icons[index]}
                 </div>

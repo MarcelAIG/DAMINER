@@ -18,8 +18,9 @@ export function WhatWeDo() {
       <div className="max-w-[1320px] mx-auto px-6 lg:px-10 xl:px-0">
         
         <div className="mb-4">
-          <span className="font-heading font-bold text-sm tracking-widest uppercase text-dark-navy/60">
+          <span className="font-heading font-black text-[15px] md:text-base tracking-[0.15em] uppercase text-cool-gray inline-flex flex-col relative pb-4 mb-4 lg:mb-6">
             {t.whatWeDo.eyebrow}
+            <span className="absolute bottom-0 left-0 w-full h-[2px] bg-primary-blue"></span>
           </span>
         </div>
         <div className="mb-10 md:mb-12">
@@ -39,7 +40,7 @@ export function WhatWeDo() {
               className="flex flex-col p-10 md:p-12 lg:p-14 bg-white hover:bg-off-white transition-colors duration-400 group cursor-default border-b-[3px] border-transparent hover:border-primary-blue"
             >
               <div className="flex items-center justify-between mb-10">
-                <span className="font-heading font-black text-[60px] lg:text-[80px] leading-none text-metallic-silver/20 group-hover:text-primary-blue/10 transition-colors duration-500">
+                <span className="font-heading font-black text-[60px] lg:text-[80px] leading-none text-primary-blue/30 group-hover:text-primary-blue/80 transition-colors duration-500">
                   {item.num}
                 </span>
                 <div className="text-primary-blue opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 origin-right">

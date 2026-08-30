@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams, Navigate, Link } from 'react-router-dom';
+import { ChevronRight } from 'lucide-react';
+import { CadProbe, CadMirror, CadKit, CadNet, CadTool } from '../components/CadDrawings';
 import { motion } from 'motion/react';
 import { useLanguage } from '../context/LanguageContext';
 import { Featured } from '../components/Featured';
@@ -24,25 +26,48 @@ export function Catalog() {
     <main className="pt-[90px] bg-off-white min-h-screen">
       
       {/* Hero Section */}
-      <section className="relative bg-dark-navy text-white py-24 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 opacity-70 pointer-events-none" style={{
-          backgroundImage: 'radial-gradient(circle at 50% 100%, #1e63d8 0%, transparent 80%)'
-        }}></div>
-        <div className="absolute inset-0 bg-mesh pointer-events-none z-[5]"></div>
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 relative z-10">
+      <section className="bg-white pt-2 md:pt-4 pb-2 md:pb-4 relative overflow-hidden border-b border-metallic-silver/20">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 relative z-10 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-10">
+          
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-3xl"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="w-full md:w-1/2 flex flex-col py-4"
           >
-            <h1 className="font-heading font-black text-5xl md:text-6xl lg:text-7xl mb-6 tracking-tight leading-[1.1] uppercase">
+            {/* Breadcrumb */}
+            <div className="flex items-center gap-3 font-body text-base text-charcoal/60 mb-4 md:mb-6">
+              <Link to="/" className="font-bold hover:text-primary-blue transition-colors duration-300">
+                {language === 'ua' ? 'Головна' : 'Home'}
+              </Link>
+              <ChevronRight className="w-4 h-4 text-dark-navy/40" strokeWidth={2.5} />
+              <span className="text-dark-navy font-black tracking-wide uppercase text-sm">{categoryTitle}</span>
+            </div>
+            
+            <h1 className="font-heading font-black text-5xl md:text-6xl lg:text-[72px] mb-2 md:mb-4 text-dark-navy tracking-tight leading-[1.1]">
               {categoryTitle}
             </h1>
-            <p className="font-body text-lg md:text-xl text-off-white/80 max-w-2xl leading-relaxed">
+            
+            <p className="font-body text-[17px] md:text-[18px] text-charcoal/70 max-w-lg leading-relaxed">
               {categoryDescription}
             </p>
           </motion.div>
+          
+          <motion.div 
+            initial={{ opacity: 0, x: 60, y: 20, rotate: 5, scale: 0.8 }}
+            animate={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1 }}
+            transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            className="w-full md:w-1/2 h-[160px] md:h-[220px] lg:h-[260px] relative flex items-center justify-center md:justify-start lg:justify-center"
+          >
+            {/* Soft Ambient Background Glow */}
+            <div className="absolute top-1/2 left-1/2 md:left-[45%] lg:left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] md:w-[300px] h-[200px] md:h-[300px] bg-primary-blue/[0.04] rounded-full blur-[40px] md:blur-[50px] pointer-events-none -z-10"></div>
+            {categoryId === 'mirrors' && <div className="group cursor-pointer w-[120%] sm:w-[110%] md:w-[130%] lg:w-[150%] max-w-[550px] scale-110 text-dark-navy/40 hover:text-primary-blue transition-colors duration-75 mix-blend-multiply opacity-90 md:-translate-x-12 lg:-translate-x-20"><CadMirror /></div>}
+            {categoryId === 'probes' && <div className="group cursor-pointer w-[120%] sm:w-[110%] md:w-[130%] lg:w-[150%] max-w-[550px] scale-110 text-dark-navy/40 hover:text-primary-blue transition-colors duration-75 mix-blend-multiply opacity-90 md:-translate-x-12 lg:-translate-x-20"><CadProbe /></div>}
+            {categoryId === 'kits' && <div className="group cursor-pointer w-[120%] sm:w-[110%] md:w-[130%] lg:w-[150%] max-w-[500px] scale-105 text-dark-navy/40 hover:text-primary-blue transition-colors duration-75 mix-blend-multiply opacity-90 md:-translate-x-8 lg:-translate-x-12"><CadKit /></div>}
+            {categoryId === 'nets' && <div className="group cursor-pointer w-[110%] sm:w-[90%] md:w-[110%] lg:w-[120%] max-w-[450px] text-dark-navy/40 hover:text-primary-blue transition-colors duration-75 mix-blend-multiply opacity-90 md:-translate-x-12 lg:-translate-x-20"><CadNet /></div>}
+            {categoryId === 'tools' && <div className="group cursor-pointer w-[110%] sm:w-[90%] md:w-[110%] lg:w-[120%] max-w-[450px] text-dark-navy/40 hover:text-primary-blue transition-colors duration-75 mix-blend-multiply opacity-90 md:-translate-x-12 lg:-translate-x-20"><CadTool /></div>}
+          </motion.div>
+          
         </div>
       </section>
 

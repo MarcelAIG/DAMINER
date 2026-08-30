@@ -32,14 +32,11 @@ export function Hero() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="max-w-3xl relative"
           >
-            <h1 className="font-heading font-black text-6xl md:text-7xl lg:text-[80px] text-white leading-none tracking-tight mb-2 drop-shadow-lg">
-              DAMINER
-              <span className="block text-xl md:text-3xl lg:text-[32px] mt-2 text-metallic-silver font-semibold tracking-normal md:whitespace-nowrap drop-shadow-md">
-                {t.hero.subtitle}
-              </span>
+            <h1 className="font-heading font-black text-5xl md:text-6xl lg:text-[72px] text-white leading-[1.1] tracking-tight mb-6 drop-shadow-lg max-w-4xl">
+              {t.hero.title}
             </h1>
             
-            <p className="font-body text-lg md:text-xl lg:text-[22px] text-off-white/90 max-w-2xl mb-8 leading-relaxed">
+            <p className="font-body text-base md:text-lg lg:text-xl text-off-white/90 max-w-2xl mb-8 leading-relaxed">
               {t.hero.description}
             </p>
             

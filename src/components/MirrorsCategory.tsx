@@ -12,35 +12,35 @@ export function MirrorsCategory() {
     {
       id: "m1",
       model: language === 'ua' ? "ЗД-1" : "ZD-1",
-      description: "",
+      description: language === 'ua' ? "Оглядове дзеркало зі змінною телескопічною штангою." : "Inspection mirror with an interchangeable telescopic rod.",
       price: "",
       imageBase64: "/ЗД-1/ChatGPT Image Aug 29, 2026, 12_04_13 AM (1).png"
     },
     {
       id: "m2",
       model: language === 'ua' ? "ЗД-2Д" : "ZD-2D",
-      description: "",
+      description: language === 'ua' ? "Дзеркало з двома змінними відбивачами." : "Mirror with two interchangeable reflectors.",
       price: "",
       imageBase64: "/ЗД-2Д\"/ChatGPT Image Aug 29, 2026, 01_20_44 PM.png"
     },
     {
       id: "m3",
       model: language === 'ua' ? "ЗД-2У" : "ZD-2U",
-      description: "",
+      description: language === 'ua' ? "Універсальне дзеркало для огляду транспорту." : "Universal mirror for vehicle inspection.",
       price: "",
       imageBase64: "/ЗД-2У/ChatGPT Image Aug 29, 2026, 01_29_49 PM.png"
     },
     {
       id: "m4",
       model: language === 'ua' ? "ЗД-3" : "ZD-3",
-      description: "",
+      description: language === 'ua' ? "Компактне оглядове дзеркало з ліхтарем." : "Compact inspection mirror with flashlight.",
       price: "",
       imageBase64: "/ЗД-3/ChatGPT Image Aug 29, 2026, 01_57_21 PM.png"
     },
     {
       id: "m5",
       model: language === 'ua' ? "ЗД-4" : "ZD-4",
-      description: "",
+      description: language === 'ua' ? "Спеціалізоване тактичне оглядове дзеркало." : "Specialized tactical inspection mirror.",
       price: "",
       imageBase64: "/ЗД-4/ChatGPT Image Aug 29, 2026, 02_13_09 PM.png"
     }
@@ -49,7 +49,7 @@ export function MirrorsCategory() {
   const priceText = language === 'ua' ? 'Ціна за запитом' : 'Price on Request';
 
   return (
-    <section className="pt-16 md:pt-24 pb-12 md:pb-16 bg-white">
+    <section className="pt-0 md:pt-4 pb-12 md:pb-16 bg-white">
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
         <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-metallic-silver/30 border-y border-metallic-silver/30">
           {itemsToRender.map((product) => (
@@ -82,25 +82,28 @@ export function MirrorsCategory() {
                 {t.featured.mirror}
               </h4>
               
-              <h3 className="font-heading font-bold text-3xl lg:text-4xl text-dark-navy mb-6 tracking-tight transition-colors duration-300">
-                {product.model}
-              </h3>
+              <div className="flex items-start justify-between mb-4">
+                <h3 className="font-heading font-black text-3xl lg:text-4xl text-dark-navy tracking-tight transition-colors duration-300">
+                  {product.model}
+                </h3>
+                <div className="text-right">
+                  <span className="block font-body text-[10px] text-cool-gray uppercase tracking-widest mb-0.5">{language === 'ua' ? 'Ціна' : 'Price'}</span>
+                  <span className="block font-heading text-[12px] font-bold text-dark-navy tracking-wide uppercase">{language === 'ua' ? 'За запитом' : 'On request'}</span>
+                </div>
+              </div>
               
               <p className="font-body text-charcoal/70 mb-10 flex-1 leading-relaxed text-[15px]">
                 {product.description}
               </p>
               
-              <div className="mt-auto pt-6 border-t border-metallic-silver/30 flex items-center justify-between gap-4">
-                <span className="font-heading font-bold text-[11px] tracking-widest uppercase text-dark-navy/70">
-                  {priceText}
-                </span>
+              <div className="mt-auto pt-6 border-t border-metallic-silver/30">
                 <button 
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
                     addItem({ id: product.id, model: product.model });
                   }}
-                  className="inline-flex items-center justify-center bg-primary-blue text-white border border-primary-blue hover:bg-white hover:text-primary-blue font-heading font-bold text-[10px] md:text-[11px] tracking-widest uppercase px-6 py-3 transition-colors duration-300"
+                  className="w-full inline-flex items-center justify-center bg-primary-blue text-white border border-primary-blue hover:bg-white hover:text-primary-blue font-heading font-bold text-[11px] tracking-widest uppercase px-6 py-4 transition-colors duration-300"
                 >
                   {t.request.add}
                 </button>
