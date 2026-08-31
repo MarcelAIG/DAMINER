@@ -32,7 +32,7 @@ export function Hero() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="max-w-3xl relative"
           >
-            <h1 className="font-heading font-black text-4xl md:text-5xl lg:text-[54px] text-white leading-[1.1] tracking-tight mb-6 drop-shadow-lg max-w-4xl">
+            <h1 className="font-heading font-black text-5xl md:text-6xl lg:text-[68px] text-white leading-[1.1] tracking-tight mb-6 drop-shadow-lg max-w-5xl">
               {t.hero.title}
             </h1>
             

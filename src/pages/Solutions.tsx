@@ -47,7 +47,7 @@ export function Solutions() {
       {/* Solutions Grid */}
       <section className="py-24 md:py-32">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 lg:gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             {t.solutionsPage.items.map((item, index) => (
               <motion.div 
                 key={index}
