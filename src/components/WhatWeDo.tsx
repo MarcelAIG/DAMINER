@@ -24,7 +24,7 @@ export function WhatWeDo() {
           </span>
         </div>
         <div className="mb-10 md:mb-12">
-          <h2 className="font-heading font-black text-5xl md:text-6xl xl:text-[58px] text-dark-navy mb-6 tracking-tight uppercase [-webkit-text-stroke:1px_currentColor]">
+          <h2 className="font-heading font-black text-4xl md:text-5xl lg:text-[54px] text-dark-navy mb-6 tracking-tight uppercase [-webkit-text-stroke:1px_currentColor]">
             {t.whatWeDo.title}
           </h2>
           <p className="font-body text-lg text-charcoal/80 leading-relaxed max-w-3xl">

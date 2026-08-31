@@ -70,7 +70,7 @@ export function Navbar() {
           <div className="flex items-center border-r border-metallic-silver/30 pr-8 mr-8">
             <a href={`tel:${t.contactPage.phone.replace(/[\s-()]/g, '')}`} className="flex items-center gap-2.5 group">
               <Phone size={15} strokeWidth={1.5} className="text-primary-blue/80 group-hover:text-primary-blue transition-colors duration-300" />
-              <span className="font-heading font-semibold text-[14px] lg:text-[15px] text-dark-navy group-hover:text-primary-blue transition-colors duration-300">
+              <span className="font-heading font-black text-[14px] lg:text-[15px] text-dark-navy group-hover:text-primary-blue transition-colors duration-300">
                 {t.contactPage.phone}
               </span>
             </a>
@@ -79,7 +79,7 @@ export function Navbar() {
           {/* Catalog Dropdown */}
           <div className="relative group/nav h-[90px] flex items-center">
             <div className={`absolute top-0 left-0 w-full h-[5px] bg-primary-blue transition-all duration-200 ${isActive('/catalog') ? 'opacity-100' : 'opacity-0 group-hover/nav:opacity-100'}`}></div>
-            <div className="cursor-default text-charcoal font-heading font-semibold text-sm tracking-widest uppercase group-hover/nav:text-primary-blue transition-colors duration-300 flex items-center gap-1.5 h-full">
+            <div className="cursor-default text-charcoal font-heading font-black text-sm tracking-widest uppercase group-hover/nav:text-primary-blue transition-colors duration-300 flex items-center gap-1.5 h-full">
               {t.nav.catalog}
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-50 group-hover/nav:opacity-100 transition-opacity"><path d="m6 9 6 6 6-6"/></svg>
             </div>
@@ -104,7 +104,7 @@ export function Navbar() {
                       <div className="w-16 h-16 flex-shrink-0 bg-white border border-metallic-silver/20 rounded flex items-center justify-center p-3 text-dark-navy/70 group-hover/item:border-primary-blue/30 group-hover/item:text-primary-blue group-hover/item:shadow-sm transition-all duration-300">
                         <Visual className="w-full h-full" />
                       </div>
-                      <div className="font-heading font-bold text-[13px] tracking-[0.15em] uppercase text-dark-navy group-hover/item:text-primary-blue transition-colors duration-300 leading-snug">
+                      <div className="font-heading font-black text-[13px] tracking-[0.15em] uppercase text-dark-navy group-hover/item:text-primary-blue transition-colors duration-300 leading-snug">
                         {cat}
                       </div>
                     </Link>
@@ -116,7 +116,7 @@ export function Navbar() {
   
           <div className="relative group/nav h-[90px] flex items-center">
             <div className={`absolute top-0 left-0 w-full h-[5px] bg-primary-blue transition-all duration-200 ${isActive('/solutions') ? 'opacity-100' : 'opacity-0 group-hover/nav:opacity-100'}`}></div>
-            <Link to="/solutions" className="text-charcoal font-heading font-semibold text-sm tracking-widest uppercase group-hover/nav:text-primary-blue transition-colors duration-300 h-full flex items-center">{t.nav.solutions}</Link>
+            <Link to="/solutions" className="text-charcoal font-heading font-black text-sm tracking-widest uppercase group-hover/nav:text-primary-blue transition-colors duration-300 h-full flex items-center">{t.nav.solutions}</Link>
           </div>
         </div>
         
@@ -130,11 +130,11 @@ export function Navbar() {
           <div className="flex gap-12 h-[90px]">
             <div className="relative group/nav h-full flex items-center">
               <div className={`absolute top-0 left-0 w-full h-[5px] bg-primary-blue transition-all duration-200 ${isActive('/about') ? 'opacity-100' : 'opacity-0 group-hover/nav:opacity-100'}`}></div>
-              <Link to="/about" className="text-charcoal font-heading font-semibold text-sm tracking-widest uppercase group-hover/nav:text-primary-blue transition-colors duration-300 h-full flex items-center">{t.nav.about}</Link>
+              <Link to="/about" className="text-charcoal font-heading font-black text-sm tracking-widest uppercase group-hover/nav:text-primary-blue transition-colors duration-300 h-full flex items-center">{t.nav.about}</Link>
             </div>
             <div className="relative group/nav h-full flex items-center">
               <div className={`absolute top-0 left-0 w-full h-[5px] bg-primary-blue transition-all duration-200 ${isActive('/contact') ? 'opacity-100' : 'opacity-0 group-hover/nav:opacity-100'}`}></div>
-              <Link to="/contact" className="text-charcoal font-heading font-semibold text-sm tracking-widest uppercase group-hover/nav:text-primary-blue transition-colors duration-300 h-full flex items-center">{t.nav.contact}</Link>
+              <Link to="/contact" className="text-charcoal font-heading font-black text-sm tracking-widest uppercase group-hover/nav:text-primary-blue transition-colors duration-300 h-full flex items-center">{t.nav.contact}</Link>
             </div>
           </div>
           
@@ -142,14 +142,14 @@ export function Navbar() {
             <div className="flex items-center gap-4 border-r border-metallic-silver/30 pr-6">
               <button 
                 onClick={() => setLanguage('ua')}
-                className={`font-heading font-semibold text-sm tracking-widest transition-colors duration-300 ${language === 'ua' ? 'text-charcoal' : 'text-cool-gray hover:text-primary-blue'}`}
+                className={`font-heading font-black text-sm tracking-widest transition-colors duration-300 ${language === 'ua' ? 'text-charcoal' : 'text-cool-gray hover:text-primary-blue'}`}
               >
                 UA
               </button>
               <span className="text-metallic-silver">/</span>
               <button 
                 onClick={() => setLanguage('en')}
-                className={`font-heading font-semibold text-sm tracking-widest transition-colors duration-300 ${language === 'en' ? 'text-charcoal' : 'text-cool-gray hover:text-primary-blue'}`}
+                className={`font-heading font-black text-sm tracking-widest transition-colors duration-300 ${language === 'en' ? 'text-charcoal' : 'text-cool-gray hover:text-primary-blue'}`}
               >
                 EN
               </button>
@@ -163,7 +163,7 @@ export function Navbar() {
               >
                 <ShoppingBag size={24} strokeWidth={1.5} />
                 {requestCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-primary-blue text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                  <span className="absolute -top-2 -right-2 bg-primary-blue text-white text-[10px] font-black w-5 h-5 flex items-center justify-center rounded-full">
                     {requestCount}
                   </span>
                 )}
@@ -183,7 +183,7 @@ export function Navbar() {
           >
             <ShoppingBag size={24} strokeWidth={1.5} />
             {requestCount > 0 && (
-              <span className="absolute -top-2 -right-2 bg-primary-blue text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full">
+              <span className="absolute -top-2 -right-2 bg-primary-blue text-white text-[10px] font-black w-5 h-5 flex items-center justify-center rounded-full">
                 {requestCount}
               </span>
             )}
@@ -200,24 +200,24 @@ export function Navbar() {
       {/* Mobile Menu Overlay */}
       <div className={`lg:hidden fixed top-[90px] left-0 w-full bg-white shadow-xl border-b border-metallic-silver/20 transition-all duration-300 overflow-hidden z-40 ${isMobileMenuOpen ? 'max-h-[500px] opacity-100 py-6' : 'max-h-0 opacity-0 pointer-events-none py-0'}`}>
         <div className="flex flex-col gap-6 px-8">
-          <Link to="/catalog" onClick={() => setIsMobileMenuOpen(false)} className="text-dark-navy font-heading font-semibold text-lg uppercase tracking-widest">{t.nav.catalog}</Link>
-          <Link to="/solutions" onClick={() => setIsMobileMenuOpen(false)} className="text-dark-navy font-heading font-semibold text-lg uppercase tracking-widest">{t.nav.solutions}</Link>
-          <Link to="/about" onClick={() => setIsMobileMenuOpen(false)} className="text-dark-navy font-heading font-semibold text-lg uppercase tracking-widest">{t.nav.about}</Link>
-          <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)} className="text-dark-navy font-heading font-semibold text-lg uppercase tracking-widest">{t.nav.contact}</Link>
+          <Link to="/catalog" onClick={() => setIsMobileMenuOpen(false)} className="text-dark-navy font-heading font-black text-lg uppercase tracking-widest">{t.nav.catalog}</Link>
+          <Link to="/solutions" onClick={() => setIsMobileMenuOpen(false)} className="text-dark-navy font-heading font-black text-lg uppercase tracking-widest">{t.nav.solutions}</Link>
+          <Link to="/about" onClick={() => setIsMobileMenuOpen(false)} className="text-dark-navy font-heading font-black text-lg uppercase tracking-widest">{t.nav.about}</Link>
+          <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)} className="text-dark-navy font-heading font-black text-lg uppercase tracking-widest">{t.nav.contact}</Link>
           
           <div className="h-[1px] bg-metallic-silver/20 w-full my-2"></div>
           
           <div className="flex items-center gap-4">
             <button 
               onClick={() => { setLanguage('ua'); setIsMobileMenuOpen(false); }}
-              className={`font-heading font-semibold text-lg tracking-widest transition-colors duration-300 ${language === 'ua' ? 'text-primary-blue' : 'text-cool-gray'}`}
+              className={`font-heading font-black text-lg tracking-widest transition-colors duration-300 ${language === 'ua' ? 'text-primary-blue' : 'text-cool-gray'}`}
             >
               UA
             </button>
             <span className="text-metallic-silver">/</span>
             <button 
               onClick={() => { setLanguage('en'); setIsMobileMenuOpen(false); }}
-              className={`font-heading font-semibold text-lg tracking-widest transition-colors duration-300 ${language === 'en' ? 'text-primary-blue' : 'text-cool-gray'}`}
+              className={`font-heading font-black text-lg tracking-widest transition-colors duration-300 ${language === 'en' ? 'text-primary-blue' : 'text-cool-gray'}`}
             >
               EN
             </button>

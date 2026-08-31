@@ -21,7 +21,7 @@ export function FAQ() {
             FAQ
             <span className="absolute bottom-0 left-0 w-full h-[2px] bg-primary-blue"></span>
           </span>
-          <h2 className="font-heading font-black text-5xl md:text-6xl text-dark-navy leading-[1.1] tracking-tight uppercase">
+          <h2 className="font-heading font-black text-4xl md:text-5xl lg:text-[54px] text-dark-navy leading-[1.1] tracking-tight uppercase">
             {t.faq.heading}
           </h2>
         </div>

@@ -198,18 +198,13 @@ export function Product() {
   return (
     <main className="pt-[90px] bg-off-white min-h-screen pb-24 lg:pb-12">
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 pt-12 lg:pt-6">
-        <Link to="/catalog" className="inline-flex items-center gap-2 text-primary-blue hover:text-dark-navy font-heading font-bold text-[13px] uppercase tracking-widest transition-colors duration-300 mb-12 lg:mb-6 relative z-20 py-2 pr-4 w-fit cursor-pointer">
+        <Link to="/catalog" className="inline-flex items-center gap-2 text-primary-blue hover:text-dark-navy font-heading font-black text-[13px] uppercase tracking-widest transition-colors duration-300 mb-12 lg:mb-6 relative z-20 py-2 pr-4 w-fit cursor-pointer">
           <ArrowLeft size={18} strokeWidth={2.5} />
           {t.nav.catalog}
         </Link>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 lg:items-start">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="flex flex-col gap-4"
-          >
+          <div className="flex flex-col gap-4">
             <div 
               className={`aspect-[4/5] lg:aspect-square lg:max-h-[65vh] bg-white border border-metallic-silver/20 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-xl flex items-center justify-center p-4 lg:p-6 relative overflow-hidden group transition-all duration-300 ${isZoomed ? 'cursor-zoom-out' : 'cursor-zoom-in'}`}
               onClick={handleZoom}
@@ -268,15 +263,10 @@ export function Product() {
                 ))}
               </div>
             )}
-          </motion.div>
+          </div>
           
-          <motion.div 
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col justify-center"
-          >
-            <h4 className="font-heading text-sm text-cool-gray tracking-widest uppercase font-semibold mb-4 lg:mb-2">
+          <div className="flex flex-col justify-center">
+            <h4 className="font-heading text-sm text-cool-gray tracking-widest uppercase font-bold mb-4 lg:mb-2">
               {product.type === 'mirror' ? t.featured.mirror : product.type === 'kit' ? t.featured.kit : t.featured.probe}
             </h4>
             <h1 className="font-heading text-5xl md:text-6xl font-black text-dark-navy mb-8 lg:mb-5 tracking-tight">
@@ -290,7 +280,7 @@ export function Product() {
             <div className="bg-white p-6 lg:p-5 mb-12 lg:mb-8 flex items-start gap-4 lg:gap-4 border border-metallic-silver/30 shadow-sm">
               <ShieldCheck size={24} className="text-primary-blue shrink-0 mt-0.5 lg:mt-0" strokeWidth={1.5} />
               <div>
-                <h5 className="font-heading font-bold text-sm uppercase tracking-widest text-dark-navy mb-2 lg:mb-1.5">
+                <h5 className="font-heading font-black text-sm uppercase tracking-widest text-dark-navy mb-2 lg:mb-1.5">
                   {t.featured.warrantyTitle}
                 </h5>
                 <p className="font-body text-[15px] text-charcoal/80 leading-relaxed lg:leading-normal">
@@ -301,7 +291,7 @@ export function Product() {
             </div>
             
             <div className="pt-8 lg:pt-6 border-t border-metallic-silver/40 flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-10">
-              <div className="font-heading font-bold text-base tracking-widest uppercase text-dark-navy">
+              <div className="font-heading font-black text-base tracking-widest uppercase text-dark-navy">
                 {t.featured.price}
               </div>
               <button 
@@ -309,7 +299,7 @@ export function Product() {
                   e.preventDefault();
                   addItem({ id: product.id, model: product.model });
                 }}
-                className="w-full sm:w-auto py-5 px-12 bg-primary-blue text-white font-heading font-bold text-sm tracking-widest uppercase border border-primary-blue hover:bg-white hover:text-primary-blue transition-colors duration-300 inline-flex justify-center"
+                className="w-full sm:w-auto py-5 px-12 bg-primary-blue text-white font-heading font-black text-sm tracking-widest uppercase border border-primary-blue hover:bg-white hover:text-primary-blue transition-colors duration-300 inline-flex justify-center"
               >
                 {t.request.add}
               </button>
@@ -321,7 +311,7 @@ export function Product() {
                 onClick={() => setIsDescriptionOpen(!isDescriptionOpen)}
                 className="w-full flex items-center justify-between p-5 lg:p-6 bg-transparent hover:bg-off-white/50 transition-colors duration-300 group"
               >
-                <span className="font-heading font-bold text-sm tracking-widest uppercase text-dark-navy group-hover:text-primary-blue transition-colors duration-300">
+                <span className="font-heading font-black text-sm tracking-widest uppercase text-dark-navy group-hover:text-primary-blue transition-colors duration-300">
                   {language === 'ua' ? 'Детальний опис' : 'Detailed Description'}
                 </span>
                 <motion.div
@@ -348,29 +338,29 @@ export function Product() {
                         </p>
                         
                         <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm">
-                           <h5 className="font-heading font-bold text-[11px] tracking-widest uppercase text-dark-navy mb-4">
+                           <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
                              {language === 'ua' ? 'Базові характеристики:' : 'Basic Specifications:'}
                            </h5>
                            <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
                              <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
                                <span>{language === 'ua' ? 'Довжина (мін/макс)' : 'Length (min/max)'}</span>
-                               <span className="font-semibold text-dark-navy">800 мм - 1500 мм</span>
+                               <span className="font-bold text-dark-navy">800 мм - 1500 мм</span>
                              </li>
                              <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
                                <span>{language === 'ua' ? 'Вага' : 'Weight'}</span>
-                               <span className="font-semibold text-dark-navy">1.2 кг</span>
+                               <span className="font-bold text-dark-navy">1.2 кг</span>
                              </li>
                              <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
                                <span>{language === 'ua' ? 'Матеріал' : 'Material'}</span>
-                               <span className="font-semibold text-dark-navy text-right">{language === 'ua' ? 'Анодований алюміній / Карбон' : 'Anodized Aluminum / Carbon'}</span>
+                               <span className="font-bold text-dark-navy text-right">{language === 'ua' ? 'Анодований алюміній / Карбон' : 'Anodized Aluminum / Carbon'}</span>
                              </li>
                              <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
                                <span>{language === 'ua' ? 'Робоча температура' : 'Operating Temperature'}</span>
-                               <span className="font-semibold text-dark-navy">-20°C ... +60°C</span>
+                               <span className="font-bold text-dark-navy">-20°C ... +60°C</span>
                              </li>
                              <li className="flex justify-between">
                                <span>{language === 'ua' ? 'Клас захисту' : 'Protection Class'}</span>
-                               <span className="font-semibold text-dark-navy">IP67</span>
+                               <span className="font-bold text-dark-navy">IP67</span>
                              </li>
                            </ul>
                         </div>
@@ -384,12 +374,12 @@ export function Product() {
                 )}
               </AnimatePresence>
             </div>
-          </motion.div>
+          </div>
         </div>
         
         {/* Other Products Section */}
         <div className="mt-20 lg:mt-24 pt-12 lg:pt-16 border-t border-metallic-silver/30">
-          <h2 className="font-heading text-2xl lg:text-3xl font-bold text-dark-navy mb-8 lg:mb-10 text-center lg:text-left">
+          <h2 className="font-heading text-2xl lg:text-3xl font-black text-dark-navy mb-8 lg:mb-10 text-center lg:text-left">
             {t.featured.otherProducts || "Other Products"}
           </h2>
           <div className="flex overflow-x-auto gap-6 pb-6 -mx-6 px-6 lg:mx-0 lg:px-0 snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
@@ -408,7 +398,7 @@ export function Product() {
                     <div className="absolute inset-0 flex items-center justify-center bg-gray-50" />
                   )}
                 </div>
-                <h4 className="font-heading text-[11px] text-cool-gray tracking-widest uppercase font-semibold mb-1 lg:mb-0.5">
+                <h4 className="font-heading text-[11px] text-cool-gray tracking-widest uppercase font-bold mb-1 lg:mb-0.5">
                   {p.type === 'mirror' ? t.featured.mirror : p.type === 'kit' ? t.featured.kit : t.featured.probe}
                 </h4>
                 <h3 className="font-heading text-lg lg:text-base font-black text-dark-navy group-hover:text-primary-blue transition-colors duration-300">

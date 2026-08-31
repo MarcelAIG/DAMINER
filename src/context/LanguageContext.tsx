@@ -14,6 +14,17 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState<Language>('ua');
 
+  React.useEffect(() => {
+    if (language === 'ua') {
+      document.body.classList.add('lang-ua');
+      document.body.classList.remove('lang-en');
+    } else {
+      document.body.classList.add('lang-en');
+      document.body.classList.remove('lang-ua');
+    }
+    document.documentElement.lang = language;
+  }, [language]);
+
   const value = {
     language,
     setLanguage,

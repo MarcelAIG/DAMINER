@@ -23,7 +23,7 @@ export function About() {
             </div>
             
             <div className="flex-1 flex flex-col">
-              <h2 className="font-heading font-black text-4xl md:text-5xl lg:text-[46px] leading-[1.15] text-dark-navy mb-6 tracking-tight uppercase">
+              <h2 className="font-heading font-black text-4xl md:text-5xl lg:text-[54px] leading-[1.15] text-dark-navy mb-6 tracking-tight uppercase">
                 {t.about.heading}
               </h2>
               

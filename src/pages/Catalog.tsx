@@ -36,7 +36,7 @@ export function Catalog() {
             className="w-full md:w-1/2 flex flex-col py-4"
           >
             {/* Breadcrumb */}
-            <div className="flex items-center gap-3 font-body text-base text-charcoal/60 mb-4 md:mb-6">
+            <div className="flex items-center gap-3 font-body text-base text-charcoal/60 mb-10 md:mb-16">
               <Link to="/" className="font-bold hover:text-primary-blue transition-colors duration-300">
                 {language === 'ua' ? 'Головна' : 'Home'}
               </Link>
@@ -44,7 +44,7 @@ export function Catalog() {
               <span className="text-dark-navy font-black tracking-wide uppercase text-sm">{categoryTitle}</span>
             </div>
             
-            <h1 className="font-heading font-black text-5xl md:text-6xl lg:text-[72px] mb-2 md:mb-4 text-dark-navy tracking-tight leading-[1.1]">
+            <h1 className="font-heading font-black text-4xl md:text-5xl lg:text-[54px] mb-2 md:mb-4 text-dark-navy tracking-tight leading-[1.1]">
               {categoryTitle}
             </h1>
             

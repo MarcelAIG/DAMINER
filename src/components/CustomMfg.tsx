@@ -20,7 +20,7 @@ export function CustomMfg() {
         <div className="max-w-[1320px] mx-auto px-6 lg:px-10 xl:px-0">
           
           <div className="mb-14 md:mb-20">
-            <h2 className="font-heading font-black text-5xl md:text-6xl xl:text-[58px] text-dark-navy mb-8 tracking-tight uppercase [-webkit-text-stroke:1px_currentColor]">
+            <h2 className="font-heading font-black text-4xl md:text-5xl lg:text-[54px] text-dark-navy mb-8 tracking-tight uppercase [-webkit-text-stroke:1px_currentColor]">
               {t.mfg.heading}
             </h2>
             <p className="font-body text-lg xl:text-[20px] text-charcoal/80 leading-relaxed max-w-3xl">

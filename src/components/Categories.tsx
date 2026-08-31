@@ -29,7 +29,7 @@ export function Categories() {
         <div className="max-w-[1360px] mx-auto px-6 lg:px-10 xl:px-0">
           
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16 gap-6">
-            <h2 className="font-heading font-black text-4xl md:text-5xl lg:text-[52px] text-dark-navy tracking-tight">
+            <h2 className="font-heading font-black text-4xl md:text-5xl lg:text-[54px] text-dark-navy tracking-tight">
               {t.categories.heading}
             </h2>
             <Link to="#" className="inline-flex items-center gap-2 font-heading font-black text-sm md:text-base tracking-widest uppercase text-primary-blue hover:text-dark-navy transition-colors duration-300">

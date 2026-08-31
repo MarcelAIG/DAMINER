@@ -113,8 +113,9 @@ export const translations = {
     },
     cta: {
       heading: "Потрібне спеціальне рішення або комплектація?",
-      btn1: "Запит на товари",
-      btn2: "Отримати консультацію"
+      desc: "Зв’яжіться з нами , підберемо оптимальне рішення під ваші задачі та технічні вимоги.",
+      btn1: "Запитати консультацію",
+      btn2: "Зв'язатись по телефону"
     },
     footer: {
       desc: "Професійне обладнання для розмінування, пошукових робіт та спеціалізованого використання.",
@@ -362,8 +363,9 @@ export const translations = {
     },
     cta: {
       heading: "Need a custom solution or specialized kit?",
-      btn1: "Request Products",
-      btn2: "Get Consultation"
+      desc: "Contact us — we will find the optimal solution for your task.",
+      btn1: "Request Consultation",
+      btn2: "Contact by Phone"
     },
     footer: {
       desc: "Professional equipment for demining, search operations, and specialized use.",

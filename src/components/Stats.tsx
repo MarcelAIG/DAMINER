@@ -34,7 +34,7 @@ export function Stats() {
           transition={{ duration: 0.6 }}
           className="mb-10 md:mb-12 text-center"
         >
-          <h2 className="font-heading font-black text-5xl md:text-6xl xl:text-[58px] text-dark-navy tracking-tight uppercase [-webkit-text-stroke:1px_currentColor]">
+          <h2 className="font-heading font-black text-4xl md:text-5xl lg:text-[54px] text-dark-navy tracking-tight uppercase [-webkit-text-stroke:1px_currentColor]">
             {language === 'ua' ? 'DAMINER у цифрах' : 'DAMINER in Numbers'}
           </h2>
         </motion.div>
@@ -53,7 +53,7 @@ export function Stats() {
                 ${idx === 2 ? 'lg:border-l lg:border-metallic-silver/30' : ''}
               `}
             >
-              <div className="font-heading font-black text-4xl md:text-5xl lg:text-[56px] xl:text-6xl leading-none text-dark-navy mb-8 tracking-tight whitespace-nowrap">
+              <div className="font-heading font-black text-4xl md:text-5xl lg:text-[54px] xl:text-6xl leading-none text-dark-navy mb-8 tracking-tight whitespace-nowrap">
                 {stat.value}
               </div>
               <h3 className="font-heading font-bold text-[13px] text-charcoal/90 uppercase tracking-[0.15em] leading-relaxed max-w-[200px]">
