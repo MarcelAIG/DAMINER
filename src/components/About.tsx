@@ -60,15 +60,19 @@ export function About() {
               
               <div className="w-full h-full relative z-10 rounded-lg overflow-hidden shadow-sm bg-metallic-silver/10">
                 <video 
+                  ref={(el) => {
+                    if (el) {
+                      el.muted = isMuted;
+                    }
+                  }}
                   src="/videos/IMG_0077.mov"
-                  className="w-full h-full object-cover object-center"
+                  className="absolute inset-0 w-full h-full object-cover object-center z-0"
                   autoPlay
-                  muted={isMuted}
                   loop
                   playsInline
                 />
-                <div className="absolute inset-0 bg-dark-navy/40 bg-gradient-to-r from-dark-navy/80 via-dark-navy/40 to-transparent pointer-events-none"></div>
-                <div className="absolute inset-0 bg-mesh pointer-events-none z-[5]"></div>
+                <div className="absolute inset-0 bg-dark-navy/10 bg-gradient-to-t from-dark-navy/50 to-transparent pointer-events-none z-[1]"></div>
+                <div className="absolute inset-0 bg-mesh pointer-events-none z-[2]"></div>
               </div>
               
               {/* Sound Toggle */}
