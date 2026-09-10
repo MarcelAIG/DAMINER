@@ -113,12 +113,12 @@ export const translations = {
     },
     cta: {
       heading: "Потрібне спеціальне рішення або комплектація?",
-      desc: "Зв’яжіться з нами , підберемо оптимальне рішення під ваші задачі та технічні вимоги.",
+      desc: "Ми завжди раді розглянути будь-які Ваші побажання і пропозиції про взаємовигідну співпрацю!",
       btn1: "Запитати консультацію",
       btn2: "Зв'язатись по телефону"
     },
     footer: {
-      desc: "Ми завжди раді розглянути будь-які Ваші побажання і пропозиції про взаємовигідну співпрацю!",
+      desc: "Професійне обладнання для розмінування, пошукових робіт та спеціалізованого використання.",
       rights: "Всі права захищені.",
       navHeading: "Навігація",
       infoHeading: "Інформація",
@@ -162,8 +162,8 @@ export const translations = {
       subheading: "ТОВ «ДАМІНЕР» — українська розробка та власне виробництво професійного обладнання для розмінування. Засновано у 2023 році.",
       missionTitle: "Наша Місія",
       missionDesc: "Створювати надійні, високотехнологічні та доступні інструменти для розмінування, що рятують життя, очищують українську землю від вибухонебезпечних залишків війни та забезпечують максимальну безпеку саперів і мирного населення.",
-      productionTitle: "Власне Виробництво",
-      productionDesc: "Компанія з розробки і виробництва пристроїв та обладнання для розмінування, виявлення мін та ВНП, а також наборів для експертів-криміналістів і вибухотехніків. Головна відмінність — ми виробляємо набори та пристосування під індивідуальне технічне завдання клієнта.",
+      productionTitle: "Про компанію",
+      productionDesc: "Пріоритетний напрямок діяльності нашого підприємства — розробка і виробництво пристроїв та обладнання для розмінування, виявлення мін та ВНП, обладнання для знешкодження вибухонебезпечних предметів, приладів і наборів для огляду місця події.\n\nОбладнання призначене для використання експертами-криміналістами правоохоронних органів, служб безпеки та вибухотехніків.",
       valuesTitle: "Переваги",
       values: [
         {
@@ -183,7 +183,21 @@ export const translations = {
           desc: "Працюємо як у форматі роздрібних продажів, так і з оптовими замовниками, державними установами та силовими структурами."
         }
       ],
-      valuesSummary: "Завдяки власному виробництву та локалізації в Україні компанія DAMINER має можливість швидко формувати необхідні комплекти, змінювати їх комплектацію, виготовляти окремі елементи та адаптувати продукцію відповідно до конкретних умов експлуатації."
+      valuesSummary: "Завдяки власному виробництву та локалізації в Україні компанія DAMINER має можливість швидко формувати необхідні комплекти, змінювати їх комплектацію, виготовляти окремі елементи та адаптувати продукцію відповідно до конкретних умов експлуатації.",
+      productionVideoSection: {
+        heading: "Виробництво",
+        subheading: "Реальні кадри з процесу розробки, виготовлення та комплектації обладнання DAMINER.",
+        labels: [
+          "Комплектація наборів",
+          "Пакування продукції",
+          "Складання обладнання",
+          "Виробничий процес",
+          "Проєктування та CAD",
+          "3D-друк прототипів",
+          "Механічна обробка",
+          "Готова продукція"
+        ]
+      }
     },
     request: {
       title: "Запит на товари",
@@ -368,12 +382,12 @@ export const translations = {
     },
     cta: {
       heading: "Need a custom solution or specialized kit?",
-      desc: "Contact us — we will find the optimal solution for your task.",
+      desc: "We are always happy to consider your requests and proposals for mutually beneficial cooperation.",
       btn1: "Request Consultation",
       btn2: "Contact by Phone"
     },
     footer: {
-      desc: "We are always happy to consider your requests and proposals for mutually beneficial cooperation.",
+      desc: "Professional equipment for demining, search operations, and specialized use.",
       rights: "All rights reserved.",
       navHeading: "Navigation",
       infoHeading: "Information",
@@ -417,8 +431,8 @@ export const translations = {
       subheading: "DAMINER LLC — Ukrainian development and in-house production of professional demining equipment. Founded in 2023.",
       missionTitle: "Our Mission",
       missionDesc: "To create reliable, high-tech, and accessible demining tools that save lives, clear Ukrainian land from explosive remnants of war, and ensure maximum safety for sappers and civilians.",
-      productionTitle: "In-House Production",
-      productionDesc: "A company dedicated to developing and manufacturing devices and equipment for demining, UXO detection, and specialized kits for forensic experts and bomb technicians. Our key distinction is manufacturing tools according to the client's specific technical requirements.",
+      productionTitle: "About Company",
+      productionDesc: "The priority area of our company’s activity is the development and manufacture of devices and equipment for demining, detection of mines and UXO, equipment for the neutralization of explosive hazards, as well as instruments and kits for crime scene examination.\n\nThe equipment is intended for use by forensic experts, law enforcement agencies, security services, and EOD specialists.",
       valuesTitle: "Advantages",
       values: [
         {
@@ -438,7 +452,21 @@ export const translations = {
           desc: "We work with retail customers as well as wholesale buyers, government institutions, and security organizations."
         }
       ],
-      valuesSummary: "Thanks to our own production and localization in Ukraine, DAMINER can quickly assemble required kits, modify their configuration, manufacture individual components, and adapt products to specific operating conditions."
+      valuesSummary: "Thanks to our own production and localization in Ukraine, DAMINER can quickly assemble required kits, modify their configuration, manufacture individual components, and adapt products to specific operating conditions.",
+      productionVideoSection: {
+        heading: "Production",
+        subheading: "Real footage from the DAMINER design, manufacturing, and assembly process.",
+        labels: [
+          "Kit Assembly",
+          "Product Packaging",
+          "Equipment Assembly",
+          "Production Process",
+          "Design and CAD",
+          "3D Prototype Printing",
+          "Machining",
+          "Finished Products"
+        ]
+      }
     },
     request: {
       title: "Product Request",
