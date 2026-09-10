@@ -13,14 +13,14 @@ export function About() {
   }, []);
 
   const productionVideos = [
-    '/VIDEO NEW/IMG_8851.MOV',
-    '/VIDEO NEW/IMG_8459.MOV',
-    '/VIDEO NEW/IMG_5186.MOV',
-    '/VIDEO NEW/IMG_4422.MOV',
-    '/VIDEO NEW/IMG_2922.MOV',
-    '/VIDEO NEW/IMG_2910.MOV',
-    '/VIDEO NEW/IMG_1105.MOV',
-    '/VIDEO NEW/IMG_0077.MOV'
+    '/videos/IMG_8851.MOV',
+    '/videos/IMG_8459.MOV',
+    '/videos/IMG_5186.MOV',
+    '/videos/IMG_4422.MOV',
+    '/videos/IMG_2922.MOV',
+    '/videos/IMG_2910.MOV',
+    '/videos/IMG_1105.MOV',
+    '/videos/IMG_0077.MOV'
   ];
 
   // Lock body scroll when modal is open

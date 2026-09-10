@@ -60,13 +60,15 @@ export function About() {
               
               <div className="w-full h-full relative z-10 rounded-lg overflow-hidden shadow-sm bg-metallic-silver/10">
                 <video 
-                  src="/VIDEO NEW/IMG_0077.mov"
+                  src="/videos/IMG_0077.mov"
                   className="w-full h-full object-cover object-center"
                   autoPlay
                   muted={isMuted}
                   loop
                   playsInline
                 />
+                <div className="absolute inset-0 bg-dark-navy/40 bg-gradient-to-r from-dark-navy/80 via-dark-navy/40 to-transparent pointer-events-none"></div>
+                <div className="absolute inset-0 bg-mesh pointer-events-none z-[5]"></div>
               </div>
               
               {/* Sound Toggle */}
