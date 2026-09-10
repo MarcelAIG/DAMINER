@@ -118,7 +118,7 @@ export const translations = {
       btn2: "Зв'язатись по телефону"
     },
     footer: {
-      desc: "Професійне обладнання для розмінування, пошукових робіт та спеціалізованого використання.",
+      desc: "Ми завжди раді розглянути будь-які Ваші побажання і пропозиції про взаємовигідну співпрацю!",
       rights: "Всі права захищені.",
       navHeading: "Навігація",
       infoHeading: "Інформація",
@@ -164,21 +164,26 @@ export const translations = {
       missionDesc: "Створювати надійні, високотехнологічні та доступні інструменти для розмінування, що рятують життя, очищують українську землю від вибухонебезпечних залишків війни та забезпечують максимальну безпеку саперів і мирного населення.",
       productionTitle: "Власне Виробництво",
       productionDesc: "Компанія з розробки і виробництва пристроїв та обладнання для розмінування, виявлення мін та ВНП, а також наборів для експертів-криміналістів і вибухотехніків. Головна відмінність — ми виробляємо набори та пристосування під індивідуальне технічне завдання клієнта.",
-      valuesTitle: "Наші Переваги та Сертифікація",
+      valuesTitle: "Переваги",
       values: [
         {
-          title: "Сертифікована Якість",
-          desc: "Система управління якістю сертифікована за стандартом ISO 9001. Наші вироби мають відповідні протоколи випробувань."
+          title: "Власне виробництво",
+          desc: "Під час формування комплектів особлива увага приділяється якості, надійності та зносостійкості кожного компонента. Складові підбираються з урахуванням їхніх експлуатаційних характеристик. Над розробкою та виготовленням працюють досвідчені спеціалісти. Всі елементи виготовляються зі зносостійких, якісних матеріалів."
         },
         {
-          title: "Офіційне Визнання",
-          desc: "«Набір для розмінування КР-04» кодифікований Міністерством оборони України. Офіційний постачальник."
+          title: "Індивідуальний підхід",
+          desc: "За бажанням замовника, виготовляємо продукцію з будь-яким необхідним складом комплектуючих, поставляємо окремо спеціальний інструмент, прилади та пристрої, а також різноманітні витратні матеріали."
         },
         {
-          title: "Надійне Партнерство",
-          desc: "Співпрацюємо з ДСНС, саперними підрозділами, операторами протимінної діяльності, правоохоронними органами та міжнародними фондами."
+          title: "Контроль якості",
+          desc: "Продукція фірми виготовляється відповідно до технічних умов України і відповідає діючим нормам і стандартам. На підприємстві діє система управління якістю ISO 9001."
+        },
+        {
+          title: "Гнучкість у роботі із замовниками",
+          desc: "Працюємо як у форматі роздрібних продажів, так і з оптовими замовниками, державними установами та силовими структурами."
         }
-      ]
+      ],
+      valuesSummary: "Завдяки власному виробництву та локалізації в Україні компанія DAMINER має можливість швидко формувати необхідні комплекти, змінювати їх комплектацію, виготовляти окремі елементи та адаптувати продукцію відповідно до конкретних умов експлуатації."
     },
     request: {
       title: "Запит на товари",
@@ -368,7 +373,7 @@ export const translations = {
       btn2: "Contact by Phone"
     },
     footer: {
-      desc: "Professional equipment for demining, search operations, and specialized use.",
+      desc: "We are always happy to consider your requests and proposals for mutually beneficial cooperation.",
       rights: "All rights reserved.",
       navHeading: "Navigation",
       infoHeading: "Information",
@@ -414,21 +419,26 @@ export const translations = {
       missionDesc: "To create reliable, high-tech, and accessible demining tools that save lives, clear Ukrainian land from explosive remnants of war, and ensure maximum safety for sappers and civilians.",
       productionTitle: "In-House Production",
       productionDesc: "A company dedicated to developing and manufacturing devices and equipment for demining, UXO detection, and specialized kits for forensic experts and bomb technicians. Our key distinction is manufacturing tools according to the client's specific technical requirements.",
-      valuesTitle: "Our Advantages & Certification",
+      valuesTitle: "Advantages",
       values: [
         {
-          title: "Certified Quality",
-          desc: "Quality management system certified to ISO 9001 standards. All products are accompanied by test protocols."
+          title: "In-house Manufacturing",
+          desc: "Special attention is paid to the quality, reliability, and durability of every component when assembling our kits. Components are selected according to their operational characteristics. Experienced specialists are involved in development and manufacturing. All elements are produced from durable, high-quality materials."
         },
         {
-          title: "Official Recognition",
-          desc: "The 'Demining Kit KR-04' is codified by the Ministry of Defense of Ukraine. We are an official supplier."
+          title: "Individual Approach",
+          desc: "At the customer’s request, we manufacture products with the required configuration of components, supply specialized tools, instruments and devices separately, as well as various consumable materials."
         },
         {
-          title: "Reliable Partnership",
-          desc: "We collaborate with the State Emergency Service (DSNS), sapper units, mine action operators, law enforcement, and international organizations."
+          title: "Quality Control",
+          desc: "Our products are manufactured in accordance with Ukrainian technical requirements and comply with applicable standards and regulations. The company operates a quality management system in accordance with ISO 9001."
+        },
+        {
+          title: "Flexibility in Working with Customers",
+          desc: "We work with retail customers as well as wholesale buyers, government institutions, and security organizations."
         }
-      ]
+      ],
+      valuesSummary: "Thanks to our own production and localization in Ukraine, DAMINER can quickly assemble required kits, modify their configuration, manufacture individual components, and adapt products to specific operating conditions."
     },
     request: {
       title: "Product Request",
