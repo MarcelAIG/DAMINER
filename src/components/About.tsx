@@ -1,52 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CheckCircle2, ChevronRight, ArrowRight, ShieldCheck } from 'lucide-react';
+import { CheckCircle2, ChevronRight, ArrowRight, ShieldCheck, Volume2, VolumeX } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import { CadProduction } from './CadDrawings';
 
 export function About() {
   const { t } = useLanguage();
+  const [isMuted, setIsMuted] = useState(true);
   
   return (
-    <section id="about" className="py-16 md:py-24 bg-white">
+    <section id="about" className="py-10 md:py-16 bg-white">
       <div className="max-w-[1320px] mx-auto px-6 lg:px-10 xl:px-0">
         
-        <div className="flex flex-col lg:flex-row gap-16 lg:gap-10 xl:gap-20 lg:items-stretch">
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-12 xl:gap-20 lg:items-center">
           
-          <div className="w-full lg:w-1/2 flex flex-col relative pt-0 lg:pt-[56px]">
+          <div className="w-full lg:w-1/2 flex flex-col relative">
             
-            <div className="lg:absolute lg:top-0 lg:left-0 mb-6 lg:mb-0">
-              <span className="font-heading font-black text-[15px] md:text-base tracking-[0.15em] uppercase text-cool-gray inline-flex flex-col relative pb-4 mb-4 lg:mb-6">
+            <div className="mb-4">
+              <span className="font-heading font-black text-[14px] md:text-[15px] tracking-[0.15em] uppercase text-cool-gray inline-flex flex-col relative pb-3 mb-2">
                 {t.about.eyebrow}
                 <span className="absolute bottom-0 left-0 w-full h-[2px] bg-primary-blue"></span>
               </span>
             </div>
             
             <div className="flex-1 flex flex-col">
-              <h2 className="font-heading font-black text-4xl md:text-5xl lg:text-[54px] leading-[1.15] text-dark-navy mb-6 tracking-tight uppercase">
+              <h2 className="font-heading font-black text-3xl md:text-4xl lg:text-5xl leading-[1.15] text-dark-navy mb-4 tracking-tight uppercase">
                 {t.about.heading}
               </h2>
               
-              <p className="font-body text-base lg:text-[17px] text-charcoal/70 leading-relaxed mb-10 max-w-xl">
+              <p className="font-body text-base lg:text-[17px] text-charcoal/70 leading-relaxed mb-6 max-w-xl">
                 {t.about.intro}
               </p>
               
-              <div className="flex flex-col gap-3 mb-10">
+              <div className="flex flex-col gap-2 mb-8">
                 {t.about.proofs.map((proof, index) => (
-                  <div key={index} className="flex items-center justify-between p-5 border border-[#E3E8EF] rounded-lg bg-white hover:border-primary-blue/30 hover:shadow-sm transition-all duration-300 cursor-default group">
-                    <div className="flex items-center gap-4">
-                      <CheckCircle2 className="w-[22px] h-[22px] text-primary-blue" strokeWidth={1.5} />
-                      <span className="font-heading font-bold text-dark-navy text-[15px]">{proof}</span>
+                  <div key={index} className="flex items-center justify-between p-3 md:p-4 border border-[#E3E8EF] rounded-lg bg-white hover:border-primary-blue/30 hover:shadow-sm transition-all duration-300 cursor-default group">
+                    <div className="flex items-center gap-3">
+                      <CheckCircle2 className="w-[20px] h-[20px] text-primary-blue" strokeWidth={1.5} />
+                      <span className="font-heading font-bold text-dark-navy text-[14px] md:text-[15px]">{proof}</span>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
             
-            <div className="mt-auto flex items-start">
+            <div className="flex items-start">
               <Link 
                 to="/about"
-                className="inline-flex items-center justify-center bg-primary-blue text-white hover:bg-dark-navy font-heading font-bold text-[14px] tracking-wide px-10 py-4 rounded-md transition-colors duration-300 shadow-sm gap-3 group"
+                className="inline-flex items-center justify-center bg-primary-blue text-white hover:bg-dark-navy font-heading font-bold text-[14px] tracking-wide px-8 py-3.5 rounded-md transition-colors duration-300 shadow-sm gap-3 group"
               >
                 {t.about.cta}
                 <ArrowRight className="w-[18px] h-[18px] group-hover:translate-x-1 transition-transform duration-300" strokeWidth={2} />
@@ -55,43 +55,32 @@ export function About() {
             
           </div>
           
-          <div className="w-full lg:w-1/2 flex flex-col lg:justify-end mt-10 lg:mt-0">
-            <div className="relative w-full aspect-square lg:aspect-auto lg:h-[calc(100%-56px)] border border-[#E3E8EF] rounded-xl overflow-hidden bg-[#FAFBFC] p-4 flex items-center justify-center">
+          <div className="w-full lg:w-1/2 flex flex-col lg:items-center mt-10 lg:mt-0">
+            <div className="relative w-full max-w-[520px] aspect-[4/5] border border-[#E3E8EF] rounded-xl overflow-hidden bg-[#FAFBFC] p-3 flex items-center justify-center">
               
-              {/* Inner thin frame */}
-              <div className="absolute inset-6 border border-[#E3E8EF] pointer-events-none z-10 flex items-center justify-center">
-                {/* Registration marks */}
-                <div className="absolute -top-2 left-1/2 w-[1px] h-4 bg-[#E3E8EF]"></div>
-                <div className="absolute -bottom-2 left-1/2 w-[1px] h-4 bg-[#E3E8EF]"></div>
-                <div className="absolute top-1/2 -left-2 w-4 h-[1px] bg-[#E3E8EF]"></div>
-                <div className="absolute top-1/2 -right-2 w-4 h-[1px] bg-[#E3E8EF]"></div>
-                
-                {/* Corner Crosshairs */}
-                <div className="absolute -top-[5px] -left-[5px] w-2.5 h-2.5 border-t border-l border-[#E3E8EF]"></div>
-                <div className="absolute -top-[5px] -right-[5px] w-2.5 h-2.5 border-t border-r border-[#E3E8EF]"></div>
-                <div className="absolute -bottom-[5px] -left-[5px] w-2.5 h-2.5 border-b border-l border-[#E3E8EF]"></div>
-                <div className="absolute -bottom-[5px] -right-[5px] w-2.5 h-2.5 border-b border-r border-[#E3E8EF]"></div>
+              <div className="w-full h-full relative z-10 rounded-lg overflow-hidden shadow-sm bg-metallic-silver/10">
+                <video 
+                  src="/VIDEO NEW/IMG_0077.mov"
+                  className="w-full h-full object-cover object-center"
+                  autoPlay
+                  muted={isMuted}
+                  loop
+                  playsInline
+                />
               </div>
               
-              {/* Blueprint Dot Grid */}
-              <div className="absolute inset-0 opacity-[0.08] pointer-events-none z-0" style={{
-                backgroundImage: 'radial-gradient(circle at 1px 1px, #0A1F44 1px, transparent 0)',
-                backgroundSize: '32px 32px',
-                backgroundPosition: 'center center'
-              }}></div>
-              
-              <div className="w-full h-full p-8 md:p-16 relative z-10 flex items-center justify-center">
-                <CadProduction />
-              </div>
-              
-              {/* Badge */}
-              <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3 bg-white/90 backdrop-blur-md px-5 py-2.5 rounded-full">
-                <ShieldCheck className="w-[18px] h-[18px] text-primary-blue" strokeWidth={1.5} />
-                <div className="flex flex-col">
-                  <span className="font-heading font-bold text-[10px] text-dark-navy tracking-wide uppercase leading-tight">Якість та надійність</span>
-                  <span className="font-body text-[9px] text-charcoal/50 tracking-wider uppercase leading-tight">Власне виробництво в Україні</span>
-                </div>
-              </div>
+              {/* Sound Toggle */}
+              <button 
+                onClick={() => setIsMuted(!isMuted)}
+                className="absolute bottom-6 right-6 z-20 flex items-center justify-center w-10 h-10 bg-white/90 backdrop-blur-md rounded-full shadow-sm border border-metallic-silver/20 text-dark-navy hover:text-primary-blue transition-colors"
+                aria-label={isMuted ? "Unmute video" : "Mute video"}
+              >
+                {isMuted ? (
+                  <VolumeX className="w-5 h-5" />
+                ) : (
+                  <Volume2 className="w-5 h-5" />
+                )}
+              </button>
               
             </div>
           </div>
