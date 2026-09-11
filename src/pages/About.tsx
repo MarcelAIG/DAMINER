@@ -20,7 +20,7 @@ export function About() {
     '/videos/IMG_2922.MOV',
     '/videos/IMG_2910.MOV',
     '/videos/IMG_1105.MOV',
-    '/videos/IMG_0077.MOV'
+    '/videos/IMG_5139.MOV'
   ];
 
   // Lock body scroll when modal is open
