@@ -65,7 +65,7 @@ export function About() {
                       el.muted = isMuted;
                     }
                   }}
-                  src="/videos/IMG_0077.mov"
+                  src="/videos/0910(1).mp4"
                   className="absolute inset-0 w-full h-full object-cover object-center z-0"
                   autoPlay
                   loop
