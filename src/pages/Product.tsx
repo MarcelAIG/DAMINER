@@ -189,6 +189,20 @@ export function Product() {
       price: "",
       imageBase64: "",
       gallery: []
+    },
+    {
+      id: "net-1",
+      type: "net",
+      model: language === 'ua' ? 'Сіткомет' : 'Net Launcher',
+      description: "",
+      price: "",
+      imageBase64: "/Сіткомети протидронові/ChatGPT Image Sep 12, 2026, 04_49_56 PM.png",
+      gallery: [
+        "/Сіткомети протидронові/ChatGPT Image Sep 12, 2026, 04_49_56 PM.png",
+        "/Сіткомети протидронові/ChatGPT Image Sep 12, 2026, 04_53_01 PM.png",
+        "/Сіткомети протидронові/ChatGPT Image Sep 12, 2026, 04_54_29 PM.png",
+        "/Сіткомети протидронові/ChatGPT Image Sep 12, 2026, 05_13_50 PM.png"
+      ]
     }
   ];
 
@@ -267,7 +281,7 @@ export function Product() {
           
           <div className="flex flex-col justify-center">
             <h4 className="font-heading text-sm text-cool-gray tracking-widest uppercase font-bold mb-4 lg:mb-2">
-              {product.type === 'mirror' ? t.featured.mirror : product.type === 'kit' ? t.featured.kit : t.featured.probe}
+              {product.type === 'mirror' ? t.featured.mirror : product.type === 'kit' ? t.featured.kit : product.type === 'net' ? t.featured.net : t.featured.probe}
             </h4>
             <h1 className="font-heading text-5xl md:text-6xl font-black text-dark-navy mb-8 lg:mb-5 tracking-tight">
               {product.model}
@@ -399,7 +413,7 @@ export function Product() {
                   )}
                 </div>
                 <h4 className="font-heading text-[11px] text-cool-gray tracking-widest uppercase font-bold mb-1 lg:mb-0.5">
-                  {p.type === 'mirror' ? t.featured.mirror : p.type === 'kit' ? t.featured.kit : t.featured.probe}
+                  {p.type === 'mirror' ? t.featured.mirror : p.type === 'kit' ? t.featured.kit : p.type === 'net' ? t.featured.net : t.featured.probe}
                 </h4>
                 <h3 className="font-heading text-lg lg:text-base font-black text-dark-navy group-hover:text-primary-blue transition-colors duration-300">
                   {p.model}

@@ -9,6 +9,20 @@ export function Categories() {
   const [showLeftScroll, setShowLeftScroll] = useState(false);
   const [showRightScroll, setShowRightScroll] = useState(true);
 
+  const scrollLeftBy = () => {
+    if (scrollRef.current) {
+      const amount = scrollRef.current.clientWidth > 1024 ? scrollRef.current.clientWidth / 3 : scrollRef.current.clientWidth / 2;
+      scrollRef.current.scrollBy({ left: -Math.max(amount, 300), behavior: 'smooth' });
+    }
+  };
+
+  const scrollRightBy = () => {
+    if (scrollRef.current) {
+      const amount = scrollRef.current.clientWidth > 1024 ? scrollRef.current.clientWidth / 3 : scrollRef.current.clientWidth / 2;
+      scrollRef.current.scrollBy({ left: Math.max(amount, 300), behavior: 'smooth' });
+    }
+  };
+
   const categorySlugs = ["probes", "mirrors", "kits", "nets", "tools"];
   
   const catalogImages = [
@@ -66,13 +80,17 @@ export function Categories() {
           
           <div className="relative">
             {/* Left Scroll Indicator */}
-            <div className={`absolute top-0 left-0 bottom-8 w-24 md:w-40 bg-gradient-to-r from-white via-white/80 to-transparent pointer-events-none flex items-center justify-start pl-2 md:pl-6 z-10 hidden sm:flex transition-opacity duration-500 ${showLeftScroll ? 'opacity-100' : 'opacity-0'}`}>
-              <div className="flex items-center text-dark-navy/40 animate-pulse">
-                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.75" strokeLinecap="round" strokeLinejoin="round" className="-translate-x-2">
+            <div className={`absolute top-0 left-0 bottom-8 w-32 md:w-48 z-10 hidden sm:block transition-opacity duration-500 ${showLeftScroll ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+              <button 
+                onClick={scrollLeftBy}
+                aria-label="Scroll left"
+                className="w-full h-full flex items-center justify-start pl-4 md:pl-8 bg-gradient-to-r from-white via-white/80 to-transparent text-dark-navy/40 hover:text-primary-blue cursor-pointer border-none outline-none"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="-translate-x-2">
                   <path d="m11 17-5-5 5-5"/>
                   <path d="m18 17-5-5 5-5"/>
                 </svg>
-              </div>
+              </button>
             </div>
 
             <div 
@@ -111,13 +129,17 @@ export function Categories() {
             </div>
 
             {/* Right Scroll Indicator */}
-            <div className={`absolute top-0 right-0 bottom-8 w-24 md:w-40 bg-gradient-to-l from-white via-white/80 to-transparent pointer-events-none flex items-center justify-end pr-2 md:pr-6 z-10 hidden sm:flex transition-opacity duration-500 ${showRightScroll ? 'opacity-100' : 'opacity-0'}`}>
-              <div className="flex items-center text-dark-navy/40 animate-pulse">
-                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.75" strokeLinecap="round" strokeLinejoin="round" className="translate-x-2">
+            <div className={`absolute top-0 right-0 bottom-8 w-32 md:w-48 z-10 hidden sm:block transition-opacity duration-500 ${showRightScroll ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+              <button 
+                onClick={scrollRightBy}
+                aria-label="Scroll right"
+                className="w-full h-full flex items-center justify-end pr-4 md:pr-8 bg-gradient-to-l from-white via-white/80 to-transparent text-dark-navy/40 hover:text-primary-blue cursor-pointer border-none outline-none"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="translate-x-2">
                   <path d="m13 17 5-5-5-5"/>
                   <path d="m6 17 5-5-5-5"/>
                 </svg>
-              </div>
+              </button>
             </div>
           </div>
         </div>

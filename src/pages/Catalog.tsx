@@ -7,6 +7,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { Featured } from '../components/Featured';
 import { MirrorsCategory } from '../components/MirrorsCategory';
 import { KitsCategory } from '../components/KitsCategory';
+import { NetsCategory } from '../components/NetsCategory';
 
 export function Catalog() {
   const { categoryId } = useParams<{ categoryId: string }>();
@@ -80,6 +81,8 @@ export function Catalog() {
           <MirrorsCategory />
         ) : categoryId === 'kits' ? (
           <KitsCategory />
+        ) : categoryId === 'nets' ? (
+          <NetsCategory />
         ) : (
           <div className="py-32 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 text-center">
              <div className="w-16 h-16 rounded-full bg-dark-navy/5 flex items-center justify-center mx-auto mb-6">

@@ -427,25 +427,93 @@ export const CadKit = () => {
 
 export const CadNet = () => (
   <svg viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full text-dark-navy/60 group-hover:text-primary-blue transition-colors duration-75">
-    <g stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-      {/* Sleek Launcher Body */}
-      <rect x="180" y="180" width="140" height="40" rx="4" />
-      
-      {/* Ergonomic Grip */}
-      <path d="M210 220 L195 280 L225 280 L240 220 Z" />
-      <path d="M245 220 L245 240 L230 240" />
-      
-      {/* Conical Barrel */}
-      <path d="M320 185 L420 150 L420 250 L320 215 Z" />
-      
-      {/* Elegant Mesh Lines */}
-      <path d="M420 160 L480 120 M420 200 L500 200 M420 240 L480 280" strokeDasharray="3 4" opacity="0.7" />
-      <path d="M435 140 Q480 200 435 260" strokeDasharray="3 4" opacity="0.7" />
-      <path d="M465 125 Q515 200 465 275" strokeDasharray="3 4" opacity="0.7" />
-      
-      {/* Minimalist Construction Lines */}
-      <line x1="140" y1="320" x2="520" y2="320" strokeDasharray="4 4" strokeWidth="0.5" opacity="0.4" />
-      <text x="330" y="340" fill="currentColor" opacity="0.4" fontSize="12" fontFamily="monospace" textAnchor="middle" letterSpacing="0.1em">KINETIC NET LAUNCHER</text>
+    <g stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <g transform="rotate(-25 300 200)">
+        
+        {/* --- STOCK --- */}
+        <path d="M 60 180 L 140 180 L 140 220 L 60 220 Z" fill="white" stroke="none" />
+        <path d="M 60 180 L 140 180" />
+        <path d="M 60 220 L 140 220" />
+        <path d="M 60 220 A 8 20 0 0 1 60 180" />
+        <ellipse cx="140" cy="200" rx="8" ry="20" fill="white" />
+        
+        {/* Stock 3D Highlights */}
+        <path d="M 60 188 L 140 188" strokeWidth="0.5" opacity="0.3" />
+        <path d="M 60 212 L 140 212" strokeWidth="0.5" opacity="0.3" />
+        
+        {/* Stock Ribs (Only visible right half) */}
+        {[75, 90, 105, 120].map(x => (
+          <path key={`sr-${x}`} d={`M ${x} 180 A 8 20 0 0 1 ${x} 220`} strokeWidth="0.5" opacity="0.5" fill="none" />
+        ))}
+        
+        {/* --- GRIP --- */}
+        <path d="M 170 235 L 150 315 C 160 325 180 325 190 315 L 220 235 Z" fill="white" />
+        <path d="M 185 315 L 210 235" strokeWidth="0.5" opacity="0.4" /> {/* 3D Edge */}
+        <g strokeWidth="0.5" opacity="0.5">
+          {[...Array(6)].map((_, i) => (
+            <line key={`g1-${i}`} x1={168 + i*7} y1="240" x2={152 + i*7} y2="310" />
+          ))}
+          {[...Array(6)].map((_, i) => (
+            <line key={`g2-${i}`} x1={155 + i*7} y1="240" x2={171 + i*7} y2="310" />
+          ))}
+        </g>
+        
+        {/* Trigger Guard */}
+        <path d="M 220 235 L 220 270 C 240 270 260 260 260 235" fill="none" />
+        <path d="M 217 235 L 217 267 C 237 267 257 257 257 235" fill="none" strokeWidth="0.5" opacity="0.5" /> {/* Inner edge */}
+        <path d="M 235 235 C 235 250 245 255 245 255" strokeWidth="2" fill="none" />
+
+        {/* --- MAIN BODY --- */}
+        <path d="M 140 165 L 300 165 L 300 235 L 140 235 Z" fill="white" stroke="none" />
+        <path d="M 140 165 L 300 165" />
+        <path d="M 140 235 L 300 235" />
+        <ellipse cx="300" cy="200" rx="14" ry="35" fill="white" />
+        
+        {/* Main Body 3D Highlights */}
+        <path d="M 140 175 L 300 175" strokeWidth="0.5" opacity="0.3" />
+        <path d="M 140 225 L 300 225" strokeWidth="0.5" opacity="0.3" />
+        
+        {/* Body details */}
+        <rect x="170" y="190" width="100" height="20" rx="4" fill="none" strokeWidth="0.5" opacity="0.6" />
+        <line x1="180" y1="200" x2="260" y2="200" strokeWidth="0.5" opacity="0.4" />
+        <circle cx="160" cy="200" r="2" fill="currentColor" opacity="0.6" stroke="none" />
+        <circle cx="280" cy="200" r="2" fill="currentColor" opacity="0.6" stroke="none" />
+        
+        {/* Pressure Gauge */}
+        <path d="M 230 165 L 230 155 L 260 155 L 260 165 Z" fill="white" />
+        <ellipse cx="245" cy="155" rx="10" ry="3" fill="white" />
+        <ellipse cx="245" cy="155" rx="6" ry="1.5" strokeWidth="0.5" />
+
+        {/* --- FRONT CANISTER --- */}
+        <path d="M 300 165 L 480 120 L 480 280 L 300 235 Z" fill="white" stroke="none" />
+        <path d="M 300 165 L 480 120" />
+        <path d="M 300 235 L 480 280" />
+        <ellipse cx="480" cy="200" rx="32" ry="80" fill="white" />
+        
+        {/* Cone 3D Highlights */}
+        <path d="M 300 175 L 480 140" strokeWidth="0.5" opacity="0.3" />
+        <path d="M 300 225 L 480 260" strokeWidth="0.5" opacity="0.3" />
+        
+        {/* Canister Ribs (Only visible right half) */}
+        {[340, 380, 420].map((x, i) => {
+           const r = 35 + (x - 300) / 180 * 45;
+           const frx = 14 + (x - 300) / 180 * 18;
+           return <path key={`rib-${i}`} d={`M ${x} ${200-r} A ${frx} ${r} 0 0 1 ${x} ${200+r}`} strokeWidth="0.5" opacity="0.6" fill="none" />;
+        })}
+        
+        {/* Hollow interior */}
+        <ellipse cx="480" cy="200" rx="28" ry="74" fill="currentColor" fillOpacity="0.04" strokeWidth="0.5" />
+        <ellipse cx="480" cy="200" rx="20" ry="60" fill="currentColor" fillOpacity="0.08" strokeWidth="0.5" opacity="0.5" />
+        
+        {/* Packed Net in Canister */}
+        <g strokeWidth="0.5" opacity="0.7">
+          <path d="M 470 140 Q 480 160 470 180 T 470 220 T 470 260" fill="none" />
+          <path d="M 475 145 Q 490 170 475 200 T 475 255" fill="none" />
+          <path d="M 480 150 Q 500 200 480 250" fill="none" />
+          <rect x="473" y="130" width="6" height="12" rx="2" fill="currentColor" transform="rotate(15 476 136)" stroke="none" />
+          <rect x="473" y="258" width="6" height="12" rx="2" fill="currentColor" transform="rotate(-15 476 264)" stroke="none" />
+        </g>
+      </g>
     </g>
   </svg>
 );
