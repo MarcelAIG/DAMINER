@@ -519,32 +519,105 @@ export const CadNet = () => (
 );
 
 export const CadTool = () => (
-  <svg viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full text-dark-navy/60 group-hover:text-primary-blue transition-colors duration-75">
-    <g stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-      {/* Sleek Multitool Handles */}
-      <rect x="230" y="160" width="40" height="140" rx="6" />
-      <rect x="300" y="160" width="40" height="140" rx="6" />
+  <svg viewBox="50 80 480 320" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full text-dark-navy/60 group-hover:text-primary-blue transition-colors duration-500">
+    
+    {/* Subtle Construction Lines */}
+    <g opacity="0.15" stroke="currentColor" strokeWidth="0.75" fill="none">
+      <circle cx="300" cy="200" r="140" strokeDasharray="4 4" />
+      <circle cx="300" cy="200" r="90" strokeDasharray="2 4" />
+      <circle cx="300" cy="200" r="45" strokeDasharray="1 3" />
+      <line x1="120" y1="200" x2="480" y2="200" />
+      <line x1="300" y1="60" x2="300" y2="340" />
+      <path d="M 200 100 L 400 300" />
+      <path d="M 200 300 L 400 100" />
+    </g>
+
+    <g transform="translate(0, 20) rotate(-18 300 200)">
       
-      {/* Precision Hinge */}
-      <circle cx="285" cy="150" r="12" />
-      <circle cx="285" cy="150" r="4" />
-      <path d="M250 160 L285 150 L320 160" />
+      {/* Carabiner Loop (Behind Handle) */}
+      <g stroke="currentColor">
+        <circle cx="98" cy="187" r="14" fill="none" strokeWidth="3" />
+        <circle cx="98" cy="191" r="14" fill="none" strokeWidth="1.5" opacity="0.3" />
+        <circle cx="98" cy="187" r="10" fill="none" strokeWidth="0.75" opacity="0.5" />
+      </g>
+
+      <g stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" fill="white">
+        
+        {/* SIDE WALLS (3D Thickness) */}
+        
+        {/* Top Handle Side Walls */}
+        <path d="M 120 178 L 105 196 L 105 212 L 120 194 Z" />
+        <path d="M 105 196 L 280 196 L 280 212 L 105 212 Z" />
+        
+        {/* Bottom Handle Side Walls */}
+        <path d="M 115 204 L 130 222 L 130 238 L 115 220 Z" />
+        <path d="M 130 222 L 300 222 L 300 238 L 130 238 Z" />
+        
+        {/* Top Jaw Side Walls */}
+        <path d="M 440 185 L 450 198 L 450 214 L 440 201 Z" />
+        <path d="M 450 198 L 390 198 A 6 6 0 0 1 378 198 L 360 198 A 8 8 0 0 1 344 198 L 310 198 L 310 214 L 344 214 A 8 8 0 0 0 360 214 L 378 214 A 6 6 0 0 0 390 214 L 450 214 Z" />
+        
+        {/* Bottom Jaw Side Walls */}
+        <path d="M 450 202 L 440 215 L 440 231 L 450 218 Z" />
+        <path d="M 440 215 L 300 222 L 300 238 L 440 231 Z" />
+        
+        {/* Pivot Side Wall */}
+        <path d="M 278 200 A 22 22 0 0 0 322 200 L 322 216 A 22 22 0 0 1 278 216 Z" />
+
+        {/* TOP FACES */}
+        
+        {/* Top Handle */}
+        <path d="M 300 178 L 120 178 L 105 196 L 280 196 Z" />
+        {/* Bottom Handle */}
+        <path d="M 280 204 L 115 204 L 130 222 L 300 222 Z" />
+        
+        {/* Top Jaw */}
+        <path d="M 300 178 L 440 185 L 450 198 L 390 198 A 6 6 0 0 1 378 198 L 360 198 A 8 8 0 0 1 344 198 L 310 198 Z" />
+        {/* Bottom Jaw */}
+        <path d="M 310 202 L 344 202 A 8 8 0 0 1 360 202 L 378 202 A 6 6 0 0 1 390 202 L 450 202 L 440 215 L 300 222 Z" />
+        
+        {/* Pivot Top Face */}
+        <circle cx="300" cy="200" r="22" />
+        <circle cx="300" cy="200" r="10" />
+        <circle cx="300" cy="200" r="4" fill="currentColor" opacity="0.4" stroke="none" />
+      </g>
       
-      {/* Needle-Nose Jaws */}
-      <path d="M275 138 L260 60 L280 60 L285 138" />
-      <path d="M295 138 L310 60 L290 60 L285 138" />
-      
-      {/* Minimalist Grip Textures */}
-      {[...Array(6)].map((_, i) => (
-        <line key={`t1-${i}`} x1="240" y1={190 + i*16} x2="260" y2={190 + i*16} />
-      ))}
-      {[...Array(6)].map((_, i) => (
-        <line key={`t2-${i}`} x1="310" y1={190 + i*16} x2="330" y2={190 + i*16} />
-      ))}
-      
-      {/* Construction Lines */}
-      <line x1="200" y1="330" x2="370" y2="330" strokeDasharray="4 4" strokeWidth="0.5" opacity="0.4" />
-      <text x="285" y="350" fill="currentColor" opacity="0.4" fontSize="12" fontFamily="monospace" textAnchor="middle" letterSpacing="0.1em">PRECISION MULTI-TOOL</text>
+      {/* DETAILS AND CUTOUTS (Drawn over Top Faces) */}
+      <g stroke="currentColor" strokeWidth="0.75" fill="none">
+        
+        {/* Top Handle Cutout */}
+        <path d="M 140 184 L 260 184 L 260 190 L 135 190 Z" opacity="0.8" />
+        <path d="M 140 184 L 260 184" transform="translate(0, 2)" opacity="0.3" />
+        
+        {/* Bottom Handle Cutout */}
+        <path d="M 145 210 L 265 210 L 255 216 L 135 216 Z" opacity="0.8" />
+        <path d="M 145 210 L 265 210" transform="translate(0, 2)" opacity="0.3" />
+        
+        {/* Wire Cutter Blades */}
+        <path d="M 314 198 L 338 198" strokeWidth="1.5" opacity="0.6" />
+        <path d="M 314 202 L 338 202" strokeWidth="1.5" opacity="0.6" />
+        <path d="M 314 194 L 338 194 L 338 198 L 314 198 Z" fill="currentColor" opacity="0.04" stroke="none" />
+        <path d="M 314 206 L 338 206 L 338 202 L 314 202 Z" fill="currentColor" opacity="0.04" stroke="none" />
+        
+        {/* Jaw Screws / Rivets */}
+        <circle cx="340" cy="189" r="2.5" opacity="0.8" />
+        <circle cx="340" cy="189" r="1" fill="currentColor" opacity="0.4" stroke="none" />
+        <circle cx="410" cy="191" r="2.5" opacity="0.8" />
+        <circle cx="410" cy="191" r="1" fill="currentColor" opacity="0.4" stroke="none" />
+        
+        <circle cx="340" cy="209" r="2.5" opacity="0.8" />
+        <circle cx="340" cy="209" r="1" fill="currentColor" opacity="0.4" stroke="none" />
+        <circle cx="410" cy="209" r="2.5" opacity="0.8" />
+        <circle cx="410" cy="209" r="1" fill="currentColor" opacity="0.4" stroke="none" />
+        
+        {/* Grips Texture */}
+        {[...Array(8)].map((_, i) => (
+          <line key={`tg-${i}`} x1={150 + i*14} y1="184" x2={145 + i*14} y2="190" opacity="0.3" />
+        ))}
+        {[...Array(8)].map((_, i) => (
+          <line key={`bg-${i}`} x1={155 + i*14} y1="210" x2={145 + i*14} y2="216" opacity="0.3" />
+        ))}
+      </g>
     </g>
   </svg>
 );

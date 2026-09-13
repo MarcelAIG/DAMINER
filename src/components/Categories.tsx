@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { CadProbe, CadMirror, CadKit, CadNet, CadTool } from './CadDrawings';
 
@@ -29,8 +30,8 @@ export function Categories() {
     "/ЩР-1/ChatGPT Image Aug 28, 2026, 09_53_09 PM.png",
     "/ЗД-1/ChatGPT Image Aug 29, 2026, 12_04_13 AM (1).png",
     "/ЕОД-1/ChatGPT Image Aug 29, 2026, 02_49_42 PM.png",
-    "",
-    ""
+    "/Сіткомети протидронові/net-main.png",
+    "/electric-cable/cable-main.png"
   ];
 
   const getCadDrawing = (slug: string) => {
@@ -80,16 +81,13 @@ export function Categories() {
           
           <div className="relative">
             {/* Left Scroll Indicator */}
-            <div className={`absolute top-0 left-0 bottom-8 w-32 md:w-48 z-10 hidden sm:block transition-opacity duration-500 ${showLeftScroll ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+            <div className={`absolute top-[150px] md:top-[180px] lg:top-[210px] left-0 z-20 hidden sm:block transition-all duration-500 ${showLeftScroll ? 'opacity-100 translate-x-4 lg:translate-x-8' : 'opacity-0 -translate-x-4 pointer-events-none'}`}>
               <button 
                 onClick={scrollLeftBy}
                 aria-label="Scroll left"
-                className="w-full h-full flex items-center justify-start pl-4 md:pl-8 bg-gradient-to-r from-white via-white/80 to-transparent text-dark-navy/40 hover:text-primary-blue cursor-pointer border-none outline-none"
+                className="w-14 h-14 bg-white shadow-[0_8px_25px_rgb(0,0,0,0.2)] border border-dark-navy/15 rounded-full flex items-center justify-center text-dark-navy hover:text-primary-blue hover:scale-110 hover:shadow-[0_8px_30px_rgb(0,0,0,0.3)] transition-all duration-300"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="-translate-x-2">
-                  <path d="m11 17-5-5 5-5"/>
-                  <path d="m18 17-5-5 5-5"/>
-                </svg>
+                <ChevronLeft size={28} strokeWidth={2.5} className="-ml-1" />
               </button>
             </div>
 
@@ -129,16 +127,13 @@ export function Categories() {
             </div>
 
             {/* Right Scroll Indicator */}
-            <div className={`absolute top-0 right-0 bottom-8 w-32 md:w-48 z-10 hidden sm:block transition-opacity duration-500 ${showRightScroll ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+            <div className={`absolute top-[150px] md:top-[180px] lg:top-[210px] right-0 z-20 hidden sm:block transition-all duration-500 ${showRightScroll ? 'opacity-100 -translate-x-4 lg:-translate-x-8' : 'opacity-0 translate-x-4 pointer-events-none'}`}>
               <button 
                 onClick={scrollRightBy}
                 aria-label="Scroll right"
-                className="w-full h-full flex items-center justify-end pr-4 md:pr-8 bg-gradient-to-l from-white via-white/80 to-transparent text-dark-navy/40 hover:text-primary-blue cursor-pointer border-none outline-none"
+                className="w-14 h-14 bg-white shadow-[0_8px_25px_rgb(0,0,0,0.2)] border border-dark-navy/15 rounded-full flex items-center justify-center text-dark-navy hover:text-primary-blue hover:scale-110 hover:shadow-[0_8px_30px_rgb(0,0,0,0.3)] transition-all duration-300"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="translate-x-2">
-                  <path d="m13 17 5-5-5-5"/>
-                  <path d="m6 17 5-5-5-5"/>
-                </svg>
+                <ChevronRight size={28} strokeWidth={2.5} className="-mr-1" />
               </button>
             </div>
           </div>

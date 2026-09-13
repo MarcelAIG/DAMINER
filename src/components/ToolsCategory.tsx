@@ -3,21 +3,40 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { useRequest } from '../context/RequestContext';
 
-export function NetsCategory() {
+export function ToolsCategory() {
   const { t, language } = useLanguage();
   const { addItem } = useRequest();
   
   const itemsToRender = [
     {
-      id: "net-1",
-      model: language === 'ua' ? 'Сіткомет' : 'Net Launcher',
+      id: "tool-1",
+      model: language === 'ua' ? 'Електричний кабель на барабані' : 'Electric Cable on Reel',
       description: "",
       price: "",
-      imageBase64: "/Сіткомети протидронові/net-main.png"
+      imageBase64: "/electric-cable/cable-main.png"
+    },
+    {
+      id: "tool-2",
+      model: language === 'ua' ? 'Кактус-5' : 'Kaktus-5',
+      description: "",
+      price: "",
+      imageBase64: "/kaktus-5/kaktus-main.png"
+    },
+    {
+      id: "tool-3",
+      model: language === 'ua' ? 'Ключ-1' : 'Key-1',
+      description: "",
+      price: "",
+      imageBase64: "/key-1/key-main.png"
+    },
+    {
+      id: "tool-4",
+      model: language === 'ua' ? 'Магнітні граблі' : 'Magnetic Rake',
+      description: "",
+      price: "",
+      imageBase64: ""
     }
   ];
-
-  const priceText = language === 'ua' ? 'Ціна за запитом' : 'Price on Request';
 
   return (
     <section className="pt-0 md:pt-4 pb-12 md:pb-16 bg-white">
@@ -34,7 +53,11 @@ export function NetsCategory() {
                   <img 
                     src={product.imageBase64} 
                     alt={product.model} 
-                    className="w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-105"
+                    className={`w-full h-full object-contain transition-transform duration-700 ease-out ${
+                      product.id === 'tool-2' ? 'scale-[1.35] group-hover:scale-[1.4]' : 
+                      product.id === 'tool-3' ? 'scale-[1.3] group-hover:scale-[1.35]' : 
+                      'scale-100 group-hover:scale-105'
+                    }`}
                   />
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -50,7 +73,7 @@ export function NetsCategory() {
               </div>
               
               <h4 className="font-heading text-[11px] text-cool-gray tracking-[0.2em] uppercase font-bold mb-3 transition-colors duration-300">
-                {t.featured.net || (language === 'ua' ? 'СІТКОМЕТ ПРОТИДРОНОВИЙ' : 'ANTI-DRONE NET LAUNCHER')}
+                {language === 'ua' ? 'САПЕРНЕ ПРИСТОСУВАННЯ' : 'SAPPER TOOL'}
               </h4>
               
               <div className="flex items-start justify-between mb-4">
@@ -81,7 +104,7 @@ export function NetsCategory() {
               </div>
             </Link>
           ))}
-          {/* Empty columns to maintain exact grid styling and borders */}
+          {/* Empty columns to maintain exact grid styling and borders for row 2 */}
           <div className="hidden md:block w-full p-8 lg:p-12 pointer-events-none"></div>
           <div className="hidden md:block w-full p-8 lg:p-12 pointer-events-none"></div>
         </div>

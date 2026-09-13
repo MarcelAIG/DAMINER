@@ -196,13 +196,65 @@ export function Product() {
       model: language === 'ua' ? 'Сіткомет' : 'Net Launcher',
       description: "",
       price: "",
-      imageBase64: "/Сіткомети протидронові/ChatGPT Image Sep 12, 2026, 04_49_56 PM.png",
+      imageBase64: "/Сіткомети протидронові/net-main.png",
       gallery: [
-        "/Сіткомети протидронові/ChatGPT Image Sep 12, 2026, 04_49_56 PM.png",
-        "/Сіткомети протидронові/ChatGPT Image Sep 12, 2026, 04_53_01 PM.png",
-        "/Сіткомети протидронові/ChatGPT Image Sep 12, 2026, 04_54_29 PM.png",
-        "/Сіткомети протидронові/ChatGPT Image Sep 12, 2026, 05_13_50 PM.png"
+        "/Сіткомети протидронові/net-main.png",
+        "/Сіткомети протидронові/net-02.png",
+        "/Сіткомети протидронові/net-03.png",
+        "/Сіткомети протидронові/net-04.png"
       ]
+    },
+    {
+      id: "tool-1",
+      type: "tool",
+      model: language === 'ua' ? 'Електричний кабель на барабані' : 'Electric Cable on Reel',
+      description: "",
+      price: "",
+      imageBase64: "/electric-cable/cable-main.png",
+      gallery: [
+        "/electric-cable/cable-main.png",
+        "/electric-cable/cable-02.png",
+        "/electric-cable/cable-03.png"
+      ]
+    },
+    {
+      id: "tool-2",
+      type: "tool",
+      model: language === 'ua' ? 'Кактус-5' : 'Kaktus-5',
+      description: "",
+      price: "",
+      imageBase64: "/kaktus-5/kaktus-main.png",
+      gallery: [
+        "/kaktus-5/kaktus-main.png",
+        "/kaktus-5/kaktus-02.png",
+        "/kaktus-5/kaktus-03.png",
+        "/kaktus-5/kaktus-04.png",
+        "/kaktus-5/kaktus-05.jpg"
+      ]
+    },
+    {
+      id: "tool-3",
+      type: "tool",
+      model: language === 'ua' ? 'Ключ-1' : 'Key-1',
+      description: "",
+      price: "",
+      imageBase64: "/key-1/key-main.png",
+      gallery: [
+        "/key-1/key-main.png",
+        "/key-1/key-01.jpg",
+        "/key-1/key-02.png",
+        "/key-1/key-03.png",
+        "/key-1/key-04.png"
+      ]
+    },
+    {
+      id: "tool-4",
+      type: "tool",
+      model: language === 'ua' ? 'Магнітні граблі' : 'Magnetic Rake',
+      description: "",
+      price: "",
+      imageBase64: "",
+      gallery: []
     }
   ];
 
@@ -228,7 +280,12 @@ export function Product() {
                   key={`main-img-${selectedImageIdx}`}
                   src={product.gallery[selectedImageIdx]} 
                   alt={product.model} 
-                  className={`w-full h-full object-contain transition-transform duration-500 ease-out ${isZoomed ? 'scale-[1.75]' : 'scale-100'}`}
+                  className={`w-full h-full object-contain transition-transform duration-500 ease-out ${
+                    isZoomed ? 'scale-[1.75]' : 
+                    product.id === 'tool-2' ? 'scale-[1.35]' : 
+                    product.id === 'tool-3' ? 'scale-[1.3]' : 
+                    'scale-100'
+                  }`}
                   style={{ transformOrigin: isZoomed ? zoomOrigin : 'center center' }}
                   draggable={false}
                 />
@@ -267,7 +324,11 @@ export function Product() {
                       <img 
                         src={img} 
                         alt={`${product.model} thumbnail ${idx + 1}`} 
-                        className="w-full h-full object-contain pointer-events-none"
+                        className={`w-full h-full object-contain pointer-events-none ${
+                        product.id === 'tool-2' ? 'scale-[1.35]' : 
+                        product.id === 'tool-3' ? 'scale-[1.3]' : 
+                        ''
+                      }`}
                         draggable={false}
                       />
                     ) : (
