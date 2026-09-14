@@ -34,7 +34,7 @@ export function ToolsCategory() {
       model: language === 'ua' ? 'Магнітні граблі' : 'Magnetic Rake',
       description: "",
       price: "",
-      imageBase64: ""
+      imageBase64: "/rake-1/rake-02.png"
     }
   ];
 
@@ -56,6 +56,7 @@ export function ToolsCategory() {
                     className={`w-full h-full object-contain transition-transform duration-700 ease-out ${
                       product.id === 'tool-2' ? 'scale-[1.35] group-hover:scale-[1.4]' : 
                       product.id === 'tool-3' ? 'scale-[1.3] group-hover:scale-[1.35]' : 
+                      product.id === 'tool-4' ? 'scale-[1.3] group-hover:scale-[1.35]' : 
                       'scale-100 group-hover:scale-105'
                     }`}
                   />

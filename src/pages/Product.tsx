@@ -253,8 +253,13 @@ export function Product() {
       model: language === 'ua' ? 'Магнітні граблі' : 'Magnetic Rake',
       description: "",
       price: "",
-      imageBase64: "",
-      gallery: []
+      imageBase64: "/rake-1/rake-02.png",
+      gallery: [
+        "/rake-1/rake-02.png",
+        "/rake-1/rake-main.png",
+        "/rake-1/rake-03.png",
+        "/rake-1/rake-04.png"
+      ]
     }
   ];
 
@@ -284,6 +289,7 @@ export function Product() {
                     isZoomed ? 'scale-[1.75]' : 
                     product.id === 'tool-2' ? 'scale-[1.35]' : 
                     product.id === 'tool-3' ? 'scale-[1.3]' : 
+                    product.id === 'tool-4' ? 'scale-[1.3]' : 
                     'scale-100'
                   }`}
                   style={{ transformOrigin: isZoomed ? zoomOrigin : 'center center' }}
@@ -327,6 +333,7 @@ export function Product() {
                         className={`w-full h-full object-contain pointer-events-none ${
                         product.id === 'tool-2' ? 'scale-[1.35]' : 
                         product.id === 'tool-3' ? 'scale-[1.3]' : 
+                        product.id === 'tool-4' ? 'scale-[1.3]' : 
                         ''
                       }`}
                         draggable={false}
