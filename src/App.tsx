@@ -40,11 +40,11 @@ export default function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/certificates" element={<Certificates />} />
-                <Route path="/payment" element={<Payment />} />
+                <Route path="/payment-delivery" element={<Payment />} />
                 <Route path="/warranty" element={<Warranty />} />
                 <Route path="/privacy" element={<Privacy />} />
                 <Route path="/terms" element={<Terms />} />
-                <Route path="/returns" element={<Returns />} />
+                <Route path="/returns-exchange" element={<Returns />} />
               </Routes>
             </div>
             <Footer />

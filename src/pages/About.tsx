@@ -205,6 +205,36 @@ export function About() {
         </div>
       </section>
 
+      {/* International Cooperation Section */}
+      <section className="py-20 md:py-28 bg-off-white border-t border-metallic-silver/20">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="max-w-4xl mx-auto"
+          >
+            <h2 className="font-heading font-bold text-3xl md:text-4xl text-dark-navy mb-6 text-center">
+              Міжнародна співпраця
+            </h2>
+            <div className="w-16 h-1 bg-primary-blue mx-auto mb-10"></div>
+            
+            <div className="space-y-6 text-center">
+              <p className="font-body text-charcoal/80 text-lg md:text-xl leading-relaxed">
+                Компанія «ДАМІНЕР» відкрита до співпраці із закордонними компаніями, організаціями, установами та іншими партнерами.
+              </p>
+              <p className="font-body text-charcoal/80 text-lg md:text-xl leading-relaxed">
+                Можливість постачання продукції за межі України, її комплектація, технічні вимоги, обсяги, ціни, строки виконання, умови оплати, доставки та інші умови міжнародної співпраці визначаються індивідуально.
+              </p>
+              <p className="font-body text-charcoal/80 text-lg md:text-xl leading-relaxed">
+                Для обговорення можливості міжнародної співпраці звертайтеся за контактними даними, зазначеними на Сайті.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Video Modal */}
       {activeVideo !== null && (
         <div 

@@ -127,7 +127,7 @@ export const translations = {
       socialHeading: "Ми в соцмережах",
       solutions: "Рішення для організацій",
       payment: "Оплата та доставка",
-      warranty: "Гарантія та повернення",
+      warranty: "Гарантійне обслуговування",
       certificates: "Сертифікати",
       request: "Запит на товари",
       address: "Ніжин, Чернігівська обл., Україна",
@@ -137,25 +137,49 @@ export const translations = {
     },
     solutionsPage: {
       heading: "Комплексні рішення",
-      subheading: "Спеціалізовані комплекти та індивідуальні розробки для виконання завдань будь-якої складності.",
+      subheading: [
+        "ДАМІНЕР пропонує комплексний підхід до реалізації Ваших проектів – від опрацювання технічного завдання та підбору необхідної комплектації до виготовлення та постачання продукції.",
+        "Ми працюємо як із рішеннями, представленими в каталозі, так і з індивідуальними запитами, що потребують зміни комплектації, технічних характеристик або розробки рішення відповідно до специфіки проекту."
+      ],
+      offerHeading: "Що ми пропонуємо",
       items: [
         {
-          title: "Оптові поставки",
-          desc: "Забезпечення великих партій обладнання для потреб організацій та підрозділів."
+          title: "Підбір рішення",
+          desc: "Підбір рішення відповідно до потреб та завдання замовника."
         },
         {
-          title: "Готові комплекти",
-          desc: "Стандартизовані набори інструментів, готові до використання в польових умовах."
+          title: "Формування комплектації",
+          desc: "Формування комплектації з урахуванням необхідних характеристик, кількості та умов використання."
         },
         {
-          title: "Індивідуальне комплектування",
-          desc: "Підбір та формування наборів відповідно до специфічних завдань замовника."
+          title: "Індивідуальні рішення",
+          desc: "Індивідуальні рішення відповідно до технічного завдання замовника."
         },
         {
-          title: "Виготовлення за технічним завданням",
-          desc: "Розробка та виробництво нестандартного обладнання за кресленнями або ТЗ."
+          title: "Комплексне постачання",
+          desc: "Комплексне постачання необхідної продукції в межах одного проекту."
+        },
+        {
+          title: "Погодження параметрів",
+          desc: "Погодження технічних параметрів та комплектації перед виконанням замовлення."
+        },
+        {
+          title: "Організація доставки",
+          desc: "Організацію доставки відповідно до обсягів, габаритів та місця призначення."
+        },
+        {
+          title: "Супровід замовлення",
+          desc: "Супровід замовлення на етапах погодження, комплектації та постачання."
         }
       ],
+      customProject: {
+        heading: "Рішення під конкретний проект",
+        paragraphs: [
+          "Якщо стандартна комплектація не відповідає вашим потребам, ми можемо опрацювати індивідуальний запит.",
+          "Для цього достатньо надати технічне завдання, креслення, специфікацію або опис необхідного рішення.",
+          "На їх основі узгоджуються склад продукції, технічні характеристики, комплектація, кількість, вартість та строки виконання."
+        ]
+      },
       cta: "Обговорити проєкт"
     },
     aboutPage: {
@@ -407,25 +431,49 @@ export const translations = {
     },
     solutionsPage: {
       heading: "Comprehensive Solutions",
-      subheading: "Specialized kits and custom developments for executing tasks of any complexity.",
+      subheading: [
+        "DAMINER offers a comprehensive approach to the implementation of your projects – from the development of technical specifications and selection of necessary equipment to the manufacture and delivery of products.",
+        "We work both with solutions presented in the catalog and with individual requests that require changes in configuration, technical characteristics or development of a solution according to the specifics of the project."
+      ],
+      offerHeading: "What We Offer",
       items: [
         {
-          title: "Wholesale Supply",
-          desc: "Providing large batches of equipment for the needs of organizations and units."
+          title: "Solution Selection",
+          desc: "Selection of a solution according to the needs and task of the customer."
         },
         {
-          title: "Ready-Made Kits",
-          desc: "Standardized tool sets, ready for immediate deployment in the field."
+          title: "Kit Formation",
+          desc: "Formation of complete sets taking into account the necessary characteristics, quantity and conditions of use."
         },
         {
-          title: "Custom Configuration",
-          desc: "Selection and assembly of kits tailored to the specific tasks of the customer."
+          title: "Custom Solutions",
+          desc: "Custom solutions according to the customer's technical specifications."
         },
         {
-          title: "Manufacturing According to Technical Specifications",
-          desc: "Development and production of custom equipment based on drawings or technical specs."
+          title: "Comprehensive Supply",
+          desc: "Comprehensive supply of necessary products within one project."
+        },
+        {
+          title: "Parameter Coordination",
+          desc: "Coordination of technical parameters and configuration before order execution."
+        },
+        {
+          title: "Delivery Organization",
+          desc: "Organization of delivery according to volume, dimensions and destination."
+        },
+        {
+          title: "Order Support",
+          desc: "Support of the order at the stages of coordination, picking and supply."
         }
       ],
+      customProject: {
+        heading: "Solutions for a Specific Project",
+        paragraphs: [
+          "If the standard configuration does not meet your needs, we can process an individual request.",
+          "To do this, it is enough to provide a technical assignment, drawings, specifications or a description of the required solution.",
+          "Based on them, the composition of the products, technical characteristics, configuration, quantity, cost and terms of execution are agreed upon."
+        ]
+      },
       cta: "Discuss a Project"
     },
     aboutPage: {

@@ -1,16 +1,14 @@
 import React, { useEffect } from 'react';
 import { motion } from 'motion/react';
-import { useLanguage } from '../context/LanguageContext';
 
 export function Terms() {
-  const { language } = useLanguage();
-  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <div className="pt-[90px] min-h-screen flex flex-col bg-white">
+      {/* Hero Section */}
       <section className="relative bg-dark-navy text-white py-16 overflow-hidden">
         <div className="absolute inset-0 opacity-70 pointer-events-none" style={{
           backgroundImage: 'radial-gradient(circle at 50% 100%, #1e63d8 0%, transparent 80%)'
@@ -18,28 +16,47 @@ export function Terms() {
         <div className="absolute inset-0 bg-mesh pointer-events-none z-[5]"></div>
         <div className="max-w-[1000px] mx-auto px-6 md:px-12 relative z-10 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <h1 className="font-heading font-bold text-3xl md:text-5xl tracking-tight">
-              {language === 'ua' ? 'Умови використання' : 'Terms & Conditions'}
+            <h1 className="font-heading font-bold text-3xl md:text-5xl tracking-tight uppercase">
+              УМОВИ ВИКОРИСТАННЯ
             </h1>
           </motion.div>
         </div>
       </section>
 
-      <section className="py-20 flex-grow bg-white">
-        <div className="max-w-[800px] mx-auto px-6 md:px-12 prose prose-lg prose-slate text-charcoal/80">
-          <h2 className="font-heading font-bold text-2xl mb-4 text-dark-navy">
-            {language === 'ua' ? 'Текст буде додано пізніше' : 'Content to be added later'}
-          </h2>
-          <p className="font-body leading-relaxed">
-            {language === 'ua' 
-              ? 'Остаточний юридичний текст Умов використання буде надано клієнтом та розміщено тут.'
-              : 'The final legal text for the Terms & Conditions will be provided by the client and placed here.'}
-          </p>
-          <div className="h-64 bg-off-white border border-dashed border-metallic-silver/40 rounded flex items-center justify-center mt-8">
-            <span className="text-metallic-silver font-medium uppercase tracking-widest text-sm">
-              [ Placeholder Content ]
-            </span>
-          </div>
+      {/* Content Section */}
+      <section className="py-20 md:py-28 flex-grow bg-white">
+        <div className="max-w-[800px] mx-auto px-6 md:px-12">
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-charcoal/80"
+          >
+            <div className="space-y-4">
+              <p className="font-body leading-relaxed">
+                Сайт є інформаційно-довідковим ресурсом, призначеним для ознайомлення Користувачів з асортиментом товарів, наборів, їх характеристиками, комплектацією та вартістю.
+              </p>
+              <p className="font-body leading-relaxed">
+                Інформація про товари, набори, їх характеристики, комплектацію, фотографії, описи та ціни розміщується на Сайті для ознайомлення Користувачів.
+              </p>
+              <p className="font-body leading-relaxed">
+                Якщо Користувач бажає змінити комплектацію набору, склад товару, кількість, технічні характеристики або інші параметри, остаточна ціна визначається індивідуально відповідно до погодженого сторонами технічного завдання та фактичної комплектації.
+              </p>
+              <p className="font-body leading-relaxed">
+                Сайт не передбачає автоматичного укладення договору купівлі-продажу шляхом оформлення замовлення безпосередньо на Сайті.
+              </p>
+              <p className="font-body leading-relaxed">
+                Замовлення може погоджуватися Користувачем та Власником Сайту за допомогою телефону, електронної пошти, месенджерів або іншим погодженим сторонами способом.
+              </p>
+              <p className="font-body leading-relaxed">
+                Обробка персональних даних Користувачів здійснюється відповідно до Політики конфіденційності та обробки персональних даних, розміщеної на Сайті.
+              </p>
+              <p className="font-body leading-relaxed">
+                Надаючи свої персональні дані, Користувач повинен ознайомитися з відповідною Політикою конфіденційності.
+              </p>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>
