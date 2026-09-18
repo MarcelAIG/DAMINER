@@ -355,9 +355,35 @@ export function Product() {
               {product.model}
             </h1>
             
-            <p className="font-body text-charcoal/70 text-lg mb-12 lg:mb-8 leading-relaxed">
-              {product.description}
-            </p>
+            <div className="font-body text-charcoal/70 text-lg mb-12 lg:mb-8 leading-relaxed space-y-4">
+              {product.id === "1" ? (
+                <>
+                  <p>Щуп пошуковий ЩР-1 призначений для розвідки та пошуку протипіхотних та протитанкових мін при проведенні робіт з розмінування, а також пошуку інших предметів та схованок при проведенні пошукових робіт.</p>
+                  <p>Щуп складається з алюмінієвої рукоятки та двох алюмінієвих подовжувальних штанг, до яких за допомогою накидної гайки кріпляться чотири змінних наконечники — стальний, латунний та два діелектричних.</p>
+                  <p>Накидна гайка має два отвори, що дозволяють кріпити змінні наконечники вздовж осі щупа або під кутом 30 градусів.</p>
+                  <p>Завдяки цьому щуп може збиратися у двох варіантах — для роботи стоячи або для роботи лежачи.</p>
+                  <p>Щуп розміщений у чохлі для переноски.</p>
+                </>
+              ) : product.id === "2" ? (
+                <>
+                  <p>Щуп пошуковий ЩР-3/2 призначений для розвідки та пошуку протипіхотних та протитанкових мін при проведенні робіт з розмінування, а також пошуку інших предметів та схованок при проведенні пошукових робіт.</p>
+                  <p>Щуп складається з дерев’яної рукоятки та алюмінієвої подовжуючої штанги, до яких за допомогою накидної гайки кріпляться чотири змінних наконечники — стальний, латунний та два діелектричних.</p>
+                  <p>Накидна гайка має два отвори, що дозволяють кріпити змінні наконечники вздовж осі щупа або під кутом 30 градусів.</p>
+                  <p>Завдяки цьому щуп може збиратися у двох варіантах — для роботи стоячи або для роботи лежачи.</p>
+                  <p>Щуп розміщений у чохлі для переноски.</p>
+                </>
+              ) : product.id === "3" ? (
+                <>
+                  <p>Щуп пошуковий ЩР-8 призначений для розвідки та пошуку протипіхотних та протитанкових мін при проведенні робіт з розмінування, а також пошуку інших предметів та схованок при проведенні пошукових робіт.</p>
+                  <p>Щуп складається з пластикової рукоятки та трьох алюмінієвих подовжуючих штанг, до яких за допомогою накидної гайки кріпляться змінні наконечники — стальний, латунний та два діелектричних.</p>
+                  <p>Накидна гайка має два отвори, що дозволяють кріпити змінні наконечники вздовж осі щупа або під кутом 30 градусів.</p>
+                  <p>Завдяки цьому щуп може збиратися у двох варіантах — для роботи стоячи або для роботи лежачи.</p>
+                  <p>Щуп розміщений у чохлі для переноски.</p>
+                </>
+              ) : (
+                <p>{product.description}</p>
+              )}
+            </div>
             
             <div className="bg-white p-6 lg:p-5 mb-12 lg:mb-8 flex items-start gap-4 lg:gap-4 border border-metallic-silver/30 shadow-sm">
               <ShieldCheck size={24} className="text-primary-blue shrink-0 mt-0.5 lg:mt-0" strokeWidth={1.5} />
@@ -415,37 +441,155 @@ export function Product() {
                   >
                     <div className="px-5 lg:px-6 pb-6 pt-2">
                       <div className="pt-5 border-t border-metallic-silver/20 space-y-5">
-                        <p className="font-body text-[15px] text-charcoal/80 leading-relaxed">
-                          {language === 'ua' ? 'Професійне обладнання, розроблене для ефективного виконання спеціалізованих завдань. Виготовлено з високоміцних та зносостійких матеріалів.' : 'Professional equipment designed for the effective execution of specialized tasks. Manufactured from high-strength and wear-resistant materials.'}
-                        </p>
-                        
-                        <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm">
-                           <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
-                             {language === 'ua' ? 'Базові характеристики:' : 'Basic Specifications:'}
-                           </h5>
-                           <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
-                             <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                               <span>{language === 'ua' ? 'Довжина (мін/макс)' : 'Length (min/max)'}</span>
-                               <span className="font-bold text-dark-navy">800 мм - 1500 мм</span>
-                             </li>
-                             <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                               <span>{language === 'ua' ? 'Вага' : 'Weight'}</span>
-                               <span className="font-bold text-dark-navy">1.2 кг</span>
-                             </li>
-                             <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                               <span>{language === 'ua' ? 'Матеріал' : 'Material'}</span>
-                               <span className="font-bold text-dark-navy text-right">{language === 'ua' ? 'Анодований алюміній / Карбон' : 'Anodized Aluminum / Carbon'}</span>
-                             </li>
-                             <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                               <span>{language === 'ua' ? 'Робоча температура' : 'Operating Temperature'}</span>
-                               <span className="font-bold text-dark-navy">-20°C ... +60°C</span>
-                             </li>
-                             <li className="flex justify-between">
-                               <span>{language === 'ua' ? 'Клас захисту' : 'Protection Class'}</span>
-                               <span className="font-bold text-dark-navy">IP67</span>
-                             </li>
-                           </ul>
-                        </div>
+                        {product.id === "1" ? (
+                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm space-y-6">
+                            <div>
+                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
+                                 ТЕХНІЧНІ ДАНІ:
+                               </h5>
+                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Максимальна довжина з рукояткою</span>
+                                   <span className="font-bold text-dark-navy text-right">не менше 1250 мм</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Мінімальна довжина з рукояткою</span>
+                                   <span className="font-bold text-dark-navy text-right">не менше 630 мм</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Вага комплекту</span>
+                                   <span className="font-bold text-dark-navy text-right">не більше 0,8 кг</span>
+                                 </li>
+                               </ul>
+                            </div>
+                            
+                            <div>
+                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
+                                 КОМПЛЕКТАЦІЯ:
+                               </h5>
+                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Щуп пошуковий</span>
+                                   <span className="font-bold text-dark-navy text-right">1 комплект</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Чохол</span>
+                                   <span className="font-bold text-dark-navy text-right">1 шт.</span>
+                                 </li>
+                               </ul>
+                            </div>
+                          </div>
+                        ) : product.id === "2" ? (
+                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm space-y-6">
+                            <div>
+                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
+                                 ТЕХНІЧНІ ДАНІ:
+                               </h5>
+                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Максимальна довжина з рукояткою</span>
+                                   <span className="font-bold text-dark-navy text-right">не менше 1350 мм</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Мінімальна довжина з рукояткою</span>
+                                   <span className="font-bold text-dark-navy text-right">не менше 500 мм</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Вага комплекту</span>
+                                   <span className="font-bold text-dark-navy text-right">не більше 1,5 кг</span>
+                                 </li>
+                               </ul>
+                            </div>
+                            
+                            <div>
+                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
+                                 КОМПЛЕКТАЦІЯ:
+                               </h5>
+                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Щуп пошуковий</span>
+                                   <span className="font-bold text-dark-navy text-right">1 комплект</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Чохол</span>
+                                   <span className="font-bold text-dark-navy text-right">1 шт.</span>
+                                 </li>
+                               </ul>
+                            </div>
+                          </div>
+                        ) : product.id === "3" ? (
+                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm space-y-6">
+                            <div>
+                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
+                                 ТЕХНІЧНІ ДАНІ:
+                               </h5>
+                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Максимальна довжина з рукояткою</span>
+                                   <span className="font-bold text-dark-navy text-right">не менше 1650 мм</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Мінімальна довжина з рукояткою</span>
+                                   <span className="font-bold text-dark-navy text-right">не менше 450 мм</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Вага комплекту</span>
+                                   <span className="font-bold text-dark-navy text-right">не більше 2,1 кг</span>
+                                 </li>
+                               </ul>
+                            </div>
+                            
+                            <div>
+                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
+                                 КОМПЛЕКТАЦІЯ:
+                               </h5>
+                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Щуп пошуковий</span>
+                                   <span className="font-bold text-dark-navy text-right">1 комплект</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Чохол</span>
+                                   <span className="font-bold text-dark-navy text-right">1 шт.</span>
+                                 </li>
+                               </ul>
+                            </div>
+                          </div>
+                        ) : (
+                          <>
+                            <p className="font-body text-[15px] text-charcoal/80 leading-relaxed">
+                              {language === 'ua' ? 'Професійне обладнання, розроблене для ефективного виконання спеціалізованих завдань. Виготовлено з високоміцних та зносостійких матеріалів.' : 'Professional equipment designed for the effective execution of specialized tasks. Manufactured from high-strength and wear-resistant materials.'}
+                            </p>
+                            
+                            <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm">
+                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
+                                 {language === 'ua' ? 'Базові характеристики:' : 'Basic Specifications:'}
+                               </h5>
+                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>{language === 'ua' ? 'Довжина (мін/макс)' : 'Length (min/max)'}</span>
+                                   <span className="font-bold text-dark-navy">800 мм - 1500 мм</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>{language === 'ua' ? 'Вага' : 'Weight'}</span>
+                                   <span className="font-bold text-dark-navy">1.2 кг</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>{language === 'ua' ? 'Матеріал' : 'Material'}</span>
+                                   <span className="font-bold text-dark-navy text-right">{language === 'ua' ? 'Анодований алюміній / Карбон' : 'Anodized Aluminum / Carbon'}</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>{language === 'ua' ? 'Робоча температура' : 'Operating Temperature'}</span>
+                                   <span className="font-bold text-dark-navy">-20°C ... +60°C</span>
+                                 </li>
+                                 <li className="flex justify-between">
+                                   <span>{language === 'ua' ? 'Клас захисту' : 'Protection Class'}</span>
+                                   <span className="font-bold text-dark-navy">IP67</span>
+                                 </li>
+                               </ul>
+                            </div>
+                          </>
+                        )}
                         
                         <p className="font-body text-[12px] text-cool-gray leading-relaxed italic">
                           {language === 'ua' ? '* Ці характеристики є орієнтовними та будуть оновлені після затвердження фінального опису.' : '* These specifications are indicative and will be updated upon final description approval.'}
