@@ -35,7 +35,7 @@ export function KitsCategory() {
       model: language === 'ua' ? "КР-06" : "KR-06",
       description: language === 'ua' ? "Спеціалізований комплект розмінування для складних завдань." : "Specialized demining kit for complex tasks.",
       price: "",
-      imageBase64: ""
+      imageBase64: "/КР-06/ChatGPT Image Sep 19, 2026, 08_52_30 PM.png"
     }
   ];
 
