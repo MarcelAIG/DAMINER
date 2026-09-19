@@ -72,13 +72,13 @@ export function Footer() {
             </p>
             
             <div className="flex gap-4 mt-3">
-              <a href="#" target="_blank" rel="noopener noreferrer" className="text-charcoal/80 hover:text-primary-blue transition-colors duration-300">
+              <a href="https://www.facebook.com/share/17RjFu7gEo/" target="_blank" rel="noopener noreferrer" className="text-charcoal/80 hover:text-primary-blue transition-colors duration-300">
                 <Facebook size={24} />
               </a>
-              <a href="#" target="_blank" rel="noopener noreferrer" className="text-charcoal/80 hover:text-primary-blue transition-colors duration-300">
+              <a href="https://www.instagram.com/daminer_ua?igsh=YmN1ajlnMzAwaGR0&utm_source=qr" target="_blank" rel="noopener noreferrer" className="text-charcoal/80 hover:text-primary-blue transition-colors duration-300">
                 <Instagram size={24} />
               </a>
-              <a href="#" target="_blank" rel="noopener noreferrer" className="text-charcoal/80 hover:text-primary-blue transition-colors duration-300">
+              <a href="https://www.tiktok.com/@daminer3?_r=1&_t=ZS-992JejFgR8u" target="_blank" rel="noopener noreferrer" className="text-charcoal/80 hover:text-primary-blue transition-colors duration-300">
                 <TikTokIcon size={24} />
               </a>
             </div>

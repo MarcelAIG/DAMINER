@@ -380,6 +380,34 @@ export function Product() {
                   <p>Завдяки цьому щуп може збиратися у двох варіантах — для роботи стоячи або для роботи лежачи.</p>
                   <p>Щуп розміщений у чохлі для переноски.</p>
                 </>
+              ) : product.id === "m1" ? (
+                <>
+                  <p className="font-bold text-dark-navy uppercase tracking-wide text-sm mb-1">ДЗЕРКАЛО З РОЗСУВНОЮ ШТАНГОЮ ТА ОСВІТЛЮВАЧЕМ</p>
+                  <p>Дзеркало ЗД-1 призначене для огляду приміщень, транспортних засобів, спортивних споруд, пошуку зброї, вибухонебезпечних предметів, контрабанди.</p>
+                  <p>Дзеркало може використовуватися працівниками вибухотехнічних служб, служб охорони, митниці, прикордонних військ та іншими підрозділами.</p>
+                  <p>Дзеркало виготовляється при сприянні НДІ спецтехніки при ГУ МВС України.</p>
+                </>
+              ) : product.id === "m2" ? (
+                <>
+                  <p className="font-bold text-dark-navy uppercase tracking-wide text-sm mb-1">НАБІР ДЗЕРКАЛ З РОЗСУВНОЮ ШТАНГОЮ ТА ОСВІТЛЮВАЧЕМ</p>
+                  <p>Набір дзеркал ЗД-2 призначений для огляду приміщень, транспортних засобів, спортивних споруд, пошуку зброї, вибухонебезпечних предметів, контрабанди.</p>
+                  <p>Набір може використовуватися працівниками вибухотехнічних служб, служб охорони, митниці, прикордонних військ та іншими підрозділами.</p>
+                  <p>Набір виготовляється при сприянні НДІ спецтехніки при ГУ МВС України.</p>
+                </>
+              ) : product.id === "m3" ? (
+                <>
+                  <p className="font-bold text-dark-navy uppercase tracking-wide text-sm mb-1">НАБІР ДЗЕРКАЛ З РОЗСУВНОЮ ШТАНГОЮ ТА ОСВІТЛЮВАЧЕМ</p>
+                  <p>Набір дзеркал ЗД-2У призначений для огляду приміщень, транспортних засобів, спортивних споруд, пошуку зброї, вибухонебезпечних предметів, контрабанди.</p>
+                  <p>Набір може використовуватися працівниками вибухотехнічних служб, служб охорони, митниці, прикордонних військ та іншими підрозділами.</p>
+                  <p>Набір виготовляється при сприянні НДІ спецтехніки при ГУ МВС України.</p>
+                </>
+              ) : product.id === "k1" ? (
+                <>
+                  <p className="font-bold text-dark-navy uppercase tracking-wide text-sm mb-1">НАБІР ДЛЯ РОЗМІНУВАННЯ / КОМПЛЕКТ САПЕРА ЕОД-1</p>
+                  <p>Набір призначений для транспортування і зберігання стандартних і спеціальних приладів та інструментів, які використовуються для виконання специфічних завдань: огляду місць мінувань, пошуку вибухонебезпечних предметів, знешкодження боєприпасів та саморобних вибухових пристроїв.</p>
+                  <p>Комплексний набір включає модулі та пристосування для виконання всього комплексу робіт у різноманітних умовах — відкрита місцевість, будівлі та споруди, автомобільний транспорт та ін.</p>
+                  <p>Набір має компактні розміри, мінімальну вагу та зручне кріплення за допомогою системи MOLLE, а також ремінь для перенесення.</p>
+                </>
               ) : (
                 <p>{product.description}</p>
               )}
@@ -552,6 +580,272 @@ export function Product() {
                                    <span>Чохол</span>
                                    <span className="font-bold text-dark-navy text-right">1 шт.</span>
                                  </li>
+                               </ul>
+                            </div>
+                          </div>
+                        ) : product.id === "m1" ? (
+                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm space-y-6">
+                            <div>
+                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
+                                 ТЕХНІЧНІ ДАНІ:
+                               </h5>
+                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Довжина в робочому положенні</span>
+                                   <span className="font-bold text-dark-navy text-right">1200 мм</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Довжина в складеному положенні</span>
+                                   <span className="font-bold text-dark-navy text-right">480 мм</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Вага без освітлювача</span>
+                                   <span className="font-bold text-dark-navy text-right">не більше 0,5 кг</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Розмір дзеркала</span>
+                                   <span className="font-bold text-dark-navy text-right">78 × 120 мм</span>
+                                 </li>
+                               </ul>
+                            </div>
+                            
+                            <div>
+                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
+                                 КОМПЛЕКТАЦІЯ:
+                               </h5>
+                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Штанга телескопічна</span>
+                                   <span className="font-bold text-dark-navy text-right">1 шт.</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Дзеркало 75 × 120</span>
+                                   <span className="font-bold text-dark-navy text-right">1 шт.</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Кронштейн для ліхтаря</span>
+                                   <span className="font-bold text-dark-navy text-right">1 шт.</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Чохол</span>
+                                   <span className="font-bold text-dark-navy text-right">1 шт.</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Ліхтар</span>
+                                   <span className="font-bold text-dark-navy text-right">1 шт.</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Елементи живлення для ліхтаря</span>
+                                   <span className="font-bold text-dark-navy text-right">1 шт.</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Паспорт</span>
+                                   <span className="font-bold text-dark-navy text-right">1 шт.</span>
+                                 </li>
+                               </ul>
+                            </div>
+                          </div>
+                        ) : product.id === "m2" ? (
+                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm space-y-6">
+                            <div>
+                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
+                                 ТЕХНІЧНІ ДАНІ:
+                               </h5>
+                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Довжина в робочому положенні</span>
+                                   <span className="font-bold text-dark-navy text-right">1300 мм</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Довжина в складеному положенні</span>
+                                   <span className="font-bold text-dark-navy text-right">430 мм</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Вага без освітлювача</span>
+                                   <span className="font-bold text-dark-navy text-right">не більше 0,8 кг</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Змінні дзеркала</span>
+                                   <span className="font-bold text-dark-navy text-right">Ø150 мм, Ø105 мм, Ø70 мм, 120 × 75 мм</span>
+                                 </li>
+                               </ul>
+                            </div>
+                            
+                            <div>
+                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
+                                 КОМПЛЕКТАЦІЯ:
+                               </h5>
+                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Штанга телескопічна з шарніром</span>
+                                   <span className="font-bold text-dark-navy text-right">1 шт.</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Змінні дзеркала</span>
+                                   <span className="font-bold text-dark-navy text-right">4 шт.</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Кронштейн для ліхтаря</span>
+                                   <span className="font-bold text-dark-navy text-right">1 шт.</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Валіза з планшетами</span>
+                                   <span className="font-bold text-dark-navy text-right">1 шт.</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Ліхтар з елементами живлення</span>
+                                   <span className="font-bold text-dark-navy text-right">1 шт.</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Паспорт</span>
+                                   <span className="font-bold text-dark-navy text-right">1 шт.</span>
+                                 </li>
+                               </ul>
+                            </div>
+                          </div>
+                        ) : product.id === "m3" ? (
+                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm space-y-6">
+                            <div>
+                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
+                                 ТЕХНІЧНІ ДАНІ:
+                               </h5>
+                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Довжина в робочому положенні</span>
+                                   <span className="font-bold text-dark-navy text-right">1240 мм</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Довжина в складеному положенні</span>
+                                   <span className="font-bold text-dark-navy text-right">610 мм</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Вага без освітлювача</span>
+                                   <span className="font-bold text-dark-navy text-right">не більше 0,8 кг</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Дзеркало</span>
+                                   <span className="font-bold text-dark-navy text-right">Ø170 мм</span>
+                                 </li>
+                               </ul>
+                            </div>
+                            
+                            <div>
+                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
+                                 КОМПЛЕКТАЦІЯ:
+                               </h5>
+                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Штанга телескопічна з шарніром</span>
+                                   <span className="font-bold text-dark-navy text-right">1 шт.</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Змінне дзеркало</span>
+                                   <span className="font-bold text-dark-navy text-right">1 шт.</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Кронштейн для ліхтаря</span>
+                                   <span className="font-bold text-dark-navy text-right">1 шт.</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Чохол</span>
+                                   <span className="font-bold text-dark-navy text-right">1 шт.</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Ліхтарик</span>
+                                   <span className="font-bold text-dark-navy text-right">1 шт.</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Елементи живлення для ліхтаря</span>
+                                   <span className="font-bold text-dark-navy text-right">1 шт.</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Паспорт</span>
+                                   <span className="font-bold text-dark-navy text-right">1 шт.</span>
+                                 </li>
+                               </ul>
+                            </div>
+                          </div>
+                        ) : product.id === "k1" ? (
+                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm space-y-6">
+                            <div>
+                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
+                                 ТЕХНІЧНІ ДАНІ:
+                               </h5>
+                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Габаритні розміри сумки</span>
+                                   <span className="font-bold text-dark-navy text-right">не більше 330 × 230 × 120 мм</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Загальна вага</span>
+                                   <span className="font-bold text-dark-navy text-right">не більше 4,7 кг</span>
+                                 </li>
+                               </ul>
+                            </div>
+                            
+                            <div>
+                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
+                                 КОМПЛЕКТАЦІЯ:
+                               </h5>
+                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>1. Сумка з ременем</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>2. Мультитул сапера</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>3. Лопатка саперна</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>4. Паракорд 3 мм, довжиною 35 м</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>5. Захват мотузковий</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>6. Кішка для тралення розтяжок</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>7. Кішка для з’єму мін</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>8. Датчик розтяжок</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>9. Карабіни</span><span className="font-bold text-dark-navy text-right">2 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>10. Стяжки пластикові</span><span className="font-bold text-dark-navy text-right">20 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>11. Стропа мотузкова 1 м</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>12. Різак</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>13. Кусачки для зачистки ізоляції</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>14. Кусачки бокорізи малі</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>15. Ножиці зігнуті</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>16. Ножиці прямі</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>17. Зажим з фіксатором</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>18. Зажим різьбовий</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>19. Пінцет прямий</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>20. Пінцет зігнутий</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>21. Захват цанговий</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>22. Гачок трьохсторонній</span><span className="font-bold text-dark-navy text-right">3 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>23. Ліхтарик світлодіодний налобний</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>24. Ліхтарик USB малогабаритний</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>25. Шнур USB</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>26. Котушка для ізострічки</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 pl-4 text-charcoal/60"><span>26.1. Ізострічка поліетиленова червона</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 pl-4 text-charcoal/60"><span>26.2. Ізострічка поліетиленова чорна</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 pl-4 text-charcoal/60"><span>26.3. Стрічка ізоляційна тканинна</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 pl-4 text-charcoal/60"><span>26.4. Скотч армований</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 pl-4 text-charcoal/60"><span>26.5. Скотч двосторонній</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>27. Запобіжні чеки Р-подібні</span><span className="font-bold text-dark-navy text-right">10 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>28. Запобіжні чеки Т-подібні</span><span className="font-bold text-dark-navy text-right">10 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>29. Запобіжні чеки З-подібні</span><span className="font-bold text-dark-navy text-right">10 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>30. Запобіжні чеки довгі</span><span className="font-bold text-dark-navy text-right">10 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>31. Перенаправлювач розтяжок</span><span className="font-bold text-dark-navy text-right">10 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>32. Булавки</span><span className="font-bold text-dark-navy text-right">10 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>33. Карабіни для постановки розтяжок</span><span className="font-bold text-dark-navy text-right">10 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>34. Оправка для МУВ</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>35. Універсальний ключ для підривників ПТМ</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>36. Котушка з набором дротів та ниток</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 pl-4 text-charcoal/60"><span>36.1. Котушка з дротом сталькою (100 м)</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 pl-4 text-charcoal/60"><span>36.2. Котушка з дротом 0,8 мм (20 м)</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 pl-4 text-charcoal/60"><span>36.3. Котушка з чорними нитками (100 м)</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 pl-4 text-charcoal/60"><span>36.4. Котушка з зеленими нитками (100 м)</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 pl-4 text-charcoal/60"><span>36.5. Котушка з ліскою (100 м)</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>37. Пенал універсальний</span><span className="font-bold text-dark-navy text-right">2 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>38. Комплект скребків, 4 шт.</span><span className="font-bold text-dark-navy text-right">1 комплект</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>39. Пенал для детонаторів</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>40. Мінідзеркало оглядове</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>41. Щуп малий односекційний</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>42. Маркер знайдених мін «М»</span><span className="font-bold text-dark-navy text-right">10 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>43. Турбозапальничка газова</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>44. Щітка шириною 20–25 мм</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>45. Саморіз 30 мм</span><span className="font-bold text-dark-navy text-right">10 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>46. Рулетка 3 м</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>47. Котушка з підривним дротом (100 м)</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>48. Чохол для котушки з підривним дротом</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
                                </ul>
                             </div>
                           </div>

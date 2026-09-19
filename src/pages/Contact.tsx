@@ -137,13 +137,13 @@ export function Contact() {
                 
                 <div className="pt-8">
                   <div className="flex gap-4">
-                    <a href="#" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded border border-metallic-silver/30 flex items-center justify-center text-dark-navy hover:text-primary-blue hover:border-primary-blue transition-all duration-300 group/social">
+                    <a href="https://www.facebook.com/share/17RjFu7gEo/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded border border-metallic-silver/30 flex items-center justify-center text-dark-navy hover:text-primary-blue hover:border-primary-blue transition-all duration-300 group/social">
                       <Facebook size={18} strokeWidth={1.5} className="group-hover/social:scale-110 transition-transform duration-300" />
                     </a>
-                    <a href="#" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded border border-metallic-silver/30 flex items-center justify-center text-dark-navy hover:text-primary-blue hover:border-primary-blue transition-all duration-300 group/social">
+                    <a href="https://www.instagram.com/daminer_ua?igsh=YmN1ajlnMzAwaGR0&utm_source=qr" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded border border-metallic-silver/30 flex items-center justify-center text-dark-navy hover:text-primary-blue hover:border-primary-blue transition-all duration-300 group/social">
                       <Instagram size={18} strokeWidth={1.5} className="group-hover/social:scale-110 transition-transform duration-300" />
                     </a>
-                    <a href="#" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded border border-metallic-silver/30 flex items-center justify-center text-dark-navy hover:text-primary-blue hover:border-primary-blue transition-all duration-300 group/social">
+                    <a href="https://www.tiktok.com/@daminer3?_r=1&_t=ZS-992JejFgR8u" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded border border-metallic-silver/30 flex items-center justify-center text-dark-navy hover:text-primary-blue hover:border-primary-blue transition-all duration-300 group/social">
                       <TikTokIcon size={18} className="group-hover/social:scale-110 transition-transform duration-300" />
                     </a>
                   </div>
