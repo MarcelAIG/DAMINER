@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowLeft, ShieldCheck, ZoomIn, ZoomOut } from 'lucide-react';
+import { ArrowLeft, ShieldCheck, ZoomIn, ZoomOut, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { useRequest } from '../context/RequestContext';
 
@@ -13,6 +13,7 @@ export function Product() {
   const [selectedImageIdx, setSelectedImageIdx] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
   const [zoomOrigin, setZoomOrigin] = useState('50% 50%');
+  const [isK1KitOpen, setIsK1KitOpen] = useState(false);
 
   // Scroll to top on mount
   useEffect(() => {
@@ -20,6 +21,7 @@ export function Product() {
     setIsDescriptionOpen(false);
     setSelectedImageIdx(0);
     setIsZoomed(false);
+    setIsK1KitOpen(false);
   }, [id]);
 
   const handleZoom = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -783,70 +785,98 @@ export function Product() {
                                </ul>
                             </div>
                             
-                            <div>
-                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
-                                 КОМПЛЕКТАЦІЯ:
-                               </h5>
-                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>1. Сумка з ременем</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>2. Мультитул сапера</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>3. Лопатка саперна</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>4. Паракорд 3 мм, довжиною 35 м</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>5. Захват мотузковий</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>6. Кішка для тралення розтяжок</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>7. Кішка для з’єму мін</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>8. Датчик розтяжок</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>9. Карабіни</span><span className="font-bold text-dark-navy text-right">2 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>10. Стяжки пластикові</span><span className="font-bold text-dark-navy text-right">20 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>11. Стропа мотузкова 1 м</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>12. Різак</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>13. Кусачки для зачистки ізоляції</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>14. Кусачки бокорізи малі</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>15. Ножиці зігнуті</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>16. Ножиці прямі</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>17. Зажим з фіксатором</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>18. Зажим різьбовий</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>19. Пінцет прямий</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>20. Пінцет зігнутий</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>21. Захват цанговий</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>22. Гачок трьохсторонній</span><span className="font-bold text-dark-navy text-right">3 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>23. Ліхтарик світлодіодний налобний</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>24. Ліхтарик USB малогабаритний</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>25. Шнур USB</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>26. Котушка для ізострічки</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 pl-4 text-charcoal/60"><span>26.1. Ізострічка поліетиленова червона</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 pl-4 text-charcoal/60"><span>26.2. Ізострічка поліетиленова чорна</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 pl-4 text-charcoal/60"><span>26.3. Стрічка ізоляційна тканинна</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 pl-4 text-charcoal/60"><span>26.4. Скотч армований</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 pl-4 text-charcoal/60"><span>26.5. Скотч двосторонній</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>27. Запобіжні чеки Р-подібні</span><span className="font-bold text-dark-navy text-right">10 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>28. Запобіжні чеки Т-подібні</span><span className="font-bold text-dark-navy text-right">10 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>29. Запобіжні чеки З-подібні</span><span className="font-bold text-dark-navy text-right">10 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>30. Запобіжні чеки довгі</span><span className="font-bold text-dark-navy text-right">10 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>31. Перенаправлювач розтяжок</span><span className="font-bold text-dark-navy text-right">10 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>32. Булавки</span><span className="font-bold text-dark-navy text-right">10 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>33. Карабіни для постановки розтяжок</span><span className="font-bold text-dark-navy text-right">10 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>34. Оправка для МУВ</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>35. Універсальний ключ для підривників ПТМ</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>36. Котушка з набором дротів та ниток</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 pl-4 text-charcoal/60"><span>36.1. Котушка з дротом сталькою (100 м)</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 pl-4 text-charcoal/60"><span>36.2. Котушка з дротом 0,8 мм (20 м)</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 pl-4 text-charcoal/60"><span>36.3. Котушка з чорними нитками (100 м)</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 pl-4 text-charcoal/60"><span>36.4. Котушка з зеленими нитками (100 м)</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 pl-4 text-charcoal/60"><span>36.5. Котушка з ліскою (100 м)</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>37. Пенал універсальний</span><span className="font-bold text-dark-navy text-right">2 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>38. Комплект скребків, 4 шт.</span><span className="font-bold text-dark-navy text-right">1 комплект</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>39. Пенал для детонаторів</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>40. Мінідзеркало оглядове</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>41. Щуп малий односекційний</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>42. Маркер знайдених мін «М»</span><span className="font-bold text-dark-navy text-right">10 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>43. Турбозапальничка газова</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>44. Щітка шириною 20–25 мм</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>45. Саморіз 30 мм</span><span className="font-bold text-dark-navy text-right">10 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>46. Рулетка 3 м</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>47. Котушка з підривним дротом (100 м)</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5"><span>48. Чохол для котушки з підривним дротом</span><span className="font-bold text-dark-navy text-right">1 шт.</span></li>
-                               </ul>
+                            <div className="pt-2">
+                               <button 
+                                 onClick={(e) => { e.preventDefault(); setIsK1KitOpen(!isK1KitOpen); }}
+                                 className="w-full flex items-center justify-between bg-white border border-metallic-silver/20 p-3 rounded-sm hover:border-primary-blue/30 transition-colors"
+                               >
+                                 <div className="flex items-center gap-2">
+                                   <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy">
+                                     КОМПЛЕКТАЦІЯ
+                                   </h5>
+                                   <span className="text-[10px] font-bold px-2 py-0.5 bg-primary-blue/10 text-primary-blue rounded-sm">
+                                     48 ПОЗИЦІЙ
+                                   </span>
+                                 </div>
+                                 <ChevronDown 
+                                   size={16} 
+                                   className={`text-primary-blue transition-transform duration-300 ${isK1KitOpen ? 'rotate-180' : ''}`}
+                                 />
+                               </button>
+                               
+                               <AnimatePresence>
+                                 {isK1KitOpen && (
+                                   <motion.div
+                                     initial={{ height: 0, opacity: 0 }}
+                                     animate={{ height: "auto", opacity: 1 }}
+                                     exit={{ height: 0, opacity: 0 }}
+                                     className="overflow-hidden"
+                                   >
+                                     <div className="pt-4 px-1">
+                                       <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 font-body text-[13px] text-charcoal/80">
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">1. Сумка з ременем</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">2. Мультитул сапера</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">3. Лопатка саперна</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">4. Паракорд 3 мм, 35 м</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">5. Захват мотузковий</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">6. Кішка для розтяжок</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">7. Кішка для з’єму мін</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">8. Датчик розтяжок</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">9. Карабіни</span><span className="font-bold text-dark-navy whitespace-nowrap">2 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">10. Стяжки пластикові</span><span className="font-bold text-dark-navy whitespace-nowrap">20 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">11. Стропа мотузкова 1 м</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">12. Різак</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">13. Кусачки для ізоляції</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">14. Кусачки бокорізи малі</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">15. Ножиці зігнуті</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">16. Ножиці прямі</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">17. Зажим з фіксатором</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">18. Зажим різьбовий</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">19. Пінцет прямий</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">20. Пінцет зігнутий</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">21. Захват цанговий</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">22. Гачок трьохсторонній</span><span className="font-bold text-dark-navy whitespace-nowrap">3 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">23. Ліхтарик налобний</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">24. Ліхтарик USB малий</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">25. Шнур USB</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">26. Котушка для ізострічки</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5 pl-4 text-charcoal/60"><span className="truncate pr-2">26.1. Ізострічка червона</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5 pl-4 text-charcoal/60"><span className="truncate pr-2">26.2. Ізострічка чорна</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5 pl-4 text-charcoal/60"><span className="truncate pr-2">26.3. Стрічка тканинна</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5 pl-4 text-charcoal/60"><span className="truncate pr-2">26.4. Скотч армований</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5 pl-4 text-charcoal/60"><span className="truncate pr-2">26.5. Скотч двосторонній</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">27. Запобіжні чеки Р-подібні</span><span className="font-bold text-dark-navy whitespace-nowrap">10 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">28. Запобіжні чеки Т-подібні</span><span className="font-bold text-dark-navy whitespace-nowrap">10 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">29. Запобіжні чеки З-подібні</span><span className="font-bold text-dark-navy whitespace-nowrap">10 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">30. Запобіжні чеки довгі</span><span className="font-bold text-dark-navy whitespace-nowrap">10 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">31. Перенаправлювач розтяжок</span><span className="font-bold text-dark-navy whitespace-nowrap">10 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">32. Булавки</span><span className="font-bold text-dark-navy whitespace-nowrap">10 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">33. Карабіни для розтяжок</span><span className="font-bold text-dark-navy whitespace-nowrap">10 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">34. Оправка для МУВ</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">35. Універсальний ключ ПТМ</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">36. Котушка дротів/ниток</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5 pl-4 text-charcoal/60"><span className="truncate pr-2">36.1. Дріт сталь (100 м)</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5 pl-4 text-charcoal/60"><span className="truncate pr-2">36.2. Дріт 0,8 мм (20 м)</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5 pl-4 text-charcoal/60"><span className="truncate pr-2">36.3. Нитки чорні (100 м)</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5 pl-4 text-charcoal/60"><span className="truncate pr-2">36.4. Нитки зелені (100 м)</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5 pl-4 text-charcoal/60"><span className="truncate pr-2">36.5. Ліска (100 м)</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">37. Пенал універсальний</span><span className="font-bold text-dark-navy whitespace-nowrap">2 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">38. Комплект скребків</span><span className="font-bold text-dark-navy whitespace-nowrap">1 компл</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">39. Пенал для детонаторів</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">40. Мінідзеркало оглядове</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">41. Щуп малий</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">42. Маркер знайдених мін «М»</span><span className="font-bold text-dark-navy whitespace-nowrap">10 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">43. Турбозапальничка газова</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">44. Щітка 20–25 мм</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">45. Саморіз 30 мм</span><span className="font-bold text-dark-navy whitespace-nowrap">10 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">46. Рулетка 3 м</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">47. Котушка підрив. дроту</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">48. Чохол для котушки</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                       </ul>
+                                     </div>
+                                   </motion.div>
+                                 )}
+                               </AnimatePresence>
                             </div>
                           </div>
                         ) : (
