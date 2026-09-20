@@ -17,6 +17,7 @@ export function Product() {
   const [isK2KitOpen, setIsK2KitOpen] = useState(false);
   const [isK3KitOpen, setIsK3KitOpen] = useState(false);
   const [isK4KitOpen, setIsK4KitOpen] = useState(false);
+  const [isKaktusOpen, setIsKaktusOpen] = useState(false);
 
   // Scroll to top on mount
   useEffect(() => {
@@ -28,6 +29,7 @@ export function Product() {
     setIsK2KitOpen(false);
     setIsK3KitOpen(false);
     setIsK4KitOpen(false);
+    setIsKaktusOpen(false);
   }, [id]);
 
   const handleZoom = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -205,7 +207,7 @@ export function Product() {
     {
       id: "net-1",
       type: "net",
-      model: language === 'ua' ? 'Сіткомет' : 'Net Launcher',
+      model: language === 'ua' ? 'СМ-1 «СТРИЖ»' : 'SM-1 "STRYZH"',
       description: "",
       price: "",
       imageBase64: "/Сіткомети протидронові/net-main.png",
@@ -361,7 +363,7 @@ export function Product() {
           
           <div className="flex flex-col justify-center">
             <h4 className="font-heading text-sm text-cool-gray tracking-widest uppercase font-bold mb-4 lg:mb-2">
-              {product.type === 'mirror' ? t.featured.mirror : product.type === 'kit' ? t.featured.kit : product.type === 'net' ? t.featured.net : t.featured.probe}
+              {product.type === 'mirror' ? t.featured.mirror : product.type === 'kit' ? t.featured.kit : product.type === 'net' ? t.featured.net : product.type === 'tool' ? (language === 'ua' ? 'САПЕРНЕ ПРИСТОСУВАННЯ' : 'SAPPER TOOL') : t.featured.probe}
             </h4>
             <h1 className="font-heading text-5xl md:text-6xl font-black text-dark-navy mb-8 lg:mb-5 tracking-tight">
               {product.model}
@@ -440,6 +442,22 @@ export function Product() {
                   <p>Набір призначений для транспортування і зберігання стандартних і спеціальних приладів та інструментів, які використовуються для виконання специфічних завдань: огляду місць мінувань, пошуку вибухонебезпечних предметів, знешкодження боєприпасів та саморобних вибухових пристроїв.</p>
                   <p>Комплексний набір включає модулі та пристосування для виконання всього комплексу робіт у різноманітних умовах — відкрита місцевість, будівлі та споруди, автомобільний транспорт та ін.</p>
                   <p>Набір розміщується на ремінно-плечовій системі в спеціальних підсумках за допомогою кріплення системи MOLLE, має компактні розміри та мінімальну вагу.</p>
+                </>
+              ) : product.id === "net-1" ? (
+                <>
+                  <p>Сіткомет протидроновий «СТРИЖ» — це механічна система протидії FPV та безпілотним літальним апаратам, розроблена для використання у бойових умовах.</p>
+                  <p>Пристрій вистрілює сітку, яка нейтралізує ворожі БпЛА, уражаючи їхні пропелери. Не потребує живлення чи спеціальних навичок — готовий до застосування за кілька секунд.</p>
+                  <p>Сіткомет комплектується учбовим багаторазовим картриджем для учбової стрільби.</p>
+                  <p>Сіткомет ефективно протидіє FPV-дронам, у тому числі моделям із оптоволоконними системами зв’язку. Підходить для піхотних підрозділів, мобільних груп, охорони техніки та позицій у міських або польових умовах.</p>
+                  <p>Пускова система обладнана запобіжником, що унеможливлює самовільний спуск ударно-спускового механізму.</p>
+                </>
+              ) : product.id === "tool-2" ? (
+                <>
+                  <p className="font-bold text-dark-navy uppercase tracking-wide text-sm mb-1">ПРИСТРІЙ ПРИМУСОВОЇ ЗУПИНКИ АВТОТРАНСПОРТУ<br/>ПЗА – «Кактус-5»</p>
+                  <p>Пристрій примусової зупинки автотранспорту «Кактус-5» призначений для перешкоджання несанкціонованому проїзду легкового і вантажного колісного автотранспорту з пневматичними шинами на режимні об'єкти та примусової зупинки автотранспорту на дорогах, при неможливості зупинити порушників іншими способами.</p>
+                  <p>Пристрій легко транспортується і швидко встановлюється практично на будь-яке дорожнє покриття. Ширина загородження — 5,65 метрів.</p>
+                  <p>При наїзді автомобіля на загородження стержні залишаються в шині, здійснюючи ефективне випускання повітря через спеціальні отвори.</p>
+                  <p>Пристрій «Кактус-5» легко складається в напівжорсткий чохол для переноски. В чохлі пристрій перебуває в положенні, готовому до використання.</p>
                 </>
               ) : (
                 <p>{product.description}</p>
@@ -1165,6 +1183,117 @@ export function Product() {
                                </AnimatePresence>
                             </div>
                           </div>
+                        ) : product.id === "net-1" ? (
+                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm space-y-6">
+                            <div>
+                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
+                                 ТЕХНІЧНІ ХАРАКТЕРИСТИКИ:
+                               </h5>
+                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Габаритні розміри спорядженого пристрою</span>
+                                   <span className="font-bold text-dark-navy text-right">255 × 155 × 72 мм</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Загальна вага</span>
+                                   <span className="font-bold text-dark-navy text-right">0,750 кг</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Розмір сітки</span>
+                                   <span className="font-bold text-dark-navy text-right">не менше 3500 × 3500 мм</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Дальність ураження</span>
+                                   <span className="font-bold text-dark-navy text-right">10–30 м</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Холостий патрон</span>
+                                   <span className="font-bold text-dark-navy text-right">9 мм</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Наявність запобіжника</span>
+                                   <span className="font-bold text-dark-navy text-right">наявний</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Повне розкриття сітки</span>
+                                   <span className="font-bold text-dark-navy text-right">10 м</span>
+                                 </li>
+                               </ul>
+                            </div>
+                          </div>
+                        ) : product.id === "tool-1" ? (
+                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm">
+                            <p className="font-body text-[14px] text-charcoal/80 italic text-center py-2">
+                              {language === 'ua' ? 'Технічні характеристики та комплектація уточнюються.' : 'Technical characteristics and contents are being clarified.'}
+                            </p>
+                          </div>
+                        ) : product.id === "tool-2" ? (
+                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm space-y-6">
+                            <div>
+                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
+                                 ТЕХНІЧНІ ХАРАКТЕРИСТИКИ:
+                               </h5>
+                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Довжина в складеному (транспортному) положенні</span>
+                                   <span className="font-bold text-dark-navy text-right">68 см</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Довжина в робочому положенні</span>
+                                   <span className="font-bold text-dark-navy text-right">не менше 565 см</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Відстань між сусідніми шипами</span>
+                                   <span className="font-bold text-dark-navy text-right">10 см</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Висота шипів</span>
+                                   <span className="font-bold text-dark-navy text-right">90 мм</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>Вага</span>
+                                   <span className="font-bold text-dark-navy text-right">не більше 12 кг</span>
+                                 </li>
+                               </ul>
+                            </div>
+                            <div>
+                               <button 
+                                 onClick={() => setIsKaktusOpen(!isKaktusOpen)}
+                                 className="w-full flex items-center justify-between font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy py-2 group"
+                               >
+                                 <span className="flex items-center gap-2">
+                                   КОМПЛЕКТАЦІЯ — 4 ПОЗИЦІЇ
+                                 </span>
+                                 <motion.div
+                                   animate={{ rotate: isKaktusOpen ? 180 : 0 }}
+                                   transition={{ duration: 0.3 }}
+                                   className="text-primary-blue bg-white rounded-full p-1 border border-metallic-silver/20 group-hover:border-primary-blue/30 shadow-sm"
+                                 >
+                                   <ChevronDown size={14} strokeWidth={2.5} />
+                                 </motion.div>
+                               </button>
+                               <AnimatePresence>
+                                 {isKaktusOpen && (
+                                   <motion.div
+                                     initial={{ height: 0, opacity: 0 }}
+                                     animate={{ height: "auto", opacity: 1 }}
+                                     exit={{ height: 0, opacity: 0 }}
+                                     transition={{ duration: 0.4, ease: "easeInOut" }}
+                                     className="overflow-hidden"
+                                   >
+                                     <div className="pt-4 mt-2 border-t border-metallic-silver/20">
+                                       <ul className="space-y-2 font-body text-[13px] text-charcoal/70">
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">1. ПЗА – «Кактус-5»</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">2. Чохол (пенал) для перенесення</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">3. Паспорт</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
+                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">4. Комплект запасних шипів, 30 шт.</span><span className="font-bold text-dark-navy whitespace-nowrap">1 компл</span></li>
+                                       </ul>
+                                     </div>
+                                   </motion.div>
+                                 )}
+                               </AnimatePresence>
+                            </div>
+                          </div>
                         ) : (
                           <>
                             <p className="font-body text-[15px] text-charcoal/80 leading-relaxed">
@@ -1201,9 +1330,11 @@ export function Product() {
                           </>
                         )}
                         
-                        <p className="font-body text-[12px] text-cool-gray leading-relaxed italic">
-                          {language === 'ua' ? '* Ці характеристики є орієнтовними та будуть оновлені після затвердження фінального опису.' : '* These specifications are indicative and will be updated upon final description approval.'}
-                        </p>
+                        {product.id !== "tool-1" && product.id !== "tool-2" && (
+                          <p className="font-body text-[12px] text-cool-gray leading-relaxed italic">
+                            {language === 'ua' ? '* Ці характеристики є орієнтовними та будуть оновлені після затвердження фінального опису.' : '* These specifications are indicative and will be updated upon final description approval.'}
+                          </p>
+                        )}
                       </div>
                     </div>
                   </motion.div>
@@ -1235,7 +1366,7 @@ export function Product() {
                   )}
                 </div>
                 <h4 className="font-heading text-[11px] text-cool-gray tracking-widest uppercase font-bold mb-1 lg:mb-0.5">
-                  {p.type === 'mirror' ? t.featured.mirror : p.type === 'kit' ? t.featured.kit : p.type === 'net' ? t.featured.net : t.featured.probe}
+                  {p.type === 'mirror' ? t.featured.mirror : p.type === 'kit' ? t.featured.kit : p.type === 'net' ? t.featured.net : p.type === 'tool' ? (language === 'ua' ? 'САПЕРНЕ ПРИСТОСУВАННЯ' : 'SAPPER TOOL') : t.featured.probe}
                 </h4>
                 <h3 className="font-heading text-lg lg:text-base font-black text-dark-navy group-hover:text-primary-blue transition-colors duration-300">
                   {p.model}

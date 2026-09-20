@@ -10,7 +10,7 @@ export function NetsCategory() {
   const itemsToRender = [
     {
       id: "net-1",
-      model: language === 'ua' ? 'Сіткомет' : 'Net Launcher',
+      model: language === 'ua' ? 'СМ-1 «СТРИЖ»' : 'SM-1 "STRYZH"',
       description: "",
       price: "",
       imageBase64: "/Сіткомети протидронові/net-main.png"
