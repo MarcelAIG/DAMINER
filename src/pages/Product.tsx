@@ -1221,7 +1221,7 @@ export function Product() {
                                </ul>
                             </div>
                           </div>
-                        ) : product.id === "tool-1" ? (
+                        ) : product.id === "tool-1" || product.id === "tool-3" || product.id === "tool-4" ? (
                           <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm">
                             <p className="font-body text-[14px] text-charcoal/80 italic text-center py-2">
                               {language === 'ua' ? 'Технічні характеристики та комплектація уточнюються.' : 'Technical characteristics and contents are being clarified.'}
@@ -1330,7 +1330,7 @@ export function Product() {
                           </>
                         )}
                         
-                        {product.id !== "tool-1" && product.id !== "tool-2" && (
+                        {product.id !== "tool-1" && product.id !== "tool-2" && product.id !== "tool-3" && product.id !== "tool-4" && (
                           <p className="font-body text-[12px] text-cool-gray leading-relaxed italic">
                             {language === 'ua' ? '* Ці характеристики є орієнтовними та будуть оновлені після затвердження фінального опису.' : '* These specifications are indicative and will be updated upon final description approval.'}
                           </p>
