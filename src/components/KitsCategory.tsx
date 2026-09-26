@@ -12,28 +12,28 @@ export function KitsCategory() {
     {
       id: "k1",
       model: language === 'ua' ? "ЕОД-1" : "EOD-1",
-      description: language === 'ua' ? "Базовий набір для експертів-вибухотехніків." : "Basic kit for EOD experts.",
+      description: language === 'ua' ? "Комплексний набір для пошуку та знешкодження вибухонебезпечних предметів із кріпленням системи MOLLE та ременем для перенесення." : "Comprehensive kit for finding and neutralizing explosive ordnance, featuring a MOLLE attachment system and a carrying strap.",
       price: "",
       imageBase64: "/ЕОД-1/ChatGPT Image Aug 29, 2026, 02_49_42 PM.png"
     },
     {
       id: "k2",
       model: language === 'ua' ? "ЕОД-1МН" : "EOD-1MN",
-      description: language === 'ua' ? "Модернізований набір вибухотехніка з розширеним функціоналом." : "Modernized EOD kit with extended functionality.",
+      description: language === 'ua' ? "Спеціальний набір для пошуку та знешкодження вибухонебезпечних предметів зі зручним кріпленням та фіксацією до ноги." : "Special kit for finding and neutralizing explosive items, featuring convenient attachment and leg fixation.",
       price: "",
       imageBase64: "/ЕОД-1МН/ChatGPT Image Aug 29, 2026, 03_25_05 PM.png"
     },
     {
       id: "k3",
       model: language === 'ua' ? "КР-04" : "KR-04",
-      description: language === 'ua' ? "Комплект розмінування кодифікований Міністерством оборони України." : "Demining kit codified by the Ministry of Defense of Ukraine.",
+      description: language === 'ua' ? "Індивідуальний набір для технічного забезпечення саперів ЗСУ під час пошуку, знешкодження та знищення мін і фугасів." : "Individual kit for the technical support of Armed Forces sappers during the search, neutralization, and destruction of mines and fougasses.",
       price: "",
       imageBase64: "/КР-04/ChatGPT Image Aug 29, 2026, 03_58_47 PM.png"
     },
     {
       id: "k4",
       model: language === 'ua' ? "КР-06" : "KR-06",
-      description: language === 'ua' ? "Спеціалізований комплект розмінування для складних завдань." : "Specialized demining kit for complex tasks.",
+      description: language === 'ua' ? "Набір сапера, що розміщується на ремінно-плечовій системі в спеціальних підсумках за допомогою кріплення MOLLE." : "Sapper kit that is placed on a belt-shoulder system in special pouches using a MOLLE attachment.",
       price: "",
       imageBase64: "/КР-06/ChatGPT Image Sep 19, 2026, 08_52_30 PM.png"
     }

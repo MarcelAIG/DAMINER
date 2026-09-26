@@ -18,7 +18,7 @@ export function ToolsCategory() {
     {
       id: "tool-2",
       model: language === 'ua' ? 'Кактус-5' : 'Kaktus-5',
-      description: "",
+      description: language === 'ua' ? "Пристрій примусової зупинки автотранспорту, призначений для перешкоджання несанкціонованому проїзду на режимні об'єкти та зупинки на дорогах." : "Forced vehicle stopping device, designed to prevent unauthorized passage into restricted facilities and stop vehicles on roads.",
       price: "",
       imageBase64: "/kaktus-5/kaktus-main.png"
     },

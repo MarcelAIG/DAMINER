@@ -7,40 +7,39 @@ import { useRequest } from '../context/RequestContext';
 export function MirrorsCategory() {
   const { t, language } = useLanguage();
   const { addItem } = useRequest();
-  
   const itemsToRender = [
     {
       id: "m1",
       model: language === 'ua' ? "ЗД-1" : "ZD-1",
-      description: language === 'ua' ? "Оглядове дзеркало зі змінною телескопічною штангою." : "Inspection mirror with an interchangeable telescopic rod.",
+      description: language === 'ua' ? "Дзеркало з розсувною штангою та освітлювачем для огляду приміщень, транспортних засобів, спортивних споруд." : "Mirror with an extendable rod and illuminator for inspecting premises, vehicles, and sports facilities.",
       price: "",
       imageBase64: "/ЗД-1/ChatGPT Image Aug 29, 2026, 12_04_13 AM (1).png"
     },
     {
       id: "m2",
       model: language === 'ua' ? "ЗД-2Д" : "ZD-2D",
-      description: language === 'ua' ? "Дзеркало з двома змінними відбивачами." : "Mirror with two interchangeable reflectors.",
+      description: language === 'ua' ? "Набір дзеркал з розсувною штангою та освітлювачем для пошуку зброї, вибухонебезпечних предметів, контрабанди." : "Mirror set with an extendable rod and illuminator for searching weapons, explosive items, and contraband.",
       price: "",
       imageBase64: "/ЗД-2Д\"/ChatGPT Image Aug 29, 2026, 01_20_44 PM.png"
     },
     {
       id: "m3",
       model: language === 'ua' ? "ЗД-2У" : "ZD-2U",
-      description: language === 'ua' ? "Універсальне дзеркало для огляду транспорту." : "Universal mirror for vehicle inspection.",
+      description: language === 'ua' ? "Набір дзеркал, що може використовуватися працівниками вибухотехнічних служб, служб охорони та митниці." : "Mirror set that can be used by explosive ordnance disposal units, security, and customs services.",
       price: "",
       imageBase64: "/ЗД-2У/ChatGPT Image Aug 29, 2026, 01_29_49 PM.png"
     },
     {
       id: "m4",
       model: language === 'ua' ? "ЗД-3" : "ZD-3",
-      description: language === 'ua' ? "Компактне оглядове дзеркало з ліхтарем." : "Compact inspection mirror with flashlight.",
+      description: "",
       price: "",
       imageBase64: "/ЗД-3/ChatGPT Image Aug 29, 2026, 01_57_21 PM.png"
     },
     {
       id: "m5",
       model: language === 'ua' ? "ЗД-4" : "ZD-4",
-      description: language === 'ua' ? "Спеціалізоване тактичне оглядове дзеркало." : "Specialized tactical inspection mirror.",
+      description: "",
       price: "",
       imageBase64: "/ЗД-4/ChatGPT Image Aug 29, 2026, 02_13_09 PM.png"
     }

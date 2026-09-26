@@ -11,7 +11,7 @@ export function NetsCategory() {
     {
       id: "net-1",
       model: language === 'ua' ? 'СМ-1 «СТРИЖ»' : 'SM-1 "STRYZH"',
-      description: "",
+      description: language === 'ua' ? "Механічна система протидії FPV та безпілотним літальним апаратам, розроблена для використання у бойових умовах." : "Mechanical system for countering FPV and unmanned aerial vehicles, designed for use in combat conditions.",
       price: "",
       imageBase64: "/Сіткомети протидронові/net-main.png"
     }
