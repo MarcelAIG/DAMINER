@@ -78,12 +78,14 @@ export function ToolsCategory() {
               </h4>
               
               <div className="flex items-start justify-between mb-4">
-                <h3 className="font-heading font-black text-3xl lg:text-4xl text-dark-navy tracking-tight transition-colors duration-300">
+                <h3 className={`font-heading font-black text-dark-navy tracking-tight transition-colors duration-300 pr-4 ${
+                  product.id === 'tool-1' ? 'text-2xl lg:text-3xl' : 'text-3xl lg:text-4xl'
+                }`}>
                   {product.model}
                 </h3>
                 <div className="text-right">
                   <span className="block font-body text-[10px] text-cool-gray uppercase tracking-widest mb-0.5">{language === 'ua' ? 'Ціна' : 'Price'}</span>
-                  <span className="block font-heading text-[12px] font-bold text-dark-navy tracking-wide uppercase">{language === 'ua' ? 'За запитом' : 'On request'}</span>
+                  <span className="block font-heading text-[12px] font-bold text-dark-navy tracking-wide uppercase whitespace-nowrap">{language === 'ua' ? 'За запитом' : 'On request'}</span>
                 </div>
               </div>
               

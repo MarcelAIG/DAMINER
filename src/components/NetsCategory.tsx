@@ -59,7 +59,7 @@ export function NetsCategory() {
                 </h3>
                 <div className="text-right">
                   <span className="block font-body text-[10px] text-cool-gray uppercase tracking-widest mb-0.5">{language === 'ua' ? 'Ціна' : 'Price'}</span>
-                  <span className="block font-heading text-[12px] font-bold text-dark-navy tracking-wide uppercase">{language === 'ua' ? 'За запитом' : 'On request'}</span>
+                  <span className="block font-heading text-[12px] font-bold text-dark-navy tracking-wide uppercase whitespace-nowrap">{language === 'ua' ? 'За запитом' : 'On request'}</span>
                 </div>
               </div>
               
