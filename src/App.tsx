@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { LanguageProvider } from './context/LanguageContext';
 import { RequestProvider } from './context/RequestContext';
 import { Navbar } from './components/Navbar';
@@ -22,34 +22,55 @@ import { Returns } from './pages/Returns';
 import { Certificates } from './pages/Certificates';
 import { Payment } from './pages/Payment';
 import { Warranty } from './pages/Warranty';
+import { AdminLogin } from './pages/AdminLogin';
+import { AdminDashboard } from './pages/AdminDashboard';
+import { ProtectedRoute } from './components/ProtectedRoute';
+
+function AppContent() {
+  const location = useLocation();
+  const isAdmin = location.pathname.startsWith('/admin');
+
+  return (
+    <div className="min-h-screen bg-off-white flex flex-col relative">
+      {!isAdmin && <Navbar />}
+      <div className="flex-grow">
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<Home />} />
+          <Route path="/catalog" element={<Catalog />} />
+          <Route path="/catalog/:categoryId" element={<Catalog />} />
+          <Route path="/product/:id" element={<Product />} />
+          <Route path="/solutions" element={<Solutions />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/certificates" element={<Certificates />} />
+          <Route path="/payment-delivery" element={<Payment />} />
+          <Route path="/warranty" element={<Warranty />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/returns-exchange" element={<Returns />} />
+          
+          {/* Admin Routes */}
+          <Route path="/admin" element={<AdminLogin />} />
+          <Route path="/admin/dashboard" element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          } />
+        </Routes>
+      </div>
+      {!isAdmin && <Footer />}
+      {!isAdmin && <RequestDrawer />}
+    </div>
+  );
+}
 
 export default function App() {
   return (
     <LanguageProvider>
       <RequestProvider>
         <Router>
-          <div className="min-h-screen bg-off-white flex flex-col relative">
-            <Navbar />
-            <div className="flex-grow">
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/catalog" element={<Catalog />} />
-                <Route path="/catalog/:categoryId" element={<Catalog />} />
-                <Route path="/product/:id" element={<Product />} />
-                <Route path="/solutions" element={<Solutions />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/certificates" element={<Certificates />} />
-                <Route path="/payment-delivery" element={<Payment />} />
-                <Route path="/warranty" element={<Warranty />} />
-                <Route path="/privacy" element={<Privacy />} />
-                <Route path="/terms" element={<Terms />} />
-                <Route path="/returns-exchange" element={<Returns />} />
-              </Routes>
-            </div>
-            <Footer />
-            <RequestDrawer />
-          </div>
+          <AppContent />
         </Router>
       </RequestProvider>
     </LanguageProvider>
