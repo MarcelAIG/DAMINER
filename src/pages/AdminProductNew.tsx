@@ -187,10 +187,10 @@ export const AdminProductNew = () => {
 
         {/* SECTION 2 */}
         <section className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 md:p-8">
-          <h3 className="text-xl font-heading font-bold text-[#0A192F] mb-6 border-b border-gray-100 pb-4">Детальний опис</h3>
+          <h3 className="text-xl font-heading font-bold text-[#0A192F] mb-6 border-b border-gray-100 pb-4">Характеристики</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Детальний опис (UA)</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Характеристики (UA)</label>
               <textarea
                 value={descriptionUa}
                 onChange={(e) => setDescriptionUa(e.target.value)}
@@ -199,7 +199,7 @@ export const AdminProductNew = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Детальний опис (EN)</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Характеристики (EN)</label>
               <textarea
                 value={descriptionEn}
                 onChange={(e) => setDescriptionEn(e.target.value)}

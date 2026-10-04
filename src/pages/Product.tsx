@@ -499,7 +499,7 @@ export function Product() {
                 className="w-full flex items-center justify-between p-5 lg:p-6 bg-transparent hover:bg-off-white/50 transition-colors duration-300 group"
               >
                 <span className="font-heading font-black text-sm tracking-widest uppercase text-dark-navy group-hover:text-primary-blue transition-colors duration-300">
-                  {language === 'ua' ? 'Детальний опис' : 'Detailed Description'}
+                  {language === 'ua' ? 'Характеристики' : 'Specifications'}
                 </span>
                 <motion.div
                   animate={{ rotate: isDescriptionOpen ? 180 : 0 }}
