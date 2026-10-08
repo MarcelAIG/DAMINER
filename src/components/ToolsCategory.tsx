@@ -105,6 +105,34 @@ export function ToolsCategory() {
       description: '',
       price: "",
       imageBase64: "/Мультитул/IMG_5399.PNG"
+    },
+    {
+      id: "tool-15",
+      model: language === 'ua' ? 'Кішка саперна' : 'Sapper Hook',
+      description: '',
+      price: "",
+      imageBase64: "/Кішка саперна/IMG_5395.PNG"
+    },
+    {
+      id: "tool-16",
+      model: language === 'ua' ? 'Котушка з паракордом' : 'Paracord Spool',
+      description: '',
+      price: "",
+      imageBase64: "/Кішка саперна/IMG_5403.PNG"
+    },
+    {
+      id: "tool-17",
+      model: language === 'ua' ? 'Котушка з талькою' : 'Spool with Talc',
+      description: '',
+      price: "",
+      imageBase64: "/Кішка саперна/IMG_5380.PNG"
+    },
+    {
+      id: "tool-18",
+      model: language === 'ua' ? 'Прапорці «Міни»' : 'Flags «Mines»',
+      description: '',
+      price: "",
+      imageBase64: "/Міни/IMG_5377.PNG"
     }
   ];
 

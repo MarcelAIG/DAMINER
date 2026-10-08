@@ -407,6 +407,54 @@ export function Product() {
         "/Мультитул/IMG_5401.PNG",
         "/Мультитул/IMG_5402.PNG"
       ]
+    },
+    {
+      id: "tool-15",
+      type: "tool",
+      model: language === 'ua' ? 'Кішка саперна' : 'Sapper Hook',
+      description: "",
+      price: "",
+      imageBase64: "/Кішка саперна/IMG_5395.PNG",
+      gallery: [
+        "/Кішка саперна/IMG_5395.PNG",
+        "/Кішка саперна/IMG_5396.PNG"
+      ]
+    },
+    {
+      id: "tool-16",
+      type: "tool",
+      model: language === 'ua' ? 'Котушка з паракордом' : 'Paracord Spool',
+      description: "",
+      price: "",
+      imageBase64: "/Кішка саперна/IMG_5403.PNG",
+      gallery: [
+        "/Кішка саперна/IMG_5403.PNG",
+        "/Кішка саперна/IMG_5404.PNG"
+      ]
+    },
+    {
+      id: "tool-17",
+      type: "tool",
+      model: language === 'ua' ? 'Котушка з талькою' : 'Spool with Talc',
+      description: "",
+      price: "",
+      imageBase64: "/Кішка саперна/IMG_5380.PNG",
+      gallery: [
+        "/Кішка саперна/IMG_5380.PNG"
+      ]
+    },
+    {
+      id: "tool-18",
+      type: "tool",
+      model: language === 'ua' ? 'Прапорці «Міни»' : 'Flags «Mines»',
+      description: "",
+      price: "",
+      imageBase64: "/Міни/IMG_5377.PNG",
+      gallery: [
+        "/Міни/IMG_5377.PNG",
+        "/Міни/IMG_5378.PNG",
+        "/Міни/IMG_5379.PNG"
+      ]
     }
   ];
 
@@ -418,7 +466,7 @@ export function Product() {
   return (
     <main className="pt-[90px] bg-off-white min-h-screen pb-24 lg:pb-12">
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 pt-12 lg:pt-6">
-        <Link to="/catalog" className="inline-flex items-center gap-2 text-primary-blue hover:text-dark-navy font-heading font-black text-[13px] uppercase tracking-widest transition-colors duration-300 mb-12 lg:mb-6 relative z-20 py-2 pr-4 w-fit cursor-pointer">
+        <Link to={`/catalog/${product.type}s`} className="inline-flex items-center gap-2 text-primary-blue hover:text-dark-navy font-heading font-black text-[13px] uppercase tracking-widest transition-colors duration-300 mb-12 lg:mb-6 relative z-20 py-2 pr-4 w-fit cursor-pointer">
           <ArrowLeft size={18} strokeWidth={2.5} />
           {t.nav.catalog}
         </Link>
