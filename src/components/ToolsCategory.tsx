@@ -56,6 +56,55 @@ export function ToolsCategory() {
       description: '',
       price: "",
       imageBase64: "/Кішки саперні/IMG_5358.PNG"
+    },
+    {
+      id: "tool-8",
+      model: language === 'ua' ? 'Чеки' : 'Safety Pins',
+      description: '',
+      price: "",
+      imageBase64: "/Чеки./IMG_5374.PNG"
+    },
+    {
+      id: "tool-9",
+      model: language === 'ua' ? 'Стрічка попереджувальна' : 'Warning Tape',
+      description: '',
+      price: "",
+      imageBase64: "/Стрічка попереджувальна./IMG_5386.PNG"
+    },
+    {
+      id: "tool-10",
+      model: language === 'ua' ? 'Гак' : 'Hook',
+      description: '',
+      price: "",
+      imageBase64: "/Гак/IMG_5381.PNG"
+    },
+    {
+      id: "tool-11",
+      model: language === 'ua' ? 'Ключ' : 'Wrench',
+      description: '',
+      price: "",
+      imageBase64: "/Гак/IMG_5366.PNG"
+    },
+    {
+      id: "tool-12",
+      model: language === 'ua' ? 'Ключ' : 'Wrench',
+      description: '',
+      price: "",
+      imageBase64: "/Ключ”/IMG_5371.PNG"
+    },
+    {
+      id: "tool-13",
+      model: language === 'ua' ? 'Ключ' : 'Wrench',
+      description: '',
+      price: "",
+      imageBase64: "/Ключ”/IMG_5393.PNG"
+    },
+    {
+      id: "tool-14",
+      model: language === 'ua' ? 'Обтискач сапера «Мультитул»' : 'Sapper Crimper «Multitool»',
+      description: '',
+      price: "",
+      imageBase64: "/Мультитул/IMG_5399.PNG"
     }
   ];
 
@@ -79,6 +128,7 @@ export function ToolsCategory() {
                       product.id === 'tool-3' ? 'scale-[1.3] group-hover:scale-[1.35]' : 
                       product.id === 'tool-4' ? 'scale-[1.3] group-hover:scale-[1.35]' : 
                       product.id === 'tool-5' ? 'scale-[1.3] group-hover:scale-[1.35]' : 
+                      product.id === 'tool-9' ? 'scale-[0.8] group-hover:scale-[0.85]' : 
                       'scale-100 group-hover:scale-105'
                     }`}
                   />
@@ -101,7 +151,9 @@ export function ToolsCategory() {
               
               <div className="flex items-start justify-between mb-4">
                 <h3 className={`font-heading font-black text-dark-navy tracking-tight transition-colors duration-300 pr-4 ${
-                  product.id === 'tool-1' ? 'text-2xl lg:text-3xl' : 'text-3xl lg:text-4xl'
+                  product.id === 'tool-1' ? 'text-2xl lg:text-3xl' : 
+                  product.id === 'tool-9' ? 'text-lg lg:text-xl xl:text-2xl' : 
+                  'text-3xl lg:text-4xl'
                 }`}>
                   {product.model}
                 </h3>

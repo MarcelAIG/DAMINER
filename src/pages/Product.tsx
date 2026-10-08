@@ -319,6 +319,94 @@ export function Product() {
         "/Кішки саперні/IMG_5368.PNG",
         "/Кішки саперні/IMG_5370.PNG"
       ]
+    },
+    {
+      id: "tool-8",
+      type: "tool",
+      model: language === 'ua' ? 'Чеки' : 'Safety Pins',
+      description: "",
+      price: "",
+      imageBase64: "/Чеки./IMG_5374.PNG",
+      gallery: [
+        "/Чеки./IMG_5374.PNG",
+        "/Чеки./IMG_5375.PNG",
+        "/Чеки./IMG_5376.PNG"
+      ]
+    },
+    {
+      id: "tool-9",
+      type: "tool",
+      model: language === 'ua' ? 'Стрічка попереджувальна' : 'Warning Tape',
+      description: "",
+      price: "",
+      imageBase64: "/Стрічка попереджувальна./IMG_5386.PNG",
+      gallery: [
+        "/Стрічка попереджувальна./IMG_5386.PNG",
+        "/Стрічка попереджувальна./IMG_5387.PNG",
+        "/Стрічка попереджувальна./IMG_5388.PNG"
+      ]
+    },
+    {
+      id: "tool-10",
+      type: "tool",
+      model: language === 'ua' ? 'Гак' : 'Hook',
+      description: "",
+      price: "",
+      imageBase64: "/Гак/IMG_5381.PNG",
+      gallery: [
+        "/Гак/IMG_5381.PNG",
+        "/Гак/IMG_5382.PNG",
+        "/Гак/IMG_5383.PNG"
+      ]
+    },
+    {
+      id: "tool-11",
+      type: "tool",
+      model: language === 'ua' ? 'Ключ' : 'Wrench',
+      description: "",
+      price: "",
+      imageBase64: "/Гак/IMG_5366.PNG",
+      gallery: [
+        "/Гак/IMG_5366.PNG"
+      ]
+    },
+    {
+      id: "tool-12",
+      type: "tool",
+      model: language === 'ua' ? 'Ключ' : 'Wrench',
+      description: "",
+      price: "",
+      imageBase64: "/Ключ”/IMG_5371.PNG",
+      gallery: [
+        "/Ключ”/IMG_5371.PNG",
+        "/Ключ”/IMG_5373.PNG"
+      ]
+    },
+    {
+      id: "tool-13",
+      type: "tool",
+      model: language === 'ua' ? 'Ключ' : 'Wrench',
+      description: "",
+      price: "",
+      imageBase64: "/Ключ”/IMG_5393.PNG",
+      gallery: [
+        "/Ключ”/IMG_5393.PNG",
+        "/Ключ”/IMG_5394.PNG"
+      ]
+    },
+    {
+      id: "tool-14",
+      type: "tool",
+      model: language === 'ua' ? 'Обтискач сапера «Мультитул»' : 'Sapper Crimper «Multitool»',
+      description: "",
+      price: "",
+      imageBase64: "/Мультитул/IMG_5399.PNG",
+      gallery: [
+        "/Мультитул/IMG_5399.PNG",
+        "/Мультитул/IMG_5400.PNG",
+        "/Мультитул/IMG_5401.PNG",
+        "/Мультитул/IMG_5402.PNG"
+      ]
     }
   ];
 
@@ -352,6 +440,7 @@ export function Product() {
                     product.id === 'tool-3' ? 'scale-[1.3]' : 
                     product.id === 'tool-4' ? 'scale-[1.3]' : 
                     product.id === 'tool-5' ? 'scale-[1.3]' : 
+                    product.id === 'tool-9' ? 'scale-[0.8]' : 
                     'scale-100'
                   }`}
                   style={{ transformOrigin: isZoomed ? zoomOrigin : 'center center' }}
@@ -397,6 +486,7 @@ export function Product() {
                         product.id === 'tool-3' ? 'scale-[1.3]' : 
                         product.id === 'tool-4' ? 'scale-[1.3]' : 
                         product.id === 'tool-5' ? 'scale-[1.3]' : 
+                        product.id === 'tool-9' ? 'scale-[0.8]' : 
                         ''
                       }`}
                         draggable={false}
