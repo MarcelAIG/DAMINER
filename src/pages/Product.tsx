@@ -274,11 +274,58 @@ export function Product() {
         "/rake-1/rake-03.png",
         "/rake-1/rake-04.png"
       ]
+    },
+    {
+      id: "tool-5",
+      type: "tool",
+      model: language === 'ua' ? 'Пенали для детонаторів' : 'Detonator cases',
+      description: "",
+      price: "",
+      imageBase64: "/untitled folder/IMG_5355.PNG",
+      gallery: [
+        "/untitled folder/IMG_5355.PNG",
+        "/untitled folder/IMG_5353.PNG",
+        "/untitled folder/IMG_5352.PNG",
+        "/untitled folder/IMG_5354.PNG"
+      ]
+    },
+    {
+      id: "tool-6",
+      type: "tool",
+      model: language === 'ua' ? 'Сапка сапера' : 'Sapper Hoe',
+      description: "",
+      price: "",
+      imageBase64: "/untitled folder/IMG_5356.PNG",
+      gallery: [
+        "/untitled folder/IMG_5356.PNG",
+        "/untitled folder/IMG_5357.PNG"
+      ]
+    },
+    {
+      id: "tool-7",
+      type: "tool",
+      model: language === 'ua' ? 'Кішки саперні' : 'Sapper Hooks',
+      description: "",
+      price: "",
+      imageBase64: "/Кішки саперні/IMG_5358.PNG",
+      gallery: [
+        "/Кішки саперні/IMG_5358.PNG",
+        "/Кішки саперні/IMG_5360.PNG",
+        "/Кішки саперні/IMG_5361.PNG",
+        "/Кішки саперні/IMG_5362.PNG",
+        "/Кішки саперні/IMG_5363.PNG",
+        "/Кішки саперні/IMG_5364.PNG",
+        "/Кішки саперні/IMG_5367.PNG",
+        "/Кішки саперні/IMG_5368.PNG",
+        "/Кішки саперні/IMG_5370.PNG"
+      ]
     }
   ];
 
   const product = items.find(item => item.id === id) || items[0];
-  const otherProducts = items.filter(item => item.id !== product.id);
+  const otherProducts = items.filter(item => item.id !== product.id && item.type === product.type).slice(0, 3);
+  
+  const hasCharacteristics = ["1", "k1", "k2", "k3", "k4", "net-1", "tool-1", "m4", "m5", "tool-3", "tool-2"].includes(product.id);
 
   return (
     <main className="pt-[90px] bg-off-white min-h-screen pb-24 lg:pb-12">
@@ -304,6 +351,7 @@ export function Product() {
                     product.id === 'tool-2' ? 'scale-[1.35]' : 
                     product.id === 'tool-3' ? 'scale-[1.3]' : 
                     product.id === 'tool-4' ? 'scale-[1.3]' : 
+                    product.id === 'tool-5' ? 'scale-[1.3]' : 
                     'scale-100'
                   }`}
                   style={{ transformOrigin: isZoomed ? zoomOrigin : 'center center' }}
@@ -348,6 +396,7 @@ export function Product() {
                         product.id === 'tool-2' ? 'scale-[1.35]' : 
                         product.id === 'tool-3' ? 'scale-[1.3]' : 
                         product.id === 'tool-4' ? 'scale-[1.3]' : 
+                        product.id === 'tool-5' ? 'scale-[1.3]' : 
                         ''
                       }`}
                         draggable={false}
@@ -523,6 +572,7 @@ export function Product() {
             </div>
 
             {/* Modern Accordion Description */}
+            {hasCharacteristics && (
             <div className="bg-white border border-metallic-silver/30 shadow-sm overflow-hidden transition-all duration-300">
               <button 
                 onClick={() => setIsDescriptionOpen(!isDescriptionOpen)}
@@ -1455,12 +1505,6 @@ export function Product() {
                                </ul>
                             </div>
                           </div>
-                        ) : product.id === "tool-4" ? (
-                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm">
-                            <p className="font-body text-[14px] text-charcoal/80 italic text-center py-2">
-                              {language === 'ua' ? 'Технічні характеристики та комплектація уточнюються.' : 'Technical characteristics and contents are being clarified.'}
-                            </p>
-                          </div>
                         ) : product.id === "tool-2" ? (
                           <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm space-y-6">
                             <div>
@@ -1528,53 +1572,14 @@ export function Product() {
                                </AnimatePresence>
                             </div>
                           </div>
-                        ) : (
-                          <>
-                            <p className="font-body text-[15px] text-charcoal/80 leading-relaxed">
-                              {language === 'ua' ? 'Професійне обладнання, розроблене для ефективного виконання спеціалізованих завдань. Виготовлено з високоміцних та зносостійких матеріалів.' : 'Professional equipment designed for the effective execution of specialized tasks. Manufactured from high-strength and wear-resistant materials.'}
-                            </p>
-                            
-                            <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm">
-                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
-                                 {language === 'ua' ? 'Базові характеристики:' : 'Basic Specifications:'}
-                               </h5>
-                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>{language === 'ua' ? 'Довжина (мін/макс)' : 'Length (min/max)'}</span>
-                                   <span className="font-bold text-dark-navy">800 мм - 1500 мм</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>{language === 'ua' ? 'Вага' : 'Weight'}</span>
-                                   <span className="font-bold text-dark-navy">1.2 кг</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>{language === 'ua' ? 'Матеріал' : 'Material'}</span>
-                                   <span className="font-bold text-dark-navy text-right">{language === 'ua' ? 'Анодований алюміній / Карбон' : 'Anodized Aluminum / Carbon'}</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>{language === 'ua' ? 'Робоча температура' : 'Operating Temperature'}</span>
-                                   <span className="font-bold text-dark-navy">-20°C ... +60°C</span>
-                                 </li>
-                                 <li className="flex justify-between">
-                                   <span>{language === 'ua' ? 'Клас захисту' : 'Protection Class'}</span>
-                                   <span className="font-bold text-dark-navy">IP67</span>
-                                 </li>
-                               </ul>
-                            </div>
-                          </>
-                        )}
-                        
-                        {product.id !== "tool-1" && product.id !== "tool-2" && product.id !== "tool-3" && product.id !== "tool-4" && product.id !== "m4" && product.id !== "m5" && (
-                          <p className="font-body text-[12px] text-cool-gray leading-relaxed italic">
-                            {language === 'ua' ? '* Ці характеристики є орієнтовними та будуть оновлені після затвердження фінального опису.' : '* These specifications are indicative and will be updated upon final description approval.'}
-                          </p>
-                        )}
+                        ) : null}
                       </div>
                     </div>
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
+            )}
           </div>
         </div>
         

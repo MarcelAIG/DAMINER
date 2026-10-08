@@ -35,6 +35,27 @@ export function ToolsCategory() {
       description: language === 'ua' ? 'Пошукове магнітне пристосування МГ-2 для обстеження місця вибуху та збору осколків.' : 'Search magnetic tool MG-2 for inspecting an explosion site and collecting fragments.',
       price: "",
       imageBase64: "/rake-1/rake-02.png"
+    },
+    {
+      id: "tool-5",
+      model: language === 'ua' ? 'Пенали для детонаторів' : 'Detonator cases',
+      description: '',
+      price: "",
+      imageBase64: "/untitled folder/IMG_5355.PNG"
+    },
+    {
+      id: "tool-6",
+      model: language === 'ua' ? 'Сапка сапера' : 'Sapper Hoe',
+      description: '',
+      price: "",
+      imageBase64: "/untitled folder/IMG_5356.PNG"
+    },
+    {
+      id: "tool-7",
+      model: language === 'ua' ? 'Кішки саперні' : 'Sapper Hooks',
+      description: '',
+      price: "",
+      imageBase64: "/Кішки саперні/IMG_5358.PNG"
     }
   ];
 
@@ -57,6 +78,7 @@ export function ToolsCategory() {
                       product.id === 'tool-2' ? 'scale-[1.35] group-hover:scale-[1.4]' : 
                       product.id === 'tool-3' ? 'scale-[1.3] group-hover:scale-[1.35]' : 
                       product.id === 'tool-4' ? 'scale-[1.3] group-hover:scale-[1.35]' : 
+                      product.id === 'tool-5' ? 'scale-[1.3] group-hover:scale-[1.35]' : 
                       'scale-100 group-hover:scale-105'
                     }`}
                   />
