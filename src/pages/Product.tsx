@@ -264,7 +264,7 @@ export function Product() {
     {
       id: "tool-4",
       type: "tool",
-      model: language === 'ua' ? 'Магнітні граблі' : 'Magnetic Rake',
+      model: language === 'ua' ? 'Магнітні граблі МГ-2' : 'Magnetic Rake MG-2',
       description: "",
       price: "",
       imageBase64: "/rake-1/rake-02.png",
@@ -415,6 +415,18 @@ export function Product() {
                   <p>Набір може використовуватися працівниками вибухотехнічних служб, служб охорони, митниці, прикордонних військ та іншими підрозділами.</p>
                   <p>Набір виготовляється при сприянні НДІ спецтехніки при ГУ МВС України.</p>
                 </>
+              ) : product.id === "m4" ? (
+                <>
+                  <p>{language === 'ua' ? 'Дзеркало оглядове ЗД-3 призначене для огляду днищ автотранспортних засобів та інших аналогічних об’єктів. Використовується для виявлення вибухових пристроїв, контрабанди та пошкоджень машин. Поверхня дзеркала виконана випуклою, що забезпечує широкий кут огляду. Для зручності користування дзеркало оснащене колесами.' : 'Inspection mirror ZD-3 is designed for inspecting the undercarriage of vehicles and other similar objects. It is used to detect explosive devices, contraband, and vehicle damage. The surface of the mirror is convex, which provides a wide viewing angle. For ease of use, the mirror is equipped with wheels.'}</p>
+                  <p>{language === 'ua' ? 'Виріб призначений для використання персоналом служб безпеки, поліції, митниці, прикордонниками та іншими службами.' : 'The product is intended for use by security personnel, police, customs, border guards, and other services.'}</p>
+                  <p>{language === 'ua' ? 'Конструктивно виріб складається із двоколінної штанги, до якої під кутом прикріплене сферичне дзеркало. Для транспортування дзеркало вкладається в чохол. На штанзі розміщений світлодіодний акумуляторний ліхтар для підсвітки, оснащений зарядним пристроєм.' : 'Structurally, the product consists of a two-section rod to which a spherical mirror is attached at an angle. For transportation, the mirror is placed in a cover. A rechargeable LED flashlight with a charger is placed on the rod for illumination.'}</p>
+                </>
+              ) : product.id === "m5" ? (
+                <>
+                  <p>{language === 'ua' ? 'Дзеркало оглядове ЗД-4 призначене для огляду днищ автотранспортних засобів та інших аналогічних об’єктів. Використовується для виявлення вибухових пристроїв, контрабанди та пошкоджень машин. Поверхня дзеркала виконана випуклою, що забезпечує широкий кут огляду. Для зручності користування дзеркало оснащене колесами.' : 'Inspection mirror ZD-4 is designed for inspecting the undercarriage of vehicles and other similar objects. It is used to detect explosive devices, contraband, and vehicle damage. The surface of the mirror is convex, which provides a wide viewing angle. For ease of use, the mirror is equipped with wheels.'}</p>
+                  <p>{language === 'ua' ? 'Виріб призначений для використання персоналом служб безпеки, поліції, митниці, прикордонниками та іншими службами.' : 'The product is intended for use by security personnel, police, customs, border guards, and other services.'}</p>
+                  <p>{language === 'ua' ? 'Конструктивно виріб складається із трьохколінної штанги, до якої під кутом прикріплене сферичне дзеркало. Для транспортування дзеркало вкладається в чохол. На корпусі дзеркала розміщений світлодіодний акумуляторний ліхтар для підсвітки, оснащений зарядним пристроєм.' : 'Structurally, the product consists of a three-section rod to which a spherical mirror is attached at an angle. For transportation, the mirror is placed in a cover. A rechargeable LED flashlight with a charger is placed on the mirror housing for illumination.'}</p>
+                </>
               ) : product.id === "k1" ? (
                 <>
                   <p className="font-bold text-dark-navy uppercase tracking-wide text-sm mb-1">НАБІР ДЛЯ РОЗМІНУВАННЯ / КОМПЛЕКТ САПЕРА ЕОД-1</p>
@@ -450,6 +462,24 @@ export function Product() {
                   <p>Сіткомет комплектується учбовим багаторазовим картриджем для учбової стрільби.</p>
                   <p>Сіткомет ефективно протидіє FPV-дронам, у тому числі моделям із оптоволоконними системами зв’язку. Підходить для піхотних підрозділів, мобільних груп, охорони техніки та позицій у міських або польових умовах.</p>
                   <p>Пускова система обладнана запобіжником, що унеможливлює самовільний спуск ударно-спускового механізму.</p>
+                </>
+              ) : product.id === "tool-1" ? (
+                <>
+                  <p>{language === 'ua' ? 'Електричний кабель на барабані призначений для прокладки тимчасових електричних мереж напругою до 380 В.' : 'Electric cable on a reel is designed for laying temporary electrical networks with a voltage of up to 380 V.'}</p>
+                </>
+              ) : product.id === "tool-3" ? (
+                <>
+                  <p>{language === 'ua' ? 'Комплект засобів «Ключ-1» призначений для дистанційного знешкодження (деактивування) протитанкових мін типу ТМ-62.' : 'The "Key-1" tool kit is designed for the remote neutralization (deactivation) of TM-62 type anti-tank mines.'}</p>
+                  <p>{language === 'ua' ? 'Виріб призначений для технічного забезпечення саперів інженерно-саперних підрозділів під час виконання робіт з дистанційного викручування та вилучення підривачів типу «МВЧ-62» та «МВП-62» протитанкової міни типу ТМ-62, а також її зрушення або перевертання (витягування з ґрунту) з метою виявлення вибухонебезпечних пасток, які можуть бути встановлені під нею.' : 'The product is intended for the technical support of sappers of engineering and sapper units during the execution of works on remote unscrewing and extraction of fuzes of the "MVCh-62" and "MVP-62" types of the TM-62 anti-tank mine, as well as its moving or overturning (pulling out of the ground) in order to detect explosive traps that may be installed under it.'}</p>
+                  <p>{language === 'ua' ? 'Набір має компактні розміри та мінімальну вагу.' : 'The kit has compact dimensions and minimal weight.'}</p>
+                </>
+              ) : product.id === "tool-4" ? (
+                <>
+                  <p>{language === 'ua' ? 'Магнітні граблі МГ-2 (пошукове магнітне пристосування) призначені для застосування експертами-криміналістами, працівниками вибухотехнічних служб і саперними пошуковими групами при проведенні обстеження і огляду місця події, пов’язаного з вибухом.' : 'The magnetic rake MG-2 (search magnetic tool) is designed for use by forensic experts, explosive ordnance disposal personnel, and sapper search groups when surveying and inspecting a blast scene.'}</p>
+                  <p>{language === 'ua' ? 'Пристрій дозволяє швидко і ефективно обстежити місце вибуху і зібрати осколки вибухового пристрою, розкидані на великій площі.' : 'The device allows for quick and efficient inspection of the explosion site and the collection of explosive device fragments scattered over a large area.'}</p>
+                  <p>{language === 'ua' ? 'Ефективність збору осколків за допомогою виробу МГ-2 значно вище, ніж при застосуванні інших пристроїв.' : 'The efficiency of fragment collection using the MG-2 product is significantly higher than when using other devices.'}</p>
+                  <p>{language === 'ua' ? 'Пристосування просте по конструкції і зручне в роботі.' : 'The tool is simple in design and easy to operate.'}</p>
+                  <p>{language === 'ua' ? 'Для транспортування виріб легко розбирається і укладається в сумку, і його в складеному вигляді легко можна транспортувати будь-якими видами транспорту.' : 'For transportation, the product is easily disassembled and packed into a bag, and in its folded state, it can be easily transported by any means of transport.'}</p>
                 </>
               ) : product.id === "tool-2" ? (
                 <>
@@ -1221,7 +1251,211 @@ export function Product() {
                                </ul>
                             </div>
                           </div>
-                        ) : product.id === "tool-1" || product.id === "tool-3" || product.id === "tool-4" || product.id === "m4" || product.id === "m5" ? (
+                        ) : product.id === "tool-1" ? (
+                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm space-y-6">
+                            <div>
+                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
+                                 {language === 'ua' ? 'ТЕХНІЧНІ ХАРАКТЕРИСТИКИ:' : 'TECHNICAL CHARACTERISTICS:'}
+                               </h5>
+                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>{language === 'ua' ? 'Габаритні розміри, мм, не більше' : 'Overall dimensions, mm, no more than'}</span>
+                                   <span className="font-bold text-dark-navy text-right">270 × 220 × 175</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>{language === 'ua' ? 'Довжина кабелю' : 'Cable length'}</span>
+                                   <span className="font-bold text-dark-navy text-right">300 {language === 'ua' ? 'м' : 'm'}</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>{language === 'ua' ? 'Вага, кг, не більше' : 'Weight, kg, no more than'}</span>
+                                   <span className="font-bold text-dark-navy text-right">{language === 'ua' ? '6,8' : '6.8'}</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>{language === 'ua' ? 'Електричний опір серцевини довжиною 1 км, не більше' : 'Electrical resistance of a core 1 km long, no more than'}</span>
+                                   <span className="font-bold text-dark-navy text-right">41 {language === 'ua' ? 'Ом' : 'Ohm'}</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>{language === 'ua' ? 'Міцність на розрив проводів, не менше' : 'Tensile strength of wires, not less than'}</span>
+                                   <span className="font-bold text-dark-navy text-right">441 {language === 'ua' ? 'Н (45 кгс)' : 'N (45 kgf)'}</span>
+                                 </li>
+                               </ul>
+                            </div>
+                            
+                            <div>
+                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
+                                 {language === 'ua' ? 'КОМПЛЕКТ ПОСТАВКИ:' : 'DELIVERY SET:'}
+                               </h5>
+                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>{language === 'ua' ? 'Котушка' : 'Reel'}</span>
+                                   <span className="font-bold text-dark-navy text-right">1 {language === 'ua' ? 'шт.' : 'pc.'}</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>{language === 'ua' ? 'Двожильний провід' : 'Two-core wire'}</span>
+                                   <span className="font-bold text-dark-navy text-right">300 {language === 'ua' ? 'м' : 'm'}</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>{language === 'ua' ? 'Захисний чохол' : 'Protective cover'}</span>
+                                   <span className="font-bold text-dark-navy text-right">1 {language === 'ua' ? 'шт.' : 'pc.'}</span>
+                                 </li>
+                               </ul>
+                            </div>
+                          </div>
+                        ) : product.id === "m4" ? (
+                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm space-y-6">
+                            <div>
+                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
+                                 {language === 'ua' ? 'ТЕХНІЧНІ ХАРАКТЕРИСТИКИ:' : 'TECHNICAL CHARACTERISTICS:'}
+                               </h5>
+                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>{language === 'ua' ? 'Габаритні розміри, мм, не більше' : 'Overall dimensions, mm, no more than'}</span>
+                                   <span className="font-bold text-dark-navy text-right">1400 × 300 × 200</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>{language === 'ua' ? 'Габарити у складеному положенні' : 'Dimensions in folded position'}</span>
+                                   <span className="font-bold text-dark-navy text-right">920 × 300 × 200</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>{language === 'ua' ? 'Тип дзеркала' : 'Mirror type'}</span>
+                                   <span className="font-bold text-dark-navy text-right">{language === 'ua' ? 'кругле, сферичне' : 'round, spherical'}</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>{language === 'ua' ? 'Діаметр дзеркала, мм' : 'Mirror diameter, mm'}</span>
+                                   <span className="font-bold text-dark-navy text-right">300 ± 5</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>{language === 'ua' ? 'Вага виробу, кг, не більше' : 'Product weight, kg, no more than'}</span>
+                                   <span className="font-bold text-dark-navy text-right">{language === 'ua' ? '1,6' : '1.6'}</span>
+                                 </li>
+                               </ul>
+                            </div>
+                            
+                            <div>
+                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
+                                 {language === 'ua' ? 'КОМПЛЕКТ ПОСТАВКИ:' : 'DELIVERY SET:'}
+                               </h5>
+                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>{language === 'ua' ? 'Дзеркало сферичне на колесах' : 'Spherical mirror on wheels'}</span>
+                                   <span className="font-bold text-dark-navy text-right">1 {language === 'ua' ? 'шт.' : 'pc.'}</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>{language === 'ua' ? 'Ліхтар світлодіодний з тримачем' : 'LED flashlight with holder'}</span>
+                                   <span className="font-bold text-dark-navy text-right">1 {language === 'ua' ? 'шт.' : 'pc.'}</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>{language === 'ua' ? 'Пристрій зарядний для ліхтаря' : 'Charger for flashlight'}</span>
+                                   <span className="font-bold text-dark-navy text-right">1 {language === 'ua' ? 'к-т' : 'set'}</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>{language === 'ua' ? 'Чохол для дзеркала' : 'Cover for mirror'}</span>
+                                   <span className="font-bold text-dark-navy text-right">1 {language === 'ua' ? 'шт.' : 'pc.'}</span>
+                                 </li>
+                               </ul>
+                            </div>
+                          </div>
+                        ) : product.id === "m5" ? (
+                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm space-y-6">
+                            <div>
+                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
+                                 {language === 'ua' ? 'ТЕХНІЧНІ ХАРАКТЕРИСТИКИ:' : 'TECHNICAL CHARACTERISTICS:'}
+                               </h5>
+                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>{language === 'ua' ? 'Габаритні розміри, мм, не більше' : 'Overall dimensions, mm, no more than'}</span>
+                                   <span className="font-bold text-dark-navy text-right">1600 × 320 × 100</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>{language === 'ua' ? 'Габарити у складеному положенні' : 'Dimensions in folded position'}</span>
+                                   <span className="font-bold text-dark-navy text-right">600 × 320 × 130</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>{language === 'ua' ? 'Тип дзеркала' : 'Mirror type'}</span>
+                                   <span className="font-bold text-dark-navy text-right">{language === 'ua' ? 'прямокутне, сферичне' : 'rectangular, spherical'}</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>{language === 'ua' ? 'Розмір дзеркала, мм' : 'Mirror size, mm'}</span>
+                                   <span className="font-bold text-dark-navy text-right">320 × 180</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>{language === 'ua' ? 'Вага виробу, кг, не більше' : 'Product weight, kg, no more than'}</span>
+                                   <span className="font-bold text-dark-navy text-right">{language === 'ua' ? '1,4' : '1.4'}</span>
+                                 </li>
+                               </ul>
+                            </div>
+                            
+                            <div>
+                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
+                                 {language === 'ua' ? 'КОМПЛЕКТ ПОСТАВКИ:' : 'DELIVERY SET:'}
+                               </h5>
+                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>{language === 'ua' ? 'Дзеркало сферичне на колесах з ліхтарем' : 'Spherical mirror on wheels with a flashlight'}</span>
+                                   <span className="font-bold text-dark-navy text-right">1 {language === 'ua' ? 'шт.' : 'pc.'}</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>{language === 'ua' ? 'Пристрій зарядний для ліхтаря' : 'Charger for flashlight'}</span>
+                                   <span className="font-bold text-dark-navy text-right">1 {language === 'ua' ? 'к-т' : 'set'}</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
+                                   <span>{language === 'ua' ? 'Чохол для дзеркала' : 'Cover for mirror'}</span>
+                                   <span className="font-bold text-dark-navy text-right">1 {language === 'ua' ? 'шт.' : 'pc.'}</span>
+                                 </li>
+                               </ul>
+                            </div>
+                          </div>
+                        ) : product.id === "tool-3" ? (
+                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm space-y-6">
+                            <div>
+                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
+                                 {language === 'ua' ? 'ТЕХНІЧНІ ХАРАКТЕРИСТИКИ:' : 'TECHNICAL CHARACTERISTICS:'}
+                               </h5>
+                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 gap-4">
+                                   <span>{language === 'ua' ? 'Габаритні розміри набору, мм, не більше' : 'Overall dimensions of the kit, mm, no more than'}</span>
+                                   <span className="font-bold text-dark-navy text-right shrink-0">250 × 260 × 150</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 gap-4">
+                                   <span>{language === 'ua' ? 'Загальна вага набору, кг, не більше' : 'Total weight of the kit, kg, no more than'}</span>
+                                   <span className="font-bold text-dark-navy text-right shrink-0">{language === 'ua' ? '2,8' : '2.8'}</span>
+                                 </li>
+                               </ul>
+                            </div>
+                            
+                            <div>
+                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
+                                 {language === 'ua' ? 'КОМПЛЕКТАЦІЯ:' : 'DELIVERY SET:'}
+                               </h5>
+                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 gap-4">
+                                   <span>{language === 'ua' ? 'Універсальний викручувач для підривача типу «МВЧ-62» та підривача типу «МВП-62»' : 'Universal unscrewer for the "MVCh-62" type fuze and the "MVP-62" type fuze'}</span>
+                                   <span className="font-bold text-dark-navy text-right shrink-0">1 {language === 'ua' ? 'шт.' : 'pc.'}</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 gap-4">
+                                   <span>{language === 'ua' ? 'Екстрактор (гак) для вилучення міни з ґрунту' : 'Extractor (hook) for extracting a mine from the ground'}</span>
+                                   <span className="font-bold text-dark-navy text-right shrink-0">1 {language === 'ua' ? 'шт.' : 'pc.'}</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 gap-4">
+                                   <span>{language === 'ua' ? 'Захват мотузковий' : 'Rope grab'}</span>
+                                   <span className="font-bold text-dark-navy text-right shrink-0">1 {language === 'ua' ? 'шт.' : 'pc.'}</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 gap-4">
+                                   <span>{language === 'ua' ? 'Універсальний ключ для переводу підривників ПТМ' : 'Universal key for switching ATM fuzes'}</span>
+                                   <span className="font-bold text-dark-navy text-right shrink-0">1 {language === 'ua' ? 'шт.' : 'pc.'}</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 gap-4">
+                                   <span>{language === 'ua' ? 'Паракорд 6 мм довжиною 50 м з карабіном' : 'Paracord 6 mm, length 50 m with a carabiner'}</span>
+                                   <span className="font-bold text-dark-navy text-right shrink-0">1 {language === 'ua' ? 'шт.' : 'pc.'}</span>
+                                 </li>
+                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 gap-4">
+                                   <span>{language === 'ua' ? 'Сумка для транспортування складових набору' : 'Bag for transporting the kit components'}</span>
+                                   <span className="font-bold text-dark-navy text-right shrink-0">1 {language === 'ua' ? 'шт.' : 'pc.'}</span>
+                                 </li>
+                               </ul>
+                            </div>
+                          </div>
+                        ) : product.id === "tool-4" ? (
                           <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm">
                             <p className="font-body text-[14px] text-charcoal/80 italic text-center py-2">
                               {language === 'ua' ? 'Технічні характеристики та комплектація уточнюються.' : 'Technical characteristics and contents are being clarified.'}

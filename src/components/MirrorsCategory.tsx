@@ -32,14 +32,14 @@ export function MirrorsCategory() {
     {
       id: "m4",
       model: language === 'ua' ? "ЗД-3" : "ZD-3",
-      description: "",
+      description: language === 'ua' ? 'Оглядове дзеркало ЗД-3 для огляду днищ автотранспортних засобів, оснащене колесами та світлодіодним ліхтарем.' : 'Inspection mirror ZD-3 for inspecting the undercarriage of vehicles, equipped with wheels and an LED flashlight.',
       price: "",
       imageBase64: "/ЗД-3/ChatGPT Image Aug 29, 2026, 01_57_21 PM.png"
     },
     {
       id: "m5",
       model: language === 'ua' ? "ЗД-4" : "ZD-4",
-      description: "",
+      description: language === 'ua' ? 'Оглядове дзеркало ЗД-4 для огляду днищ автотранспортних засобів, оснащене колесами та акумуляторним світлодіодним ліхтарем.' : 'Inspection mirror ZD-4 for inspecting the undercarriage of vehicles, equipped with wheels and a rechargeable LED flashlight.',
       price: "",
       imageBase64: "/ЗД-4/ChatGPT Image Aug 29, 2026, 02_13_09 PM.png"
     }

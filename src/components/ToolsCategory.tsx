@@ -11,7 +11,7 @@ export function ToolsCategory() {
     {
       id: "tool-1",
       model: language === 'ua' ? 'Електричний кабель на барабані' : 'Electric Cable on Reel',
-      description: "",
+      description: language === 'ua' ? 'Електричний кабель на барабані для прокладки тимчасових електричних мереж напругою до 380 В.' : 'Electric cable on a reel for laying temporary electrical networks with a voltage of up to 380 V.',
       price: "",
       imageBase64: "/electric-cable/cable-main.png"
     },
@@ -25,14 +25,14 @@ export function ToolsCategory() {
     {
       id: "tool-3",
       model: language === 'ua' ? 'Ключ-1' : 'Key-1',
-      description: "",
+      description: language === 'ua' ? 'Комплект «Ключ-1» для дистанційного знешкодження протитанкових мін типу ТМ-62.' : "The 'Key-1' kit for remote neutralization of TM-62 type anti-tank mines.",
       price: "",
       imageBase64: "/key-1/key-main.png"
     },
     {
       id: "tool-4",
-      model: language === 'ua' ? 'Магнітні граблі' : 'Magnetic Rake',
-      description: "",
+      model: language === 'ua' ? 'Магнітні граблі МГ-2' : 'Magnetic Rake MG-2',
+      description: language === 'ua' ? 'Пошукове магнітне пристосування МГ-2 для обстеження місця вибуху та збору осколків.' : 'Search magnetic tool MG-2 for inspecting an explosion site and collecting fragments.',
       price: "",
       imageBase64: "/rake-1/rake-02.png"
     }
