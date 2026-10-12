@@ -4,7 +4,7 @@ import { AdminLayout } from '../components/AdminLayout';
 import { db, storage } from '../firebase';
 import { doc, getDoc, updateDoc, serverTimestamp } from 'firebase/firestore';
 import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from 'firebase/storage';
-import { FirestoreProduct } from '../services/productService';
+import { FirestoreProduct, DAMINER_CATEGORIES, getCategorySlug } from '../services/productService';
 import { 
   FirestoreProductSpecification, 
   FirestoreProductKitItem 
@@ -49,6 +49,7 @@ export const AdminProductEdit = () => {
   // Section 1: Основна інформація
   const [nameUa, setNameUa] = useState<string>('');
   const [nameEn, setNameEn] = useState<string>('');
+  const [category, setCategory] = useState<string>('Щупи');
 
   // Section 2: Короткий опис
   const [shortDescriptionUa, setShortDescriptionUa] = useState<string>('');
@@ -111,6 +112,7 @@ export const AdminProductEdit = () => {
         // Load existing values without modifications or auto-translations
         setNameUa(loadedProduct.nameUa || '');
         setNameEn(loadedProduct.nameEn || '');
+        setCategory(loadedProduct.category || 'Щупи');
         setShortDescriptionUa(loadedProduct.shortDescriptionUa || '');
         setShortDescriptionEn(loadedProduct.shortDescriptionEn || '');
         setDescriptionUa(loadedProduct.descriptionUa || '');
@@ -511,6 +513,8 @@ export const AdminProductEdit = () => {
     try {
       // STRICT REQUIREMENT: update ONLY the allowed editable fields + updatedAt
       const updatePayload = {
+        category: category,
+        categorySlug: getCategorySlug(category),
         nameUa: nameUa.trim(),
         nameEn: nameEn.trim(),
         shortDescriptionUa: shortDescriptionUa.trim(),
@@ -635,7 +639,7 @@ export const AdminProductEdit = () => {
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="text-xs font-semibold uppercase px-2.5 py-0.5 rounded bg-blue-50 text-primary-blue border border-blue-100">
-                    {product.category}
+                    {category || product.category}
                   </span>
                   <span className="text-xs font-mono text-gray-400">ID: {product.id}</span>
                 </div>
@@ -659,7 +663,26 @@ export const AdminProductEdit = () => {
               </h3>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div>
+                <label className="block text-sm font-semibold text-[#0A192F] mb-2">
+                  Категорія <span className="text-red-500">*</span>
+                </label>
+                <select
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  className="w-full px-4 py-2.5 bg-white border border-gray-300 rounded-lg text-sm text-[#0A192F] focus:ring-2 focus:ring-primary-blue focus:border-primary-blue outline-none transition-colors"
+                  required
+                >
+                  {DAMINER_CATEGORIES.map((cat) => (
+                    <option key={cat} value={cat}>
+                      {cat}
+                    </option>
+                  ))}
+                </select>
+                <p className="text-xs text-gray-400 mt-1">Оберіть одну з 5 офіційних категорій</p>
+              </div>
+
               <div>
                 <label className="block text-sm font-semibold text-[#0A192F] mb-2">
                   Назва товару (UA) <span className="text-red-500">*</span>

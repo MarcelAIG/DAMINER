@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { importCurrentCatalogToFirestore, MigrationProgress, MigrationResult } from '../services/seedMigration';
 import { getFirestoreProducts, calculateProductStats, ProductStats } from '../services/productService';
+import { getFirestoreCategoriesCount } from '../services/categoryService';
 
 export const AdminDashboard = () => {
   const [isImporting, setIsImporting] = useState(false);
@@ -23,13 +24,18 @@ export const AdminDashboard = () => {
   const [result, setResult] = useState<MigrationResult | null>(null);
 
   const [stats, setStats] = useState<ProductStats>({ total: 0, published: 0, drafts: 0 });
+  const [categoriesCount, setCategoriesCount] = useState<number>(0);
   const [isLoadingStats, setIsLoadingStats] = useState<boolean>(true);
 
   const loadStats = async () => {
     setIsLoadingStats(true);
     try {
-      const products = await getFirestoreProducts();
+      const [products, catCount] = await Promise.all([
+        getFirestoreProducts(),
+        getFirestoreCategoriesCount(),
+      ]);
       setStats(calculateProductStats(products));
+      setCategoriesCount(catCount);
     } catch (err: unknown) {
       console.error('Помилка завантаження статистики Firestore:', err);
     } finally {
@@ -107,8 +113,14 @@ export const AdminDashboard = () => {
               <Layers className="w-5 h-5 text-indigo-500" />
             </div>
           </div>
-          <div className="text-3xl font-bold text-[#0A192F] mb-1">5</div>
-          <div className="text-sm text-gray-500">Категорій товарів</div>
+          {isLoadingStats ? (
+            <div className="h-9 flex items-center mb-1">
+              <Loader2 className="w-6 h-6 animate-spin text-indigo-500" />
+            </div>
+          ) : (
+            <div className="text-3xl font-bold text-[#0A192F] mb-1">{categoriesCount}</div>
+          )}
+          <div className="text-sm text-gray-500">Категорій у Firestore</div>
         </div>
 
         <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">

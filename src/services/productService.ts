@@ -49,3 +49,44 @@ export function calculateProductStats(products: FirestoreProduct[]): ProductStat
 
   return { total, published, drafts };
 }
+
+/**
+ * Canonical DAMINER categories
+ */
+export const DAMINER_CATEGORIES = [
+  'Щупи',
+  'Дзеркала',
+  'Набори',
+  'Сіткомети протидронові',
+  'Саперні пристосування',
+] as const;
+
+export type DaminerCategory = (typeof DAMINER_CATEGORIES)[number];
+
+export function getCategorySlug(category: string): string {
+  switch (category) {
+    case 'Щупи':
+      return 'probes';
+    case 'Дзеркала':
+      return 'mirrors';
+    case 'Набори':
+      return 'kits';
+    case 'Сіткомети протидронові':
+      return 'nets';
+    case 'Саперні пристосування':
+    default:
+      return 'tools';
+  }
+}
+
+/**
+ * Returns the next available sortOrder after the current highest sortOrder
+ */
+export async function getNextSortOrder(): Promise<number> {
+  const products = await getFirestoreProducts();
+  const maxSortOrder = products.reduce((max, p) => {
+    return typeof p.sortOrder === 'number' && p.sortOrder > max ? p.sortOrder : max;
+  }, 0);
+  return maxSortOrder + 1;
+}
+

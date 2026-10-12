@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { AdminLayout } from '../components/AdminLayout';
-import { Edit, Package, RefreshCw, AlertCircle, Loader2 } from 'lucide-react';
+import { Edit, Package, RefreshCw, AlertCircle, Loader2, CheckCircle2, X } from 'lucide-react';
 import { getFirestoreProducts, FirestoreProduct } from '../services/productService';
 
 export const AdminProducts = () => {
+  const location = useLocation();
   const [products, setProducts] = useState<FirestoreProduct[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [flashMessage, setFlashMessage] = useState<string | null>(
+    (location.state as { successMessage?: string } | null)?.successMessage || null
+  );
 
   const loadProducts = async () => {
     setIsLoading(true);
@@ -75,6 +79,24 @@ export const AdminProducts = () => {
           </Link>
         </div>
       </div>
+
+      {/* Success notification from new product creation */}
+      {flashMessage && (
+        <div className="mb-6 p-4 bg-emerald-50 border border-emerald-200 rounded-xl flex items-center justify-between text-emerald-800 animate-fadeIn">
+          <div className="flex items-center gap-3">
+            <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+            <span className="text-sm font-medium">{flashMessage}</span>
+          </div>
+          <button 
+            type="button"
+            onClick={() => setFlashMessage(null)}
+            className="text-emerald-700 hover:text-emerald-900 p-1 rounded-md hover:bg-emerald-100 transition-colors"
+            title="Закрити"
+          >
+            <X className="w-4 h-4" />
+          </button>
+        </div>
+      )}
 
       {/* Error state */}
       {error && (
