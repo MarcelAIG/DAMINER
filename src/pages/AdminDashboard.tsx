@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AdminLayout } from '../components/AdminLayout';
 import { 
@@ -15,11 +15,31 @@ import {
   CheckCircle
 } from 'lucide-react';
 import { importCurrentCatalogToFirestore, MigrationProgress, MigrationResult } from '../services/seedMigration';
+import { getFirestoreProducts, calculateProductStats, ProductStats } from '../services/productService';
 
 export const AdminDashboard = () => {
   const [isImporting, setIsImporting] = useState(false);
   const [progress, setProgress] = useState<MigrationProgress | null>(null);
   const [result, setResult] = useState<MigrationResult | null>(null);
+
+  const [stats, setStats] = useState<ProductStats>({ total: 0, published: 0, drafts: 0 });
+  const [isLoadingStats, setIsLoadingStats] = useState<boolean>(true);
+
+  const loadStats = async () => {
+    setIsLoadingStats(true);
+    try {
+      const products = await getFirestoreProducts();
+      setStats(calculateProductStats(products));
+    } catch (err: unknown) {
+      console.error('Помилка завантаження статистики Firestore:', err);
+    } finally {
+      setIsLoadingStats(false);
+    }
+  };
+
+  useEffect(() => {
+    loadStats();
+  }, []);
 
   const handleStartImport = async () => {
     // 1. show confirmation
@@ -39,6 +59,8 @@ export const AdminDashboard = () => {
       });
       // 4. show final result (imported count, skipped count, errors)
       setResult(migrationResult);
+      // Refresh dashboard counters from Firestore
+      await loadStats();
     } catch (err: unknown) {
       setResult({
         total: 32,
@@ -68,7 +90,13 @@ export const AdminDashboard = () => {
               <Package className="w-5 h-5 text-primary-blue" />
             </div>
           </div>
-          <div className="text-3xl font-bold text-[#0A192F] mb-1">17</div>
+          {isLoadingStats ? (
+            <div className="h-9 flex items-center mb-1">
+              <Loader2 className="w-6 h-6 animate-spin text-primary-blue" />
+            </div>
+          ) : (
+            <div className="text-3xl font-bold text-[#0A192F] mb-1">{stats.total}</div>
+          )}
           <div className="text-sm text-gray-500">Товарів у каталозі</div>
         </div>
 
@@ -90,7 +118,13 @@ export const AdminDashboard = () => {
               <CheckCircle2 className="w-5 h-5 text-green-500" />
             </div>
           </div>
-          <div className="text-3xl font-bold text-[#0A192F] mb-1">17</div>
+          {isLoadingStats ? (
+            <div className="h-9 flex items-center mb-1">
+              <Loader2 className="w-6 h-6 animate-spin text-green-500" />
+            </div>
+          ) : (
+            <div className="text-3xl font-bold text-[#0A192F] mb-1">{stats.published}</div>
+          )}
           <div className="text-sm text-gray-500">Активних товарів</div>
         </div>
 
@@ -101,7 +135,13 @@ export const AdminDashboard = () => {
               <FileText className="w-5 h-5 text-amber-500" />
             </div>
           </div>
-          <div className="text-3xl font-bold text-[#0A192F] mb-1">0</div>
+          {isLoadingStats ? (
+            <div className="h-9 flex items-center mb-1">
+              <Loader2 className="w-6 h-6 animate-spin text-amber-500" />
+            </div>
+          ) : (
+            <div className="text-3xl font-bold text-[#0A192F] mb-1">{stats.drafts}</div>
+          )}
           <div className="text-sm text-gray-500">Неопублікованих товарів</div>
         </div>
       </div>
