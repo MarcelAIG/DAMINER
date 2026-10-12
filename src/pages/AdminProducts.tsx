@@ -29,7 +29,15 @@ export const AdminProducts = () => {
 
   const formatPrice = (product: FirestoreProduct) => {
     if (product.priceMode === 'from' && product.priceAmount) {
-      return `Від ${product.priceAmount}`;
+      const clean = product.priceAmount.trim();
+      if (clean.toLowerCase().includes('грн')) {
+        return `Від ${clean}`;
+      }
+      const num = clean.replace(/\s+/g, '');
+      if (!isNaN(Number(num)) && num.length > 0) {
+        return `Від ${Number(num).toLocaleString('uk-UA')} грн`;
+      }
+      return `Від ${clean}`;
     }
     return 'За запитом';
   };
@@ -198,13 +206,13 @@ export const AdminProducts = () => {
                     {/* Actions: Edit button/icon */}
                     <td className="p-4 text-right">
                       <div className="flex items-center justify-end gap-1">
-                        <button 
-                          type="button"
-                          className="p-2 text-gray-400 hover:text-primary-blue transition-colors rounded-lg hover:bg-blue-50"
+                        <Link 
+                          to={`/admin/products/${product.id}/edit`}
+                          className="p-2 text-gray-400 hover:text-primary-blue transition-colors rounded-lg hover:bg-blue-50 inline-flex items-center justify-center"
                           title="Редагувати товар"
                         >
                           <Edit className="w-4 h-4" />
-                        </button>
+                        </Link>
                       </div>
                     </td>
                   </tr>

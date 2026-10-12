@@ -26,6 +26,7 @@ import { AdminLogin } from './pages/AdminLogin';
 import { AdminDashboard } from './pages/AdminDashboard';
 import { AdminProducts } from './pages/AdminProducts';
 import { AdminProductNew } from './pages/AdminProductNew';
+import { AdminProductEdit } from './pages/AdminProductEdit';
 import { AdminCategories } from './pages/AdminCategories';
 import { AdminSettings } from './pages/AdminSettings';
 import { ProtectedRoute } from './components/ProtectedRoute';
@@ -59,6 +60,7 @@ function AppContent() {
           <Route path="/admin/dashboard" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
           <Route path="/admin/products" element={<ProtectedRoute><AdminProducts /></ProtectedRoute>} />
           <Route path="/admin/products/new" element={<ProtectedRoute><AdminProductNew /></ProtectedRoute>} />
+          <Route path="/admin/products/:id/edit" element={<ProtectedRoute><AdminProductEdit /></ProtectedRoute>} />
           <Route path="/admin/categories" element={<ProtectedRoute><AdminCategories /></ProtectedRoute>} />
           <Route path="/admin/settings" element={<ProtectedRoute><AdminSettings /></ProtectedRoute>} />
         </Routes>
