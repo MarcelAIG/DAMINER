@@ -2,17 +2,20 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { useRequest } from '../context/RequestContext';
+import { ProductItem } from '../types/product';
+import { formatCardPrice } from '../utils/price';
 
 export function NetsCategory() {
   const { t, language } = useLanguage();
   const { addItem } = useRequest();
   
-  const itemsToRender = [
+  const itemsToRender: ProductItem[] = [
     {
       id: "net-1",
       model: language === 'ua' ? 'СМ-1 «СТРИЖ»' : 'SM-1 "STRYZH"',
       description: language === 'ua' ? "Механічна система протидії FPV та безпілотним літальним апаратам, розроблена для використання у бойових умовах." : "Mechanical system for countering FPV and unmanned aerial vehicles, designed for use in combat conditions.",
       price: "",
+      priceMode: "request",
       imageBase64: "/Сіткомети протидронові/net-main.png"
     }
   ];
@@ -59,7 +62,7 @@ export function NetsCategory() {
                 </h3>
                 <div className="text-right">
                   <span className="block font-body text-[10px] text-cool-gray uppercase tracking-widest mb-0.5">{language === 'ua' ? 'Ціна' : 'Price'}</span>
-                  <span className="block font-heading text-[12px] font-bold text-dark-navy tracking-wide uppercase whitespace-nowrap">{language === 'ua' ? 'За запитом' : 'On request'}</span>
+                  <span className="block font-heading text-[12px] font-bold text-dark-navy tracking-wide uppercase whitespace-nowrap">{formatCardPrice(product, language)}</span>
                 </div>
               </div>
               

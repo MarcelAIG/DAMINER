@@ -3,17 +3,20 @@ import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { useRequest } from '../context/RequestContext';
+import { ProductItem } from '../types/product';
+import { formatCardPrice } from '../utils/price';
 
 export function KitsCategory() {
   const { t, language } = useLanguage();
   const { addItem } = useRequest();
   
-  const itemsToRender = [
+  const itemsToRender: ProductItem[] = [
     {
       id: "k1",
       model: language === 'ua' ? "ЕОД-1" : "EOD-1",
       description: language === 'ua' ? "Комплексний набір для пошуку та знешкодження вибухонебезпечних предметів із кріпленням системи MOLLE та ременем для перенесення." : "Comprehensive kit for finding and neutralizing explosive ordnance, featuring a MOLLE attachment system and a carrying strap.",
       price: "",
+      priceMode: "request",
       imageBase64: "/ЕОД-1/ChatGPT Image Aug 29, 2026, 02_49_42 PM.png"
     },
     {
@@ -21,6 +24,7 @@ export function KitsCategory() {
       model: language === 'ua' ? "ЕОД-1МН" : "EOD-1MN",
       description: language === 'ua' ? "Спеціальний набір для пошуку та знешкодження вибухонебезпечних предметів зі зручним кріпленням та фіксацією до ноги." : "Special kit for finding and neutralizing explosive items, featuring convenient attachment and leg fixation.",
       price: "",
+      priceMode: "request",
       imageBase64: "/ЕОД-1МН/ChatGPT Image Aug 29, 2026, 03_25_05 PM.png"
     },
     {
@@ -28,6 +32,7 @@ export function KitsCategory() {
       model: language === 'ua' ? "КР-04" : "KR-04",
       description: language === 'ua' ? "Індивідуальний набір для технічного забезпечення саперів ЗСУ під час пошуку, знешкодження та знищення мін і фугасів." : "Individual kit for the technical support of Armed Forces sappers during the search, neutralization, and destruction of mines and fougasses.",
       price: "",
+      priceMode: "request",
       imageBase64: "/КР-04/ChatGPT Image Aug 29, 2026, 03_58_47 PM.png"
     },
     {
@@ -35,6 +40,7 @@ export function KitsCategory() {
       model: language === 'ua' ? "КР-06" : "KR-06",
       description: language === 'ua' ? "Набір сапера, що розміщується на ремінно-плечовій системі в спеціальних підсумках за допомогою кріплення MOLLE." : "Sapper kit that is placed on a belt-shoulder system in special pouches using a MOLLE attachment.",
       price: "",
+      priceMode: "request",
       imageBase64: "/КР-06/ChatGPT Image Sep 19, 2026, 08_52_30 PM.png"
     }
   ];
@@ -81,7 +87,7 @@ export function KitsCategory() {
                 </h3>
                 <div className="text-right">
                   <span className="block font-body text-[10px] text-cool-gray uppercase tracking-widest mb-0.5">{language === 'ua' ? 'Ціна' : 'Price'}</span>
-                  <span className="block font-heading text-[12px] font-bold text-dark-navy tracking-wide uppercase whitespace-nowrap">{language === 'ua' ? 'За запитом' : 'On request'}</span>
+                  <span className="block font-heading text-[12px] font-bold text-dark-navy tracking-wide uppercase whitespace-nowrap">{formatCardPrice(product, language)}</span>
                 </div>
               </div>
               

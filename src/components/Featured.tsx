@@ -3,17 +3,20 @@ import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { useRequest } from '../context/RequestContext';
+import { ProductItem } from '../types/product';
+import { formatCardPrice } from '../utils/price';
 
 export function Featured() {
   const { t, language } = useLanguage();
   const { addItem } = useRequest();
   
-  const itemsToRender = [
+  const itemsToRender: ProductItem[] = [
     {
       id: "1",
       model: t.featured.model1,
       description: t.featured.desc1,
       price: "",
+      priceMode: "request",
       imageBase64: "/ЩР-1/ChatGPT Image Aug 28, 2026, 09_53_09 PM.png"
     },
     {
@@ -21,6 +24,7 @@ export function Featured() {
       model: t.featured.model2,
       description: t.featured.desc2,
       price: "",
+      priceMode: "request",
       imageBase64: "/ЩР-3:2 /ChatGPT Image Aug 28, 2026, 10_41_22 PM.png"
     },
     {
@@ -28,6 +32,7 @@ export function Featured() {
       model: t.featured.model3,
       description: t.featured.desc3,
       price: "",
+      priceMode: "request",
       imageBase64: "/ЩР-8/ChatGPT Image Aug 28, 2026, 11_15_16 PM.png"
     }
   ];
@@ -74,7 +79,7 @@ export function Featured() {
                 </h3>
                 <div className="text-right">
                   <span className="block font-body text-[10px] text-cool-gray uppercase tracking-widest mb-0.5">{language === 'ua' ? 'Ціна' : 'Price'}</span>
-                  <span className="block font-heading text-[12px] font-bold text-dark-navy tracking-wide uppercase whitespace-nowrap">{language === 'ua' ? 'За запитом' : 'On request'}</span>
+                  <span className="block font-heading text-[12px] font-bold text-dark-navy tracking-wide uppercase whitespace-nowrap">{formatCardPrice(product, language)}</span>
                 </div>
               </div>
               

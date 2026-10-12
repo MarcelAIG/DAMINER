@@ -3,16 +3,19 @@ import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { useRequest } from '../context/RequestContext';
+import { ProductItem } from '../types/product';
+import { formatCardPrice } from '../utils/price';
 
 export function MirrorsCategory() {
   const { t, language } = useLanguage();
   const { addItem } = useRequest();
-  const itemsToRender = [
+  const itemsToRender: ProductItem[] = [
     {
       id: "m1",
       model: language === 'ua' ? "ЗД-1" : "ZD-1",
       description: language === 'ua' ? "Дзеркало з розсувною штангою та освітлювачем для огляду приміщень, транспортних засобів, спортивних споруд." : "Mirror with an extendable rod and illuminator for inspecting premises, vehicles, and sports facilities.",
       price: "",
+      priceMode: "request",
       imageBase64: "/ЗД-1/ChatGPT Image Aug 29, 2026, 12_04_13 AM (1).png"
     },
     {
@@ -20,6 +23,7 @@ export function MirrorsCategory() {
       model: language === 'ua' ? "ЗД-2Д" : "ZD-2D",
       description: language === 'ua' ? "Набір дзеркал з розсувною штангою та освітлювачем для пошуку зброї, вибухонебезпечних предметів, контрабанди." : "Mirror set with an extendable rod and illuminator for searching weapons, explosive items, and contraband.",
       price: "",
+      priceMode: "request",
       imageBase64: "/ЗД-2Д\"/ChatGPT Image Aug 29, 2026, 01_20_44 PM.png"
     },
     {
@@ -27,6 +31,7 @@ export function MirrorsCategory() {
       model: language === 'ua' ? "ЗД-2У" : "ZD-2U",
       description: language === 'ua' ? "Набір дзеркал, що може використовуватися працівниками вибухотехнічних служб, служб охорони та митниці." : "Mirror set that can be used by explosive ordnance disposal units, security, and customs services.",
       price: "",
+      priceMode: "request",
       imageBase64: "/ЗД-2У/ChatGPT Image Aug 29, 2026, 01_29_49 PM.png"
     },
     {
@@ -34,6 +39,7 @@ export function MirrorsCategory() {
       model: language === 'ua' ? "ЗД-3" : "ZD-3",
       description: language === 'ua' ? 'Оглядове дзеркало ЗД-3 для огляду днищ автотранспортних засобів, оснащене колесами та світлодіодним ліхтарем.' : 'Inspection mirror ZD-3 for inspecting the undercarriage of vehicles, equipped with wheels and an LED flashlight.',
       price: "",
+      priceMode: "request",
       imageBase64: "/ЗД-3/ChatGPT Image Aug 29, 2026, 01_57_21 PM.png"
     },
     {
@@ -41,6 +47,7 @@ export function MirrorsCategory() {
       model: language === 'ua' ? "ЗД-4" : "ZD-4",
       description: language === 'ua' ? 'Оглядове дзеркало ЗД-4 для огляду днищ автотранспортних засобів, оснащене колесами та акумуляторним світлодіодним ліхтарем.' : 'Inspection mirror ZD-4 for inspecting the undercarriage of vehicles, equipped with wheels and a rechargeable LED flashlight.',
       price: "",
+      priceMode: "request",
       imageBase64: "/ЗД-4/ChatGPT Image Aug 29, 2026, 02_13_09 PM.png"
     }
   ];
@@ -87,7 +94,7 @@ export function MirrorsCategory() {
                 </h3>
                 <div className="text-right">
                   <span className="block font-body text-[10px] text-cool-gray uppercase tracking-widest mb-0.5">{language === 'ua' ? 'Ціна' : 'Price'}</span>
-                  <span className="block font-heading text-[12px] font-bold text-dark-navy tracking-wide uppercase whitespace-nowrap">{language === 'ua' ? 'За запитом' : 'On request'}</span>
+                  <span className="block font-heading text-[12px] font-bold text-dark-navy tracking-wide uppercase whitespace-nowrap">{formatCardPrice(product, language)}</span>
                 </div>
               </div>
               

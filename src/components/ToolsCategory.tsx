@@ -2,12 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { useRequest } from '../context/RequestContext';
+import { ProductItem } from '../types/product';
+import { formatCardPrice } from '../utils/price';
 
 export function ToolsCategory() {
   const { t, language } = useLanguage();
   const { addItem } = useRequest();
   
-  const itemsToRender = [
+  const itemsToRender: ProductItem[] = [
     {
       id: "tool-1",
       model: language === 'ua' ? 'Електричний кабель на барабані' : 'Electric Cable on Reel',
@@ -133,6 +135,13 @@ export function ToolsCategory() {
       description: '',
       price: "",
       imageBase64: "/Міни/IMG_5377.PNG"
+    },
+    {
+      id: "tool-19",
+      model: language === 'ua' ? 'Паракорди різної довжини' : 'Paracords of various lengths',
+      description: '',
+      price: "",
+      imageBase64: "/paracord-lengths/IMG_5389.PNG"
     }
   ];
 
@@ -181,13 +190,14 @@ export function ToolsCategory() {
                 <h3 className={`font-heading font-black text-dark-navy tracking-tight transition-colors duration-300 pr-4 ${
                   product.id === 'tool-1' ? 'text-2xl lg:text-3xl' : 
                   product.id === 'tool-9' ? 'text-lg lg:text-xl xl:text-2xl' : 
+                  product.id === 'tool-19' ? 'text-2xl lg:text-3xl' : 
                   'text-3xl lg:text-4xl'
                 }`}>
                   {product.model}
                 </h3>
                 <div className="text-right">
                   <span className="block font-body text-[10px] text-cool-gray uppercase tracking-widest mb-0.5">{language === 'ua' ? 'Ціна' : 'Price'}</span>
-                  <span className="block font-heading text-[12px] font-bold text-dark-navy tracking-wide uppercase whitespace-nowrap">{language === 'ua' ? 'За запитом' : 'On request'}</span>
+                  <span className="block font-heading text-[12px] font-bold text-dark-navy tracking-wide uppercase whitespace-nowrap">{formatCardPrice(product, language)}</span>
                 </div>
               </div>
               
