@@ -473,6 +473,7 @@ export const AdminProductEdit = () => {
         setTimeout(() => setUploadSuccess(null), 2500);
       } catch (err: unknown) {
         console.error('Помилка зміни порядку зображень:', err);
+        setUploadError(err instanceof Error ? err.message : 'Помилка при збереженні порядку зображень');
       }
     }
   };
@@ -506,6 +507,18 @@ export const AdminProductEdit = () => {
       return;
     }
 
+    if (images.length === 0) {
+      setError('Товар повинен містити хоча б одне зображення.');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (priceMode === 'from' && !priceAmount.trim()) {
+      setError('Для режиму ціни "Від" необхідно вказати суму (priceAmount).');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
     setSaving(true);
     setError(null);
     setSuccessMessage(null);
@@ -514,7 +527,10 @@ export const AdminProductEdit = () => {
       // STRICT REQUIREMENT: update ONLY the allowed editable fields + updatedAt
       const updatePayload = {
         category: category,
-        categorySlug: getCategorySlug(category),
+        categorySlug:
+          product && category === product.category && product.categorySlug
+            ? product.categorySlug
+            : getCategorySlug(category),
         nameUa: nameUa.trim(),
         nameEn: nameEn.trim(),
         shortDescriptionUa: shortDescriptionUa.trim(),
@@ -674,6 +690,9 @@ export const AdminProductEdit = () => {
                   className="w-full px-4 py-2.5 bg-white border border-gray-300 rounded-lg text-sm text-[#0A192F] focus:ring-2 focus:ring-primary-blue focus:border-primary-blue outline-none transition-colors"
                   required
                 >
+                  {category && !(DAMINER_CATEGORIES as readonly string[]).includes(category) && (
+                    <option value={category}>{category}</option>
+                  )}
                   {DAMINER_CATEGORIES.map((cat) => (
                     <option key={cat} value={cat}>
                       {cat}
@@ -1081,7 +1100,7 @@ export const AdminProductEdit = () => {
             {priceMode === 'from' && (
               <div className="mb-6 p-5 bg-gray-50/70 border border-gray-200 rounded-xl space-y-2">
                 <label htmlFor="priceAmount" className="block text-sm font-semibold text-[#0A192F]">
-                  Сума або значення (priceAmount)
+                  Сума або значення (priceAmount) <span className="text-red-500">*</span>
                 </label>
                 <div className="max-w-md">
                   <input
@@ -1091,6 +1110,7 @@ export const AdminProductEdit = () => {
                     onChange={(e) => setPriceAmount(e.target.value)}
                     placeholder="2500"
                     className="w-full px-4 py-2.5 bg-white border border-gray-300 rounded-lg text-sm text-[#0A192F] focus:ring-2 focus:ring-primary-blue focus:border-primary-blue outline-none transition-colors"
+                    required={priceMode === 'from'}
                   />
                 </div>
                 <p className="text-xs text-gray-500">

@@ -24,9 +24,11 @@ import {
   EMPTY_GENERAL_SETTINGS,
   GENERAL_SETTINGS_KEYS,
   getGeneralSettings,
-  createInitialGeneralSettings,
   updateGeneralSettings,
 } from '../services/settingsService';
+
+// NOTE: Initial creation of settings/general (createInitialGeneralSettings in
+// services/settingsService.ts) is intentionally NOT exposed in the admin UI.
 
 type FieldKey = keyof GeneralSettingsFields;
 
@@ -117,7 +119,6 @@ export const AdminSettings = () => {
   const [updatedAt, setUpdatedAt] = useState<unknown>(null);
 
   const [isSaving, setIsSaving] = useState<boolean>(false);
-  const [isCreating, setIsCreating] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
@@ -163,25 +164,6 @@ export const AdminSettings = () => {
   const handleReset = () => {
     setForm(original);
     setError(null);
-  };
-
-  const handleCreateInitial = async () => {
-    setIsCreating(true);
-    setError(null);
-    setSuccessMessage(null);
-    try {
-      await createInitialGeneralSettings();
-      await loadSettings();
-      setSuccessMessage('Початкові налаштування успішно створено у settings/general.');
-      setTimeout(() => setSuccessMessage(null), 4000);
-    } catch (err: unknown) {
-      console.error('Помилка створення початкових налаштувань:', err);
-      setError(err instanceof Error ? err.message : 'Не вдалося створити початкові налаштування');
-      // Re-sync state in case the document was created elsewhere in the meantime
-      await loadSettings();
-    } finally {
-      setIsCreating(false);
-    }
   };
 
   const handleSave = async (e: React.FormEvent) => {
@@ -285,49 +267,18 @@ export const AdminSettings = () => {
         </div>
       )}
 
-      {/* Missing Document — DEV ONLY initialization */}
+      {/* Missing Document — informational only (no creation controls exposed to the client) */}
       {!isLoading && exists === false && (
-        <div className="mb-8 bg-white rounded-xl border-2 border-dashed border-indigo-200 p-8 md:p-12 text-center">
+        <div className="mb-8 bg-white rounded-xl border-2 border-dashed border-gray-200 p-8 md:p-12 text-center">
           <div className="w-14 h-14 rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-600 mx-auto mb-4">
             <Database className="w-7 h-7" />
           </div>
           <h3 className="text-xl font-bold font-heading text-[#0A192F] mb-2">
-            Документ налаштувань відсутній
+            Налаштування ще не створені
           </h3>
-          <p className="text-sm text-gray-500 max-w-lg mx-auto mb-6">
-            Документ <code className="font-mono text-gray-700 bg-gray-100 px-1 py-0.5 rounded">settings/general</code>{' '}
-            ще не створено у Firestore.
+          <p className="text-sm text-gray-500 max-w-lg mx-auto">
+            Документ глобальних налаштувань відсутній у базі даних. Зверніться до розробника.
           </p>
-
-          {import.meta.env.DEV ? (
-            <>
-              <button
-                type="button"
-                onClick={handleCreateInitial}
-                disabled={isCreating}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary-blue text-white font-semibold text-sm hover:bg-blue-700 transition-all shadow-sm disabled:opacity-50"
-              >
-                {isCreating ? (
-                  <>
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    <span>Створення...</span>
-                  </>
-                ) : (
-                  <>
-                    <Database className="w-4 h-4" />
-                    <span>Створити початкові налаштування</span>
-                  </>
-                )}
-              </button>
-              <div className="text-[11px] text-gray-400 mt-3">
-                DEV ONLY • Використовує лише підтверджені значення • Не перезаписує існуючий документ
-              </div>
-            </>
-          ) : (
-            <p className="text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-lg inline-block px-4 py-2">
-              Ініціалізація доступна лише у режимі розробки.
-            </p>
-          )}
         </div>
       )}
 

@@ -2,11 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { AdminLayout } from '../components/AdminLayout';
 import { 
   getFirestoreCategories, 
-  importInitialCategories, 
   createFirestoreCategory, 
   updateFirestoreCategory,
-  FirestoreCategory,
-  CategoryImportResult
+  FirestoreCategory
 } from '../services/categoryService';
 import { 
   Edit, 
@@ -15,27 +13,23 @@ import {
   AlertCircle, 
   CheckCircle2, 
   Loader2, 
-  Database, 
   Layers, 
   Lock, 
   X, 
   Check, 
-  Eye, 
-  EyeOff,
-  AlertTriangle
+  EyeOff
 } from 'lucide-react';
 import { collection, doc } from 'firebase/firestore';
 import { db } from '../firebase';
+
+// NOTE: The initial 5-category import (importInitialCategories in services/categoryService.ts)
+// is intentionally NOT exposed in the admin UI. The source is kept for development use only.
 
 export const AdminCategories = () => {
   const [categories, setCategories] = useState<FirestoreCategory[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
-
-  // Import state
-  const [isImporting, setIsImporting] = useState<boolean>(false);
-  const [importResult, setImportResult] = useState<CategoryImportResult | null>(null);
 
   // Edit Modal State
   const [editingCategory, setEditingCategory] = useState<FirestoreCategory | null>(null);
@@ -73,27 +67,6 @@ export const AdminCategories = () => {
   useEffect(() => {
     loadCategories();
   }, []);
-
-  // TASK 1: Initial Import
-  const handleImportInitial = async () => {
-    setIsImporting(true);
-    setImportResult(null);
-    setError(null);
-    try {
-      const result = await importInitialCategories();
-      setImportResult(result);
-      await loadCategories();
-      if (result.imported > 0) {
-        setSuccessMessage(`Успішно імпортовано ${result.imported} категорій у Firestore!`);
-        setTimeout(() => setSuccessMessage(null), 4000);
-      }
-    } catch (err: unknown) {
-      console.error('Помилка імпорту категорій:', err);
-      setError(err instanceof Error ? err.message : 'Помилка при імпорті категорій');
-    } finally {
-      setIsImporting(false);
-    }
-  };
 
   // Open Edit Modal
   const handleOpenEdit = (category: FirestoreCategory) => {
@@ -261,87 +234,19 @@ export const AdminCategories = () => {
         </div>
       )}
 
-      {/* Import Result Notification */}
-      {importResult && (
-        <div className="mb-6 p-5 bg-blue-50/70 border border-blue-200 rounded-xl">
-          <div className="flex items-center justify-between mb-3">
-            <div className="flex items-center gap-2">
-              <Database className="w-5 h-5 text-primary-blue" />
-              <h4 className="font-bold text-sm text-[#0A192F]">Результат імпорту категорій:</h4>
-            </div>
-            <button
-              type="button"
-              onClick={() => setImportResult(null)}
-              className="text-gray-400 hover:text-gray-600 p-1 rounded"
-            >
-              <X className="w-4 h-4" />
-            </button>
-          </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs mb-2">
-            <div className="p-3 bg-white rounded-lg border border-blue-100">
-              <span className="text-gray-500 block mb-0.5">Створено нових:</span>
-              <strong className="text-emerald-700 text-lg">{importResult.imported}</strong>
-            </div>
-            <div className="p-3 bg-white rounded-lg border border-blue-100">
-              <span className="text-gray-500 block mb-0.5">Пропущено (вже були):</span>
-              <strong className="text-amber-700 text-lg">{importResult.skipped}</strong>
-            </div>
-            <div className="p-3 bg-white rounded-lg border border-blue-100">
-              <span className="text-gray-500 block mb-0.5">Помилки:</span>
-              <strong className="text-red-700 text-lg">{importResult.errors.length}</strong>
-            </div>
-          </div>
-
-          {importResult.errors.length > 0 && (
-            <div className="mt-2 text-xs text-red-700 bg-red-50 p-3 rounded-lg border border-red-200">
-              {importResult.errors.map((e, idx) => (
-                <div key={idx}>• {e}</div>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* TASK 1: Empty State with DEV ONLY Initial Import Button */}
+      {/* Empty State (no import controls exposed to the client) */}
       {!isLoading && !error && categories.length === 0 && (
-        <div className="mb-8 bg-white rounded-xl border-2 border-dashed border-indigo-200 p-8 md:p-12 text-center">
+        <div className="mb-8 bg-white rounded-xl border-2 border-dashed border-gray-200 p-8 md:p-12 text-center">
           <div className="w-14 h-14 rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-600 mx-auto mb-4">
-            <Database className="w-7 h-7" />
+            <Layers className="w-7 h-7" />
           </div>
           <h3 className="text-xl font-bold font-heading text-[#0A192F] mb-2">
-            Категорії відсутні у Firestore
+            Категорії відсутні
           </h3>
-          <p className="text-sm text-gray-500 max-w-lg mx-auto mb-6">
-            Колекція <code className="font-mono text-gray-700 bg-gray-100 px-1 py-0.5 rounded">categories</code> порожня. 
-            Виконайте безпечний початковий імпорт 5 канонічних категорій DAMINER зі стабільними ID:
-            <br />
-            <span className="font-mono text-xs text-gray-600 mt-2 block">
-              probes, mirrors, kits, nets, tools
-            </span>
+          <p className="text-sm text-gray-500 max-w-lg mx-auto">
+            У базі даних ще немає жодної категорії. Натисніть «Додати категорію», щоб створити нову,
+            або зверніться до розробника, якщо категорії мали бути тут.
           </p>
-
-          <button
-            type="button"
-            onClick={handleImportInitial}
-            disabled={isImporting}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary-blue text-white font-semibold text-sm hover:bg-blue-700 transition-all shadow-sm disabled:opacity-50"
-          >
-            {isImporting ? (
-              <>
-                <Loader2 className="w-4 h-4 animate-spin" />
-                <span>Імпортування...</span>
-              </>
-            ) : (
-              <>
-                <Database className="w-4 h-4" />
-                <span>Імпортувати 5 категорій</span>
-              </>
-            )}
-          </button>
-          <div className="text-[11px] text-gray-400 mt-3">
-            DEV ONLY • Не перезаписує існуючі документи
-          </div>
         </div>
       )}
 

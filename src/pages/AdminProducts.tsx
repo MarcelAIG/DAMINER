@@ -151,13 +151,13 @@ export const AdminProducts = () => {
                       <Package className="w-10 h-10 text-gray-300 mb-1" />
                       <p className="font-semibold text-gray-700">Товари відсутні у Firestore</p>
                       <p className="text-xs text-gray-400 mb-3">
-                        Колекція &quot;products&quot; порожня. Ви можете виконати одноразову міграцію на головній панелі.
+                        У базі даних ще немає жодного товару. Створіть перший товар або зверніться до розробника.
                       </p>
                       <Link 
-                        to="/admin/dashboard" 
+                        to="/admin/products/new" 
                         className="text-xs font-semibold text-primary-blue hover:underline"
                       >
-                        Перейти до Панелі адміністратора →
+                        + Додати товар →
                       </Link>
                     </div>
                   </td>
