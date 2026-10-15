@@ -30,17 +30,17 @@ export function Catalog() {
     <main className="pt-[90px] bg-off-white min-h-screen">
       
       {/* Hero Section */}
-      <section className="bg-white pt-2 md:pt-4 pb-2 md:pb-4 relative overflow-hidden border-b border-metallic-silver/20">
+      <section className="bg-white pt-2 md:pt-4 pb-4 md:pb-4 relative overflow-hidden border-b border-metallic-silver/20">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 relative z-10 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-10">
           
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="w-full md:w-1/2 flex flex-col py-4"
+            className="w-full md:w-1/2 flex flex-col py-2 md:py-4"
           >
             {/* Breadcrumb */}
-            <div className={`flex items-center gap-3 font-body text-base text-charcoal/60 ${isOverview ? 'mb-8 md:mb-10' : 'mb-10 md:mb-16'}`}>
+            <div className={`flex items-center gap-3 font-body text-base text-charcoal/60 ${isOverview ? 'mb-8 md:mb-10' : 'mb-6 md:mb-16'}`}>
               <Link to="/" className="font-bold hover:text-primary-blue transition-colors duration-300">
                 {language === 'ua' ? 'Головна' : 'Home'}
               </Link>
@@ -69,18 +69,38 @@ export function Catalog() {
           
           {!isOverview && (
           <motion.div 
-            initial={{ opacity: 0, x: 60, y: 20, rotate: 5, scale: 0.8 }}
-            animate={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1 }}
-            transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="w-full md:w-1/2 h-[160px] md:h-[220px] lg:h-[260px] relative flex items-center justify-center md:justify-start lg:justify-center"
+            initial={{ opacity: 0, x: 20, y: 10, scale: 0.98 }}
+            animate={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+            transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+            className="w-full md:w-1/2 h-[200px] sm:h-[230px] md:h-[220px] lg:h-[260px] relative flex items-center justify-center md:justify-start lg:justify-center py-2 md:py-0"
           >
             {/* Soft Ambient Background Glow */}
-            <div className="absolute top-1/2 left-1/2 md:left-[45%] lg:left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] md:w-[300px] h-[200px] md:h-[300px] bg-primary-blue/[0.04] rounded-full blur-[40px] md:blur-[50px] pointer-events-none -z-10"></div>
-            {categoryId === 'mirrors' && <div className="group cursor-pointer w-[120%] sm:w-[110%] md:w-[130%] lg:w-[150%] max-w-[550px] scale-110 text-dark-navy/40 hover:text-primary-blue transition-colors duration-75 mix-blend-multiply opacity-90 md:-translate-x-12 lg:-translate-x-20"><CadMirror /></div>}
-            {categoryId === 'probes' && <div className="group cursor-pointer w-[120%] sm:w-[110%] md:w-[130%] lg:w-[150%] max-w-[550px] scale-110 text-dark-navy/40 hover:text-primary-blue transition-colors duration-75 mix-blend-multiply opacity-90 md:-translate-x-12 lg:-translate-x-20"><CadProbe /></div>}
-            {categoryId === 'kits' && <div className="group cursor-pointer w-[120%] sm:w-[110%] md:w-[130%] lg:w-[150%] max-w-[500px] scale-105 text-dark-navy/40 hover:text-primary-blue transition-colors duration-75 mix-blend-multiply opacity-90 md:-translate-x-8 lg:-translate-x-12"><CadKit /></div>}
-            {categoryId === 'nets' && <div className="group cursor-pointer w-[110%] sm:w-[90%] md:w-[110%] lg:w-[120%] max-w-[450px] text-dark-navy/40 hover:text-primary-blue transition-colors duration-75 mix-blend-multiply opacity-90 md:-translate-x-12 lg:-translate-x-20"><CadNet /></div>}
-            {categoryId === 'tools' && <div className="group cursor-pointer w-[110%] sm:w-[90%] md:w-[110%] lg:w-[120%] max-w-[450px] text-dark-navy/40 hover:text-primary-blue transition-colors duration-75 mix-blend-multiply opacity-90 md:-translate-x-12 lg:-translate-x-20"><CadTool /></div>}
+            <div className="absolute top-1/2 left-1/2 md:left-[45%] lg:left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] sm:w-[260px] md:w-[300px] h-[180px] sm:h-[220px] md:h-[300px] bg-primary-blue/[0.04] rounded-full blur-[30px] md:blur-[50px] pointer-events-none -z-10"></div>
+            {categoryId === 'mirrors' && (
+              <div className="group cursor-pointer w-[290px] sm:w-[330px] md:w-[130%] lg:w-[150%] max-w-[550px] text-dark-navy/40 hover:text-primary-blue transition-colors duration-75 mix-blend-multiply opacity-90 md:-translate-x-12 lg:-translate-x-20">
+                <CadMirror />
+              </div>
+            )}
+            {categoryId === 'probes' && (
+              <div className="group cursor-pointer w-[300px] sm:w-[340px] md:w-[130%] lg:w-[150%] max-w-[550px] text-dark-navy/40 hover:text-primary-blue transition-colors duration-75 mix-blend-multiply opacity-90 md:-translate-x-12 lg:-translate-x-20">
+                <CadProbe />
+              </div>
+            )}
+            {categoryId === 'kits' && (
+              <div className="group cursor-pointer w-[280px] sm:w-[320px] md:w-[130%] lg:w-[150%] max-w-[500px] text-dark-navy/40 hover:text-primary-blue transition-colors duration-75 mix-blend-multiply opacity-90 md:-translate-x-8 lg:-translate-x-12">
+                <CadKit />
+              </div>
+            )}
+            {categoryId === 'nets' && (
+              <div className="group cursor-pointer w-[270px] sm:w-[310px] md:w-[110%] lg:w-[120%] max-w-[450px] text-dark-navy/40 hover:text-primary-blue transition-colors duration-75 mix-blend-multiply opacity-90 md:-translate-x-12 lg:-translate-x-20">
+                <CadNet />
+              </div>
+            )}
+            {categoryId === 'tools' && (
+              <div className="group cursor-pointer w-[270px] sm:w-[310px] md:w-[110%] lg:w-[120%] max-w-[450px] text-dark-navy/40 hover:text-primary-blue transition-colors duration-75 mix-blend-multiply opacity-90 md:-translate-x-12 lg:-translate-x-20">
+                <CadTool />
+              </div>
+            )}
           </motion.div>
           )}
           
