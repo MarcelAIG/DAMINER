@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { useRequest } from '../context/RequestContext';
-import { ShoppingBag, Phone, X, Menu } from 'lucide-react';
+import { ShoppingBag, Phone, X, Menu, ChevronDown, ChevronRight } from 'lucide-react';
 
 const ProbeSvg = (props: any) => (
   <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -52,16 +52,79 @@ const ToolSvg = (props: any) => (
 );
 import { SiteSearch } from './SiteSearch';
 
+/**
+ * Single source of truth for catalog navigation (desktop dropdown + mobile accordion).
+ * Order must match `t.categories.items`.
+ */
+const CATALOG_CATEGORIES = [
+  { slug: 'probes', Icon: ProbeSvg },
+  { slug: 'mirrors', Icon: MirrorSvg },
+  { slug: 'kits', Icon: KitSvg },
+  { slug: 'nets', Icon: NetGunSvg },
+  { slug: 'tools', Icon: ToolSvg },
+] as const;
+
+const LG_BREAKPOINT_QUERY = '(min-width: 1024px)';
+
 export function Navbar() {
   const { t, language, setLanguage } = useLanguage();
   const { requestCount, setIsDrawerOpen } = useRequest();
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileCatalogOpen, setIsMobileCatalogOpen] = useState(false);
   
   const isActive = (path: string) => {
     if (path === '/') return location.pathname === '/';
     return location.pathname.startsWith(path);
   };
+
+  const catalogItems = CATALOG_CATEGORIES.map((cat, idx) => ({
+    ...cat,
+    title: t.categories.items[idx],
+  })).filter((cat) => Boolean(cat.title));
+
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
+
+  const toggleMobileMenu = () => {
+    // When opening, pre-expand the catalog if the user is currently inside it
+    if (!isMobileMenuOpen) setIsMobileCatalogOpen(location.pathname.startsWith('/catalog'));
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  // Close the mobile menu whenever the route changes
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  // Lock page scroll, support Escape, and auto-close when resizing to desktop
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsMobileMenuOpen(false);
+    };
+    const mql = window.matchMedia(LG_BREAKPOINT_QUERY);
+    const onBreakpointChange = (e: MediaQueryListEvent) => {
+      if (e.matches) setIsMobileMenuOpen(false);
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+    mql.addEventListener('change', onBreakpointChange);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', onKeyDown);
+      mql.removeEventListener('change', onBreakpointChange);
+    };
+  }, [isMobileMenuOpen]);
+
+  const mobileLinkClass = (path: string) =>
+    `block py-3 font-heading font-black text-lg uppercase tracking-widest transition-colors duration-300 ${
+      isActive(path) ? 'text-primary-blue' : 'text-dark-navy hover:text-primary-blue'
+    }`;
   
   return (
     <>
@@ -88,15 +151,10 @@ export function Navbar() {
               <div className="absolute -top-[1px] left-0 w-full h-[2px] bg-primary-blue"></div>
               
               <div className="grid grid-cols-3 gap-x-10 gap-y-8">
-                {t.categories.items.map((cat, idx) => {
-                  const Illustrations = [ProbeSvg, MirrorSvg, KitSvg, NetGunSvg, ToolSvg];
-                  const Visual = Illustrations[idx];
-                  const categorySlugs = ["probes", "mirrors", "kits", "nets", "tools"];
-                  const slug = categorySlugs[idx];
-                  
+                {catalogItems.map(({ slug, Icon: Visual, title: cat }) => {
                   return (
                     <Link 
-                      key={idx}
+                      key={slug}
                       to={`/catalog/${slug}`}
                       className="relative flex items-center gap-6 p-4 -m-4 bg-white border border-transparent hover:border-metallic-silver/30 hover:bg-off-white transition-all duration-300 group/item h-[90px]"
                     >
@@ -189,7 +247,12 @@ export function Navbar() {
             )}
           </button>
           <button 
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            id="mobile-menu-toggle"
+            type="button"
+            onClick={toggleMobileMenu}
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
             className="text-charcoal hover:text-primary-blue transition-colors duration-300"
           >
             {isMobileMenuOpen ? <X size={28} strokeWidth={1.5} /> : <Menu size={28} strokeWidth={1.5} />}
@@ -197,32 +260,133 @@ export function Navbar() {
         </div>
       </header>
 
-      {/* Mobile Menu Overlay */}
-      <div className={`lg:hidden fixed top-[90px] left-0 w-full bg-white shadow-xl border-b border-metallic-silver/20 transition-all duration-300 overflow-hidden z-40 ${isMobileMenuOpen ? 'max-h-[500px] opacity-100 py-6' : 'max-h-0 opacity-0 pointer-events-none py-0'}`}>
-        <div className="flex flex-col gap-6 px-8">
-          <Link to="/catalog" onClick={() => setIsMobileMenuOpen(false)} className="text-dark-navy font-heading font-black text-lg uppercase tracking-widest">{t.nav.catalog}</Link>
-          <Link to="/solutions" onClick={() => setIsMobileMenuOpen(false)} className="text-dark-navy font-heading font-black text-lg uppercase tracking-widest">{t.nav.solutions}</Link>
-          <Link to="/about" onClick={() => setIsMobileMenuOpen(false)} className="text-dark-navy font-heading font-black text-lg uppercase tracking-widest">{t.nav.about}</Link>
-          <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)} className="text-dark-navy font-heading font-black text-lg uppercase tracking-widest">{t.nav.contact}</Link>
+      {/* Mobile Menu Overlay — full height below the header, scrollable */}
+      <div
+        id="mobile-menu"
+        aria-hidden={!isMobileMenuOpen}
+        className={`lg:hidden fixed inset-x-0 top-[90px] bottom-0 z-40 bg-white overflow-y-auto overscroll-contain transition-[opacity,transform,visibility] duration-300 ease-out ${
+          isMobileMenuOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-2 invisible pointer-events-none'
+        }`}
+      >
+        <nav className="flex flex-col px-8 pt-6 pb-10" aria-label="Mobile navigation">
+          {/* Catalog accordion */}
+          <div>
+            <button
+              id="mobile-catalog-toggle"
+              type="button"
+              onClick={() => setIsMobileCatalogOpen((open) => !open)}
+              aria-expanded={isMobileCatalogOpen}
+              aria-controls="mobile-catalog-panel"
+              className={`w-full flex items-center justify-between py-3 font-heading font-black text-lg uppercase tracking-widest transition-colors duration-300 ${
+                isActive('/catalog') || isMobileCatalogOpen ? 'text-primary-blue' : 'text-dark-navy hover:text-primary-blue'
+              }`}
+            >
+              {t.nav.catalog}
+              <ChevronDown
+                size={22}
+                strokeWidth={2}
+                className={`transition-transform duration-300 ${isMobileCatalogOpen ? 'rotate-180' : 'rotate-0'}`}
+              />
+            </button>
+
+            <div
+              id="mobile-catalog-panel"
+              role="region"
+              aria-labelledby="mobile-catalog-toggle"
+              className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${
+                isMobileCatalogOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+              }`}
+            >
+              <div className="overflow-hidden">
+                <ul className="flex flex-col gap-2 pt-2 pb-4">
+                  {catalogItems.map(({ slug, Icon, title }) => {
+                    const path = `/catalog/${slug}`;
+                    const active = isActive(path);
+                    return (
+                      <li key={slug}>
+                        <Link
+                          id={`mobile-catalog-${slug}`}
+                          to={path}
+                          onClick={closeMobileMenu}
+                          tabIndex={isMobileCatalogOpen ? 0 : -1}
+                          aria-current={active ? 'page' : undefined}
+                          className={`group/m relative flex items-center gap-4 p-3 border transition-all duration-300 active:scale-[0.99] ${
+                            active
+                              ? 'border-primary-blue/30 bg-off-white'
+                              : 'border-metallic-silver/20 bg-white hover:border-primary-blue/30 hover:bg-off-white'
+                          }`}
+                        >
+                          <span className={`absolute top-0 left-0 h-full w-[3px] bg-primary-blue transition-opacity duration-200 ${active ? 'opacity-100' : 'opacity-0 group-hover/m:opacity-100'}`} />
+                          <span
+                            className={`w-12 h-12 flex-shrink-0 bg-white border rounded flex items-center justify-center p-2 transition-colors duration-300 ${
+                              active
+                                ? 'border-primary-blue/30 text-primary-blue'
+                                : 'border-metallic-silver/20 text-dark-navy/70 group-hover/m:text-primary-blue group-hover/m:border-primary-blue/30'
+                            }`}
+                          >
+                            <Icon className="w-full h-full" />
+                          </span>
+                          <span
+                            className={`flex-1 font-heading font-black text-[13px] tracking-[0.12em] uppercase leading-snug transition-colors duration-300 ${
+                              active ? 'text-primary-blue' : 'text-dark-navy group-hover/m:text-primary-blue'
+                            }`}
+                          >
+                            {title}
+                          </span>
+                          <ChevronRight
+                            size={18}
+                            strokeWidth={2}
+                            className={`flex-shrink-0 transition-all duration-300 ${
+                              active ? 'text-primary-blue' : 'text-dark-navy/30 group-hover/m:text-primary-blue group-hover/m:translate-x-0.5'
+                            }`}
+                          />
+                        </Link>
+                      </li>
+                    );
+                  })}
+                  <li>
+                    <Link
+                      id="mobile-catalog-all"
+                      to="/catalog"
+                      onClick={closeMobileMenu}
+                      tabIndex={isMobileCatalogOpen ? 0 : -1}
+                      className="flex items-center justify-center gap-2 mt-1 py-3.5 bg-primary-blue text-white font-heading font-black text-xs tracking-widest uppercase hover:bg-dark-navy active:scale-[0.99] transition-all duration-300"
+                    >
+                      {t.categories.viewLink.replace(/\s*→\s*$/, '')}
+                      <ChevronRight size={16} strokeWidth={2.5} />
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <Link id="mobile-nav-solutions" to="/solutions" onClick={closeMobileMenu} className={mobileLinkClass('/solutions')}>{t.nav.solutions}</Link>
+          <Link id="mobile-nav-about" to="/about" onClick={closeMobileMenu} className={mobileLinkClass('/about')}>{t.nav.about}</Link>
+          <Link id="mobile-nav-contact" to="/contact" onClick={closeMobileMenu} className={mobileLinkClass('/contact')}>{t.nav.contact}</Link>
           
-          <div className="h-[1px] bg-metallic-silver/20 w-full my-2"></div>
+          <div className="h-[1px] bg-metallic-silver/20 w-full my-6"></div>
           
           <div className="flex items-center gap-4">
             <button 
-              onClick={() => { setLanguage('ua'); setIsMobileMenuOpen(false); }}
+              id="mobile-lang-ua"
+              type="button"
+              onClick={() => { setLanguage('ua'); closeMobileMenu(); }}
               className={`font-heading font-black text-lg tracking-widest transition-colors duration-300 ${language === 'ua' ? 'text-primary-blue' : 'text-cool-gray'}`}
             >
               UA
             </button>
             <span className="text-metallic-silver">/</span>
             <button 
-              onClick={() => { setLanguage('en'); setIsMobileMenuOpen(false); }}
+              id="mobile-lang-en"
+              type="button"
+              onClick={() => { setLanguage('en'); closeMobileMenu(); }}
               className={`font-heading font-black text-lg tracking-widest transition-colors duration-300 ${language === 'en' ? 'text-primary-blue' : 'text-cool-gray'}`}
             >
               EN
             </button>
           </div>
-        </div>
+        </nav>
       </div>
     </>
   );

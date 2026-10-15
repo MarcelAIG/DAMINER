@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams, Navigate, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 import { CadProbe, CadMirror, CadKit, CadNet, CadTool } from '../components/CadDrawings';
 import { motion } from 'motion/react';
@@ -9,6 +9,8 @@ import { MirrorsCategory } from '../components/MirrorsCategory';
 import { KitsCategory } from '../components/KitsCategory';
 import { NetsCategory } from '../components/NetsCategory';
 import { ToolsCategory } from '../components/ToolsCategory';
+import { CatalogOverview } from '../components/CatalogOverview';
+import { CATALOG_CATEGORY_SLUGS } from '../data/catalogCategories';
 
 export function Catalog() {
   const { categoryId } = useParams<{ categoryId: string }>();
@@ -19,8 +21,8 @@ export function Catalog() {
     window.scrollTo(0, 0);
   }, [categoryId]);
 
-  const slugs = ["probes", "mirrors", "kits", "nets", "tools"];
-  const categoryIndex = categoryId ? slugs.indexOf(categoryId) : -1;
+  const isOverview = !categoryId;
+  const categoryIndex = categoryId ? (CATALOG_CATEGORY_SLUGS as readonly string[]).indexOf(categoryId) : -1;
   const categoryTitle = categoryIndex !== -1 ? t.categories.items[categoryIndex] : (t as any).catalogLanding?.heading || t.nav.catalog;
   const categoryDescription = categoryIndex !== -1 ? t.categories.descriptions[categoryIndex] : (t as any).catalogLanding?.subheading;
   
@@ -38,12 +40,22 @@ export function Catalog() {
             className="w-full md:w-1/2 flex flex-col py-4"
           >
             {/* Breadcrumb */}
-            <div className="flex items-center gap-3 font-body text-base text-charcoal/60 mb-10 md:mb-16">
+            <div className={`flex items-center gap-3 font-body text-base text-charcoal/60 ${isOverview ? 'mb-8 md:mb-10' : 'mb-10 md:mb-16'}`}>
               <Link to="/" className="font-bold hover:text-primary-blue transition-colors duration-300">
                 {language === 'ua' ? 'Головна' : 'Home'}
               </Link>
               <ChevronRight className="w-4 h-4 text-dark-navy/40" strokeWidth={2.5} />
-              <span className="text-dark-navy font-black tracking-wide uppercase text-sm">{categoryTitle}</span>
+              {isOverview ? (
+                <span className="text-dark-navy font-black tracking-wide uppercase text-sm">{t.nav.catalog}</span>
+              ) : (
+                <>
+                  <Link to="/catalog" className="font-bold hover:text-primary-blue transition-colors duration-300">
+                    {t.nav.catalog}
+                  </Link>
+                  <ChevronRight className="w-4 h-4 text-dark-navy/40" strokeWidth={2.5} />
+                  <span className="text-dark-navy font-black tracking-wide uppercase text-sm">{categoryTitle}</span>
+                </>
+              )}
             </div>
             
             <h1 className="font-heading font-black text-4xl md:text-5xl lg:text-[54px] mb-2 md:mb-4 text-dark-navy tracking-tight leading-[1.1]">
@@ -55,6 +67,7 @@ export function Catalog() {
             </p>
           </motion.div>
           
+          {!isOverview && (
           <motion.div 
             initial={{ opacity: 0, x: 60, y: 20, rotate: 5, scale: 0.8 }}
             animate={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1 }}
@@ -69,13 +82,14 @@ export function Catalog() {
             {categoryId === 'nets' && <div className="group cursor-pointer w-[110%] sm:w-[90%] md:w-[110%] lg:w-[120%] max-w-[450px] text-dark-navy/40 hover:text-primary-blue transition-colors duration-75 mix-blend-multiply opacity-90 md:-translate-x-12 lg:-translate-x-20"><CadNet /></div>}
             {categoryId === 'tools' && <div className="group cursor-pointer w-[110%] sm:w-[90%] md:w-[110%] lg:w-[120%] max-w-[450px] text-dark-navy/40 hover:text-primary-blue transition-colors duration-75 mix-blend-multiply opacity-90 md:-translate-x-12 lg:-translate-x-20"><CadTool /></div>}
           </motion.div>
+          )}
           
         </div>
       </section>
 
       <div className="pb-24">
-        {!categoryId ? (
-          <Navigate to="/" replace />
+        {isOverview ? (
+          <CatalogOverview />
         ) : categoryId === 'probes' ? (
           <Featured />
         ) : categoryId === 'mirrors' ? (

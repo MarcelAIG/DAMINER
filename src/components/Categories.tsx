@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { CadProbe, CadMirror, CadKit, CadNet, CadTool } from './CadDrawings';
+import { CATALOG_CATEGORY_SLUGS, CATALOG_CATEGORY_IMAGES } from '../data/catalogCategories';
 
 export function Categories() {
   const { t } = useLanguage();
@@ -24,16 +25,6 @@ export function Categories() {
     }
   };
 
-  const categorySlugs = ["probes", "mirrors", "kits", "nets", "tools"];
-  
-  const catalogImages = [
-    "/ЩР-1/ChatGPT Image Aug 28, 2026, 09_53_09 PM.png",
-    "/ЗД-1/ChatGPT Image Aug 29, 2026, 12_04_13 AM (1).png",
-    "/ЕОД-1/ChatGPT Image Aug 29, 2026, 02_49_42 PM.png",
-    "/Сіткомети протидронові/net-main.png",
-    "/electric-cable/cable-main.png"
-  ];
-
   const getCadDrawing = (slug: string) => {
     switch (slug) {
       case 'probes': return <div className="w-[120%] text-dark-navy/20 group-hover:text-primary-blue/30 transition-colors duration-500 scale-125"><CadProbe /></div>;
@@ -45,12 +36,12 @@ export function Categories() {
     }
   };
 
-  const itemsToRender = categorySlugs.map((slug, index) => ({
+  const itemsToRender = CATALOG_CATEGORY_SLUGS.map((slug, index) => ({
     id: slug,
     title: t.categories.items[index],
     description: t.categories.descriptions[index],
     slug,
-    imageUrl: catalogImages[index]
+    imageUrl: CATALOG_CATEGORY_IMAGES[slug]
   }));
 
   const handleScroll = () => {
