@@ -393,10 +393,10 @@ export function Product() {
       model: language === 'ua' ? 'Обтискач сапера «Мультитул»' : 'Sapper Crimper «Multitool»',
       description: "",
       price: "",
-      imageBase64: "/Мультитул/IMG_5399.PNG",
+      imageBase64: "/Мультитул/IMG_5400.PNG",
       gallery: [
-        "/Мультитул/IMG_5399.PNG",
         "/Мультитул/IMG_5400.PNG",
+        "/Мультитул/IMG_5399.PNG",
         "/Мультитул/IMG_5401.PNG",
         "/Мультитул/IMG_5402.PNG"
       ]

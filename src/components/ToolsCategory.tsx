@@ -106,7 +106,7 @@ export function ToolsCategory() {
       model: language === 'ua' ? 'Обтискач сапера «Мультитул»' : 'Sapper Crimper «Multitool»',
       description: '',
       price: "",
-      imageBase64: "/Мультитул/IMG_5399.PNG"
+      imageBase64: "/Мультитул/IMG_5400.PNG"
     },
     {
       id: "tool-15",

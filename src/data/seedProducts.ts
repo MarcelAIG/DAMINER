@@ -977,10 +977,10 @@ export const SEED_PRODUCTS: SeedProduct[] = [
     shortDescriptionEn: "",
     descriptionUa: "",
     descriptionEn: "",
-    primaryImage: "/Мультитул/IMG_5399.PNG",
+    primaryImage: "/Мультитул/IMG_5400.PNG",
     images: [
-      "/Мультитул/IMG_5399.PNG",
       "/Мультитул/IMG_5400.PNG",
+      "/Мультитул/IMG_5399.PNG",
       "/Мультитул/IMG_5401.PNG",
       "/Мультитул/IMG_5402.PNG"
     ],
