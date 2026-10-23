@@ -2,54 +2,64 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Search, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
+import { usePublishedProducts } from '../hooks/usePublishedProducts';
+import {
+  getCategoryLabel,
+  getProductName,
+  getProductShortDescription,
+} from '../services/publicProductService';
+import { CATALOG_CATEGORY_SLUGS } from '../data/catalogCategories';
 
 export function SiteSearch() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
-  
+  const { products } = usePublishedProducts();
+
   useEffect(() => {
     if (isOpen && inputRef.current) {
       inputRef.current.focus();
     }
   }, [isOpen]);
 
-  // Combine items to search across categories and featured products
-  const allItems = [
-    ...t.categories.items.map(title => ({ 
-      type: 'category', 
-      title, 
-      label: title, 
-      link: '/catalog' 
-    })),
-    { 
-      type: 'product', 
-      title: t.featured.model1, 
-      label: `${t.featured.probe} ${t.featured.model1}`, 
-      link: '/product/1' 
-    },
-    { 
-      type: 'product', 
-      title: t.featured.model2, 
-      label: `${t.featured.probe} ${t.featured.model2}`, 
-      link: '/product/2' 
-    },
-    { 
-      type: 'product', 
-      title: t.featured.model3, 
-      label: `${t.featured.probe} ${t.featured.model3}`, 
-      link: '/product/3' 
-    },
-  ];
+  // Combine categories and all published Firestore products for search
+  const categoryItems = (t.categories.items as string[]).map((title, index) => {
+    const slug = CATALOG_CATEGORY_SLUGS[index] || '';
+    return {
+      type: 'category' as const,
+      title,
+      badge: t.nav.catalog,
+      label: title,
+      link: slug ? `/catalog/${slug}` : '/catalog',
+    };
+  });
 
-  const filteredItems = query.trim() === '' ? [] : allItems.filter(item => 
-    item.label.toLowerCase().includes(query.toLowerCase())
-  );
+  const productItems = products.map((p) => {
+    const model = getProductName(p, language);
+    const badge = getCategoryLabel(p.categorySlug, t, language);
+    const desc = getProductShortDescription(p, language);
+    return {
+      type: 'product' as const,
+      title: model,
+      badge,
+      label: `${badge} ${model} ${desc}`,
+      link: `/product/${p.id}`,
+    };
+  });
+
+  const allItems = [...categoryItems, ...productItems];
+
+  const filteredItems =
+    query.trim() === ''
+      ? []
+      : allItems.filter((item) =>
+          item.label.toLowerCase().includes(query.toLowerCase())
+        );
 
   return (
     <div className="relative">
-      <button 
+      <button
         onClick={() => setIsOpen(!isOpen)}
         className="text-charcoal hover:text-primary-blue transition-colors duration-300 flex items-center"
         title={t.nav.search}
@@ -61,29 +71,32 @@ export function SiteSearch() {
         <div className="absolute top-[120%] right-0 w-[300px] md:w-[360px] bg-white shadow-2xl border border-metallic-silver/20 z-50 overflow-hidden">
           <div className="flex items-center p-4 border-b border-metallic-silver/20 bg-off-white">
             <Search size={18} className="text-primary-blue mr-3" />
-            <input 
+            <input
               ref={inputRef}
-              type="text" 
+              type="text"
               placeholder={t.nav.search}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               className="flex-1 outline-none font-body text-sm text-charcoal bg-transparent"
             />
-            <button onClick={() => setIsOpen(false)} className="text-cool-gray hover:text-primary-blue ml-2">
+            <button
+              onClick={() => setIsOpen(false)}
+              className="text-cool-gray hover:text-primary-blue ml-2"
+            >
               <X size={18} />
             </button>
           </div>
-          
+
           <div className="max-h-[60vh] overflow-y-auto">
             {query.trim() !== '' && filteredItems.length === 0 ? (
               <div className="p-6 text-center text-sm font-body text-cool-gray">
-                No results found
+                {language === 'ua' ? 'Нічого не знайдено' : 'No results found'}
               </div>
             ) : (
               filteredItems.map((item, idx) => (
-                <Link 
-                  key={idx} 
-                  to={item.link} 
+                <Link
+                  key={idx}
+                  to={item.link}
                   onClick={() => setIsOpen(false)}
                   className="block p-4 border-b border-metallic-silver/10 hover:bg-off-white transition-colors duration-300"
                 >
@@ -91,7 +104,7 @@ export function SiteSearch() {
                     {item.title}
                   </div>
                   <div className="font-body text-[10px] font-bold text-cool-gray mt-1 uppercase tracking-widest">
-                    {item.type === 'category' ? t.nav.catalog : t.featured.probe}
+                    {item.badge}
                   </div>
                 </Link>
               ))

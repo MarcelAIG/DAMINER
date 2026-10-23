@@ -1,29 +1,44 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowLeft, ShieldCheck, ZoomIn, ZoomOut, ChevronDown } from 'lucide-react';
+import { ArrowLeft, ShieldCheck, ZoomIn, ZoomOut } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { useRequest } from '../context/RequestContext';
-import { ProductItem } from '../types/product';
 import { formatProductPrice } from '../utils/price';
 import { ProductKitAccordion } from '../components/ProductKitAccordion';
+import { usePublishedProducts } from '../hooks/usePublishedProducts';
+import {
+  getCategoryLabel,
+  getKitItemCount,
+  getKitItemName,
+  getProductName,
+  getProductPrice,
+  getProductDescription,
+  getProductShortDescription,
+  getSpecName,
+  getSpecValue,
+} from '../services/publicProductService';
 
 export function Product() {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const { t, language } = useLanguage();
   const { addItem } = useRequest();
+  const { products, loading, error, retry } = usePublishedProducts();
+
   const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
   const [selectedImageIdx, setSelectedImageIdx] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
   const [zoomOrigin, setZoomOrigin] = useState('50% 50%');
 
-  // Scroll to top on mount
+  // Scroll to top and reset view state on product id change
   useEffect(() => {
     window.scrollTo(0, 0);
     setIsDescriptionOpen(false);
     setSelectedImageIdx(0);
     setIsZoomed(false);
   }, [id]);
+
+  const product = products.find((p) => p.id === id);
 
   const handleZoom = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!isZoomed) {
@@ -35,485 +50,165 @@ export function Product() {
     setIsZoomed(!isZoomed);
   };
 
-  const items: ProductItem[] = [
-    {
-      id: "1",
-      type: "probe",
-      model: t.featured.model1,
-      description: t.featured.desc1,
-      price: "",
-      imageBase64: "/ЩР-1/ChatGPT Image Aug 28, 2026, 09_53_09 PM.png",
-      gallery: [
-        "/ЩР-1/ChatGPT Image Aug 28, 2026, 09_53_09 PM.png",
-        "/ЩР-1/ChatGPT Image Aug 28, 2026, 09_53_02 PM.png"
-      ]
-    },
-    {
-      id: "2",
-      type: "probe",
-      model: t.featured.model2,
-      description: t.featured.desc2,
-      price: "",
-      imageBase64: "/ЩР-3:2 /ChatGPT Image Aug 28, 2026, 10_41_22 PM.png",
-      gallery: [
-        "/ЩР-3:2 /ChatGPT Image Aug 28, 2026, 10_41_22 PM.png",
-        "/ЩР-3:2 /ChatGPT Image Aug 28, 2026, 10_41_30 PM.png"
-      ]
-    },
-    {
-      id: "3",
-      type: "probe",
-      model: t.featured.model3,
-      description: t.featured.desc3,
-      price: "",
-      imageBase64: "/ЩР-8/ChatGPT Image Aug 28, 2026, 11_15_16 PM.png",
-      gallery: [
-        "/ЩР-8/ChatGPT Image Aug 28, 2026, 11_15_16 PM.png",
-        "/ЩР-8/ChatGPT Image Aug 28, 2026, 11_15_05 PM.png"
-      ]
-    },
-    {
-      id: "m1",
-      type: "mirror",
-      model: language === 'ua' ? "ЗД-1" : "ZD-1",
-      description: "",
-      price: "",
-      imageBase64: "/ЗД-1/ChatGPT Image Aug 29, 2026, 12_04_13 AM (1).png",
-      gallery: [
-        "/ЗД-1/ChatGPT Image Aug 29, 2026, 12_04_13 AM (1).png",
-        "/ЗД-1/ChatGPT Image Aug 29, 2026, 12_04_13 AM (2).png",
-        "/ЗД-1/ChatGPT Image Aug 29, 2026, 12_04_14 AM (3).png",
-        "/ЗД-1/ChatGPT Image Aug 29, 2026, 12_04_14 AM (4).png"
-      ]
-    },
-    {
-      id: "m2",
-      type: "mirror",
-      model: language === 'ua' ? "ЗД-2Д" : "ZD-2D",
-      description: "",
-      price: "",
-      imageBase64: "/ЗД-2Д\"/ChatGPT Image Aug 29, 2026, 01_20_44 PM.png",
-      gallery: [
-        "/ЗД-2Д\"/ChatGPT Image Aug 29, 2026, 01_20_44 PM.png",
-        "/ЗД-2Д\"/ChatGPT Image Aug 29, 2026, 01_20_48 PM.png"
-      ]
-    },
-    {
-      id: "m3",
-      type: "mirror",
-      model: language === 'ua' ? "ЗД-2У" : "ZD-2U",
-      description: "",
-      price: "",
-      imageBase64: "/ЗД-2У/ChatGPT Image Aug 29, 2026, 01_29_49 PM.png",
-      gallery: [
-        "/ЗД-2У/ChatGPT Image Aug 29, 2026, 01_29_49 PM.png"
-      ]
-    },
-    {
-      id: "m4",
-      type: "mirror",
-      model: language === 'ua' ? "ЗД-3" : "ZD-3",
-      description: "",
-      price: "",
-      imageBase64: "/ЗД-3/ChatGPT Image Aug 29, 2026, 01_57_21 PM.png",
-      gallery: [
-        "/ЗД-3/ChatGPT Image Aug 29, 2026, 01_57_21 PM.png",
-        "/ЗД-3/ChatGPT Image Aug 29, 2026, 01_44_55 PM.png",
-        "/ЗД-3/ChatGPT Image Aug 29, 2026, 01_58_10 PM.png",
-        "/ЗД-3/ChatGPT Image Aug 29, 2026, 01_59_22 PM.png",
-        "/ЗД-3/ChatGPT Image Aug 29, 2026, 02_00_31 PM.png",
-        "/ЗД-3/ChatGPT Image Aug 29, 2026, 02_01_52 PM.png"
-      ]
-    },
-    {
-      id: "m5",
-      type: "mirror",
-      model: language === 'ua' ? "ЗД-4" : "ZD-4",
-      description: "",
-      price: "",
-      imageBase64: "/ЗД-4/ChatGPT Image Aug 29, 2026, 02_13_09 PM.png",
-      gallery: [
-        "/ЗД-4/ChatGPT Image Aug 29, 2026, 02_13_09 PM.png",
-        "/ЗД-4/ChatGPT Image Aug 29, 2026, 02_14_51 PM.png",
-        "/ЗД-4/ChatGPT Image Aug 29, 2026, 02_16_22 PM.png",
-        "/ЗД-4/ChatGPT Image Aug 29, 2026, 02_17_17 PM.png",
-        "/ЗД-4/ChatGPT Image Aug 29, 2026, 02_18_14 PM.png",
-        "/ЗД-4/ChatGPT Image Aug 29, 2026, 02_19_28 PM.png"
-      ]
-    },
-    {
-      id: "k1",
-      type: "kit",
-      model: language === 'ua' ? "ЕОД-1" : "EOD-1",
-      description: "",
-      price: "",
-      imageBase64: "/ЕОД-1/ChatGPT Image Aug 29, 2026, 02_49_42 PM.png",
-      gallery: [
-        "/ЕОД-1/ChatGPT Image Aug 29, 2026, 02_49_42 PM.png",
-        "/ЕОД-1/ChatGPT Image Aug 29, 2026, 02_59_43 PM.png",
-        "/ЕОД-1/ChatGPT Image Aug 29, 2026, 03_00_42 PM.png",
-        "/ЕОД-1/ChatGPT Image Aug 29, 2026, 03_03_04 PM.png"
-      ]
-    },
-    {
-      id: "k2",
-      type: "kit",
-      model: language === 'ua' ? "ЕОД-1МН" : "EOD-1MN",
-      description: "",
-      price: "",
-      imageBase64: "/ЕОД-1МН/ChatGPT Image Aug 29, 2026, 03_25_05 PM.png",
-      gallery: [
-        "/ЕОД-1МН/ChatGPT Image Aug 29, 2026, 03_25_05 PM.png",
-        "/ЕОД-1МН/ChatGPT Image Aug 29, 2026, 03_23_51 PM.png",
-        "/ЕОД-1МН/ChatGPT Image Aug 29, 2026, 03_26_18 PM.png",
-        "/ЕОД-1МН/ChatGPT Image Aug 29, 2026, 03_27_43 PM.png"
-      ]
-    },
-    {
-      id: "k3",
-      type: "kit",
-      model: language === 'ua' ? "КР-04" : "KR-04",
-      description: "",
-      price: "",
-      imageBase64: "/КР-04/ChatGPT Image Aug 29, 2026, 03_58_47 PM.png",
-      gallery: [
-        "/КР-04/ChatGPT Image Aug 29, 2026, 03_58_47 PM.png",
-        "/КР-04/ChatGPT Image Aug 29, 2026, 03_57_49 PM.png",
-        "/КР-04/ChatGPT Image Aug 29, 2026, 04_00_29 PM.png",
-        "/КР-04/ChatGPT Image Aug 29, 2026, 04_06_20 PM.png",
-        "/КР-04/ChatGPT Image Aug 29, 2026, 04_13_49 PM.png"
-      ]
-    },
-    {
-      id: "k4",
-      type: "kit",
-      model: language === 'ua' ? "КР-06" : "KR-06",
-      description: "",
-      price: "",
-      imageBase64: "/КР-06/ChatGPT Image Sep 19, 2026, 08_52_30 PM.png",
-      gallery: [
-        "/КР-06/ChatGPT Image Sep 19, 2026, 08_52_30 PM.png",
-        "/КР-06/ChatGPT Image Sep 19, 2026, 08_31_46 PM.png",
-        "/КР-06/ChatGPT Image Sep 19, 2026, 08_44_04 PM.png"
-      ]
-    },
-    {
-      id: "net-1",
-      type: "net",
-      model: language === 'ua' ? 'СМ-1 «СТРИЖ»' : 'SM-1 "STRYZH"',
-      description: "",
-      price: "",
-      imageBase64: "/Сіткомети протидронові/net-main.png",
-      gallery: [
-        "/Сіткомети протидронові/net-main.png",
-        "/Сіткомети протидронові/net-02.png",
-        "/Сіткомети протидронові/net-03.png",
-        "/Сіткомети протидронові/net-04.png"
-      ]
-    },
-    {
-      id: "tool-1",
-      type: "tool",
-      model: language === 'ua' ? 'Електричний кабель на барабані' : 'Electric Cable on Reel',
-      description: "",
-      price: "",
-      imageBase64: "/electric-cable/cable-main.png",
-      gallery: [
-        "/electric-cable/cable-main.png",
-        "/electric-cable/cable-02.png",
-        "/electric-cable/cable-03.png"
-      ]
-    },
-    {
-      id: "tool-2",
-      type: "tool",
-      model: language === 'ua' ? 'Кактус-5' : 'Kaktus-5',
-      description: "",
-      price: "",
-      imageBase64: "/kaktus-5/kaktus-main.png",
-      gallery: [
-        "/kaktus-5/kaktus-main.png",
-        "/kaktus-5/kaktus-02.png",
-        "/kaktus-5/kaktus-03.png",
-        "/kaktus-5/kaktus-04.png",
-        "/kaktus-5/kaktus-05.jpg"
-      ]
-    },
-    {
-      id: "tool-3",
-      type: "tool",
-      model: language === 'ua' ? 'Ключ-1' : 'Key-1',
-      description: "",
-      price: "",
-      imageBase64: "/key-1/key-main.png",
-      gallery: [
-        "/key-1/key-main.png",
-        "/key-1/key-01.jpg",
-        "/key-1/key-02.png",
-        "/key-1/key-03.png",
-        "/key-1/key-04.png"
-      ]
-    },
-    {
-      id: "tool-4",
-      type: "tool",
-      model: language === 'ua' ? 'Магнітні граблі МГ-2' : 'Magnetic Rake MG-2',
-      description: "",
-      price: "",
-      imageBase64: "/rake-1/rake-02.png",
-      gallery: [
-        "/rake-1/rake-02.png",
-        "/rake-1/rake-main.png",
-        "/rake-1/rake-03.png",
-        "/rake-1/rake-04.png"
-      ]
-    },
-    {
-      id: "tool-5",
-      type: "tool",
-      model: language === 'ua' ? 'Пенали для детонаторів' : 'Detonator cases',
-      description: "",
-      price: "",
-      imageBase64: "/untitled folder/IMG_5355.PNG",
-      gallery: [
-        "/untitled folder/IMG_5355.PNG",
-        "/untitled folder/IMG_5353.PNG",
-        "/untitled folder/IMG_5352.PNG",
-        "/untitled folder/IMG_5354.PNG"
-      ]
-    },
-    {
-      id: "tool-6",
-      type: "tool",
-      model: language === 'ua' ? 'Сапка сапера' : 'Sapper Hoe',
-      description: "",
-      price: "",
-      imageBase64: "/untitled folder/IMG_5356.PNG",
-      gallery: [
-        "/untitled folder/IMG_5356.PNG",
-        "/untitled folder/IMG_5357.PNG"
-      ]
-    },
-    {
-      id: "tool-7",
-      type: "tool",
-      model: language === 'ua' ? 'Кішки саперні' : 'Sapper Hooks',
-      description: "",
-      price: "",
-      imageBase64: "/Кішки саперні/IMG_5358.PNG",
-      gallery: [
-        "/Кішки саперні/IMG_5358.PNG",
-        "/Кішки саперні/IMG_5360.PNG",
-        "/Кішки саперні/IMG_5361.PNG",
-        "/Кішки саперні/IMG_5362.PNG",
-        "/Кішки саперні/IMG_5363.PNG",
-        "/Кішки саперні/IMG_5364.PNG",
-        "/Кішки саперні/IMG_5367.PNG",
-        "/Кішки саперні/IMG_5368.PNG",
-        "/Кішки саперні/IMG_5370.PNG"
-      ]
-    },
-    {
-      id: "tool-8",
-      type: "tool",
-      model: language === 'ua' ? 'Чеки' : 'Safety Pins',
-      description: "",
-      price: "",
-      imageBase64: "/Чеки./IMG_5374.PNG",
-      gallery: [
-        "/Чеки./IMG_5374.PNG",
-        "/Чеки./IMG_5375.PNG",
-        "/Чеки./IMG_5376.PNG"
-      ]
-    },
-    {
-      id: "tool-9",
-      type: "tool",
-      model: language === 'ua' ? 'Стрічка попереджувальна' : 'Warning Tape',
-      description: "",
-      price: "",
-      imageBase64: "/Стрічка попереджувальна./IMG_5386.PNG",
-      gallery: [
-        "/Стрічка попереджувальна./IMG_5386.PNG",
-        "/Стрічка попереджувальна./IMG_5387.PNG",
-        "/Стрічка попереджувальна./IMG_5388.PNG"
-      ]
-    },
-    {
-      id: "tool-10",
-      type: "tool",
-      model: language === 'ua' ? 'Гак' : 'Hook',
-      description: "",
-      price: "",
-      imageBase64: "/Гак/IMG_5381.PNG",
-      gallery: [
-        "/Гак/IMG_5381.PNG",
-        "/Гак/IMG_5382.PNG",
-        "/Гак/IMG_5383.PNG"
-      ]
-    },
-    {
-      id: "tool-11",
-      type: "tool",
-      model: language === 'ua' ? 'Ключ' : 'Wrench',
-      description: "",
-      price: "",
-      imageBase64: "/Гак/IMG_5366.PNG",
-      gallery: [
-        "/Гак/IMG_5366.PNG"
-      ]
-    },
-    {
-      id: "tool-12",
-      type: "tool",
-      model: language === 'ua' ? 'Ключ' : 'Wrench',
-      description: "",
-      price: "",
-      imageBase64: "/Ключ”/IMG_5371.PNG",
-      gallery: [
-        "/Ключ”/IMG_5371.PNG",
-        "/Ключ”/IMG_5373.PNG"
-      ]
-    },
-    {
-      id: "tool-13",
-      type: "tool",
-      model: language === 'ua' ? 'Ключ' : 'Wrench',
-      description: "",
-      price: "",
-      imageBase64: "/Ключ”/IMG_5393.PNG",
-      gallery: [
-        "/Ключ”/IMG_5393.PNG",
-        "/Ключ”/IMG_5394.PNG"
-      ]
-    },
-    {
-      id: "tool-14",
-      type: "tool",
-      model: language === 'ua' ? 'Обтискач сапера «Мультитул»' : 'Sapper Crimper «Multitool»',
-      description: "",
-      price: "",
-      imageBase64: "/Мультитул/IMG_5400.PNG",
-      gallery: [
-        "/Мультитул/IMG_5400.PNG",
-        "/Мультитул/IMG_5399.PNG",
-        "/Мультитул/IMG_5401.PNG",
-        "/Мультитул/IMG_5402.PNG"
-      ]
-    },
-    {
-      id: "tool-15",
-      type: "tool",
-      model: language === 'ua' ? 'Кішка саперна' : 'Sapper Hook',
-      description: "",
-      price: "",
-      imageBase64: "/Кішка саперна/IMG_5395.PNG",
-      gallery: [
-        "/Кішка саперна/IMG_5395.PNG",
-        "/Кішка саперна/IMG_5396.PNG"
-      ]
-    },
-    {
-      id: "tool-16",
-      type: "tool",
-      model: language === 'ua' ? 'Котушка з паракордом' : 'Paracord Spool',
-      description: "",
-      price: "",
-      imageBase64: "/Кішка саперна/IMG_5403.PNG",
-      gallery: [
-        "/Кішка саперна/IMG_5403.PNG",
-        "/Кішка саперна/IMG_5404.PNG"
-      ]
-    },
-    {
-      id: "tool-17",
-      type: "tool",
-      model: language === 'ua' ? 'Котушка з талькою' : 'Spool with Talc',
-      description: "",
-      price: "",
-      imageBase64: "/Кішка саперна/IMG_5380.PNG",
-      gallery: [
-        "/Кішка саперна/IMG_5380.PNG"
-      ]
-    },
-    {
-      id: "tool-18",
-      type: "tool",
-      model: language === 'ua' ? 'Прапорці «Міни»' : 'Flags «Mines»',
-      description: "",
-      price: "",
-      imageBase64: "/Міни/IMG_5377.PNG",
-      gallery: [
-        "/Міни/IMG_5377.PNG",
-        "/Міни/IMG_5378.PNG",
-        "/Міни/IMG_5379.PNG"
-      ]
-    },
-    {
-      id: "tool-19",
-      type: "tool",
-      model: language === 'ua' ? 'Паракорди різної довжини' : 'Paracords of various lengths',
-      description: "",
-      price: "",
-      imageBase64: "/paracord-lengths/IMG_5389.PNG",
-      gallery: [
-        "/paracord-lengths/IMG_5389.PNG",
-        "/paracord-lengths/IMG_5390.PNG",
-        "/paracord-lengths/IMG_5391.PNG",
-        "/paracord-lengths/IMG_5392.PNG"
-      ]
-    }
-  ];
-
-  const product = items.find(item => item.id === id) || items[0];
+  // Related products from the same category
   const otherProducts = (() => {
-    if (product.type === 'tool') {
+    if (!product) return [];
+    if (product.categorySlug === 'tools') {
       if (product.id === 'tool-19') {
-        return items.filter(item => ['tool-16', 'tool-15', 'tool-17'].includes(item.id));
+        return products.filter((item) => ['tool-16', 'tool-15', 'tool-17'].includes(item.id));
       }
-      const list = items.filter(item => item.id !== product.id && item.type === product.type);
-      const tool19 = items.find(item => item.id === 'tool-19');
+      const list = products.filter(
+        (item) => item.id !== product.id && item.categorySlug === product.categorySlug
+      );
+      const tool19 = products.find((item) => item.id === 'tool-19');
       if (tool19) {
         if (product.id === 'tool-16') {
-          return [tool19, ...list.filter(item => item.id !== 'tool-19' && ['tool-15', 'tool-17'].includes(item.id))];
+          return [
+            tool19,
+            ...list.filter((item) => item.id !== 'tool-19' && ['tool-15', 'tool-17'].includes(item.id)),
+          ];
         }
-        const others = list.filter(item => item.id !== 'tool-19').slice(0, 2);
+        const others = list.filter((item) => item.id !== 'tool-19').slice(0, 2);
         return [tool19, ...others];
       }
       return list.slice(0, 3);
     }
-    return items.filter(item => item.id !== product.id && item.type === product.type).slice(0, 3);
+    return products
+      .filter((item) => item.id !== product.id && item.categorySlug === product.categorySlug)
+      .slice(0, 3);
   })();
-  
-  const hasCharacteristics = ["1", "2", "3", "m1", "m2", "m3", "k1", "k2", "k3", "k4", "net-1", "tool-1", "m4", "m5", "tool-3", "tool-2"].includes(product.id);
+
+  // Loading skeleton
+  if (loading && !product) {
+    return (
+      <main className="pt-[90px] bg-off-white min-h-screen pb-24 lg:pb-12 animate-pulse">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 pt-12 lg:pt-6">
+          <div className="h-6 w-32 bg-metallic-silver/30 rounded mb-12" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12">
+            <div className="aspect-square bg-white border border-metallic-silver/20 rounded-xl" />
+            <div className="space-y-6">
+              <div className="h-4 w-40 bg-metallic-silver/30 rounded" />
+              <div className="h-12 w-3/4 bg-metallic-silver/30 rounded" />
+              <div className="h-24 w-full bg-metallic-silver/20 rounded" />
+              <div className="h-16 w-full bg-metallic-silver/20 rounded" />
+            </div>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  // Error state
+  if (error && !product) {
+    return (
+      <main className="pt-[90px] bg-off-white min-h-screen pb-24 lg:pb-12 flex items-center justify-center">
+        <div className="text-center px-6 max-w-lg">
+          <h2 className="font-heading font-black text-2xl md:text-3xl text-dark-navy mb-4">
+            {language === 'ua' ? 'Помилка завантаження' : 'Loading Error'}
+          </h2>
+          <p className="font-body text-charcoal/70 mb-8">
+            {language === 'ua'
+              ? 'Не вдалося завантажити інформацію про товар.'
+              : 'Failed to load product information.'}
+          </p>
+          <div className="flex gap-4 justify-center">
+            <button
+              onClick={retry}
+              className="px-6 py-3 bg-primary-blue text-white font-heading font-bold text-xs uppercase tracking-widest"
+            >
+              {language === 'ua' ? 'Спробувати знову' : 'Try Again'}
+            </button>
+            <Link
+              to="/catalog"
+              className="px-6 py-3 border border-dark-navy text-dark-navy font-heading font-bold text-xs uppercase tracking-widest hover:bg-dark-navy hover:text-white transition-colors"
+            >
+              {t.nav.catalog}
+            </Link>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  // Not found or unpublished product
+  if (!product) {
+    return (
+      <main className="pt-[90px] bg-off-white min-h-screen pb-24 lg:pb-12 flex items-center justify-center">
+        <div className="text-center px-6 max-w-lg">
+          <h2 className="font-heading font-black text-3xl md:text-4xl text-dark-navy mb-4 uppercase">
+            {language === 'ua' ? 'Товар не знайдено' : 'Product Not Found'}
+          </h2>
+          <p className="font-body text-charcoal/70 mb-8">
+            {language === 'ua'
+              ? 'Товар недоступний або знятий з публікації.'
+              : 'The requested product is unavailable or not published.'}
+          </p>
+          <Link
+            to="/catalog"
+            className="inline-flex px-8 py-4 bg-primary-blue text-white font-heading font-black text-xs uppercase tracking-widest hover:bg-dark-navy transition-colors"
+          >
+            {t.nav.catalog}
+          </Link>
+        </div>
+      </main>
+    );
+  }
+
+  const model = getProductName(product, language);
+  const categoryLabel = getCategoryLabel(product.categorySlug, t, language);
+  const descriptionRaw =
+    getProductDescription(product, language) || getProductShortDescription(product, language);
+  const descriptionParagraphs = descriptionRaw
+    ? descriptionRaw.split(/\n\s*\n/).filter((p) => p.trim().length > 0)
+    : [];
+
+  const images = product.images.length > 0 ? product.images : (product.primaryImage ? [product.primaryImage] : []);
+
+  const hasCharacteristics =
+    (product.specifications && product.specifications.length > 0) ||
+    (product.kitContents && product.kitContents.length > 0);
+
+  const backSlug = product.categorySlug || 'probes';
 
   return (
     <main className="pt-[90px] bg-off-white min-h-screen pb-24 lg:pb-12">
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 pt-12 lg:pt-6">
-        <Link to={`/catalog/${product.type}s`} className="inline-flex items-center gap-2 text-primary-blue hover:text-dark-navy font-heading font-black text-[13px] uppercase tracking-widest transition-colors duration-300 mb-12 lg:mb-6 relative z-20 py-2 pr-4 w-fit cursor-pointer">
+        <Link
+          to={`/catalog/${backSlug}`}
+          className="inline-flex items-center gap-2 text-primary-blue hover:text-dark-navy font-heading font-black text-[13px] uppercase tracking-widest transition-colors duration-300 mb-12 lg:mb-6 relative z-20 py-2 pr-4 w-fit cursor-pointer"
+        >
           <ArrowLeft size={18} strokeWidth={2.5} />
           {t.nav.catalog}
         </Link>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 lg:items-start">
+          {/* Images Section */}
           <div className="flex flex-col gap-4">
-            <div 
-              className={`aspect-[4/5] lg:aspect-square lg:max-h-[65vh] bg-white border border-metallic-silver/20 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-xl flex items-center justify-center p-4 lg:p-6 relative overflow-hidden group transition-all duration-300 ${isZoomed ? 'cursor-zoom-out' : 'cursor-zoom-in'}`}
+            <div
+              className={`aspect-[4/5] lg:aspect-square lg:max-h-[65vh] bg-white border border-metallic-silver/20 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-xl flex items-center justify-center p-4 lg:p-6 relative overflow-hidden group transition-all duration-300 ${
+                isZoomed ? 'cursor-zoom-out' : 'cursor-zoom-in'
+              }`}
               onClick={handleZoom}
             >
-              {product.gallery && product.gallery[selectedImageIdx] ? (
-                <img 
+              {images && images[selectedImageIdx] ? (
+                <img
                   key={`main-img-${selectedImageIdx}`}
-                  src={product.gallery[selectedImageIdx]} 
-                  alt={product.model} 
+                  src={images[selectedImageIdx]}
+                  alt={model}
                   className={`w-full h-full object-contain transition-transform duration-500 ease-out ${
-                    isZoomed ? 'scale-[1.75]' : 
-                    product.id === 'tool-2' ? 'scale-[1.35]' : 
-                    product.id === 'tool-3' ? 'scale-[1.3]' : 
-                    product.id === 'tool-4' ? 'scale-[1.3]' : 
-                    product.id === 'tool-5' ? 'scale-[1.3]' : 
-                    product.id === 'tool-9' ? 'scale-[0.8]' : 
-                    'scale-100'
+                    isZoomed
+                      ? 'scale-[1.75]'
+                      : product.id === 'tool-2'
+                      ? 'scale-[1.35]'
+                      : product.id === 'tool-3'
+                      ? 'scale-[1.3]'
+                      : product.id === 'tool-4'
+                      ? 'scale-[1.3]'
+                      : product.id === 'tool-5'
+                      ? 'scale-[1.3]'
+                      : product.id === 'tool-9'
+                      ? 'scale-[0.8]'
+                      : 'scale-100'
                   }`}
                   style={{ transformOrigin: isZoomed ? zoomOrigin : 'center center' }}
                   draggable={false}
@@ -527,17 +222,22 @@ export function Product() {
                 {isZoomed ? <ZoomOut size={20} strokeWidth={2} /> : <ZoomIn size={20} strokeWidth={2} />}
               </div>
             </div>
-            
+
             {/* Gallery Thumbnails */}
-            {product.gallery && product.gallery.length > 1 && (
-              <div className={`grid gap-3 lg:gap-4 ${
-                product.gallery.length === 2 ? 'grid-cols-2' : 
-                product.gallery.length === 4 ? 'grid-cols-4' : 
-                product.gallery.length === 5 ? 'grid-cols-5' : 
-                'grid-cols-3'
-              }`}>
-                {product.gallery.map((img, idx) => (
-                  <button 
+            {images && images.length > 1 && (
+              <div
+                className={`grid gap-3 lg:gap-4 ${
+                  images.length === 2
+                    ? 'grid-cols-2'
+                    : images.length === 4
+                    ? 'grid-cols-4'
+                    : images.length === 5
+                    ? 'grid-cols-5'
+                    : 'grid-cols-3'
+                }`}
+              >
+                {images.map((img, idx) => (
+                  <button
                     key={idx}
                     type="button"
                     onClick={(e) => {
@@ -546,21 +246,28 @@ export function Product() {
                       setIsZoomed(false);
                     }}
                     className={`aspect-[4/3] lg:aspect-[3/2] bg-white border rounded-xl overflow-hidden cursor-pointer transition-colors duration-200 p-4 lg:p-6 flex items-center justify-center ${
-                      selectedImageIdx === idx ? 'border-primary-blue shadow-md' : 'border-metallic-silver/20 hover:border-primary-blue/50'
+                      selectedImageIdx === idx
+                        ? 'border-primary-blue shadow-md'
+                        : 'border-metallic-silver/20 hover:border-primary-blue/50'
                     }`}
                   >
                     {img ? (
-                      <img 
-                        src={img} 
-                        alt={`${product.model} thumbnail ${idx + 1}`} 
+                      <img
+                        src={img}
+                        alt={`${model} thumbnail ${idx + 1}`}
                         className={`w-full h-full object-contain pointer-events-none ${
-                        product.id === 'tool-2' ? 'scale-[1.35]' : 
-                        product.id === 'tool-3' ? 'scale-[1.3]' : 
-                        product.id === 'tool-4' ? 'scale-[1.3]' : 
-                        product.id === 'tool-5' ? 'scale-[1.3]' : 
-                        product.id === 'tool-9' ? 'scale-[0.8]' : 
-                        ''
-                      }`}
+                          product.id === 'tool-2'
+                            ? 'scale-[1.35]'
+                            : product.id === 'tool-3'
+                            ? 'scale-[1.3]'
+                            : product.id === 'tool-4'
+                            ? 'scale-[1.3]'
+                            : product.id === 'tool-5'
+                            ? 'scale-[1.3]'
+                            : product.id === 'tool-9'
+                            ? 'scale-[0.8]'
+                            : ''
+                        }`}
                         draggable={false}
                       />
                     ) : (
@@ -571,140 +278,27 @@ export function Product() {
               </div>
             )}
           </div>
-          
+
+          {/* Details Section */}
           <div className="flex flex-col justify-center">
             <h4 className="font-heading text-sm text-cool-gray tracking-widest uppercase font-bold mb-4 lg:mb-2">
-              {product.type === 'mirror' ? t.featured.mirror : product.type === 'kit' ? t.featured.kit : product.type === 'net' ? t.featured.net : product.type === 'tool' ? (language === 'ua' ? 'САПЕРНЕ ПРИСТОСУВАННЯ' : 'SAPPER TOOL') : t.featured.probe}
+              {categoryLabel}
             </h4>
             <h1 className="font-heading text-5xl md:text-6xl font-black text-dark-navy mb-8 lg:mb-5 tracking-tight">
-              {product.model}
+              {model}
             </h1>
-            
+
             <div className="font-body text-charcoal/70 text-lg mb-12 lg:mb-8 leading-relaxed space-y-4">
-              {product.id === "1" ? (
-                <>
-                  <p>Щуп пошуковий ЩР-1 призначений для розвідки та пошуку протипіхотних та протитанкових мін при проведенні робіт з розмінування, а також пошуку інших предметів та схованок при проведенні пошукових робіт.</p>
-                  <p>Щуп складається з алюмінієвої рукоятки та двох алюмінієвих подовжувальних штанг, до яких за допомогою накидної гайки кріпляться чотири змінних наконечники — стальний, латунний та два діелектричних.</p>
-                  <p>Накидна гайка має два отвори, що дозволяють кріпити змінні наконечники вздовж осі щупа або під кутом 30 градусів.</p>
-                  <p>Завдяки цьому щуп може збиратися у двох варіантах — для роботи стоячи або для роботи лежачи.</p>
-                  <p>Щуп розміщений у чохлі для переноски.</p>
-                </>
-              ) : product.id === "2" ? (
-                <>
-                  <p>Щуп пошуковий ЩР-3/2 призначений для розвідки та пошуку протипіхотних та протитанкових мін при проведенні робіт з розмінування, а також пошуку інших предметів та схованок при проведенні пошукових робіт.</p>
-                  <p>Щуп складається з дерев’яної рукоятки та алюмінієвої подовжуючої штанги, до яких за допомогою накидної гайки кріпляться чотири змінних наконечники — стальний, латунний та два діелектричних.</p>
-                  <p>Накидна гайка має два отвори, що дозволяють кріпити змінні наконечники вздовж осі щупа або під кутом 30 градусів.</p>
-                  <p>Завдяки цьому щуп може збиратися у двох варіантах — для роботи стоячи або для роботи лежачи.</p>
-                  <p>Щуп розміщений у чохлі для переноски.</p>
-                </>
-              ) : product.id === "3" ? (
-                <>
-                  <p>Щуп пошуковий ЩР-8 призначений для розвідки та пошуку протипіхотних та протитанкових мін при проведенні робіт з розмінування, а також пошуку інших предметів та схованок при проведенні пошукових робіт.</p>
-                  <p>Щуп складається з пластикової рукоятки та трьох алюмінієвих подовжуючих штанг, до яких за допомогою накидної гайки кріпляться змінні наконечники — стальний, латунний та два діелектричних.</p>
-                  <p>Накидна гайка має два отвори, що дозволяють кріпити змінні наконечники вздовж осі щупа або під кутом 30 градусів.</p>
-                  <p>Завдяки цьому щуп може збиратися у двох варіантах — для роботи стоячи або для роботи лежачи.</p>
-                  <p>Щуп розміщений у чохлі для переноски.</p>
-                </>
-              ) : product.id === "m1" ? (
-                <>
-                  <p className="font-bold text-dark-navy uppercase tracking-wide text-sm mb-1">ДЗЕРКАЛО З РОЗСУВНОЮ ШТАНГОЮ ТА ОСВІТЛЮВАЧЕМ</p>
-                  <p>Дзеркало ЗД-1 призначене для огляду приміщень, транспортних засобів, спортивних споруд, пошуку зброї, вибухонебезпечних предметів, контрабанди.</p>
-                  <p>Дзеркало може використовуватися працівниками вибухотехнічних служб, служб охорони, митниці, прикордонних військ та іншими підрозділами.</p>
-                  <p>Дзеркало виготовляється при сприянні НДІ спецтехніки при ГУ МВС України.</p>
-                </>
-              ) : product.id === "m2" ? (
-                <>
-                  <p className="font-bold text-dark-navy uppercase tracking-wide text-sm mb-1">НАБІР ДЗЕРКАЛ З РОЗСУВНОЮ ШТАНГОЮ ТА ОСВІТЛЮВАЧЕМ</p>
-                  <p>Набір дзеркал ЗД-2 призначений для огляду приміщень, транспортних засобів, спортивних споруд, пошуку зброї, вибухонебезпечних предметів, контрабанди.</p>
-                  <p>Набір може використовуватися працівниками вибухотехнічних служб, служб охорони, митниці, прикордонних військ та іншими підрозділами.</p>
-                  <p>Набір виготовляється при сприянні НДІ спецтехніки при ГУ МВС України.</p>
-                </>
-              ) : product.id === "m3" ? (
-                <>
-                  <p className="font-bold text-dark-navy uppercase tracking-wide text-sm mb-1">НАБІР ДЗЕРКАЛ З РОЗСУВНОЮ ШТАНГОЮ ТА ОСВІТЛЮВАЧЕМ</p>
-                  <p>Набір дзеркал ЗД-2У призначений для огляду приміщень, транспортних засобів, спортивних споруд, пошуку зброї, вибухонебезпечних предметів, контрабанди.</p>
-                  <p>Набір може використовуватися працівниками вибухотехнічних служб, служб охорони, митниці, прикордонних військ та іншими підрозділами.</p>
-                  <p>Набір виготовляється при сприянні НДІ спецтехніки при ГУ МВС України.</p>
-                </>
-              ) : product.id === "m4" ? (
-                <>
-                  <p>{language === 'ua' ? 'Дзеркало оглядове ЗД-3 призначене для огляду днищ автотранспортних засобів та інших аналогічних об’єктів. Використовується для виявлення вибухових пристроїв, контрабанди та пошкоджень машин. Поверхня дзеркала виконана випуклою, що забезпечує широкий кут огляду. Для зручності користування дзеркало оснащене колесами.' : 'Inspection mirror ZD-3 is designed for inspecting the undercarriage of vehicles and other similar objects. It is used to detect explosive devices, contraband, and vehicle damage. The surface of the mirror is convex, which provides a wide viewing angle. For ease of use, the mirror is equipped with wheels.'}</p>
-                  <p>{language === 'ua' ? 'Виріб призначений для використання персоналом служб безпеки, поліції, митниці, прикордонниками та іншими службами.' : 'The product is intended for use by security personnel, police, customs, border guards, and other services.'}</p>
-                  <p>{language === 'ua' ? 'Конструктивно виріб складається із двоколінної штанги, до якої під кутом прикріплене сферичне дзеркало. Для транспортування дзеркало вкладається в чохол. На штанзі розміщений світлодіодний акумуляторний ліхтар для підсвітки, оснащений зарядним пристроєм.' : 'Structurally, the product consists of a two-section rod to which a spherical mirror is attached at an angle. For transportation, the mirror is placed in a cover. A rechargeable LED flashlight with a charger is placed on the rod for illumination.'}</p>
-                </>
-              ) : product.id === "m5" ? (
-                <>
-                  <p>{language === 'ua' ? 'Дзеркало оглядове ЗД-4 призначене для огляду днищ автотранспортних засобів та інших аналогічних об’єктів. Використовується для виявлення вибухових пристроїв, контрабанди та пошкоджень машин. Поверхня дзеркала виконана випуклою, що забезпечує широкий кут огляду. Для зручності користування дзеркало оснащене колесами.' : 'Inspection mirror ZD-4 is designed for inspecting the undercarriage of vehicles and other similar objects. It is used to detect explosive devices, contraband, and vehicle damage. The surface of the mirror is convex, which provides a wide viewing angle. For ease of use, the mirror is equipped with wheels.'}</p>
-                  <p>{language === 'ua' ? 'Виріб призначений для використання персоналом служб безпеки, поліції, митниці, прикордонниками та іншими службами.' : 'The product is intended for use by security personnel, police, customs, border guards, and other services.'}</p>
-                  <p>{language === 'ua' ? 'Конструктивно виріб складається із трьохколінної штанги, до якої під кутом прикріплене сферичне дзеркало. Для транспортування дзеркало вкладається в чохол. На корпусі дзеркала розміщений світлодіодний акумуляторний ліхтар для підсвітки, оснащений зарядним пристроєм.' : 'Structurally, the product consists of a three-section rod to which a spherical mirror is attached at an angle. For transportation, the mirror is placed in a cover. A rechargeable LED flashlight with a charger is placed on the mirror housing for illumination.'}</p>
-                </>
-              ) : product.id === "k1" ? (
-                <>
-                  <p className="font-bold text-dark-navy uppercase tracking-wide text-sm mb-1">НАБІР ДЛЯ РОЗМІНУВАННЯ / КОМПЛЕКТ САПЕРА ЕОД-1</p>
-                  <p>Набір призначений для транспортування і зберігання стандартних і спеціальних приладів та інструментів, які використовуються для виконання специфічних завдань: огляду місць мінувань, пошуку вибухонебезпечних предметів, знешкодження боєприпасів та саморобних вибухових пристроїв.</p>
-                  <p>Комплексний набір включає модулі та пристосування для виконання всього комплексу робіт у різноманітних умовах — відкрита місцевість, будівлі та споруди, автомобільний транспорт та ін.</p>
-                  <p>Набір має компактні розміри, мінімальну вагу та зручне кріплення за допомогою системи MOLLE, а також ремінь для перенесення.</p>
-                </>
-              ) : product.id === "k2" ? (
-                <>
-                  <p className="font-bold text-dark-navy uppercase tracking-wide text-sm mb-1">СПЕЦІАЛЬНИЙ НАБІР ДЛЯ РОЗМІНУВАННЯ</p>
-                  <p>Набір призначений для транспортування і зберігання стандартних і спеціальних приладів та інструментів, які використовуються для виконання специфічних завдань: огляду місць мінувань, пошуку вибухонебезпечних предметів, знешкодження боєприпасів та саморобних вибухових пристроїв.</p>
-                  <p>Комплексний набір включає модулі та пристосування для виконання всього комплексу робіт в різноманітних умовах — відкрита місцевість, будівлі та споруди, автомобільний транспорт та ін.</p>
-                  <p>Набір має компактні розміри, мінімальну вагу та зручне кріплення з фіксацією до ноги.</p>
-                </>
-              ) : product.id === "k3" ? (
-                <>
-                  <p className="font-bold text-dark-navy uppercase tracking-wide text-sm mb-1">ІНДИВІДУАЛЬНИЙ НАБІР ДЛЯ РОЗМІНУВАННЯ</p>
-                  <p>Індивідуальний набір для розмінування «КР-04» призначений для технічного забезпечення саперів інженерно-саперних підрозділів Збройних Сил України під час виконання ними робіт з пошуку, знешкодження й знищення мін та фугасів, позначення на місцевості ідентифікованих мін, огородження на місцевості розвіданих ділянок, пророблення проходів в загородженнях, а також перевірки мін на предмет невилучення.</p>
-                  <p>Комплексний набір включає модулі та пристосування для виконання всього комплексу робіт у різноманітних умовах — відкрита місцевість, будівлі та споруди, автомобільний транспорт та ін.</p>
-                  <p>Набір має компактні розміри та мінімальну вагу. Комплектуючі розміщені в сумці, яка має ручку і ремінь для перенесення та кріплення з системою MOLLE.</p>
-                </>
-              ) : product.id === "k4" ? (
-                <>
-                  <p className="font-bold text-dark-navy uppercase tracking-wide text-sm mb-1">НАБІР САПЕРА / КОМПЛЕКТ КР-06</p>
-                  <p>Набір призначений для транспортування і зберігання стандартних і спеціальних приладів та інструментів, які використовуються для виконання специфічних завдань: огляду місць мінувань, пошуку вибухонебезпечних предметів, знешкодження боєприпасів та саморобних вибухових пристроїв.</p>
-                  <p>Комплексний набір включає модулі та пристосування для виконання всього комплексу робіт у різноманітних умовах — відкрита місцевість, будівлі та споруди, автомобільний транспорт та ін.</p>
-                  <p>Набір розміщується на ремінно-плечовій системі в спеціальних підсумках за допомогою кріплення системи MOLLE, має компактні розміри та мінімальну вагу.</p>
-                </>
-              ) : product.id === "net-1" ? (
-                <>
-                  <p>Сіткомет протидроновий «СТРИЖ» — це механічна система протидії FPV та безпілотним літальним апаратам, розроблена для використання у бойових умовах.</p>
-                  <p>Пристрій вистрілює сітку, яка нейтралізує ворожі БпЛА, уражаючи їхні пропелери. Не потребує живлення чи спеціальних навичок — готовий до застосування за кілька секунд.</p>
-                  <p>Сіткомет комплектується учбовим багаторазовим картриджем для учбової стрільби.</p>
-                  <p>Сіткомет ефективно протидіє FPV-дронам, у тому числі моделям із оптоволоконними системами зв’язку. Підходить для піхотних підрозділів, мобільних груп, охорони техніки та позицій у міських або польових умовах.</p>
-                  <p>Пускова система обладнана запобіжником, що унеможливлює самовільний спуск ударно-спускового механізму.</p>
-                </>
-              ) : product.id === "tool-1" ? (
-                <>
-                  <p>{language === 'ua' ? 'Електричний кабель на барабані призначений для прокладки тимчасових електричних мереж напругою до 380 В.' : 'Electric cable on a reel is designed for laying temporary electrical networks with a voltage of up to 380 V.'}</p>
-                </>
-              ) : product.id === "tool-3" ? (
-                <>
-                  <p>{language === 'ua' ? 'Комплект засобів «Ключ-1» призначений для дистанційного знешкодження (деактивування) протитанкових мін типу ТМ-62.' : 'The "Key-1" tool kit is designed for the remote neutralization (deactivation) of TM-62 type anti-tank mines.'}</p>
-                  <p>{language === 'ua' ? 'Виріб призначений для технічного забезпечення саперів інженерно-саперних підрозділів під час виконання робіт з дистанційного викручування та вилучення підривачів типу «МВЧ-62» та «МВП-62» протитанкової міни типу ТМ-62, а також її зрушення або перевертання (витягування з ґрунту) з метою виявлення вибухонебезпечних пасток, які можуть бути встановлені під нею.' : 'The product is intended for the technical support of sappers of engineering and sapper units during the execution of works on remote unscrewing and extraction of fuzes of the "MVCh-62" and "MVP-62" types of the TM-62 anti-tank mine, as well as its moving or overturning (pulling out of the ground) in order to detect explosive traps that may be installed under it.'}</p>
-                  <p>{language === 'ua' ? 'Набір має компактні розміри та мінімальну вагу.' : 'The kit has compact dimensions and minimal weight.'}</p>
-                </>
-              ) : product.id === "tool-4" ? (
-                <>
-                  <p>{language === 'ua' ? 'Магнітні граблі МГ-2 (пошукове магнітне пристосування) призначені для застосування експертами-криміналістами, працівниками вибухотехнічних служб і саперними пошуковими групами при проведенні обстеження і огляду місця події, пов’язаного з вибухом.' : 'The magnetic rake MG-2 (search magnetic tool) is designed for use by forensic experts, explosive ordnance disposal personnel, and sapper search groups when surveying and inspecting a blast scene.'}</p>
-                  <p>{language === 'ua' ? 'Пристрій дозволяє швидко і ефективно обстежити місце вибуху і зібрати осколки вибухового пристрою, розкидані на великій площі.' : 'The device allows for quick and efficient inspection of the explosion site and the collection of explosive device fragments scattered over a large area.'}</p>
-                  <p>{language === 'ua' ? 'Ефективність збору осколків за допомогою виробу МГ-2 значно вище, ніж при застосуванні інших пристроїв.' : 'The efficiency of fragment collection using the MG-2 product is significantly higher than when using other devices.'}</p>
-                  <p>{language === 'ua' ? 'Пристосування просте по конструкції і зручне в роботі.' : 'The tool is simple in design and easy to operate.'}</p>
-                  <p>{language === 'ua' ? 'Для транспортування виріб легко розбирається і укладається в сумку, і його в складеному вигляді легко можна транспортувати будь-якими видами транспорту.' : 'For transportation, the product is easily disassembled and packed into a bag, and in its folded state, it can be easily transported by any means of transport.'}</p>
-                </>
-              ) : product.id === "tool-2" ? (
-                <>
-                  <p className="font-bold text-dark-navy uppercase tracking-wide text-sm mb-1">ПРИСТРІЙ ПРИМУСОВОЇ ЗУПИНКИ АВТОТРАНСПОРТУ<br/>ПЗА – «Кактус-5»</p>
-                  <p>Пристрій примусової зупинки автотранспорту «Кактус-5» призначений для перешкоджання несанкціонованому проїзду легкового і вантажного колісного автотранспорту з пневматичними шинами на режимні об'єкти та примусової зупинки автотранспорту на дорогах, при неможливості зупинити порушників іншими способами.</p>
-                  <p>Пристрій легко транспортується і швидко встановлюється практично на будь-яке дорожнє покриття. Ширина загородження — 5,65 метрів.</p>
-                  <p>При наїзді автомобіля на загородження стержні залишаються в шині, здійснюючи ефективне випускання повітря через спеціальні отвори.</p>
-                  <p>Пристрій «Кактус-5» легко складається в напівжорсткий чохол для переноски. В чохлі пристрій перебуває в положенні, готовому до використання.</p>
-                </>
+              {descriptionParagraphs.length > 0 ? (
+                descriptionParagraphs.map((paragraph, idx) => (
+                  <p key={idx}>{paragraph}</p>
+                ))
               ) : (
-                <p>{product.description}</p>
+                <p>{descriptionRaw || model}</p>
               )}
             </div>
-            
+
+            {/* Warranty Info */}
             <div className="bg-white p-6 lg:p-5 mb-12 lg:mb-8 flex items-start gap-4 lg:gap-4 border border-metallic-silver/30 shadow-sm">
               <ShieldCheck size={24} className="text-primary-blue shrink-0 mt-0.5 lg:mt-0" strokeWidth={1.5} />
               <div>
@@ -712,20 +306,21 @@ export function Product() {
                   {t.featured.warrantyTitle}
                 </h5>
                 <p className="font-body text-[15px] text-charcoal/80 leading-relaxed lg:leading-normal">
-                  {t.featured.warrantyDesc1} <br/>
+                  {t.featured.warrantyDesc1} <br />
                   {t.featured.warrantyDesc2}
                 </p>
               </div>
             </div>
-            
+
+            {/* Price and Action */}
             <div className="pt-8 lg:pt-6 border-t border-metallic-silver/40 flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-10">
               <div className="font-heading font-black text-base tracking-widest uppercase text-dark-navy">
-                {formatProductPrice(product, language)}
+                {formatProductPrice(getProductPrice(product), language)}
               </div>
-              <button 
+              <button
                 onClick={(e) => {
                   e.preventDefault();
-                  addItem({ id: product.id, model: product.model });
+                  addItem({ id: product.id, model });
                 }}
                 className="w-full sm:w-auto py-5 px-12 bg-primary-blue text-white font-heading font-black text-sm tracking-widest uppercase border border-primary-blue hover:bg-white hover:text-primary-blue transition-colors duration-300 inline-flex justify-center"
               >
@@ -733,866 +328,143 @@ export function Product() {
               </button>
             </div>
 
-            {/* Modern Accordion Description */}
+            {/* Specifications and Kit Contents Accordion */}
             {hasCharacteristics && (
-            <div className="bg-white border border-metallic-silver/30 shadow-sm overflow-hidden transition-all duration-300">
-              <button 
-                onClick={() => setIsDescriptionOpen(!isDescriptionOpen)}
-                className="w-full flex items-center justify-between p-5 lg:p-6 bg-transparent hover:bg-off-white/50 transition-colors duration-300 group"
-              >
-                <span className="font-heading font-black text-sm tracking-widest uppercase text-dark-navy group-hover:text-primary-blue transition-colors duration-300">
-                  {language === 'ua' ? 'Характеристики' : 'Specifications'}
-                </span>
-                <motion.div
-                  animate={{ rotate: isDescriptionOpen ? 180 : 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="text-primary-blue opacity-70 group-hover:opacity-100"
+              <div className="bg-white border border-metallic-silver/30 shadow-sm overflow-hidden transition-all duration-300">
+                <button
+                  onClick={() => setIsDescriptionOpen(!isDescriptionOpen)}
+                  className="w-full flex items-center justify-between p-5 lg:p-6 bg-transparent hover:bg-off-white/50 transition-colors duration-300 group"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-                </motion.div>
-              </button>
-              
-              <AnimatePresence>
-                {isDescriptionOpen && (
+                  <span className="font-heading font-black text-sm tracking-widest uppercase text-dark-navy group-hover:text-primary-blue transition-colors duration-300">
+                    {language === 'ua' ? 'Характеристики' : 'Specifications'}
+                  </span>
                   <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    animate={{ rotate: isDescriptionOpen ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="text-primary-blue opacity-70 group-hover:opacity-100"
                   >
-                    <div className="px-5 lg:px-6 pb-6 pt-2">
-                      <div className="pt-5 border-t border-metallic-silver/20 space-y-5">
-                        {product.id === "1" ? (
-                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm space-y-6">
-                            <div>
-                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
-                                 ТЕХНІЧНІ ДАНІ:
-                               </h5>
-                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Максимальна довжина з рукояткою</span>
-                                   <span className="font-bold text-dark-navy text-right">не менше 1250 мм</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Мінімальна довжина з рукояткою</span>
-                                   <span className="font-bold text-dark-navy text-right">не менше 630 мм</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Вага комплекту</span>
-                                   <span className="font-bold text-dark-navy text-right">не більше 0,8 кг</span>
-                                 </li>
-                               </ul>
-                            </div>
-                            
-                            <ProductKitAccordion count={2}>
-                              <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>Щуп пошуковий</span>
-                                  <span className="font-bold text-dark-navy text-right">1 комплект</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>Чохол</span>
-                                  <span className="font-bold text-dark-navy text-right">1 шт.</span>
-                                </li>
-                              </ul>
-                            </ProductKitAccordion>
-                          </div>
-                        ) : product.id === "2" ? (
-                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm space-y-6">
-                            <div>
-                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
-                                 ТЕХНІЧНІ ДАНІ:
-                               </h5>
-                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Максимальна довжина з рукояткою</span>
-                                   <span className="font-bold text-dark-navy text-right">не менше 1350 мм</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Мінімальна довжина з рукояткою</span>
-                                   <span className="font-bold text-dark-navy text-right">не менше 500 мм</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Вага комплекту</span>
-                                   <span className="font-bold text-dark-navy text-right">не більше 1,5 кг</span>
-                                 </li>
-                               </ul>
-                            </div>
-                            
-                            <ProductKitAccordion count={2}>
-                              <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>Щуп пошуковий</span>
-                                  <span className="font-bold text-dark-navy text-right">1 комплект</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>Чохол</span>
-                                  <span className="font-bold text-dark-navy text-right">1 шт.</span>
-                                </li>
-                              </ul>
-                            </ProductKitAccordion>
-                          </div>
-                        ) : product.id === "3" ? (
-                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm space-y-6">
-                            <div>
-                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
-                                 ТЕХНІЧНІ ДАНІ:
-                               </h5>
-                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Максимальна довжина з рукояткою</span>
-                                   <span className="font-bold text-dark-navy text-right">не менше 1650 мм</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Мінімальна довжина з рукояткою</span>
-                                   <span className="font-bold text-dark-navy text-right">не менше 450 мм</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Вага комплекту</span>
-                                   <span className="font-bold text-dark-navy text-right">не більше 2,1 кг</span>
-                                 </li>
-                               </ul>
-                            </div>
-                            
-                            <ProductKitAccordion count={2}>
-                              <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>Щуп пошуковий</span>
-                                  <span className="font-bold text-dark-navy text-right">1 комплект</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>Чохол</span>
-                                  <span className="font-bold text-dark-navy text-right">1 шт.</span>
-                                </li>
-                              </ul>
-                            </ProductKitAccordion>
-                          </div>
-                        ) : product.id === "m1" ? (
-                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm space-y-6">
-                            <div>
-                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
-                                 ТЕХНІЧНІ ДАНІ:
-                               </h5>
-                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Довжина в робочому положенні</span>
-                                   <span className="font-bold text-dark-navy text-right">1200 мм</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Довжина в складеному положенні</span>
-                                   <span className="font-bold text-dark-navy text-right">480 мм</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Вага без освітлювача</span>
-                                   <span className="font-bold text-dark-navy text-right">не більше 0,5 кг</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Розмір дзеркала</span>
-                                   <span className="font-bold text-dark-navy text-right">78 × 120 мм</span>
-                                 </li>
-                               </ul>
-                            </div>
-                            
-                            <ProductKitAccordion count={7}>
-                              <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>Штанга телескопічна</span>
-                                  <span className="font-bold text-dark-navy text-right">1 шт.</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>Дзеркало 75 × 120</span>
-                                  <span className="font-bold text-dark-navy text-right">1 шт.</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>Кронштейн для ліхтаря</span>
-                                  <span className="font-bold text-dark-navy text-right">1 шт.</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>Чохол</span>
-                                  <span className="font-bold text-dark-navy text-right">1 шт.</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>Ліхтар</span>
-                                  <span className="font-bold text-dark-navy text-right">1 шт.</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>Елементи живлення для ліхтаря</span>
-                                  <span className="font-bold text-dark-navy text-right">1 шт.</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>Паспорт</span>
-                                  <span className="font-bold text-dark-navy text-right">1 шт.</span>
-                                </li>
-                              </ul>
-                            </ProductKitAccordion>
-                          </div>
-                        ) : product.id === "m2" ? (
-                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm space-y-6">
-                            <div>
-                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
-                                 ТЕХНІЧНІ ДАНІ:
-                               </h5>
-                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Довжина в робочому положенні</span>
-                                   <span className="font-bold text-dark-navy text-right">1300 мм</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Довжина в складеному положенні</span>
-                                   <span className="font-bold text-dark-navy text-right">430 мм</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Вага без освітлювача</span>
-                                   <span className="font-bold text-dark-navy text-right">не більше 0,8 кг</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Змінні дзеркала</span>
-                                   <span className="font-bold text-dark-navy text-right">Ø150 мм, Ø105 мм, Ø70 мм, 120 × 75 мм</span>
-                                 </li>
-                               </ul>
-                            </div>
-                            
-                            <ProductKitAccordion count={6}>
-                              <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>Штанга телескопічна з шарніром</span>
-                                  <span className="font-bold text-dark-navy text-right">1 шт.</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>Змінні дзеркала</span>
-                                  <span className="font-bold text-dark-navy text-right">4 шт.</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>Кронштейн для ліхтаря</span>
-                                  <span className="font-bold text-dark-navy text-right">1 шт.</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>Валіза з планшетами</span>
-                                  <span className="font-bold text-dark-navy text-right">1 шт.</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>Ліхтар з елементами живлення</span>
-                                  <span className="font-bold text-dark-navy text-right">1 шт.</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>Паспорт</span>
-                                  <span className="font-bold text-dark-navy text-right">1 шт.</span>
-                                </li>
-                              </ul>
-                            </ProductKitAccordion>
-                          </div>
-                        ) : product.id === "m3" ? (
-                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm space-y-6">
-                            <div>
-                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
-                                 ТЕХНІЧНІ ДАНІ:
-                               </h5>
-                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Довжина в робочому положенні</span>
-                                   <span className="font-bold text-dark-navy text-right">1240 мм</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Довжина в складеному положенні</span>
-                                   <span className="font-bold text-dark-navy text-right">610 мм</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Вага без освітлювача</span>
-                                   <span className="font-bold text-dark-navy text-right">не більше 0,8 кг</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Дзеркало</span>
-                                   <span className="font-bold text-dark-navy text-right">Ø170 мм</span>
-                                 </li>
-                               </ul>
-                            </div>
-                            
-                            <ProductKitAccordion count={7}>
-                              <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>Штанга телескопічна з шарніром</span>
-                                  <span className="font-bold text-dark-navy text-right">1 шт.</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>Змінне дзеркало</span>
-                                  <span className="font-bold text-dark-navy text-right">1 шт.</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>Кронштейн для ліхтаря</span>
-                                  <span className="font-bold text-dark-navy text-right">1 шт.</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>Чохол</span>
-                                  <span className="font-bold text-dark-navy text-right">1 шт.</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>Ліхтарик</span>
-                                  <span className="font-bold text-dark-navy text-right">1 шт.</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>Елементи живлення для ліхтаря</span>
-                                  <span className="font-bold text-dark-navy text-right">1 шт.</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>Паспорт</span>
-                                  <span className="font-bold text-dark-navy text-right">1 шт.</span>
-                                </li>
-                              </ul>
-                            </ProductKitAccordion>
-                          </div>
-                        ) : product.id === "k1" ? (
-                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm space-y-6">
-                            <div>
-                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
-                                 ТЕХНІЧНІ ДАНІ:
-                               </h5>
-                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Габаритні розміри сумки</span>
-                                   <span className="font-bold text-dark-navy text-right">не більше 330 × 230 × 120 мм</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Загальна вага</span>
-                                   <span className="font-bold text-dark-navy text-right">не більше 4,7 кг</span>
-                                 </li>
-                               </ul>
-                            </div>
-                            
-                            <ProductKitAccordion count={48}>
-                                       <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 font-body text-[13px] text-charcoal/80">
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">1. Сумка з ременем</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">2. Мультитул сапера</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">3. Лопатка саперна</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">4. Паракорд 3 мм, 35 м</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">5. Захват мотузковий</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">6. Кішка для розтяжок</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">7. Кішка для з’єму мін</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">8. Датчик розтяжок</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">9. Карабіни</span><span className="font-bold text-dark-navy whitespace-nowrap">2 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">10. Стяжки пластикові</span><span className="font-bold text-dark-navy whitespace-nowrap">20 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">11. Стропа мотузкова 1 м</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">12. Різак</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">13. Кусачки для ізоляції</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">14. Кусачки бокорізи малі</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">15. Ножиці зігнуті</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">16. Ножиці прямі</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">17. Зажим з фіксатором</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">18. Зажим різьбовий</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">19. Пінцет прямий</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">20. Пінцет зігнутий</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">21. Захват цанговий</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">22. Гачок трьохсторонній</span><span className="font-bold text-dark-navy whitespace-nowrap">3 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">23. Ліхтарик налобний</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">24. Ліхтарик USB малий</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">25. Шнур USB</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">26. Котушка для ізострічки</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5 pl-4 text-charcoal/60"><span className="truncate pr-2">26.1. Ізострічка червона</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5 pl-4 text-charcoal/60"><span className="truncate pr-2">26.2. Ізострічка чорна</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5 pl-4 text-charcoal/60"><span className="truncate pr-2">26.3. Стрічка тканинна</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5 pl-4 text-charcoal/60"><span className="truncate pr-2">26.4. Скотч армований</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5 pl-4 text-charcoal/60"><span className="truncate pr-2">26.5. Скотч двосторонній</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">27. Запобіжні чеки Р-подібні</span><span className="font-bold text-dark-navy whitespace-nowrap">10 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">28. Запобіжні чеки Т-подібні</span><span className="font-bold text-dark-navy whitespace-nowrap">10 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">29. Запобіжні чеки З-подібні</span><span className="font-bold text-dark-navy whitespace-nowrap">10 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">30. Запобіжні чеки довгі</span><span className="font-bold text-dark-navy whitespace-nowrap">10 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">31. Перенаправлювач розтяжок</span><span className="font-bold text-dark-navy whitespace-nowrap">10 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">32. Булавки</span><span className="font-bold text-dark-navy whitespace-nowrap">10 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">33. Карабіни для розтяжок</span><span className="font-bold text-dark-navy whitespace-nowrap">10 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">34. Оправка для МУВ</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">35. Універсальний ключ ПТМ</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">36. Котушка дротів/ниток</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5 pl-4 text-charcoal/60"><span className="truncate pr-2">36.1. Дріт сталь (100 м)</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5 pl-4 text-charcoal/60"><span className="truncate pr-2">36.2. Дріт 0,8 мм (20 м)</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5 pl-4 text-charcoal/60"><span className="truncate pr-2">36.3. Нитки чорні (100 м)</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5 pl-4 text-charcoal/60"><span className="truncate pr-2">36.4. Нитки зелені (100 м)</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5 pl-4 text-charcoal/60"><span className="truncate pr-2">36.5. Ліска (100 м)</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">37. Пенал універсальний</span><span className="font-bold text-dark-navy whitespace-nowrap">2 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">38. Комплект скребків</span><span className="font-bold text-dark-navy whitespace-nowrap">1 компл</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">39. Пенал для детонаторів</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">40. Мінідзеркало оглядове</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">41. Щуп малий</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">42. Маркер знайдених мін «М»</span><span className="font-bold text-dark-navy whitespace-nowrap">10 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">43. Турбозапальничка газова</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">44. Щітка 20–25 мм</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">45. Саморіз 30 мм</span><span className="font-bold text-dark-navy whitespace-nowrap">10 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">46. Рулетка 3 м</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">47. Котушка підрив. дроту</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                         <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">48. Чохол для котушки</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                       </ul>
-                            </ProductKitAccordion>
-                          </div>
-                        ) : product.id === "k2" ? (
-                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm space-y-6">
-                            <div>
-                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
-                                 ТЕХНІЧНІ ДАНІ:
-                               </h5>
-                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Габаритні розміри сумки</span>
-                                   <span className="font-bold text-dark-navy text-right">не більше 290 × 210 × 90 мм</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Загальна вага</span>
-                                   <span className="font-bold text-dark-navy text-right">не більше 2,2 кг</span>
-                                 </li>
-                               </ul>
-                            </div>
-                            
-                            <ProductKitAccordion count={22}>
-                              <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 font-body text-[13px] text-charcoal/80">
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">1. Паракорд 4 мм довжиною 35 м</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">2. Захват мотузковий</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">3. Кусачки-бокорізи малі</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">4. Запобіжні чеки</span><span className="font-bold text-dark-navy whitespace-nowrap">10 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">5. Обжим сапера комбінований</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">6. Універсальний ключ для переводу підривників ПТМ</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">7. Котушка з дротом сталькою (100 м)</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">8. Карабіни для постановки розтяжок</span><span className="font-bold text-dark-navy whitespace-nowrap">10 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">9. Булавки</span><span className="font-bold text-dark-navy whitespace-nowrap">10 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">10. Кішка ялинка</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">11. Зажим</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">12. Пенал універсальний для детонаторів</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">13. Стяжки пластикові</span><span className="font-bold text-dark-navy whitespace-nowrap">20 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">14. Ліхтарик світлодіодний налобний</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">15. Щуп малий односекційний із 3 змінними наконечниками</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">16. Маркер знайдених мін «М» на металевій стійці</span><span className="font-bold text-dark-navy whitespace-nowrap">5 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">17. Стрічка ізоляційна тканинна</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">18. Сумка (кріплення до ноги) з чохлами для комплектуючих</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">19. Щітка шириною 20–25 мм</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">20. Рулетка 3 м</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">21. Кішка для тралення розтяжок спеціальна</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">22. Сапка сапера</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                              </ul>
-                            </ProductKitAccordion>
-                          </div>
-                        ) : product.id === "k3" ? (
-                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm space-y-6">
-                            <div>
-                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
-                                 ТЕХНІЧНІ ДАНІ:
-                               </h5>
-                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Габаритні розміри сумки</span>
-                                   <span className="font-bold text-dark-navy text-right">не більше 290 × 220 × 140 мм</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Загальна вага</span>
-                                   <span className="font-bold text-dark-navy text-right">не більше 2,9 кг</span>
-                                 </li>
-                               </ul>
-                            </div>
-                            
-                            <ProductKitAccordion count={16}>
-                              <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 font-body text-[13px] text-charcoal/80">
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">1. Сумка для розміщення складових набору</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">2. Обтискач сапера комбінований (мультитул)</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">3. Щуп малий односекційний в комплекті</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">4. Кішка саперна (кішка-ялинка збірна)</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">5. Кішка спеціальна для тралення розтяжок</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">6. Крюк екстрактор ПТМ</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">7. Лассо 1,5 метра</span><span className="font-bold text-dark-navy whitespace-nowrap">2 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">8. Шнур паракорд 35 м на котушці з карабіном</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">9. Сапка сапера</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">10. Ключ універсальний для переведення підривачів ПТМ</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">11. Планшет для ключа універсального ПТМ та чек</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">12. Запобіжна чека (стандартна)</span><span className="font-bold text-dark-navy whitespace-nowrap">10 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">13. Маркер проходу білого кольору</span><span className="font-bold text-dark-navy whitespace-nowrap">12 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">14. Маркер ВНП червоного кольору</span><span className="font-bold text-dark-navy whitespace-nowrap">12 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">15. Пенал універсальний для детонаторів</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">16. Ізолююча стрічка тканинна</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                              </ul>
-                            </ProductKitAccordion>
-                          </div>
-                        ) : product.id === "k4" ? (
-                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm space-y-6">
-                            <div>
-                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
-                                 ТЕХНІЧНІ ДАНІ:
-                               </h5>
-                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Габаритні розміри</span>
-                                   <span className="font-bold text-dark-navy text-right">не більше 600 × 250 × 120 мм</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Загальна вага</span>
-                                   <span className="font-bold text-dark-navy text-right">не більше 4,7 кг</span>
-                                 </li>
-                               </ul>
-                            </div>
-                            
-                            <ProductKitAccordion count={45}>
-                              <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 font-body text-[13px] text-charcoal/80">
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">1. Ремінно-плечова система з спеціальними підсумками та кріпленням за допомогою системи MOLLE</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">2. Мультитул компактний</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">3. Сапка саперна</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">4. Паракорд 3 мм довжиною 35 м</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">5. Захват мотузковий</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">6. Кішка для тралення розтяжок</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">7. Кішка для з’єму мін</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">8. Датчик розтяжок</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">9. Карабіни</span><span className="font-bold text-dark-navy whitespace-nowrap">2 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">10. Стяжки пластикові</span><span className="font-bold text-dark-navy whitespace-nowrap">20 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">11. Стропа мотузкова 1 м</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">12. Різак</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">13. Кусачки для зачистки ізоляції</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">14. Кусачки бокорізи малі</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">15. Ножиці зігнуті</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">16. Ножиці прямі</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">17. Зажим з фіксатором</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">18. Зажим різьбовий</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">19. Пінцет прямий</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">20. Пінцет зігнутий</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">21. Захват цанговий</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">22. Гачок трьохсторонній</span><span className="font-bold text-dark-navy whitespace-nowrap">3 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">23. Ліхтарик світлодіодний налобний</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">24. Шнур USB</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">25. Рулетка 3 м</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">26. Котушка для ізострічки</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5 pl-4 text-charcoal/60"><span className="truncate pr-2">26.1. Ізострічка поліетиленова червона</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5 pl-4 text-charcoal/60"><span className="truncate pr-2">26.2. Ізострічка поліетиленова чорна</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5 pl-4 text-charcoal/60"><span className="truncate pr-2">26.3. Стрічка ізоляційна тканинна</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5 pl-4 text-charcoal/60"><span className="truncate pr-2">26.4. Скотч армований</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5 pl-4 text-charcoal/60"><span className="truncate pr-2">26.5. Скотч двосторонній</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">27. Запобіжні чеки Р-подібні</span><span className="font-bold text-dark-navy whitespace-nowrap">10 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">28. Запобіжні чеки Т-подібні</span><span className="font-bold text-dark-navy whitespace-nowrap">10 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">29. Запобіжні чеки З-подібні</span><span className="font-bold text-dark-navy whitespace-nowrap">10 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">30. Запобіжні чеки довгі</span><span className="font-bold text-dark-navy whitespace-nowrap">10 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">31. Перенаправлювач розтяжок</span><span className="font-bold text-dark-navy whitespace-nowrap">10 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">32. Булавки</span><span className="font-bold text-dark-navy whitespace-nowrap">10 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">33. Карабіни для постановки розтяжок</span><span className="font-bold text-dark-navy whitespace-nowrap">10 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">34. Оправка для МУВ</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">35. Універсальний ключ для підривників ПТМ</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">36. Котушка з набором дотів та ниток</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5 pl-4 text-charcoal/60"><span className="truncate pr-2">36.1. Котушка з дротом сталькою (100 м)</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5 pl-4 text-charcoal/60"><span className="truncate pr-2">36.2. Котушка з дротом 0,8 мм (20 м)</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5 pl-4 text-charcoal/60"><span className="truncate pr-2">36.3. Котушка з чорними нитками (100 м)</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5 pl-4 text-charcoal/60"><span className="truncate pr-2">36.4. Котушка з зеленими нитками (100 м)</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5 pl-4 text-charcoal/60"><span className="truncate pr-2">36.5. Котушка з ліскою (100 м)</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">37. Пенал універсальний</span><span className="font-bold text-dark-navy whitespace-nowrap">2 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">38. Комплект скребків 4 шт.</span><span className="font-bold text-dark-navy whitespace-nowrap">1 компл</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">39. Пенал для детонаторів</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">40. Мінідзеркало оглядове</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">41. Щуп малий односекційний</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">42. Маркер знайдених мін «М»</span><span className="font-bold text-dark-navy whitespace-nowrap">10 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">43. Турбозапальничка газова</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">44. Щітка шириною 20–25 мм</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">45. Саморіз 30 мм</span><span className="font-bold text-dark-navy whitespace-nowrap">10 шт.</span></li>
-                              </ul>
-                            </ProductKitAccordion>
-                          </div>
-                        ) : product.id === "net-1" ? (
-                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm space-y-6">
-                            <div>
-                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
-                                 ТЕХНІЧНІ ХАРАКТЕРИСТИКИ:
-                               </h5>
-                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Габаритні розміри спорядженого пристрою</span>
-                                   <span className="font-bold text-dark-navy text-right">255 × 155 × 72 мм</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Загальна вага</span>
-                                   <span className="font-bold text-dark-navy text-right">0,750 кг</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Розмір сітки</span>
-                                   <span className="font-bold text-dark-navy text-right">не менше 3500 × 3500 мм</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Дальність ураження</span>
-                                   <span className="font-bold text-dark-navy text-right">10–30 м</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Холостий патрон</span>
-                                   <span className="font-bold text-dark-navy text-right">9 мм</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Наявність запобіжника</span>
-                                   <span className="font-bold text-dark-navy text-right">наявний</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Повне розкриття сітки</span>
-                                   <span className="font-bold text-dark-navy text-right">10 м</span>
-                                 </li>
-                               </ul>
-                            </div>
-                          </div>
-                        ) : product.id === "tool-1" ? (
-                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm space-y-6">
-                            <div>
-                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
-                                 {language === 'ua' ? 'ТЕХНІЧНІ ХАРАКТЕРИСТИКИ:' : 'TECHNICAL CHARACTERISTICS:'}
-                               </h5>
-                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>{language === 'ua' ? 'Габаритні розміри, мм, не більше' : 'Overall dimensions, mm, no more than'}</span>
-                                   <span className="font-bold text-dark-navy text-right">270 × 220 × 175</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>{language === 'ua' ? 'Довжина кабелю' : 'Cable length'}</span>
-                                   <span className="font-bold text-dark-navy text-right">300 {language === 'ua' ? 'м' : 'm'}</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>{language === 'ua' ? 'Вага, кг, не більше' : 'Weight, kg, no more than'}</span>
-                                   <span className="font-bold text-dark-navy text-right">{language === 'ua' ? '6,8' : '6.8'}</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>{language === 'ua' ? 'Електричний опір серцевини довжиною 1 км, не більше' : 'Electrical resistance of a core 1 km long, no more than'}</span>
-                                   <span className="font-bold text-dark-navy text-right">41 {language === 'ua' ? 'Ом' : 'Ohm'}</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>{language === 'ua' ? 'Міцність на розрив проводів, не менше' : 'Tensile strength of wires, not less than'}</span>
-                                   <span className="font-bold text-dark-navy text-right">441 {language === 'ua' ? 'Н (45 кгс)' : 'N (45 kgf)'}</span>
-                                 </li>
-                               </ul>
-                            </div>
-                            
-                            <ProductKitAccordion count={3}>
-                              <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>{language === 'ua' ? 'Котушка' : 'Reel'}</span>
-                                  <span className="font-bold text-dark-navy text-right">1 {language === 'ua' ? 'шт.' : 'pc.'}</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>{language === 'ua' ? 'Двожильний провід' : 'Two-core wire'}</span>
-                                  <span className="font-bold text-dark-navy text-right">300 {language === 'ua' ? 'м' : 'm'}</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>{language === 'ua' ? 'Захисний чохол' : 'Protective cover'}</span>
-                                  <span className="font-bold text-dark-navy text-right">1 {language === 'ua' ? 'шт.' : 'pc.'}</span>
-                                </li>
-                              </ul>
-                            </ProductKitAccordion>
-                          </div>
-                        ) : product.id === "m4" ? (
-                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm space-y-6">
-                            <div>
-                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
-                                 {language === 'ua' ? 'ТЕХНІЧНІ ХАРАКТЕРИСТИКИ:' : 'TECHNICAL CHARACTERISTICS:'}
-                               </h5>
-                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>{language === 'ua' ? 'Габаритні розміри, мм, не більше' : 'Overall dimensions, mm, no more than'}</span>
-                                   <span className="font-bold text-dark-navy text-right">1400 × 300 × 200</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>{language === 'ua' ? 'Габарити у складеному положенні' : 'Dimensions in folded position'}</span>
-                                   <span className="font-bold text-dark-navy text-right">920 × 300 × 200</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>{language === 'ua' ? 'Тип дзеркала' : 'Mirror type'}</span>
-                                   <span className="font-bold text-dark-navy text-right">{language === 'ua' ? 'кругле, сферичне' : 'round, spherical'}</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>{language === 'ua' ? 'Діаметр дзеркала, мм' : 'Mirror diameter, mm'}</span>
-                                   <span className="font-bold text-dark-navy text-right">300 ± 5</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>{language === 'ua' ? 'Вага виробу, кг, не більше' : 'Product weight, kg, no more than'}</span>
-                                   <span className="font-bold text-dark-navy text-right">{language === 'ua' ? '1,6' : '1.6'}</span>
-                                 </li>
-                               </ul>
-                            </div>
-                            
-                            <ProductKitAccordion count={4}>
-                              <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>{language === 'ua' ? 'Дзеркало сферичне на колесах' : 'Spherical mirror on wheels'}</span>
-                                  <span className="font-bold text-dark-navy text-right">1 {language === 'ua' ? 'шт.' : 'pc.'}</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>{language === 'ua' ? 'Ліхтар світлодіодний з тримачем' : 'LED flashlight with holder'}</span>
-                                  <span className="font-bold text-dark-navy text-right">1 {language === 'ua' ? 'шт.' : 'pc.'}</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>{language === 'ua' ? 'Пристрій зарядний для ліхтаря' : 'Charger for flashlight'}</span>
-                                  <span className="font-bold text-dark-navy text-right">1 {language === 'ua' ? 'к-т' : 'set'}</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>{language === 'ua' ? 'Чохол для дзеркала' : 'Cover for mirror'}</span>
-                                  <span className="font-bold text-dark-navy text-right">1 {language === 'ua' ? 'шт.' : 'pc.'}</span>
-                                </li>
-                              </ul>
-                            </ProductKitAccordion>
-                          </div>
-                        ) : product.id === "m5" ? (
-                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm space-y-6">
-                            <div>
-                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
-                                 {language === 'ua' ? 'ТЕХНІЧНІ ХАРАКТЕРИСТИКИ:' : 'TECHNICAL CHARACTERISTICS:'}
-                               </h5>
-                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>{language === 'ua' ? 'Габаритні розміри, мм, не більше' : 'Overall dimensions, mm, no more than'}</span>
-                                   <span className="font-bold text-dark-navy text-right">1600 × 320 × 100</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>{language === 'ua' ? 'Габарити у складеному положенні' : 'Dimensions in folded position'}</span>
-                                   <span className="font-bold text-dark-navy text-right">600 × 320 × 130</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>{language === 'ua' ? 'Тип дзеркала' : 'Mirror type'}</span>
-                                   <span className="font-bold text-dark-navy text-right">{language === 'ua' ? 'прямокутне, сферичне' : 'rectangular, spherical'}</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>{language === 'ua' ? 'Розмір дзеркала, мм' : 'Mirror size, mm'}</span>
-                                   <span className="font-bold text-dark-navy text-right">320 × 180</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>{language === 'ua' ? 'Вага виробу, кг, не більше' : 'Product weight, kg, no more than'}</span>
-                                   <span className="font-bold text-dark-navy text-right">{language === 'ua' ? '1,4' : '1.4'}</span>
-                                 </li>
-                               </ul>
-                            </div>
-                            
-                            <ProductKitAccordion count={3}>
-                              <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>{language === 'ua' ? 'Дзеркало сферичне на колесах з ліхтарем' : 'Spherical mirror on wheels with a flashlight'}</span>
-                                  <span className="font-bold text-dark-navy text-right">1 {language === 'ua' ? 'шт.' : 'pc.'}</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>{language === 'ua' ? 'Пристрій зарядний для ліхтаря' : 'Charger for flashlight'}</span>
-                                  <span className="font-bold text-dark-navy text-right">1 {language === 'ua' ? 'к-т' : 'set'}</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                  <span>{language === 'ua' ? 'Чохол для дзеркала' : 'Cover for mirror'}</span>
-                                  <span className="font-bold text-dark-navy text-right">1 {language === 'ua' ? 'шт.' : 'pc.'}</span>
-                                </li>
-                              </ul>
-                            </ProductKitAccordion>
-                          </div>
-                        ) : product.id === "tool-3" ? (
-                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm space-y-6">
-                            <div>
-                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
-                                 {language === 'ua' ? 'ТЕХНІЧНІ ХАРАКТЕРИСТИКИ:' : 'TECHNICAL CHARACTERISTICS:'}
-                               </h5>
-                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 gap-4">
-                                   <span>{language === 'ua' ? 'Габаритні розміри набору, мм, не більше' : 'Overall dimensions of the kit, mm, no more than'}</span>
-                                   <span className="font-bold text-dark-navy text-right shrink-0">250 × 260 × 150</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 gap-4">
-                                   <span>{language === 'ua' ? 'Загальна вага набору, кг, не більше' : 'Total weight of the kit, kg, no more than'}</span>
-                                   <span className="font-bold text-dark-navy text-right shrink-0">{language === 'ua' ? '2,8' : '2.8'}</span>
-                                 </li>
-                               </ul>
-                            </div>
-                            
-                            <ProductKitAccordion count={6}>
-                              <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 gap-4">
-                                  <span>{language === 'ua' ? 'Універсальний викручувач для підривача типу «МВЧ-62» та підривача типу «МВП-62»' : 'Universal unscrewer for the "MVCh-62" type fuze and the "MVP-62" type fuze'}</span>
-                                  <span className="font-bold text-dark-navy text-right shrink-0">1 {language === 'ua' ? 'шт.' : 'pc.'}</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 gap-4">
-                                  <span>{language === 'ua' ? 'Екстрактор (гак) для вилучення міни з ґрунту' : 'Extractor (hook) for extracting a mine from the ground'}</span>
-                                  <span className="font-bold text-dark-navy text-right shrink-0">1 {language === 'ua' ? 'шт.' : 'pc.'}</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 gap-4">
-                                  <span>{language === 'ua' ? 'Захват мотузковий' : 'Rope grab'}</span>
-                                  <span className="font-bold text-dark-navy text-right shrink-0">1 {language === 'ua' ? 'шт.' : 'pc.'}</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 gap-4">
-                                  <span>{language === 'ua' ? 'Універсальний ключ для переводу підривників ПТМ' : 'Universal key for switching ATM fuzes'}</span>
-                                  <span className="font-bold text-dark-navy text-right shrink-0">1 {language === 'ua' ? 'шт.' : 'pc.'}</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 gap-4">
-                                  <span>{language === 'ua' ? 'Паракорд 6 мм довжиною 50 м з карабіном' : 'Paracord 6 mm, length 50 m with a carabiner'}</span>
-                                  <span className="font-bold text-dark-navy text-right shrink-0">1 {language === 'ua' ? 'шт.' : 'pc.'}</span>
-                                </li>
-                                <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5 gap-4">
-                                  <span>{language === 'ua' ? 'Сумка для транспортування складових набору' : 'Bag for transporting the kit components'}</span>
-                                  <span className="font-bold text-dark-navy text-right shrink-0">1 {language === 'ua' ? 'шт.' : 'pc.'}</span>
-                                </li>
-                              </ul>
-                            </ProductKitAccordion>
-                          </div>
-                        ) : product.id === "tool-2" ? (
-                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm space-y-6">
-                            <div>
-                               <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
-                                 ТЕХНІЧНІ ХАРАКТЕРИСТИКИ:
-                               </h5>
-                               <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Довжина в складеному (транспортному) положенні</span>
-                                   <span className="font-bold text-dark-navy text-right">68 см</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Довжина в робочому положенні</span>
-                                   <span className="font-bold text-dark-navy text-right">не менше 565 см</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Відстань між сусідніми шипами</span>
-                                   <span className="font-bold text-dark-navy text-right">10 см</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Висота шипів</span>
-                                   <span className="font-bold text-dark-navy text-right">90 мм</span>
-                                 </li>
-                                 <li className="flex justify-between border-b border-metallic-silver/20 pb-1.5">
-                                   <span>Вага</span>
-                                   <span className="font-bold text-dark-navy text-right">не більше 12 кг</span>
-                                 </li>
-                               </ul>
-                            </div>
-                            <ProductKitAccordion count={4}>
-                              <ul className="space-y-2 font-body text-[13px] text-charcoal/70">
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">1. ПЗА – «Кактус-5»</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">2. Чохол (пенал) для перенесення</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">3. Паспорт</span><span className="font-bold text-dark-navy whitespace-nowrap">1 шт.</span></li>
-                                <li className="flex justify-between border-b border-metallic-silver/10 pb-1.5"><span className="truncate pr-2">4. Комплект запасних шипів, 30 шт.</span><span className="font-bold text-dark-navy whitespace-nowrap">1 компл</span></li>
-                              </ul>
-                            </ProductKitAccordion>
-                          </div>
-                        ) : null}
-                      </div>
-                    </div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
                   </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
+                </button>
+
+                <AnimatePresence>
+                  {isDescriptionOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                    >
+                      <div className="px-5 lg:px-6 pb-6 pt-2">
+                        <div className="pt-5 border-t border-metallic-silver/20 space-y-5">
+                          <div className="bg-off-white/50 border border-metallic-silver/20 p-4 lg:p-5 rounded-sm space-y-6">
+                            {/* Technical specifications */}
+                            {product.specifications && product.specifications.length > 0 && (
+                              <div>
+                                <h5 className="font-heading font-black text-[11px] tracking-widest uppercase text-dark-navy mb-4">
+                                  {language === 'ua' ? 'ТЕХНІЧНІ ХАРАКТЕРИСТИКИ:' : 'TECHNICAL CHARACTERISTICS:'}
+                                </h5>
+                                <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
+                                  {product.specifications.map((spec, sIdx) => {
+                                    const sName = getSpecName(spec, language);
+                                    const sVal = getSpecValue(spec, language);
+                                    if (!sName && !sVal) return null;
+                                    return (
+                                      <li
+                                        key={sIdx}
+                                        className="flex justify-between border-b border-metallic-silver/20 pb-1.5 gap-4"
+                                      >
+                                        <span>{sName}</span>
+                                        <span className="font-bold text-dark-navy text-right shrink-0">{sVal}</span>
+                                      </li>
+                                    );
+                                  })}
+                                </ul>
+                              </div>
+                            )}
+
+                            {/* Kit contents */}
+                            {product.kitContents && product.kitContents.length > 0 && (
+                              <ProductKitAccordion count={product.kitContents.length}>
+                                <ul className="space-y-2.5 font-body text-[14px] text-charcoal/70">
+                                  {product.kitContents.map((kit, kIdx) => {
+                                    const kName = getKitItemName(kit, language);
+                                    const kCount = getKitItemCount(kit, language);
+                                    return (
+                                      <li
+                                        key={kIdx}
+                                        className="flex justify-between border-b border-metallic-silver/20 pb-1.5 gap-4"
+                                      >
+                                        <span>{kName}</span>
+                                        <span className="font-bold text-dark-navy text-right shrink-0">{kCount}</span>
+                                      </li>
+                                    );
+                                  })}
+                                </ul>
+                              </ProductKitAccordion>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             )}
           </div>
         </div>
-        
+
         {/* Other Products Section */}
-        <div className="mt-20 lg:mt-24 pt-12 lg:pt-16 border-t border-metallic-silver/30">
-          <h2 className="font-heading text-2xl lg:text-3xl font-black text-dark-navy mb-8 lg:mb-10 text-center lg:text-left">
-            {t.featured.otherProducts || "Other Products"}
-          </h2>
-          <div className="flex overflow-x-auto gap-6 pb-6 -mx-6 px-6 lg:mx-0 lg:px-0 snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {otherProducts.map((p) => (
-              <Link to={`/product/${p.id}`} key={p.id} className="w-[85vw] sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333333%-1rem)] snap-start shrink-0 flex flex-col group cursor-pointer bg-white p-5 lg:p-6 border border-metallic-silver/20 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:border-primary-blue/30 rounded-xl transition-all duration-300">
-                <div className="aspect-square bg-white mb-5 flex items-center justify-center relative overflow-hidden p-4 lg:p-6 border border-metallic-silver/10 rounded-lg group-hover:border-primary-blue/20 transition-colors duration-300">
-                  {p.imageBase64 ? (
-                    <>
-                      <img 
-                        src={p.imageBase64} 
-                        alt={p.model} 
-                        className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105 relative z-0"
-                      />
-                    </>
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center bg-gray-50" />
-                  )}
-                </div>
-                <h4 className="font-heading text-[11px] text-cool-gray tracking-widest uppercase font-bold mb-1 lg:mb-0.5">
-                  {p.type === 'mirror' ? t.featured.mirror : p.type === 'kit' ? t.featured.kit : p.type === 'net' ? t.featured.net : p.type === 'tool' ? (language === 'ua' ? 'САПЕРНЕ ПРИСТОСУВАННЯ' : 'SAPPER TOOL') : t.featured.probe}
-                </h4>
-                <h3 className="font-heading text-lg lg:text-base font-black text-dark-navy group-hover:text-primary-blue transition-colors duration-300">
-                  {p.model}
-                </h3>
-              </Link>
-            ))}
+        {otherProducts.length > 0 && (
+          <div className="mt-20 lg:mt-24 pt-12 lg:pt-16 border-t border-metallic-silver/30">
+            <h2 className="font-heading text-2xl lg:text-3xl font-black text-dark-navy mb-8 lg:mb-10 text-center lg:text-left">
+              {t.featured.otherProducts || 'Other Products'}
+            </h2>
+            <div className="flex overflow-x-auto gap-6 pb-6 -mx-6 px-6 lg:mx-0 lg:px-0 snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              {otherProducts.map((p) => {
+                const pModel = getProductName(p, language);
+                const pCatLabel = getCategoryLabel(p.categorySlug, t, language);
+                return (
+                  <Link
+                    to={`/product/${p.id}`}
+                    key={p.id}
+                    className="w-[85vw] sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333333%-1rem)] snap-start shrink-0 flex flex-col group cursor-pointer bg-white p-5 lg:p-6 border border-metallic-silver/20 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:border-primary-blue/30 rounded-xl transition-all duration-300"
+                  >
+                    <div className="aspect-square bg-white mb-5 flex items-center justify-center relative overflow-hidden p-4 lg:p-6 border border-metallic-silver/10 rounded-lg group-hover:border-primary-blue/20 transition-colors duration-300">
+                      {p.primaryImage ? (
+                        <img
+                          src={p.primaryImage}
+                          alt={pModel}
+                          className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105 relative z-0"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center bg-gray-50" />
+                      )}
+                    </div>
+                    <h4 className="font-heading text-[11px] text-cool-gray tracking-widest uppercase font-bold mb-1 lg:mb-0.5">
+                      {pCatLabel}
+                    </h4>
+                    <h3 className="font-heading text-lg lg:text-base font-black text-dark-navy group-hover:text-primary-blue transition-colors duration-300">
+                      {pModel}
+                    </h3>
+                  </Link>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </main>
   );

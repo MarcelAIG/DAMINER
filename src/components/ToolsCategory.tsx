@@ -1,230 +1,32 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useLanguage } from '../context/LanguageContext';
-import { useRequest } from '../context/RequestContext';
-import { ProductItem } from '../types/product';
-import { formatCardPrice } from '../utils/price';
+import { ProductCategoryGrid } from './ProductCategoryGrid';
 
+/** Per-product image scaling kept from the original static grid. */
+const imageScaleClass = (id: string) =>
+  id === 'tool-2' ? 'scale-[1.35] group-hover:scale-[1.4]' :
+  id === 'tool-3' ? 'scale-[1.3] group-hover:scale-[1.35]' :
+  id === 'tool-4' ? 'scale-[1.3] group-hover:scale-[1.35]' :
+  id === 'tool-5' ? 'scale-[1.3] group-hover:scale-[1.35]' :
+  id === 'tool-9' ? 'scale-[0.8] group-hover:scale-[0.85]' :
+  'scale-100 group-hover:scale-105';
+
+/** Per-product title sizing kept from the original static grid. */
+const titleClassName = (id: string) =>
+  `font-heading font-black text-dark-navy tracking-tight transition-colors duration-300 pr-4 ${
+    id === 'tool-1' ? 'text-2xl lg:text-3xl' :
+    id === 'tool-9' ? 'text-lg lg:text-xl xl:text-2xl' :
+    id === 'tool-19' ? 'text-2xl lg:text-3xl' :
+    'text-3xl lg:text-4xl'
+  }`;
+
+/** Sapper tools category (Саперні пристосування) — products loaded from Firestore. */
 export function ToolsCategory() {
-  const { t, language } = useLanguage();
-  const { addItem } = useRequest();
-  
-  const itemsToRender: ProductItem[] = [
-    {
-      id: "tool-1",
-      model: language === 'ua' ? 'Електричний кабель на барабані' : 'Electric Cable on Reel',
-      description: language === 'ua' ? 'Електричний кабель на барабані для прокладки тимчасових електричних мереж напругою до 380 В.' : 'Electric cable on a reel for laying temporary electrical networks with a voltage of up to 380 V.',
-      price: "",
-      imageBase64: "/electric-cable/cable-main.png"
-    },
-    {
-      id: "tool-2",
-      model: language === 'ua' ? 'Кактус-5' : 'Kaktus-5',
-      description: language === 'ua' ? "Пристрій примусової зупинки автотранспорту, призначений для перешкоджання несанкціонованому проїзду на режимні об'єкти та зупинки на дорогах." : "Forced vehicle stopping device, designed to prevent unauthorized passage into restricted facilities and stop vehicles on roads.",
-      price: "",
-      imageBase64: "/kaktus-5/kaktus-main.png"
-    },
-    {
-      id: "tool-3",
-      model: language === 'ua' ? 'Ключ-1' : 'Key-1',
-      description: language === 'ua' ? 'Комплект «Ключ-1» для дистанційного знешкодження протитанкових мін типу ТМ-62.' : "The 'Key-1' kit for remote neutralization of TM-62 type anti-tank mines.",
-      price: "",
-      imageBase64: "/key-1/key-main.png"
-    },
-    {
-      id: "tool-4",
-      model: language === 'ua' ? 'Магнітні граблі МГ-2' : 'Magnetic Rake MG-2',
-      description: language === 'ua' ? 'Пошукове магнітне пристосування МГ-2 для обстеження місця вибуху та збору осколків.' : 'Search magnetic tool MG-2 for inspecting an explosion site and collecting fragments.',
-      price: "",
-      imageBase64: "/rake-1/rake-02.png"
-    },
-    {
-      id: "tool-5",
-      model: language === 'ua' ? 'Пенали для детонаторів' : 'Detonator cases',
-      description: '',
-      price: "",
-      imageBase64: "/untitled folder/IMG_5355.PNG"
-    },
-    {
-      id: "tool-6",
-      model: language === 'ua' ? 'Сапка сапера' : 'Sapper Hoe',
-      description: '',
-      price: "",
-      imageBase64: "/untitled folder/IMG_5356.PNG"
-    },
-    {
-      id: "tool-7",
-      model: language === 'ua' ? 'Кішки саперні' : 'Sapper Hooks',
-      description: '',
-      price: "",
-      imageBase64: "/Кішки саперні/IMG_5358.PNG"
-    },
-    {
-      id: "tool-8",
-      model: language === 'ua' ? 'Чеки' : 'Safety Pins',
-      description: '',
-      price: "",
-      imageBase64: "/Чеки./IMG_5374.PNG"
-    },
-    {
-      id: "tool-9",
-      model: language === 'ua' ? 'Стрічка попереджувальна' : 'Warning Tape',
-      description: '',
-      price: "",
-      imageBase64: "/Стрічка попереджувальна./IMG_5386.PNG"
-    },
-    {
-      id: "tool-10",
-      model: language === 'ua' ? 'Гак' : 'Hook',
-      description: '',
-      price: "",
-      imageBase64: "/Гак/IMG_5381.PNG"
-    },
-    {
-      id: "tool-11",
-      model: language === 'ua' ? 'Ключ' : 'Wrench',
-      description: '',
-      price: "",
-      imageBase64: "/Гак/IMG_5366.PNG"
-    },
-    {
-      id: "tool-12",
-      model: language === 'ua' ? 'Ключ' : 'Wrench',
-      description: '',
-      price: "",
-      imageBase64: "/Ключ”/IMG_5371.PNG"
-    },
-    {
-      id: "tool-13",
-      model: language === 'ua' ? 'Ключ' : 'Wrench',
-      description: '',
-      price: "",
-      imageBase64: "/Ключ”/IMG_5393.PNG"
-    },
-    {
-      id: "tool-14",
-      model: language === 'ua' ? 'Обтискач сапера «Мультитул»' : 'Sapper Crimper «Multitool»',
-      description: '',
-      price: "",
-      imageBase64: "/Мультитул/IMG_5400.PNG"
-    },
-    {
-      id: "tool-15",
-      model: language === 'ua' ? 'Кішка саперна' : 'Sapper Hook',
-      description: '',
-      price: "",
-      imageBase64: "/Кішка саперна/IMG_5395.PNG"
-    },
-    {
-      id: "tool-16",
-      model: language === 'ua' ? 'Котушка з паракордом' : 'Paracord Spool',
-      description: '',
-      price: "",
-      imageBase64: "/Кішка саперна/IMG_5403.PNG"
-    },
-    {
-      id: "tool-17",
-      model: language === 'ua' ? 'Котушка з талькою' : 'Spool with Talc',
-      description: '',
-      price: "",
-      imageBase64: "/Кішка саперна/IMG_5380.PNG"
-    },
-    {
-      id: "tool-18",
-      model: language === 'ua' ? 'Прапорці «Міни»' : 'Flags «Mines»',
-      description: '',
-      price: "",
-      imageBase64: "/Міни/IMG_5377.PNG"
-    },
-    {
-      id: "tool-19",
-      model: language === 'ua' ? 'Паракорди різної довжини' : 'Paracords of various lengths',
-      description: '',
-      price: "",
-      imageBase64: "/paracord-lengths/IMG_5389.PNG"
-    }
-  ];
-
   return (
-    <section className="pt-0 md:pt-4 pb-12 md:pb-16 bg-white">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
-        <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-metallic-silver/30 border-y border-metallic-silver/30">
-          {itemsToRender.map((product) => (
-            <Link 
-              to={`/product/${product.id}`} 
-              key={product.id} 
-              className="flex flex-col group w-full p-8 lg:p-12 transition-colors duration-500"
-            >
-              <div className="aspect-square bg-white border border-metallic-silver/20 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] group-hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] group-hover:border-primary-blue/30 mb-10 flex items-center justify-center relative overflow-hidden p-4 lg:p-6 transition-all duration-500">
-                {product.imageBase64 ? (
-                  <img 
-                    src={product.imageBase64} 
-                    alt={product.model} 
-                    className={`w-full h-full object-contain transition-transform duration-700 ease-out ${
-                      product.id === 'tool-2' ? 'scale-[1.35] group-hover:scale-[1.4]' : 
-                      product.id === 'tool-3' ? 'scale-[1.3] group-hover:scale-[1.35]' : 
-                      product.id === 'tool-4' ? 'scale-[1.3] group-hover:scale-[1.35]' : 
-                      product.id === 'tool-5' ? 'scale-[1.3] group-hover:scale-[1.35]' : 
-                      product.id === 'tool-9' ? 'scale-[0.8] group-hover:scale-[0.85]' : 
-                      'scale-100 group-hover:scale-105'
-                    }`}
-                  />
-                ) : (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="absolute inset-0 opacity-5" style={{
-                      backgroundImage: 'radial-gradient(#1e63d8 1px, transparent 1px)',
-                      backgroundSize: '24px 24px'
-                    }}></div>
-                    <span className="font-heading font-bold text-cool-gray/50 uppercase tracking-widest text-xs relative z-10 transition-transform duration-700 ease-out group-hover:scale-[1.02]">
-                      Image Placeholder
-                    </span>
-                  </div>
-                )}
-              </div>
-              
-              <h4 className="font-heading text-[11px] text-cool-gray tracking-[0.2em] uppercase font-bold mb-3 transition-colors duration-300">
-                {language === 'ua' ? 'САПЕРНЕ ПРИСТОСУВАННЯ' : 'SAPPER TOOL'}
-              </h4>
-              
-              <div className="flex items-start justify-between mb-4">
-                <h3 className={`font-heading font-black text-dark-navy tracking-tight transition-colors duration-300 pr-4 ${
-                  product.id === 'tool-1' ? 'text-2xl lg:text-3xl' : 
-                  product.id === 'tool-9' ? 'text-lg lg:text-xl xl:text-2xl' : 
-                  product.id === 'tool-19' ? 'text-2xl lg:text-3xl' : 
-                  'text-3xl lg:text-4xl'
-                }`}>
-                  {product.model}
-                </h3>
-                <div className="text-right">
-                  <span className="block font-body text-[10px] text-cool-gray uppercase tracking-widest mb-0.5">{language === 'ua' ? 'Ціна' : 'Price'}</span>
-                  <span className="block font-heading text-[12px] font-bold text-dark-navy tracking-wide uppercase whitespace-nowrap">{formatCardPrice(product, language)}</span>
-                </div>
-              </div>
-              
-              <p className="font-body text-charcoal/70 mb-10 flex-1 leading-relaxed text-[15px]">
-                {product.description}
-              </p>
-              
-              <div className="mt-auto pt-6 border-t border-metallic-silver/30">
-                <button 
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    addItem({ id: product.id, model: product.model });
-                  }}
-                  className="w-full inline-flex items-center justify-center bg-primary-blue text-white border border-primary-blue hover:bg-white hover:text-primary-blue font-heading font-bold text-[11px] tracking-widest uppercase px-6 py-4 transition-colors duration-300"
-                >
-                  {t.request.add}
-                </button>
-              </div>
-            </Link>
-          ))}
-          {/* Empty columns to maintain exact grid styling and borders for row 2 */}
-          <div className="hidden md:block w-full p-8 lg:p-12 pointer-events-none"></div>
-          <div className="hidden md:block w-full p-8 lg:p-12 pointer-events-none"></div>
-        </div>
-        
-      </div>
-    </section>
+    <ProductCategoryGrid
+      categorySlug="tools"
+      imageScaleClass={imageScaleClass}
+      titleClassName={titleClassName}
+      fillEmptyColumns
+    />
   );
 }
