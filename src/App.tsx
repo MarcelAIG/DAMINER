@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { LanguageProvider } from './context/LanguageContext';
 import { RequestProvider } from './context/RequestContext';
 import { Navbar } from './components/Navbar';
@@ -19,7 +19,6 @@ import { Product } from './pages/Product';
 import { Privacy } from './pages/Privacy';
 import { Terms } from './pages/Terms';
 import { Returns } from './pages/Returns';
-import { Certificates } from './pages/Certificates';
 import { Payment } from './pages/Payment';
 import { Warranty } from './pages/Warranty';
 import { AdminLogin } from './pages/AdminLogin';
@@ -48,7 +47,7 @@ function AppContent() {
           <Route path="/solutions" element={<Solutions />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/certificates" element={<Certificates />} />
+          <Route path="/certificates" element={<Navigate to="/" replace />} />
           <Route path="/payment-delivery" element={<Payment />} />
           <Route path="/warranty" element={<Warranty />} />
           <Route path="/privacy" element={<Privacy />} />

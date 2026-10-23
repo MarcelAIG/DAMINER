@@ -54,7 +54,6 @@ export function Footer() {
             <h4 className="font-heading font-bold text-[15px] uppercase tracking-widest text-dark-navy mb-3">{t.footer.infoHeading}</h4>
             <Link to="/payment-delivery" className="font-body text-[15px] text-charcoal/80 hover:text-primary-blue transition-colors duration-300 w-fit">{t.footer.payment}</Link>
             <Link to="/warranty" className="font-body text-[15px] text-charcoal/80 hover:text-primary-blue transition-colors duration-300 w-fit">{t.footer.warranty}</Link>
-            <Link to="/certificates" className="font-body text-[15px] text-charcoal/80 hover:text-primary-blue transition-colors duration-300 w-fit">{t.footer.certificates}</Link>
             <Link to="/catalog" className="font-body text-[15px] text-charcoal/80 hover:text-primary-blue transition-colors duration-300 w-fit">{t.footer.request}</Link>
           </div>
 
