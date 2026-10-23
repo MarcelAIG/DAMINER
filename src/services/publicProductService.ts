@@ -1,4 +1,4 @@
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../firebase';
 import { SEED_PRODUCTS } from '../data/seedProducts';
 import type {
@@ -93,13 +93,12 @@ function normalizeProduct(id: string, data: Record<string, unknown>): PublicProd
 
 /** Fetches all products and returns only published ones, sorted by sortOrder. */
 export async function fetchPublishedProducts(): Promise<PublicProduct[]> {
-  const snapshot = await getDocs(collection(db, 'products'));
+  const q = query(collection(db, 'products'), where('published', '==', true));
+  const snapshot = await getDocs(q);
   const products: PublicProduct[] = [];
 
   snapshot.forEach((docSnap) => {
     const data = docSnap.data() as Record<string, unknown>;
-    // Same rule as the admin dashboard: only an explicit `published: false` is a draft.
-    if (data.published === false) return;
     products.push(normalizeProduct(docSnap.id, data));
   });
 
