@@ -252,7 +252,10 @@ export const translations = {
       formName: "Ваше ім'я",
       formEmail: "Ваш Email",
       formMessage: "Текст повідомлення",
-      formSubmit: "Надіслати"
+      formSubmit: "Надіслати",
+      sending: "Надсилання...",
+      success: "Повідомлення успішно надіслано!",
+      error: "Не вдалося надіслати повідомлення. Будь ласка, спробуйте ще раз або зв'яжіться з нами за телефоном."
     },
     consultation: {
       title: "Отримати консультацію",
@@ -549,7 +552,10 @@ export const translations = {
       formName: "Your Name",
       formEmail: "Your Email",
       formMessage: "Message",
-      formSubmit: "Send Message"
+      formSubmit: "Send Message",
+      sending: "Sending...",
+      success: "Message sent successfully!",
+      error: "Failed to send message. Please try again or contact us by phone."
     },
     consultation: {
       title: "Get Consultation",

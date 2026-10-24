@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { useLanguage } from '../context/LanguageContext';
-import { User, Phone, Mail, Clock, MapPin, Send, Facebook, Instagram } from 'lucide-react';
+import { User, Phone, Mail, Clock, MapPin, Send, Facebook, Instagram, AlertCircle, CheckCircle2, Loader2 } from 'lucide-react';
+import { WEB3FORMS_CONFIG } from '../config';
 
 const TikTokIcon = ({ size = 24, className = "" }: { size?: number, className?: string }) => (
   <svg
@@ -23,10 +24,60 @@ const TikTokIcon = ({ size = 24, className = "" }: { size?: number, className?: 
 export function Contact() {
   const { t } = useLanguage();
 
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
   // Scroll to top on mount
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+    setErrorMessage(null);
+
+    const payload = {
+      access_key: WEB3FORMS_CONFIG.ACCESS_KEY,
+      subject: `Повідомлення з контактної форми / Contact Message — ${formData.name}`,
+      from_name: 'DAMINER Website',
+      name: formData.name,
+      email: formData.email,
+      message: formData.message
+    };
+
+    try {
+      const response = await fetch(WEB3FORMS_CONFIG.API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setIsSubmitted(true);
+        setErrorMessage(null);
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        const errorMsg = data.message || t.contactPage.error;
+        console.error('Web3Forms returned failure:', data);
+        setErrorMessage(errorMsg);
+      }
+    } catch (error) {
+      console.error('Contact form submission failed with network error:', error);
+      setErrorMessage(t.contactPage.error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const displayPhone = t.contactPage.phone;
   const displayEmail = t.contactPage.email;
@@ -162,46 +213,95 @@ export function Contact() {
                 {t.contactPage.formHeading}
               </h3>
               
-              <form className="flex flex-col gap-5" onSubmit={(e) => e.preventDefault()}>
-                <div>
-                  <label className="block font-heading font-bold text-[11px] tracking-widest text-dark-navy/70 uppercase mb-2">
-                    {t.contactPage.formName}
-                  </label>
-                  <input 
-                    type="text" 
-                    className="w-full bg-white border border-metallic-silver/40 rounded focus:border-primary-blue focus:ring-1 focus:ring-primary-blue text-dark-navy placeholder:text-cool-gray/50 outline-none px-4 h-12 font-body transition-all"
-                    placeholder="John Doe"
-                  />
+              {isSubmitted ? (
+                <div className="py-12 flex flex-col items-center justify-center text-center space-y-4">
+                  <CheckCircle2 size={56} className="text-primary-blue" />
+                  <h4 className="font-heading font-bold text-xl text-dark-navy">
+                    {t.contactPage.success}
+                  </h4>
+                  <button
+                    type="button"
+                    onClick={() => setIsSubmitted(false)}
+                    className="mt-4 px-6 py-2.5 border border-primary-blue text-primary-blue hover:bg-primary-blue hover:text-white font-heading font-bold text-xs tracking-widest uppercase rounded transition-colors duration-300"
+                  >
+                    {t.contactPage.formSubmit}
+                  </button>
                 </div>
-                
-                <div>
-                  <label className="block font-heading font-bold text-[11px] tracking-widest text-dark-navy/70 uppercase mb-2">
-                    {t.contactPage.formEmail}
-                  </label>
-                  <input 
-                    type="email" 
-                    className="w-full bg-white border border-metallic-silver/40 rounded focus:border-primary-blue focus:ring-1 focus:ring-primary-blue text-dark-navy placeholder:text-cool-gray/50 outline-none px-4 h-12 font-body transition-all"
-                    placeholder="john@example.com"
-                  />
-                </div>
-                
-                <div>
-                  <label className="block font-heading font-bold text-[11px] tracking-widest text-dark-navy/70 uppercase mb-2">
-                    {t.contactPage.formMessage}
-                  </label>
-                  <textarea 
-                    className="w-full bg-white border border-metallic-silver/40 rounded focus:border-primary-blue focus:ring-1 focus:ring-primary-blue text-dark-navy placeholder:text-cool-gray/50 outline-none px-4 py-3 font-body transition-all resize-none h-[120px]"
-                    placeholder="..."
-                  ></textarea>
-                </div>
-                
-                <button 
-                  type="submit"
-                  className="mt-2 w-full inline-flex items-center justify-center bg-primary-blue text-white hover:bg-dark-navy font-heading font-bold text-sm tracking-widest uppercase h-12 rounded transition-colors duration-300"
-                >
-                  {t.contactPage.formSubmit}
-                </button>
-              </form>
+              ) : (
+                <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
+                  <div>
+                    <label className="block font-heading font-bold text-[11px] tracking-widest text-dark-navy/70 uppercase mb-2">
+                      {t.contactPage.formName}
+                    </label>
+                    <input 
+                      type="text" 
+                      required
+                      value={formData.name}
+                      onChange={(e) => {
+                        setFormData({ ...formData, name: e.target.value });
+                        if (errorMessage) setErrorMessage(null);
+                      }}
+                      className="w-full bg-white border border-metallic-silver/40 rounded focus:border-primary-blue focus:ring-1 focus:ring-primary-blue text-dark-navy placeholder:text-cool-gray/50 outline-none px-4 h-12 font-body transition-all"
+                      placeholder="John Doe"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block font-heading font-bold text-[11px] tracking-widest text-dark-navy/70 uppercase mb-2">
+                      {t.contactPage.formEmail}
+                    </label>
+                    <input 
+                      type="email" 
+                      required
+                      value={formData.email}
+                      onChange={(e) => {
+                        setFormData({ ...formData, email: e.target.value });
+                        if (errorMessage) setErrorMessage(null);
+                      }}
+                      className="w-full bg-white border border-metallic-silver/40 rounded focus:border-primary-blue focus:ring-1 focus:ring-primary-blue text-dark-navy placeholder:text-cool-gray/50 outline-none px-4 h-12 font-body transition-all"
+                      placeholder="john@example.com"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block font-heading font-bold text-[11px] tracking-widest text-dark-navy/70 uppercase mb-2">
+                      {t.contactPage.formMessage}
+                    </label>
+                    <textarea 
+                      required
+                      value={formData.message}
+                      onChange={(e) => {
+                        setFormData({ ...formData, message: e.target.value });
+                        if (errorMessage) setErrorMessage(null);
+                      }}
+                      className="w-full bg-white border border-metallic-silver/40 rounded focus:border-primary-blue focus:ring-1 focus:ring-primary-blue text-dark-navy placeholder:text-cool-gray/50 outline-none px-4 py-3 font-body transition-all resize-none h-[120px]"
+                      placeholder="..."
+                    ></textarea>
+                  </div>
+
+                  {errorMessage && (
+                    <div className="p-3 bg-red-50 border border-red-200 text-red-700 text-xs flex items-start gap-2 rounded">
+                      <AlertCircle size={16} className="shrink-0 mt-0.5 text-red-500" />
+                      <span className="font-body leading-snug">{errorMessage}</span>
+                    </div>
+                  )}
+                  
+                  <button 
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="mt-2 w-full inline-flex items-center justify-center gap-2 bg-primary-blue text-white hover:bg-dark-navy font-heading font-bold text-sm tracking-widest uppercase h-12 rounded transition-colors duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 size={18} className="animate-spin" />
+                        <span>{t.contactPage.sending}</span>
+                      </>
+                    ) : (
+                      t.contactPage.formSubmit
+                    )}
+                  </button>
+                </form>
+              )}
             </motion.div>
 
           </div>
