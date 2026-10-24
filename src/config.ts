@@ -1,9 +1,10 @@
-export const EMAIL_CONFIG = {
-  // TODO: Add the real manager email address here when provided by the client.
-  // This will be used as the destination for all form submissions (Consultations and Product Requests).
-  MANAGER_EMAIL: '',
-  
-  // TODO: Configure your preferred email service endpoint here (e.g., Formspree, EmailJS, custom backend API)
-  // Example: 'https://formspree.io/f/your-endpoint-id'
-  FORM_SUBMIT_URL: ''
+export const WEB3FORMS_CONFIG = {
+  ACCESS_KEY: 'b094e648-5efe-474e-829c-61163b2a81a7',
+  API_URL: 'https://api.web3forms.com/submit',
 };
+
+export const EMAIL_CONFIG = {
+  MANAGER_EMAIL: '',
+  FORM_SUBMIT_URL: WEB3FORMS_CONFIG.API_URL,
+};
+

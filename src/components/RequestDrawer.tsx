@@ -1,55 +1,19 @@
 import React, { useState } from 'react';
-import { X, Trash2, CheckCircle2, Phone } from 'lucide-react';
+import { X, Trash2, CheckCircle2, Phone, AlertCircle, Loader2 } from 'lucide-react';
 import { useRequest } from '../context/RequestContext';
 import { useLanguage } from '../context/LanguageContext';
-import { EMAIL_CONFIG } from '../config';
+import { WEB3FORMS_CONFIG } from '../config';
 
 export function RequestDrawer() {
   const { isDrawerOpen, setIsDrawerOpen, items, updateQuantity, removeItem, clearRequest } = useRequest();
   const { t } = useLanguage();
   
   const [formData, setFormData] = useState({ orgName: '', contact: '', comment: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   if (!isDrawerOpen) return null;
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // TODO: Final Email Connection
-    // When the real manager email and backend endpoint are provided, 
-    // uncomment and configure the fetch request below to enable real email delivery.
-    
-    /*
-    if (EMAIL_CONFIG.FORM_SUBMIT_URL && EMAIL_CONFIG.MANAGER_EMAIL) {
-      try {
-        await fetch(EMAIL_CONFIG.FORM_SUBMIT_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            items,
-            ...formData,
-            to: EMAIL_CONFIG.MANAGER_EMAIL,
-            subject: 'New Product Request'
-          }),
-        });
-      } catch (error) {
-        console.error('Email delivery failed:', error);
-      }
-    }
-    */
-
-    console.log('Prepared for email delivery to:', EMAIL_CONFIG.MANAGER_EMAIL || '[Not Configured]');
-    console.log('Payload:', { items, ...formData });
-    
-    setIsSubmitted(true);
-    setTimeout(() => {
-      clearRequest();
-      setIsSubmitted(false);
-      setIsDrawerOpen(false);
-      setFormData({ orgName: '', contact: '', comment: '' });
-    }, 3000);
-  };
 
   const getLocalizedModel = (id: string, originalModel: string) => {
     if (id === "1" && t.featured?.model1) return t.featured.model1;
@@ -58,16 +22,81 @@ export function RequestDrawer() {
     return originalModel;
   };
 
+  const handleClose = () => {
+    setIsDrawerOpen(false);
+    setErrorMessage(null);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+    setErrorMessage(null);
+
+    const formattedProducts = items
+      .map((item, index) => `${index + 1}. ${getLocalizedModel(item.id, item.model)} (ID: ${item.id}) — ${t.request.quantity}: ${item.quantity}`)
+      .join('\n');
+
+    const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
+
+    const payload = {
+      access_key: WEB3FORMS_CONFIG.ACCESS_KEY,
+      subject: `Новий запит на товари / Quote Request — ${formData.orgName || formData.contact}`,
+      from_name: 'DAMINER Website',
+      organization: formData.orgName,
+      contact: formData.contact,
+      comment: formData.comment || '—',
+      products_list: formattedProducts,
+      total_items_count: items.length,
+      total_units: totalQuantity,
+      message: `Деталі запиту на товари:\n\nОрганізація / Компанія: ${formData.orgName}\nКонтактні дані: ${formData.contact}\nКоментар: ${formData.comment || '—'}\n\nСписок товарів:\n${formattedProducts}\n\nВсього найменувань: ${items.length} (одиниць: ${totalQuantity})`
+    };
+
+    try {
+      const response = await fetch(WEB3FORMS_CONFIG.API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setIsSubmitted(true);
+        setErrorMessage(null);
+        setTimeout(() => {
+          clearRequest();
+          setIsSubmitted(false);
+          setIsDrawerOpen(false);
+          setFormData({ orgName: '', contact: '', comment: '' });
+        }, 3000);
+      } else {
+        const errorMsg = data.message || t.request.error;
+        console.error('Web3Forms returned failure:', data);
+        setErrorMessage(errorMsg);
+      }
+    } catch (error) {
+      console.error('Submission failed with network error:', error);
+      setErrorMessage(t.request.error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <>
       <div 
         className="fixed inset-0 bg-dark-navy/60 backdrop-blur-sm z-[100]"
-        onClick={() => setIsDrawerOpen(false)}
+        onClick={handleClose}
       />
       <div className="fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl z-[101] flex flex-col overflow-hidden">
         <div className="flex items-center justify-between p-6 border-b border-metallic-silver/30">
           <h2 className="font-heading font-bold text-2xl text-dark-navy">{t.request.title}</h2>
-          <button onClick={() => setIsDrawerOpen(false)} className="text-cool-gray hover:text-primary-blue transition-colors duration-300">
+          <button onClick={handleClose} className="text-cool-gray hover:text-primary-blue transition-colors duration-300">
             <X size={24} />
           </button>
         </div>
@@ -125,7 +154,10 @@ export function RequestDrawer() {
                     type="text"
                     required
                     value={formData.orgName}
-                    onChange={(e) => setFormData({...formData, orgName: e.target.value})}
+                    onChange={(e) => {
+                      setFormData({...formData, orgName: e.target.value});
+                      if (errorMessage) setErrorMessage(null);
+                    }}
                     className="w-full p-3 bg-off-white border border-metallic-silver/30 focus:border-primary-blue focus:outline-none transition-colors duration-300"
                   />
                 </div>
@@ -135,7 +167,10 @@ export function RequestDrawer() {
                     type="text"
                     required
                     value={formData.contact}
-                    onChange={(e) => setFormData({...formData, contact: e.target.value})}
+                    onChange={(e) => {
+                      setFormData({...formData, contact: e.target.value});
+                      if (errorMessage) setErrorMessage(null);
+                    }}
                     className="w-full p-3 bg-off-white border border-metallic-silver/30 focus:border-primary-blue focus:outline-none transition-colors duration-300"
                   />
                 </div>
@@ -144,15 +179,34 @@ export function RequestDrawer() {
                   <textarea
                     rows={3}
                     value={formData.comment}
-                    onChange={(e) => setFormData({...formData, comment: e.target.value})}
+                    onChange={(e) => {
+                      setFormData({...formData, comment: e.target.value});
+                      if (errorMessage) setErrorMessage(null);
+                    }}
                     className="w-full p-3 bg-off-white border border-metallic-silver/30 focus:border-primary-blue focus:outline-none transition-colors duration-300 resize-none"
                   ></textarea>
                 </div>
+
+                {errorMessage && (
+                  <div className="p-3 bg-red-50 border border-red-200 text-red-700 text-sm flex items-start gap-2.5 rounded">
+                    <AlertCircle size={18} className="shrink-0 mt-0.5 text-red-500" />
+                    <span className="font-body leading-snug">{errorMessage}</span>
+                  </div>
+                )}
+
                 <button
                   type="submit"
-                  className="w-full py-4 bg-primary-blue text-white font-heading font-bold text-sm tracking-widest uppercase hover:bg-dark-navy transition-colors duration-300 mt-4"
+                  disabled={isSubmitting}
+                  className="w-full py-4 bg-primary-blue text-white font-heading font-bold text-sm tracking-widest uppercase hover:bg-dark-navy transition-colors duration-300 mt-4 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
-                  {t.request.submit}
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 size={18} className="animate-spin" />
+                      <span>{t.request.sending}</span>
+                    </>
+                  ) : (
+                    t.request.submit
+                  )}
                 </button>
               </form>
             </div>

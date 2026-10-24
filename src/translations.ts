@@ -232,8 +232,10 @@ export const translations = {
       comment: "Коментар",
       contact: "Контактні дані",
       submit: "Надіслати запит",
+      sending: "Надсилання...",
       empty: "Ваш запит порожній",
-      success: "Запит успішно надіслано!"
+      success: "Запит успішно надіслано!",
+      error: "Не вдалося надіслати запит. Будь ласка, спробуйте ще раз або зв'яжіться з нами за телефоном."
     },
     contactPage: {
       heading: "Контакти",
@@ -260,7 +262,9 @@ export const translations = {
       email: "Email",
       message: "Повідомлення",
       submit: "Надіслати",
-      success: "Запит успішно надіслано!"
+      sending: "Надсилання...",
+      success: "Запит успішно надіслано!",
+      error: "Не вдалося надіслати запит. Будь ласка, спробуйте ще раз або зателефонуйте нам."
     },
     faq: {
       heading: "Часті запитання",
@@ -525,8 +529,10 @@ export const translations = {
       comment: "Comment",
       contact: "Contact Details",
       submit: "Submit Request",
+      sending: "Sending...",
       empty: "Your request is empty",
-      success: "Request sent successfully!"
+      success: "Request sent successfully!",
+      error: "Failed to send request. Please try again or contact us by phone."
     },
     contactPage: {
       heading: "Contact Us",
@@ -553,7 +559,9 @@ export const translations = {
       email: "Email",
       message: "Message",
       submit: "Submit",
-      success: "Request sent successfully!"
+      sending: "Sending...",
+      success: "Request sent successfully!",
+      error: "Failed to send request. Please try again or contact us by phone."
     },
     faq: {
       heading: "Frequently Asked Questions",
