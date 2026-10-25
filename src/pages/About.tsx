@@ -187,14 +187,17 @@ export function About() {
               >
                 <video 
                   src={src}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover z-0"
                   muted
                   playsInline
                   preload="metadata"
                   loop
                 />
                 
-                <div className="absolute inset-0 flex items-center justify-center opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none bg-black/10">
+                <div className="absolute inset-0 bg-dark-navy/10 bg-gradient-to-t from-dark-navy/50 to-transparent pointer-events-none z-[1]"></div>
+                <div className="absolute inset-0 bg-mesh pointer-events-none z-[2]"></div>
+                
+                <div className="absolute inset-0 flex items-center justify-center opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none z-[3]">
                   <div className="w-12 h-12 rounded-full bg-white/90 shadow-sm flex items-center justify-center text-primary-blue transition-transform duration-300 group-hover:scale-110">
                     <Play className="w-5 h-5 ml-1" />
                   </div>
