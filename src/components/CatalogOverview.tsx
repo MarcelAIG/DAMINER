@@ -59,8 +59,8 @@ export function CatalogOverview() {
                     {item.description}
                   </p>
                   <span className="inline-flex items-center gap-2 group-hover:gap-3 font-heading font-black text-xs tracking-widest uppercase text-primary-blue mt-auto transition-all duration-300">
-                    {t.categories.learnMore.replace(/\s*→\s*$/, '')}
-                    <ArrowRight size={14} strokeWidth={2.5} />
+                    <span>{t.categories.learnMore.replace(/\s*→\s*$/, '')}</span>
+                    <ArrowRight className="w-[18px] h-[18px] transition-transform duration-300 group-hover:translate-x-1" strokeWidth={2.5} />
                   </span>
                 </div>
               </Link>

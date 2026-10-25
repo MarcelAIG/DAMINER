@@ -3,7 +3,6 @@ import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { ConsultationModal } from './ConsultationModal';
-import { ArrowRight } from 'lucide-react';
 
 export function Hero() {
   const { t } = useLanguage();
@@ -44,17 +43,15 @@ export function Hero() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link 
                 to="/catalog"
-                className="inline-flex items-center justify-center bg-primary-blue text-white hover:bg-dark-navy font-heading font-bold text-[14px] tracking-wide uppercase px-8 py-3.5 rounded-md transition-colors duration-300 shadow-sm gap-3 group"
+                className="inline-flex items-center justify-center bg-primary-blue text-white hover:bg-dark-navy font-heading font-bold text-[14px] tracking-wide uppercase px-8 py-3.5 rounded-md transition-colors duration-300 shadow-sm"
               >
                 {t.hero.cta}
-                <ArrowRight className="w-[18px] h-[18px] group-hover:translate-x-1 transition-transform duration-300" strokeWidth={2} />
               </Link>
               <button 
                 onClick={() => setIsConsultationModalOpen(true)}
-                className="inline-flex items-center justify-center bg-white text-primary-blue hover:bg-off-white font-heading font-bold text-[14px] tracking-wide uppercase px-8 py-3.5 rounded-md transition-colors duration-300 shadow-sm gap-3 group cursor-pointer"
+                className="inline-flex items-center justify-center bg-white text-primary-blue hover:bg-off-white font-heading font-bold text-[14px] tracking-wide uppercase px-8 py-3.5 rounded-md transition-colors duration-300 shadow-sm cursor-pointer"
               >
                 {t.hero.ctaConsultation}
-                <ArrowRight className="w-[18px] h-[18px] group-hover:translate-x-1 transition-transform duration-300" strokeWidth={2} />
               </button>
             </div>
           </motion.div>

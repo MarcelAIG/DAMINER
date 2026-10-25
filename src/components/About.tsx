@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CheckCircle2, ChevronRight, ArrowRight, ShieldCheck, Volume2, VolumeX } from 'lucide-react';
+import { CheckCircle2, ChevronRight, ShieldCheck, Volume2, VolumeX } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 export function About() {
@@ -46,10 +46,9 @@ export function About() {
             <div className="flex items-start">
               <Link 
                 to="/about"
-                className="inline-flex items-center justify-center bg-primary-blue text-white hover:bg-dark-navy font-heading font-bold text-[14px] tracking-wide uppercase px-8 py-3.5 rounded-md transition-colors duration-300 shadow-sm gap-3 group"
+                className="inline-flex items-center justify-center bg-primary-blue text-white hover:bg-dark-navy font-heading font-bold text-[14px] tracking-wide uppercase px-8 py-3.5 rounded-md transition-colors duration-300 shadow-sm"
               >
                 {t.about.cta}
-                <ArrowRight className="w-[18px] h-[18px] group-hover:translate-x-1 transition-transform duration-300" strokeWidth={2} />
               </Link>
             </div>
             

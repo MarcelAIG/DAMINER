@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { ConsultationModal } from './ConsultationModal';
-import { Settings2, PenTool, Layers, Package, ArrowRight } from 'lucide-react';
+import { Settings2, PenTool, Layers, Package } from 'lucide-react';
 
 export function CustomMfg() {
   const { t } = useLanguage();
@@ -52,10 +52,9 @@ export function CustomMfg() {
           <div className="flex justify-start">
             <button 
               onClick={() => setIsConsultationModalOpen(true)}
-              className="inline-flex items-center justify-center bg-primary-blue text-white hover:bg-dark-navy font-heading font-bold text-[14px] tracking-wide uppercase px-8 py-3.5 rounded-md transition-colors duration-300 shadow-sm gap-3 group cursor-pointer"
+              className="inline-flex items-center justify-center bg-primary-blue text-white hover:bg-dark-navy font-heading font-bold text-[14px] tracking-wide uppercase px-8 py-3.5 rounded-md transition-colors duration-300 shadow-sm cursor-pointer"
             >
               {t.mfg.cta}
-              <ArrowRight className="w-[18px] h-[18px] group-hover:translate-x-1 transition-transform duration-300" strokeWidth={2} />
             </button>
           </div>
           

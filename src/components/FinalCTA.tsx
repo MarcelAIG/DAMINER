@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useRequest } from '../context/RequestContext';
 import { ConsultationModal } from './ConsultationModal';
-import { ArrowRight } from 'lucide-react';
 
 export function FinalCTA() {
   const { t } = useLanguage();
@@ -25,18 +24,16 @@ export function FinalCTA() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button 
               onClick={() => setIsConsultationModalOpen(true)}
-              className="inline-flex items-center justify-center bg-primary-blue text-white hover:bg-dark-navy font-heading font-bold text-[14px] tracking-wide uppercase px-8 py-3.5 rounded-md transition-colors duration-300 shadow-sm gap-3 group cursor-pointer"
+              className="inline-flex items-center justify-center bg-primary-blue text-white hover:bg-dark-navy font-heading font-bold text-[14px] tracking-wide uppercase px-8 py-3.5 rounded-md transition-colors duration-300 shadow-sm cursor-pointer"
             >
               {t.cta.btn1}
-              <ArrowRight className="w-[18px] h-[18px] group-hover:translate-x-1 transition-transform duration-300" strokeWidth={2} />
             </button>
             
             <a 
               href={`tel:${t.contactPage.phone.replace(/[\s-()]/g, '')}`}
-              className="inline-flex items-center justify-center bg-white text-primary-blue hover:bg-off-white font-heading font-bold text-[14px] tracking-wide uppercase px-8 py-3.5 rounded-md transition-colors duration-300 shadow-sm gap-3 group cursor-pointer"
+              className="inline-flex items-center justify-center bg-white text-primary-blue hover:bg-off-white font-heading font-bold text-[14px] tracking-wide uppercase px-8 py-3.5 rounded-md transition-colors duration-300 shadow-sm cursor-pointer"
             >
               {t.cta.btn2}
-              <ArrowRight className="w-[18px] h-[18px] group-hover:translate-x-1 transition-transform duration-300" strokeWidth={2} />
             </a>
           </div>
         </div>

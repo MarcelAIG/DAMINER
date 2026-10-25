@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { CadProbe, CadMirror, CadKit, CadNet, CadTool } from './CadDrawings';
 import { CATALOG_CATEGORY_SLUGS, CATALOG_CATEGORY_IMAGES } from '../data/catalogCategories';
@@ -110,7 +110,8 @@ export function Categories() {
                       {item.description}
                     </p>
                     <div className="inline-flex items-center font-heading font-black text-xs tracking-widest uppercase text-primary-blue mt-auto group-hover:gap-3 transition-all duration-300 gap-2">
-                      {t.categories.learnMore}
+                      <span>{t.categories.learnMore.replace(/\s*→\s*$/, '')}</span>
+                      <ArrowRight className="w-[18px] h-[18px] transition-transform duration-300 group-hover:translate-x-1" strokeWidth={2.5} />
                     </div>
                   </div>
                 </Link>
