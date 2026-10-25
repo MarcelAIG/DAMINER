@@ -8,3 +8,5 @@ coverage/
 !.env.example
 .env
 public/videos/
+backups/
+
