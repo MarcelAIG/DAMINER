@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
-import { Shield, Target, Bomb, Search } from 'lucide-react';
+import { Shield, Target, Bomb, Search, ArrowRight } from 'lucide-react';
 
 export function WhatWeDo() {
   const { t } = useLanguage();
@@ -60,9 +60,10 @@ export function WhatWeDo() {
         <div className="flex justify-start">
           <Link 
             to="/solutions"
-            className="inline-flex items-center justify-center bg-primary-blue border-2 border-primary-blue text-white hover:bg-white hover:text-primary-blue font-heading font-bold text-[12px] md:text-[13px] tracking-widest uppercase px-10 py-5 transition-colors duration-300 shadow-sm"
+            className="inline-flex items-center justify-center bg-primary-blue text-white hover:bg-dark-navy font-heading font-bold text-[14px] tracking-wide uppercase px-8 py-3.5 rounded-md transition-colors duration-300 shadow-sm gap-3 group"
           >
             {t.whatWeDo.cta}
+            <ArrowRight className="w-[18px] h-[18px] group-hover:translate-x-1 transition-transform duration-300" strokeWidth={2} />
           </Link>
         </div>
         

@@ -46,7 +46,7 @@ export function About() {
             <div className="flex items-start">
               <Link 
                 to="/about"
-                className="inline-flex items-center justify-center bg-primary-blue text-white hover:bg-dark-navy font-heading font-bold text-[14px] tracking-wide px-8 py-3.5 rounded-md transition-colors duration-300 shadow-sm gap-3 group"
+                className="inline-flex items-center justify-center bg-primary-blue text-white hover:bg-dark-navy font-heading font-bold text-[14px] tracking-wide uppercase px-8 py-3.5 rounded-md transition-colors duration-300 shadow-sm gap-3 group"
               >
                 {t.about.cta}
                 <ArrowRight className="w-[18px] h-[18px] group-hover:translate-x-1 transition-transform duration-300" strokeWidth={2} />

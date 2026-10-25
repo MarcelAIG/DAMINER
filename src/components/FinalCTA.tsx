@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useRequest } from '../context/RequestContext';
 import { ConsultationModal } from './ConsultationModal';
+import { ArrowRight } from 'lucide-react';
 
 export function FinalCTA() {
   const { t } = useLanguage();
@@ -21,19 +22,21 @@ export function FinalCTA() {
             {t.cta.desc}
           </p>
           
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button 
               onClick={() => setIsConsultationModalOpen(true)}
-              className="w-full sm:w-auto bg-primary-blue text-white hover:bg-white hover:text-primary-blue font-heading font-bold text-sm tracking-widest uppercase px-10 py-5 transition-colors duration-300 border border-primary-blue"
+              className="inline-flex items-center justify-center bg-primary-blue text-white hover:bg-dark-navy font-heading font-bold text-[14px] tracking-wide uppercase px-8 py-3.5 rounded-md transition-colors duration-300 shadow-sm gap-3 group cursor-pointer"
             >
               {t.cta.btn1}
+              <ArrowRight className="w-[18px] h-[18px] group-hover:translate-x-1 transition-transform duration-300" strokeWidth={2} />
             </button>
             
             <a 
               href={`tel:${t.contactPage.phone.replace(/[\s-()]/g, '')}`}
-              className="w-full sm:w-auto bg-white text-primary-blue hover:bg-transparent hover:text-white font-heading font-bold text-sm tracking-widest uppercase px-10 py-5 transition-colors duration-300 border-2 border-white inline-block text-center cursor-pointer"
+              className="inline-flex items-center justify-center bg-white text-primary-blue hover:bg-off-white font-heading font-bold text-[14px] tracking-wide uppercase px-8 py-3.5 rounded-md transition-colors duration-300 shadow-sm gap-3 group cursor-pointer"
             >
               {t.cta.btn2}
+              <ArrowRight className="w-[18px] h-[18px] group-hover:translate-x-1 transition-transform duration-300" strokeWidth={2} />
             </a>
           </div>
         </div>
