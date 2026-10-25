@@ -9,6 +9,7 @@ export const translations = {
     },
     categories: {
       heading: "Каталог обладнання",
+      seeAll: "Переглянути весь каталог",
       items: ["Щупи", "Дзеркала", "Набори", "Сіткомети протидронові", "Саперні пристосування"],
       descriptions: [
         "Пошукові щупи різної довжини та конфігурації.",
@@ -309,6 +310,7 @@ export const translations = {
     },
     categories: {
       heading: "Equipment Catalog",
+      seeAll: "See all catalogs",
       items: ["Probes", "Inspection Mirrors", "Kits", "Anti-drone Nets", "Sapper Tools"],
       descriptions: [
         "Search probes in different lengths and configurations.",

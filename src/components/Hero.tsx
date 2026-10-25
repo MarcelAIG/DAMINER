@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { ConsultationModal } from './ConsultationModal';
 
@@ -41,12 +40,16 @@ export function Hero() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link 
-                to="/catalog"
-                className="inline-flex items-center justify-center bg-primary-blue text-white hover:bg-dark-navy font-heading font-bold text-[14px] tracking-wide uppercase px-8 py-3.5 rounded-md transition-colors duration-300 shadow-sm"
+              <a 
+                href="#catalog-categories"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('catalog-categories')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="inline-flex items-center justify-center bg-primary-blue text-white hover:bg-dark-navy font-heading font-bold text-[14px] tracking-wide uppercase px-8 py-3.5 rounded-md transition-colors duration-300 shadow-sm cursor-pointer"
               >
                 {t.hero.cta}
-              </Link>
+              </a>
               <button 
                 onClick={() => setIsConsultationModalOpen(true)}
                 className="inline-flex items-center justify-center bg-white text-primary-blue hover:bg-off-white font-heading font-bold text-[14px] tracking-wide uppercase px-8 py-3.5 rounded-md transition-colors duration-300 shadow-sm cursor-pointer"

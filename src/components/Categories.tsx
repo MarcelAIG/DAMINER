@@ -59,15 +59,31 @@ export function Categories() {
   }, []);
 
   return (
-    <section className="bg-white">
+    <section id="catalog-categories" className="bg-white scroll-mt-[90px]">
       {/* Catalog Area */}
       <div className="py-16 md:py-24 border-b border-metallic-silver/20">
         <div className="max-w-[1360px] mx-auto px-6 lg:px-10 xl:px-0">
           
-          <div className="mb-12 md:mb-16">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12 md:mb-16">
             <h2 className="font-heading font-black text-4xl md:text-5xl lg:text-[54px] text-dark-navy tracking-tight">
               {t.categories.heading}
             </h2>
+            <Link 
+              to="/catalog"
+              className="group inline-flex items-center gap-2 font-heading font-bold text-sm md:text-base text-primary-blue hover:text-dark-navy transition-colors duration-300 pb-1 self-start sm:self-end"
+            >
+              <span>{t.categories.seeAll}</span>
+              <svg 
+                className="w-4 h-4 md:w-5 md:h-5 transform group-hover:translate-x-1.5 transition-transform duration-300 fill-none stroke-current" 
+                viewBox="0 0 24 24" 
+                strokeWidth="2.5" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </Link>
           </div>
           
           <div className="relative">
