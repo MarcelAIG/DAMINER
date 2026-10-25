@@ -219,13 +219,6 @@ export function Contact() {
                   <h4 className="font-heading font-bold text-xl text-dark-navy">
                     {t.contactPage.success}
                   </h4>
-                  <button
-                    type="button"
-                    onClick={() => setIsSubmitted(false)}
-                    className="mt-4 px-6 py-2.5 border border-primary-blue text-primary-blue hover:bg-primary-blue hover:text-white font-heading font-bold text-xs tracking-widest uppercase rounded transition-colors duration-300"
-                  >
-                    {t.contactPage.formSubmit}
-                  </button>
                 </div>
               ) : (
                 <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
