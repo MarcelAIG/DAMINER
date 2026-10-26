@@ -107,7 +107,7 @@ export function Solutions() {
           </div>
           <Link 
             to="/contact"
-            className="inline-flex items-center justify-center w-full sm:w-auto bg-primary-blue text-white hover:bg-white hover:text-primary-blue border border-primary-blue font-heading font-bold text-sm tracking-widest uppercase px-12 py-5 transition-colors duration-300"
+            className="inline-flex items-center justify-center bg-primary-blue text-white hover:bg-dark-navy font-heading font-bold text-[14px] tracking-wide uppercase px-8 py-3.5 rounded-md transition-colors duration-300 shadow-sm cursor-pointer"
           >
             {t.solutionsPage.cta}
           </Link>
